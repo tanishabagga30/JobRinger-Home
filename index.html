@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Job Ringer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-white shadow-lg p-4 sticky top-0 z-10">
+        <section class="message-slider">
+            <div class="message-slide active">Happy got a job!</div>
+            <div class="message-slide">Seela got a call!</div>
+            <div class="message-slide">Tanisha applied for a job!</div>
+        </section>
+        <div class="flex items-center justify-between">
+            <div class="text-2xl font-bold text-indigo-700">JobRinger</div>
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <div class="relative w-full max-w-xs">
+                    <input type="text" placeholder="Search jobs..." class="w-full pl-8 pr-8 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-800 placeholder-gray-500 text-sm">
+                    <i class="fas fa-search absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <i class="fas fa-microphone absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-indigo-600 text-sm"></i>
+                </div>
+                <button class="text-gray-600 hover:text-indigo-700 relative">
+                    <i class="fas fa-bell text-lg"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+                </button>
+                <button id="theme-toggle" class="text-gray-600 hover:text-indigo-700">
+                    <i class="fas fa-moon text-lg" id="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow px-2 py-4">
+        <section class="slider mb-4 rounded-xl overflow-hidden shadow-2xl">
+            <div class="slide active">
+                <img src="https://placehold.co/600x250/E0E0E0/888888?text=Find+Your+Dream+Job" alt="Banner 1">
+            </div>
+            <div class="slide">
+                <img src="https://placehold.co/600x250/E0E0E0/888888?text=Post+Your+Job+Today" alt="Banner 2">
+            </div>
+            <div class="slide">
+                <img src="https://placehold.co/600x250/E0E0E0/888888?text=Explore+Opportunities" alt="Banner 3">
+            </div>
+            <div class="slider-nav">
+                <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section class="job-buttons mb-4">
+            <a href="#" class="btn-primary text-white font-bold py-2 px-4 text-sm text-center hover:shadow-lg">
+                Get a Job
+            </a>
+            <a href="#" class="bg-white text-indigo-700 border-2 border-indigo-700 font-bold py-2 px-4 rounded-lg text-sm text-center hover:bg-indigo-50 hover:shadow-md transition duration-300">
+                Post a Job
+            </a>
+        </section>
+
+        <section class="mb-4">
+            <div class="flex items-center justify-between mb-1">
+                <h2 class="text-base font-bold text-gray-800">Featured Employers</h2>
+            </div>
+            <div class="featured-employers flex space-x-4 pb-2" id="employerScroll">
+                <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
+                    <img src="https://placehold.co/60x60/E0E0E0/888888?text=Comp1" alt="Company 1" class="max-w-full max-h-full rounded-md">
+                </div>
+                <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
+                    <img src="https://placehold.co/60x60/E0E0E0/888888?text=Comp2" alt="Company 2" class="max-w-full max-h-full rounded-md">
+                </div>
+                <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
+                    <img src="https://placehold.co/60x60/E0E0E0/888888?text=Comp3" alt="Company 3" class="max-w-full max-h-full rounded-md">
+                </div>
+                <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
+                    <img src="https://placehold.co/60x60/E0E0E0/888888?text=Comp4" alt="Company 4" class="max-w-full max-h-full rounded-md">
+                </div>
+                <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
+                    <img src="https://placehold.co/60x60/E0E0E0/888888?text=Comp5" alt="Company 5" class="max-w-full max-h-full rounded-md">
+                </div>
+                <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
+                    <img src="https://placehold.co/60x60/E0E0E0/888888?text=Comp6" alt="Company 6" class="max-w-full max-h-full rounded-md">
+                </div>
+                <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
+                    <img src="https://placehold.co/60x60/E0E0E0/888888?text=Comp7" alt="Company 7" class="max-w-full max-h-full rounded-md">
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-4">
+            <h2 class="text-base font-bold text-gray-800 mb-2">Top Picks</h2>
+            <div class="grid grid-cols-2 gap-1 top-picks">
+                <button class="bg-white text-gray-700 px-2 py-1 rounded-full shadow hover:bg-indigo-100 transition duration-200 text-xs">IT & Software</button>
+                <button class="bg-white text-gray-700 px-2 py-1 rounded-full shadow hover:bg-indigo-100 transition duration-200 text-xs">Remote</button>
+                <button class="bg-white text-gray-700 px-2 py-1 rounded-full shadow hover:bg-indigo-100 transition duration-200 text-xs">Featured</button>
+                <button class="bg-white text-gray-700 px-2 py-1 rounded-full shadow hover:bg-indigo-100 transition duration-200 text-xs">Marketing</button>
+                <button class="bg-white text-gray-700 px-2 py-1 rounded-full shadow hover:bg-indigo-100 transition duration-200 text-xs">Finance</button>
+                <button class="bg-white text-gray-700 px-2 py-1 rounded-full shadow hover:bg-indigo-100 transition duration-200 text-xs">Design</button>
+            </div>
+        </section>
+
+        <section class="mb-4">
+            <h2 class="text-base font-bold text-gray-800 mb-2">Find job vacancies by</h2>
+            <div id="vacancy-section">
+                <div class="flex flex-wrap gap-2 mb-2" id="vacancy-categories">
+                    <button class="vacancy-category-btn active" data-category="skills">Skills</button>
+                    <button class="vacancy-category-btn" data-category="location">Location</button>
+                    <button class="vacancy-category-btn" data-category="industry">Industry</button>
+                    <button class="vacancy-category-btn" data-category="functions">Functions</button>
+                    <button class="vacancy-category-btn" data-category="roles">Roles</button>
+                    <button class="vacancy-category-btn" data-category="company">Company</button>
+                </div>
+
+                <div id="vacancy-options">
+                    <span class="job-vacancy-option">Python</span>
+                    <span class="job-vacancy-option">SQL</span>
+                    <span class="job-vacancy-option">Java</span>
+                    <span class="job-vacancy-option">AWS</span>
+                    <span class="job-vacancy-option">Javascript</span>
+                    <span class="job-vacancy-option">Git</span>
+                    <span class="job-vacancy-option">Excel</span>
+                    <span class="job-vacancy-option">Azure</span>
+                    <span class="job-vacancy-option">Sales</span>
+                    <span class="job-vacancy-option">Docker</span>
+                    <span class="job-vacancy-option">Kubernetes</span>
+                    <span class="job-vacancy-option">Data Analysis</span>
+                    <span class="job-vacancy-option">MS Office</span>
+                    <span class="job-vacancy-option">Project Management</span>
+                </div>
+
+                <a id="view-all-link" href="#">View all jobs by Skills ></a>
+            </div>
+        </section>
+
+        <section class="mb-4">
+            <h2 class="text-base font-bold text-gray-800 mb-2">How Job Ringer Works</h2>
+            <div class="grid grid-cols-1 gap-2">
+                <div class="card p-2 rounded-lg shadow-md text-center flex flex-col items-center min-h-[120px]">
+                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mb-1">
+                        <i class="fas fa-user-plus text-indigo-600 text-base"></i>
+                    </div>
+                    <p class="text-xs font-semibold text-gray-800">1. Create Your Profile</p>
+                    <p class="text-gray-600 text-xxs mt-1 text-center">Build a profile and upload your resume.</p>
+                </div>
+                <div class="card p-2 rounded-lg shadow-md text-center flex flex-col items-center min-h-[120px]">
+                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mb-1">
+                        <i class="fas fa-search-plus text-indigo-600 text-base"></i>
+                    </div>
+                    <p class="text-xs font-semibold text-gray-800">2. Discover Opportunities</p>
+                    <p class="text-gray-600 text-xxs mt-1 text-center">Explore job listings tailored to your skills.</p>
+                </div>
+                <div class="card p-2 rounded-lg shadow-md text-center flex flex-col items-center min-h-[120px]">
+                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mb-1">
+                        <i class="fas fa-briefcase text-indigo-600 text-base"></i>
+                    </div>
+                    <p class="text-xs font-semibold text-gray-800">3. Apply & Get Hired</p>
+                    <p class="text-gray-600 text-xxs mt-1 text-center">Apply and connect with top employers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-4">
+            <h2 class="text-base font-bold text-gray-800 mb-2">Job Ringer Stats</h2>
+            <div class="stats-summary">
+                <div>
+                    <p>98M+</p>
+                    <p>Job Posted</p>
+                </div>
+                <div>
+                    <p>20M+</p>
+                    <p>Jobs Applied</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white p-2 mt-2 rounded-t-2xl shadow-inner">
+        <section class="mb-2">
+            <h2 class="text-base font-bold text-gray-800 mb-1">Disclaimer</h2>
+            <p class="text-gray-600 text-xs leading-tight">
+                Information on JobRinger is for general use only. We ensure accuracy but provide no guarantees. Use at your own risk.
+            </p>
+        </section>
+        <section>
+            <h2 class="text-base font-bold text-gray-800 mb-1">Contact Us</h2>
+            <div class="flex flex-col space-y-1">
+                <p class="text-gray-700 text-xs"><i class="fas fa-phone-alt mr-1"></i> +123 456 7890</p>
+                <p class="text-gray-700 text-xs"><i class="fas fa-envelope mr-1"></i> contact@jobringer.com</p>
+            </div>
+        </section>
+    </footer>
+    <nav class="bg-white shadow-lg p-2 fixed bottom-0 left-0 right-0 z-20 rounded-t-xl">
+        <div class="flex justify-around items-center">
+            <a href="#" class="flex flex-col items-center text-indigo-600 p-1">
+                <i class="fas fa-home text-lg"></i>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1">
+                <i class="fas fa-search text-lg"></i>
+                <span class="text-xs mt-1">Search</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1">
+                <i class="fas fa-briefcase text-lg"></i>
+                <span class="text-xs mt-1">Jobs</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1">
+                <i class="fas fa-bars text-lg"></i>
+                <span class="text-xs mt-1">Categories</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1">
+                <i class="fas fa-user-circle text-lg"></i>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+    </nav>
+    <script src="script.js"></script>
+</body>
+</html>
