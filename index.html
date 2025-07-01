@@ -9,30 +9,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="min-h-screen flex flex-col">
-    <header class="bg-white shadow-lg p-4 sticky top-0 z-10">
-        <section class="message-slider">
-            <div class="message-slide active">Happy got a job!</div>
-            <div class="message-slide">Seela got a call!</div>
-            <div class="message-slide">Tanisha applied for a job!</div>
-        </section>
-        <div class="flex items-center justify-between">
-            <div class="text-2xl font-bold text-indigo-700">JobRinger</div>
-            <div class="flex items-center space-x-2 sm:space-x-4">
-                <div class="relative w-full max-w-xs">
-                    <input type="text" placeholder="Search jobs..." class="w-full pl-8 pr-8 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-gray-800 placeholder-gray-500 text-sm">
-                    <i class="fas fa-search absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                    <i class="fas fa-microphone absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-indigo-600 text-sm"></i>
-                </div>
-                <button class="text-gray-600 hover:text-indigo-700 relative">
-                    <i class="fas fa-bell text-lg"></i>
-                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
-                </button>
-                <button id="theme-toggle" class="text-gray-600 hover:text-indigo-700">
-                    <i class="fas fa-moon text-lg" id="theme-icon"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
 
     <main class="flex-grow px-2 py-4">
         <section class="slider mb-4 rounded-xl overflow-hidden shadow-2xl">
@@ -176,45 +153,9 @@
         </section>
     </main>
 
-    <footer class="bg-white p-2 mt-2 rounded-t-2xl shadow-inner">
-        <section class="mb-2">
-            <h2 class="text-base font-bold text-gray-800 mb-1">Disclaimer</h2>
-            <p class="text-gray-600 text-xs leading-tight">
-                Information on JobRinger is for general use only. We ensure accuracy but provide no guarantees. Use at your own risk.
-            </p>
-        </section>
-        <section>
-            <h2 class="text-base font-bold text-gray-800 mb-1">Contact Us</h2>
-            <div class="flex flex-col space-y-1">
-                <p class="text-gray-700 text-xs"><i class="fas fa-phone-alt mr-1"></i> +123 456 7890</p>
-                <p class="text-gray-700 text-xs"><i class="fas fa-envelope mr-1"></i> contact@jobringer.com</p>
-            </div>
-        </section>
-    </footer>
-    <nav class="bg-white shadow-lg p-2 fixed bottom-0 left-0 right-0 z-20 rounded-t-xl">
-        <div class="flex justify-around items-center">
-            <a href="#" class="flex flex-col items-center text-indigo-600 p-1">
-                <i class="fas fa-home text-lg"></i>
-                <span class="text-xs mt-1">Home</span>
-            </a>
-            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1">
-                <i class="fas fa-search text-lg"></i>
-                <span class="text-xs mt-1">Search</span>
-            </a>
-            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1">
-                <i class="fas fa-briefcase text-lg"></i>
-                <span class="text-xs mt-1">Jobs</span>
-            </a>
-            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1">
-                <i class="fas fa-bars text-lg"></i>
-                <span class="text-xs mt-1">Categories</span>
-            </a>
-            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1">
-                <i class="fas fa-user-circle text-lg"></i>
-                <span class="text-xs mt-1">Profile</span>
-            </a>
-        </div>
-    </nav>
+    <div id="footer-placeholder" class="mt-2"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+
     <script src="script.js"></script>
 </body>
 </html>

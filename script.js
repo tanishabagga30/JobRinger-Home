@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Load header, footer, and nav
+    async function loadComponent(file, placeholderId) {
+        try {
+            const response = await fetch(file);
+            if (!response.ok) throw new Error(`Failed to load ${file}`);
+            const content = await response.text();
+            document.getElementById(placeholderId).innerHTML = content;
+        } catch (error) {
+            console.error(`Error loading ${file}:`, error);
+        }
+    }
+
+    // Load components
+    loadComponent('header.html', 'header-placeholder');
+    loadComponent('footer.html', 'footer-placeholder');
+    loadComponent('nav.html', 'nav-placeholder');
+
     // Banner Slider
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevBtn');
@@ -51,42 +68,47 @@ document.addEventListener('DOMContentLoaded', () => {
     employerScroll.addEventListener('mouseleave', startEmployerAutoScroll);
     startEmployerAutoScroll();
 
-    // Message Slider
-    const messageSlides = document.querySelectorAll('.message-slide');
-    let currentMessageSlide = 0;
+    // Message Slider and Theme Toggle (run after header is loaded)
+    function initializeHeaderFeatures() {
+        const messageSlides = document.querySelectorAll('.message-slide');
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
 
-    function showMessageSlide(index) {
-        messageSlides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-    }
+        if (messageSlides.length > 0) {
+            let currentMessageSlide = 0;
 
-    function nextMessageSlide() {
-        currentMessageSlide = (currentMessageSlide + 1) % messageSlides.length;
-        showMessageSlide(currentMessageSlide);
-    }
+            function showMessageSlide(index) {
+                messageSlides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+            }
 
-    showMessageSlide(currentMessageSlide);
-    setInterval(nextMessageSlide, 3500);
+            function nextMessageSlide() {
+                currentMessageSlide = (currentMessageSlide + 1) % messageSlides.length;
+                showMessageSlide(currentMessageSlide);
+            }
 
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
-    const themeIcon = document.getElementById('theme-icon');
-
-    themeToggle.addEventListener('click', () => {
-        if (htmlElement.classList.contains('light')) {
-            htmlElement.classList.remove('light');
-            htmlElement.classList.add('dark');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        } else {
-            htmlElement.classList.remove('dark');
-            htmlElement.classList.add('light');
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
+            showMessageSlide(currentMessageSlide);
+            setInterval(nextMessageSlide, 3500);
         }
-    });
+
+        if (themeToggle && themeIcon) {
+            themeToggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('light')) {
+                    htmlElement.classList.remove('light');
+                    htmlElement.classList.add('dark');
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    htmlElement.classList.remove('dark');
+                    htmlElement.classList.add('light');
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+        }
+    }
 
     // Job Vacancies Category Switching
     const buttons = document.querySelectorAll('.vacancy-category-btn');
@@ -101,4 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
             viewLink.textContent = `View all jobs by ${cat.charAt(0).toUpperCase() + cat.slice(1)} >`;
         });
     });
+
+    // Wait for header to load before initializing features
+    const headerPlaceholder = document.getElementById('header-placeholder');
+    const observer = new MutationObserver(() => {
+        if (headerPlaceholder.querySelector('header')) {
+            initializeHeaderFeatures();
+            observer.disconnect();
+        }
+    });
+    observer.observe(headerPlaceholder, { childList: true, subtree: true });
 });
