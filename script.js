@@ -134,3 +134,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     observer.observe(headerPlaceholder, { childList: true, subtree: true });
 });
+

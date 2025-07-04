@@ -183,6 +183,8 @@ html.dark #vacancy-section {
     display: flex;
     flex-wrap: nowrap;
     gap: 2px;
+    overflow-x: scroll;
+    scrollbar-width: none;
 }
 #vacancy-options {
     display: flex;
@@ -381,6 +383,9 @@ select {
     padding: 3px 6px;
     font-size: 0.8rem;
 }
+
+
+
 .card p {
     font-size: 0.7rem;
     color: #4B5563;
