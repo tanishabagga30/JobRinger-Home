@@ -1,5 +1,9 @@
+tailwind.config = {
+    darkMode: 'class'
+};
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Load header, footer, and nav
+    // Load header, footer, nav, search, and menu
     async function loadComponent(file, placeholderId) {
         try {
             const response = await fetch(file);
@@ -15,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadComponent('header.html', 'header-placeholder');
     loadComponent('footer.html', 'footer-placeholder');
     loadComponent('nav.html', 'nav-placeholder');
+    loadComponent('search.html', 'search-placeholder');
+    loadComponent('menu.html', 'menu-placeholder');
 
     // Banner Slider
     const slides = document.querySelectorAll('.slide');
@@ -124,14 +130,108 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Wait for header to load before initializing features
+    // Search Popup Functionality (run after nav and search are loaded)
+    function initializeSearchFeatures() {
+        const searchPopup = document.getElementById('searchPopup');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchNavBtn = document.querySelector('#nav-placeholder a[href="#"] .fa-search')?.closest('a');
+        const closeSearchBtn = document.getElementById('closeSearch');
+        
+        if (!searchPopup || !searchOverlay || !searchNavBtn || !closeSearchBtn) {
+            console.error('Search elements not found');
+            return;
+        }
+
+        let isSearchOpen = false;
+
+        function toggleSearchPopup() {
+            isSearchOpen = !isSearchOpen;
+            searchPopup.classList.toggle('active', isSearchOpen);
+            searchOverlay.classList.toggle('active', isSearchOpen);
+            document.body.style.overflow = isSearchOpen ? 'hidden' : '';
+        }
+
+        searchNavBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleSearchPopup();
+        });
+
+        closeSearchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (isSearchOpen) {
+                toggleSearchPopup();
+            }
+        });
+
+        searchOverlay.addEventListener('click', toggleSearchPopup);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isSearchOpen) {
+                toggleSearchPopup();
+            }
+        });
+    }
+
+    // Menu Popup Functionality (run after nav and menu are loaded)
+    function initializeMenuFeatures() {
+        const menuPopup = document.getElementById('menuPopup');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const menuNavBtn = document.querySelector('#nav-placeholder a#openMenu');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        
+        if (!menuPopup || !menuOverlay || !menuNavBtn || !closeMenuBtn) {
+            console.error('Menu elements not found');
+            return;
+        }
+
+        let isMenuOpen = false;
+
+        function toggleMenuPopup() {
+            isMenuOpen = !isMenuOpen;
+            menuPopup.classList.toggle('active', isMenuOpen);
+            menuOverlay.classList.toggle('active', isMenuOpen);
+            document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+        }
+
+        menuNavBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenuPopup();
+        });
+
+        closeMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (isMenuOpen) {
+                toggleMenuPopup();
+            }
+        });
+
+        menuOverlay.addEventListener('click', toggleMenuPopup);
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isMenuOpen) {
+                toggleMenuPopup();
+            }
+        });
+    }
+
+    // Wait for header, nav, search, and menu to load before initializing dependent features
     const headerPlaceholder = document.getElementById('header-placeholder');
+    const navPlaceholder = document.getElementById('nav-placeholder');
+    const searchPlaceholder = document.getElementById('search-placeholder');
+    const menuPlaceholder = document.getElementById('menu-placeholder');
     const observer = new MutationObserver(() => {
-        if (headerPlaceholder.querySelector('header')) {
+        if (headerPlaceholder.querySelector('header') && 
+            navPlaceholder.querySelector('nav') && 
+            searchPlaceholder.querySelector('.search-popup') && 
+            menuPlaceholder.querySelector('.menu-popup')) {
             initializeHeaderFeatures();
+            initializeSearchFeatures();
+            initializeMenuFeatures();
             observer.disconnect();
         }
     });
     observer.observe(headerPlaceholder, { childList: true, subtree: true });
+    observer.observe(navPlaceholder, { childList: true, subtree: true });
+    observer.observe(searchPlaceholder, { childList: true, subtree: true });
+    observer.observe(menuPlaceholder, { childList: true, subtree: true });
 });
-
