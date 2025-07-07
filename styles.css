@@ -1,6 +1,19 @@
+:root{
+    /* defining color variable */
+    --body_color_light:#F9FAFB;
+    --text_color_light:#000000;
+
+    --body_color_dark:#1A202C;
+    --text_color_dark:#F7FAFC;
+
+    --dark_background_secondary:#2D3748;
+    --dark_background_secondary:#2D3748;
+}
+
 body {
     font-family: 'Inter', sans-serif;
-    background: #F9FAFB;
+    /* calling the variable and using it  */
+    background: var(--body_color_light);
     margin: 0;
     padding-bottom: 60px;
     overflow-x: hidden;
@@ -11,28 +24,28 @@ body {
     }
 }
 html.dark body {
-    background: #1A202C;
-    color: #F7FAFC;
+    background: var(--body_color_dark);
+    color: var(--text_color_dark);
 }
 html.dark .bg-white {
-    background-color: #2D3748;
-    color: #F7FAFC;
+    background-color: var(--dark_background_secondary);
+    color: var(--text_color_dark);
 }
 html.dark .text-gray-800 {
-    color: #F7FAFC;
+    color: var(--text_color_dark);
 }
 html.dark .text-gray-600 {
     color: #CBD5E0;
 }
 html.dark .text-gray-700 {
-    color: #F7FAFC;
+    color: var(--text_color_dark);
 }
 html.dark .border-gray-300 {
     border-color: #4A5568;
 }
 html.dark input {
     background-color: #2D3748;
-    color: #F7FAFC;
+    color: var(--text_color_dark);
 }
 html.dark .shadow-sm {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -213,7 +226,7 @@ html.dark #vacancy-section {
 html.dark .job-vacancy-option {
     background: #2D3748;
     border-color: #4A5568;
-    color: #F7FAFC;
+    color: var(--text_color_dark);
 }
 html.dark .job-vacancy-option:hover {
     background: #374151;
@@ -370,7 +383,7 @@ h2 {
     color: #111827;
 }
 html.dark h2 {
-    color: #F7FAFC;
+    color: var(--text_color_dark);
 }
 select {
     padding: 4px;
@@ -394,7 +407,7 @@ html.dark .card p {
     color: #111827;
 }
 html.dark .card p:first-child {
-    color: #F7FAFC;
+    color: var(--text_color_dark);
 }
 .card .fa-user-plus, .card .fa-search-plus, .card .fa-briefcase {
     color: #6B7280;

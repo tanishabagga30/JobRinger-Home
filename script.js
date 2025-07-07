@@ -1,6 +1,17 @@
-tailwind.config = {
-    darkMode: 'class'
-};
+function adjustForNavbar() {
+    const navbar = document.querySelector('.bottom-navbar');
+    const navbarHeight = navbar.offsetHeight+10;
+    // Apply to body or specific container
+    document.body.style.paddingBottom = navbarHeight + 'px';
+
+    if (mainContent) {
+        mainContent.style.paddingBottom = navbarHeight + 'px';
+    }
+}
+
+// Run on load and resize
+window.addEventListener('load', adjustForNavbar);
+window.addEventListener('resize', adjustForNavbar);
 
 document.addEventListener('DOMContentLoaded', () => {
     // Load header, footer, nav, search, and menu
