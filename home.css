@@ -1,0 +1,449 @@
+/* HOME PAGE SPECIFIC STYLES */
+
+/* Slider Styles */
+.slider {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(90%);
+}
+
+.slide.active {
+    display: block;
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.slider-nav button {
+    background: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.3s;
+}
+
+.slider-nav button:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Job Buttons */
+.job-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    background: var(--card_bg_light);
+    padding: 4px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--light_shadow);
+}
+
+html.dark .job-buttons {
+    background: var(--dark_background_secondary);
+    box-shadow: 0 2px 4px var(--dark_shadow);
+}
+
+.job-buttons a {
+    flex: 1;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.job-toggle-btn {
+    background: var(--primary_blue);
+    color: white;
+    border: none;
+}
+
+.job-toggle-btn.inactive {
+    background: var(--card_bg_light);
+    color: var(--primary_blue);
+    border: 1px solid var(--primary_blue);
+}
+
+html.dark .job-toggle-btn.inactive {
+    background: var(--dark_background_secondary);
+    color: var(--secondary_blue);
+    border-color: var(--secondary_blue);
+}
+
+.job-toggle-btn:hover {
+    background: var(--primary_blue);
+    color: white;
+    transform: none;
+    box-shadow: none;
+}
+
+.job-toggle-btn.inactive:hover {
+    background: var(--card_bg_light);
+    color: var(--primary_blue);
+}
+
+html.dark .job-toggle-btn.inactive:hover {
+    background: var(--dark_background_secondary);
+    color: var(--secondary_blue);
+}
+
+/* Featured Employers */
+.featured-employers {
+    display: flex;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+    align-items: center;
+}
+
+.featured-employers::-webkit-scrollbar {
+    height: 8px;
+}
+
+.featured-employers::-webkit-scrollbar-thumb {
+    background-color: var(--secondary_blue);
+    border-radius: 4px;
+}
+
+html.dark .featured-employers::-webkit-scrollbar-thumb {
+    background-color: var(--pop_yellow);
+}
+
+.card {
+    background: var(--card_bg_light);
+    border-radius: 15px;
+    transition: none;
+    min-width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+html.dark .card {
+    background: var(--dark_background_secondary);
+}
+
+/* Vacancy Section */
+#vacancy-section {
+    background-color: var(--card_bg_light);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px var(--light_shadow);
+    padding: 12px;
+    min-height: 200px;
+}
+
+html.dark #vacancy-section {
+    background-color: var(--dark_background_secondary);
+    box-shadow: 0 2px 6px var(--dark_shadow);
+}
+
+#vacancy-categories {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2px;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+#vacancy-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    overflow-x: hidden;
+    max-width: 100%;
+    padding: 6px 0;
+}
+
+.job-vacancy-option {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 15px;
+    background: var(--card_bg_light);
+    border: 1px solid var(--border_light);
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.job-vacancy-option:hover {
+    background-color: var(--light_yellow_bg);
+    transform: translateY(-1px);
+}
+
+html.dark .job-vacancy-option {
+    background: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    color: var(--text_color_dark);
+}
+
+html.dark .job-vacancy-option:hover {
+    background: #374151;
+}
+
+.job-vacancy-option.active {
+    background-color: var(--light_yellow_bg);
+    border-color: var(--pop_yellow);
+    color: var(--primary_blue);
+}
+
+html.dark .job-vacancy-option.active {
+    background: var(--pop_yellow);
+    border-color: var(--pop_yellow);
+    color: var(--primary_blue);
+}
+
+.vacancy-category-btn {
+    padding: 4px 8px;
+    border-radius: 20px;
+    margin: 0 2px;
+    position: relative;
+    font-size: 0.8rem;
+    background: transparent;
+    border: none;
+    color: var(--gray_text_light);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.vacancy-category-btn::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: var(--pop_yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.vacancy-category-btn.active::after {
+    transform: scaleX(1);
+}
+
+.vacancy-category-btn:hover {
+    color: var(--secondary_blue);
+}
+
+html.dark .vacancy-category-btn {
+    color: var(--dark_gray_text);
+}
+
+html.dark .vacancy-category-btn:hover {
+    color: var(--pop_yellow);
+}
+
+.top-picks .vacancy-category-btn {
+    padding: 6px 10px;
+    border-radius: 15px;
+    border: 1px solid var(--border_light);
+    background: var(--card_bg_light);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.top-picks .vacancy-category-btn::after {
+    display: none;
+}
+
+.top-picks .vacancy-category-btn:hover {
+    background-color: var(--light_yellow_bg);
+    transform: translateY(-1px);
+}
+
+.top-picks .vacancy-category-btn.active {
+    background-color: var(--light_yellow_bg);
+    border-color: var(--pop_yellow);
+    color: var(--primary_blue);
+}
+
+html.dark .top-picks .vacancy-category-btn {
+    background: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    color: var(--dark_gray_text);
+}
+
+html.dark .top-picks .vacancy-category-btn:hover {
+    background: #374151;
+}
+
+html.dark .top-picks .vacancy-category-btn.active {
+    background: var(--pop_yellow);
+    border-color: var(--pop_yellow);
+    color: var(--primary_blue);
+}
+
+#view-all-link {
+    margin-top: 10px;
+    font-size: 11px;
+    text-align: left;
+    display: block;
+    color: var(--secondary_blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#view-all-link:hover {
+    text-decoration: underline;
+    color: var(--pop_yellow);
+}
+
+html.dark #view-all-link {
+    color: var(--pop_yellow);
+}
+
+html.dark #view-all-link:hover {
+    color: #FFD700;
+}
+
+/* Stats Summary */
+.stats-summary {
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+    text-align: center;
+    margin-top: 20px;
+    background: var(--card_bg_light);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px var(--light_shadow);
+}
+
+.stats-summary > div {
+    flex: 1;
+}
+
+.stats-summary p:first-child {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary_blue);
+}
+
+.stats-summary p:last-child {
+    font-size: 0.8rem;
+    color: var(--gray_text_light);
+}
+
+html.dark .stats-summary {
+    background: var(--dark_background_secondary);
+    box-shadow: 0 2px 6px var(--dark_shadow);
+}
+
+html.dark .stats-summary p:first-child {
+    color: var(--pop_yellow);
+}
+
+html.dark .stats-summary p:last-child {
+    color: var(--dark_gray_text);
+}
+
+/* How It Works */
+.how-it-works {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.how-it-works-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--card_bg_light);
+    box-shadow: 0 2px 4px var(--light_shadow);
+    min-height: 60px;
+}
+
+.how-it-works-card:active {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px var(--light_shadow);
+    background: var(--light_yellow_bg);
+}
+
+html.dark .how-it-works-card {
+    background: var(--dark_background_secondary);
+    box-shadow: 0 2px 4px var(--dark_shadow);
+}
+
+html.dark .how-it-works-card:active {
+    background: var(--pop_yellow);
+}
+
+.how-it-works-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--light_yellow_bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary_blue);
+}
+
+.how-it-works-card:active .how-it-works-icon {
+    background: var(--pop_yellow);
+    color: var(--primary_blue);
+}
+
+html.dark .how-it-works-icon {
+    background: rgba(255, 196, 54, 0.2);
+    color: var(--pop_yellow);
+}
+
+html.dark .how-it-works-card:active .how-it-works-icon {
+    background: var(--pop_yellow);
+    color: var(--primary_blue);
+}
+
+.how-it-works-content {
+    flex-grow: 1;
+}
+
+.how-it-works-content h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+    color: var(--text_color_light);
+}
+
+.how-it-works-content p {
+    font-size: 0.65rem;
+    margin: 0;
+    color: var(--gray_text_light);
+}
+
+html.dark .how-it-works-content h3 {
+    color: var(--text_color_dark);
+}
+
+html.dark .how-it-works-content p {
+    color: var(--dark_gray_text);
+}

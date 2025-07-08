@@ -1,20 +1,22 @@
-function adjustForNavbar() {
-    const navbar = document.querySelector('.bottom-navbar');
-    const navbarHeight = navbar.offsetHeight+10;
-    // Apply to body or specific container
-    document.body.style.paddingBottom = navbarHeight + 'px';
+tailwind.config = {
+    darkMode: 'class'
+}
 
+function adjustForNavbar() {
+    const navbar = document.querySelector('nav');
+    const navbarHeight = navbar ? navbar.offsetHeight + 10 : 60;
+    document.body.style.paddingBottom = navbarHeight + 'px';
+    const mainContent = document.querySelector('main');
     if (mainContent) {
         mainContent.style.paddingBottom = navbarHeight + 'px';
     }
 }
 
-// Run on load and resize
 window.addEventListener('load', adjustForNavbar);
 window.addEventListener('resize', adjustForNavbar);
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Load header, footer, nav, search, and menu
+    // Load components
     async function loadComponent(file, placeholderId) {
         try {
             const response = await fetch(file);
@@ -26,12 +28,80 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Load components
     loadComponent('header.html', 'header-placeholder');
     loadComponent('footer.html', 'footer-placeholder');
     loadComponent('nav.html', 'nav-placeholder');
     loadComponent('search.html', 'search-placeholder');
     loadComponent('menu.html', 'menu-placeholder');
+
+    // Vacancy Data for "Find job vacancies by"
+    const vacancyData = {
+        skills: ['Python', 'SQL', 'Java', 'AWS', 'Javascript', 'Git', 'Excel', 'Azure', 'Sales', 'Docker', 'Kubernetes', 'Data Analysis', 'MS Office', 'Project Management'],
+        location: ['Bangalore', 'Mumbai', 'Delhi', 'Hyderabad', 'Chennai', 'Pune', 'Kolkata', 'Gurgaon'],
+        industry: ['Technology', 'Finance', 'Healthcare', 'Education', 'Retail', 'Manufacturing', 'Media'],
+        functions: ['Engineering', 'Marketing', 'Sales', 'HR', 'Finance', 'Operations', 'Design'],
+        roles: ['Software Engineer', 'Data Analyst', 'Product Manager', 'Marketing Manager', 'Sales Executive', 'UX Designer'],
+        company: ['TechCorp', 'FinServe', 'HealthPlus', 'EduTech', 'RetailHub', 'ManuCo', 'MediaWorks']
+    };
+
+    function populateVacancyOptions(category) {
+        const vacancyOptions = document.getElementById('vacancy-options');
+        if (!vacancyOptions) return;
+        vacancyOptions.innerHTML = '';
+        vacancyData[category].forEach(option => {
+            const span = document.createElement('span');
+            span.className = 'job-vacancy-option';
+            span.textContent = option;
+            vacancyOptions.appendChild(span);
+        });
+    }
+
+    // Job Vacancies Category Switching (Find job vacancies by)
+    const vacancyButtons = document.querySelectorAll('#vacancy-categories .vacancy-category-btn');
+    const viewLink = document.getElementById('view-all-link');
+
+    vacancyButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            vacancyButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const cat = btn.dataset.category;
+            viewLink.textContent = `View all jobs by ${cat.charAt(0).toUpperCase() + cat.slice(1)} >`;
+            populateVacancyOptions(cat);
+        });
+    });
+
+    // Top Picks Buttons (separate action)
+    const topPicksButtons = document.querySelectorAll('.top-picks .vacancy-category-btn');
+    topPicksButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            topPicksButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const cat = btn.dataset.category;
+            console.log(`Selected Top Picks category: ${cat}`); // Placeholder action
+            // Add your desired action here, e.g., filter jobs or navigate
+        });
+    });
+
+    // Job Vacancy Options (click handling)
+    const vacancyOptionsContainer = document.getElementById('vacancy-options');
+    if (vacancyOptionsContainer) {
+        vacancyOptionsContainer.addEventListener('click', (e) => {
+            const option = e.target.closest('.job-vacancy-option');
+            if (option) {
+                // Remove active class from all job-vacancy-options
+                vacancyOptionsContainer.querySelectorAll('.job-vacancy-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                // Add active class to clicked option
+                option.classList.add('active');
+                console.log(`Selected job vacancy option: ${option.textContent}`); // Placeholder action
+                // Add your desired action here, e.g., filter jobs or navigate
+            }
+        });
+    }
+
+    // Initialize with default category for Find job vacancies by
+    populateVacancyOptions('skills');
 
     // Banner Slider
     const slides = document.querySelectorAll('.slide');
@@ -85,11 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
     employerScroll.addEventListener('mouseleave', startEmployerAutoScroll);
     startEmployerAutoScroll();
 
-    // Message Slider and Theme Toggle (run after header is loaded)
+    // Message Slider and Theme Toggle
     function initializeHeaderFeatures() {
         const messageSlides = document.querySelectorAll('.message-slide');
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
+        const themeToggle = document.getElementById('theme-toggle-menu');
+        const themeIconMoon = document.getElementById('theme-icon-moon');
+        const themeIconSun = document.getElementById('theme-icon-sun');
+        const themeText = document.getElementById('theme-text');
         const htmlElement = document.documentElement;
 
         if (messageSlides.length > 0) {
@@ -110,38 +182,26 @@ document.addEventListener('DOMContentLoaded', () => {
             setInterval(nextMessageSlide, 3500);
         }
 
-        if (themeToggle && themeIcon) {
+        if (themeToggle && themeIconMoon && themeIconSun && themeText) {
             themeToggle.addEventListener('click', () => {
                 if (htmlElement.classList.contains('light')) {
                     htmlElement.classList.remove('light');
                     htmlElement.classList.add('dark');
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
+                    themeIconMoon.classList.add('hidden');
+                    themeIconSun.classList.remove('hidden');
+                    themeText.textContent = 'Toggle Light Mode';
                 } else {
                     htmlElement.classList.remove('dark');
                     htmlElement.classList.add('light');
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
+                    themeIconMoon.classList.remove('hidden');
+                    themeIconSun.classList.add('hidden');
+                    themeText.textContent = 'Toggle Dark Mode';
                 }
             });
         }
     }
 
-    // Job Vacancies Category Switching
-    const buttons = document.querySelectorAll('.vacancy-category-btn');
-    const viewLink = document.getElementById('view-all-link');
-
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const cat = btn.dataset.category;
-            viewLink.textContent = `View all jobs by ${cat.charAt(0).toUpperCase() + cat.slice(1)} >`;
-        });
-    });
-
-    // Search Popup Functionality (run after nav and search are loaded)
+    // Search Popup Functionality
     function initializeSearchFeatures() {
         const searchPopup = document.getElementById('searchPopup');
         const searchOverlay = document.getElementById('searchOverlay');
@@ -183,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Menu Popup Functionality (run after nav and menu are loaded)
+    // Menu Popup Functionality
     function initializeMenuFeatures() {
         const menuPopup = document.getElementById('menuPopup');
         const menuOverlay = document.getElementById('menuOverlay');
@@ -225,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Wait for header, nav, search, and menu to load before initializing dependent features
+    // Initialize features after components load
     const headerPlaceholder = document.getElementById('header-placeholder');
     const navPlaceholder = document.getElementById('nav-placeholder');
     const searchPlaceholder = document.getElementById('search-placeholder');
@@ -245,4 +305,29 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(navPlaceholder, { childList: true, subtree: true });
     observer.observe(searchPlaceholder, { childList: true, subtree: true });
     observer.observe(menuPlaceholder, { childList: true, subtree: true });
+
+    // Job Toggle Buttons
+    const getJobBtn = document.getElementById('getJobBtn');
+    const postJobBtn = document.getElementById('postJobBtn');
+    
+    getJobBtn.classList.add('active');
+    getJobBtn.classList.remove('inactive');
+    postJobBtn.classList.add('inactive');
+    postJobBtn.classList.remove('active');
+    
+    postJobBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        getJobBtn.classList.remove('active');
+        getJobBtn.classList.add('inactive');
+        postJobBtn.classList.remove('inactive');
+        postJobBtn.classList.add('active');
+    });
+    
+    getJobBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        postJobBtn.classList.remove('active');
+        postJobBtn.classList.add('inactive');
+        getJobBtn.classList.remove('inactive');
+        getJobBtn.classList.add('active');
+    });
 });

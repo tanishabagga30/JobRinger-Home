@@ -1,15 +1,72 @@
-<footer class="bg-white p-2 mt-2 rounded-t-2xl shadow-inner">
-    <section class="mb-2">
-        <h2 class="text-base font-bold text-gray-800 mb-1">Disclaimer</h2>
-        <p class="text-gray-600 text-xs leading-tight">
-            Information on JobRinger is for general use only. We ensure accuracy but provide no guarantees. Use at your own risk.
-        </p>
-    </section>
-    <section>
-        <h2 class="text-base font-bold text-gray-800 mb-1">Contact Us</h2>
-        <div class="flex flex-col space-y-1">
-            <p class="text-gray-700 text-xs"><i class="fas fa-phone-alt mr-1"></i> +123 456 7890</p>
-            <p class="text-gray-700 text-xs"><i class="fas fa-envelope mr-1"></i> contact@jobringer.com</p>
+
+<footer class="footer">
+    <div class="container">
+        <!-- Left Side: Dropdowns -->
+        <div class="footer-left">
+            <h2 class="section-title">Explore Jobs</h2>
+            <div class="dropdown-container">
+                <!-- Dropdown 1: Jobs in Cities -->
+                <div class="dropdown">
+                    <label for="cities" class="dropdown-label">Jobs in Cities</label>
+                    <select id="cities" class="dropdown-select">
+                        <option value="">Select a city</option>
+                        <option value="bangalore">Jobs in Bangalore</option>
+                        <option value="gurgaon">Jobs in Gurgaon</option>
+                        <option value="mumbai">Jobs in Mumbai</option>
+                        <option value="delhi">Jobs in Delhi</option>
+                    </select>
+                </div>
+                <!-- Dropdown 2: Job Categories -->
+                <div class="dropdown">
+                    <label for="categories" class="dropdown-label">Job Categories</label>
+                    <select id="categories" class="dropdown-select">
+                        <option value="">Select a category</option>
+                        <option value="tech">Technology</option>
+                        <option value="finance">Finance</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="design">Design</option>
+                    </select>
+                </div>
+                <!-- Dropdown 3: Experience Level -->
+                <div class="dropdown">
+                    <label for="experience" class="dropdown-label">Experience Level</label>
+                    <select id="experience" class="dropdown-select">
+                        <option value="">Select experience</option>
+                        <option value="entry">Entry Level</option>
+                        <option value="mid">Mid Level</option>
+                        <option value="senior">Senior Level</option>
+                    </select>
+                </div>
+                <!-- Dropdown 4: Job Type -->
+                <div class="dropdown">
+                    <label for="job-type" class="dropdown-label">Job Type</label>
+                    <select id="job-type" class="dropdown-select">
+                        <option value="">Select job type</option>
+                        <option value="full-time">Full Time</option>
+                        <option value="part-time">Part Time</option>
+                        <option value="remote">Remote</option>
+                    </select>
+                </div>
+            </div>
         </div>
-    </section>
+        <!-- Right Side: Contact, Social Media, Disclaimer -->
+        <div class="footer-right">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <p class="contact-item"><i class="fas fa-phone-alt"></i> +123 456 7890</p>
+                <p class="contact-item"><i class="fas fa-envelope"></i> contact@jobringer.com</p>
+            </div>
+            <h2 class="section-title">Follow Us</h2>
+            <div class="social-links">
+                <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+            <h2 class="section-title">Disclaimer</h2>
+            <p class="disclaimer">
+                Information on JobRinger is for general use only. We ensure accuracy but provide no guarantees. Use at your own risk.
+            </p>
+        </div>
+    </div>
 </footer>
