@@ -28,12 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    loadComponent('header.html', 'header-placeholder');
-    loadComponent('footer.html', 'footer-placeholder');
-    loadComponent('nav.html', 'nav-placeholder');
-    loadComponent('search.html', 'search-placeholder');
-    loadComponent('menu.html', 'menu-placeholder');
+// In script.js (root level)
+const basePath = window.location.pathname.includes('HomePage') ? '..' : '.';
 
+loadComponent(`${basePath}/Universal/header.html`, 'header-placeholder');
+loadComponent(`${basePath}/Universal/footer.html`, 'footer-placeholder');
+loadComponent(`${basePath}/Universal/nav.html`, 'nav-placeholder');
+loadComponent(`${basePath}/Universal/search.html`, 'search-placeholder');
+loadComponent(`${basePath}/Universal/menu.html`, 'menu-placeholder');
     // Vacancy Data for "Find job vacancies by"
     const vacancyData = {
         skills: ['Python', 'SQL', 'Java', 'AWS', 'Javascript', 'Git', 'Excel', 'Azure', 'Sales', 'Docker', 'Kubernetes', 'Data Analysis', 'MS Office', 'Project Management'],
@@ -331,3 +333,29 @@ document.addEventListener('DOMContentLoaded', () => {
         getJobBtn.classList.add('active');
     });
 });
+async function loadComponent(file, placeholderId) {
+    console.log(`Attempting to load: ${file}`);
+    try {
+        const fullPath = new URL(file, window.location.origin).href;
+        console.log(`Full path: ${fullPath}`);
+        
+        const response = await fetch(file);
+        console.log(`Response status: ${response.status}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const content = await response.text();
+        console.log(`Successfully loaded ${file}`);
+        document.getElementById(placeholderId).innerHTML = content;
+    } catch (error) {
+        console.error(`Error loading ${file}:`, error);
+        document.getElementById(placeholderId).innerHTML = `
+            <div style="color:red; padding:10px;">
+                Failed to load component: ${file}
+                <br>Error: ${error.message}
+            </div>
+        `;
+    }
+}

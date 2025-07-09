@@ -1,0 +1,64 @@
+.quick-search-btn {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #374151;
+}
+
+.quick-search-btn:hover {
+  background-color: #fff0ce;
+  color: #0C356A;
+  border-color: #FFC436;
+}
+
+.quick-search-btn.active {
+  background-color: #0C356A;
+  color: white;
+  border-color: #0C356A;
+}
+
+.company-logo {
+  object-fit: contain;
+  border: 1px solid #e5e7eb;
+}
+
+.bookmark-btn {
+  transition: color 0.2s ease;
+}
+
+.bookmark-btn:hover {
+  color: #FFC436;
+}
+
+.job-status-bar {
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.job-card {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn {
+  font-size: 0.75rem;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.action-btn:hover {
+  color: #0C356A;
+}

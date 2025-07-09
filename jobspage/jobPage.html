@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Job Ringer - Jobs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../Universal/universal.css">
+  <link rel="stylesheet" href="jobsPage.css">
+</head>
+
+<body class="min-h-screen flex flex-col bg-gray-50">
+  <!-- Universal Header -->
+  <div id="header-placeholder" class="sticky top-0 z-10"></div>
+
+  <!-- Filter Bar -->
+  <section class="filter-bar-container px-2 py-1 border-b border-gray-200 text-xs overflow-x-auto">
+    <div class="flex items-center gap-1 w-max">
+      <button id="open-filter" class="quick-search-btn"><i class="fas fa-filter"></i></button>
+      <button class="quick-search-btn active">All</button>
+      <button class="quick-search-btn">Remote</button>
+      <button class="quick-search-btn">Female</button>
+      <button class="quick-search-btn">Fresher</button>
+      <button class="quick-search-btn">WFH</button>
+    </div>
+  </section>
+
+  <!-- Sort By Dropdown -->
+  <div class="px-2 py-2 flex justify-end">
+    <select id="sort" class="text-xs border rounded-md px-1 py-0.5">
+      <option>Most Relevant</option>
+    </select>
+  </div>
+
+  <!-- Application Status Bar -->
+  <div class="job-status-bar text-center py-1 text-xs font-medium sticky top-[104px] z-10">
+    You have <span class="font-bold">4</span> job applications left today!
+  </div>
+
+  <!-- Jobs Listing -->
+  <main class="flex-grow px-2 py-3">
+    <div id="jobs-container" class="space-y-2">
+      <!-- Job Card Start -->
+      <div class="job-card p-2 rounded-md shadow text-xs">
+        <div class="flex items-start gap-2">
+          <img src="https://placehold.co/40x40/E0E0E0/888888?text=TSI" alt="Logo" class="company-logo rounded-md w-10 h-10">
+          <div class="flex-grow">
+            <h3 class="text-sm font-semibold text-gray-800">Senior Software Engineer</h3>
+            <p class="text-indigo-600 text-xs">Tech Solutions Inc.</p>
+            <div class="mt-1 flex flex-wrap gap-2 text-[10px] text-gray-600">
+              <span class="detail-item"><i class="fas fa-map-marker-alt mr-1"></i>NY, USA</span>
+              <span class="detail-item"><i class="fas fa-dollar-sign mr-1"></i>$120k</span>
+              <span class="detail-item"><i class="fas fa-briefcase mr-1"></i>5+ yrs</span>
+            </div>
+          </div>
+          <button class="bookmark-btn text-gray-500 hover:text-yellow-400">
+            <i class="far fa-bookmark text-base"></i>
+          </button>
+        </div>
+        <!-- Job Action Bar -->
+        <div class="mt-2 pt-2 border-t grid grid-cols-3 gap-1 text-[11px] text-gray-600 text-center">
+          <button class="action-btn py-1 w-full bg-gray-100 rounded hover:bg-gray-200 flex justify-center items-center gap-1"><i class="fas fa-info-circle"></i> Info</button>
+          <button class="action-btn py-1 w-full bg-gray-100 rounded hover:bg-gray-200 flex justify-center items-center gap-1"><i class="fas fa-share-alt"></i> Share</button>
+          <button class="action-btn py-1 w-full bg-indigo-600 text-white rounded hover:bg-indigo-700 flex justify-center items-center gap-1"><i class="fas fa-paper-plane"></i> Apply</button>
+        </div>
+      </div>
+      <!-- Repeat Job Card -->
+      <div class="job-card p-2 rounded-md shadow text-xs">...same structure...</div>
+      <div class="job-card p-2 rounded-md shadow text-xs">...same structure...</div>
+      <div class="job-card p-2 rounded-md shadow text-xs">...same structure...</div>
+    </div>
+  </main>
+
+  <!-- Filter Popup Modal -->
+  <div id="filter-popup" class="fixed inset-0 bg-black bg-opacity-40 hidden items-end sm:items-center justify-center z-50">
+    <div class="bg-white w-full sm:w-80 p-4 rounded-t-lg sm:rounded-lg shadow-lg">
+      <div class="flex justify-between items-center mb-2">
+        <h3 class="text-sm font-medium text-gray-800">Filter Jobs</h3>
+        <button id="close-filter" class="text-gray-500 hover:text-red-500 text-lg">&times;</button>
+      </div>
+      <div class="space-y-2 text-sm text-gray-700">
+        <label><input type="checkbox" class="mr-2"> Remote</label><br>
+        <label><input type="checkbox" class="mr-2"> Work From Home</label><br>
+        <label><input type="checkbox" class="mr-2"> Female</label><br>
+        <label><input type="checkbox" class="mr-2"> Fresher</label><br>
+        <label><input type="checkbox" class="mr-2"> Internship</label><br>
+        <label><input type="checkbox" class="mr-2"> Part-time</label>
+      </div>
+      <div class="mt-4 text-right">
+        <button class="bg-indigo-600 text-white px-4 py-1 rounded text-sm hover:bg-indigo-700">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Universal Components -->
+  <div id="footer-placeholder"></div>
+  <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+  <div id="search-placeholder"></div>
+  <div id="menu-placeholder"></div>
+
+  <script src="../Universal/template-loader.js"></script>
+  <script src="jobs.js"></script>
+  <script>
+    const filterBtn = document.getElementById('open-filter');
+    const filterPopup = document.getElementById('filter-popup');
+    const closeFilter = document.getElementById('close-filter');
+
+    filterBtn.addEventListener('click', () => {
+      filterPopup.classList.remove('hidden');
+      filterPopup.classList.add('flex');
+    });
+
+    closeFilter.addEventListener('click', () => {
+      filterPopup.classList.remove('flex');
+      filterPopup.classList.add('hidden');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === filterPopup) {
+        filterPopup.classList.remove('flex');
+        filterPopup.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
