@@ -1,6 +1,119 @@
+// Tailwind config (keep this as is)
 tailwind.config = {
     darkMode: 'class'
 }
+
+// Dark mode utility functions
+const DarkModeManager = {
+    // Get stored theme preference or system preference
+    getThemePreference() {
+        const stored = localStorage.getItem('theme');
+        if (stored) {
+            return stored;
+        }
+        
+        // Check system preference
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    },
+    
+    // Store theme preference
+    setThemePreference(theme) {
+        localStorage.setItem('theme', theme);
+    },
+    
+    // Apply theme to HTML element
+    applyTheme(theme) {
+        const htmlElement = document.documentElement;
+        
+        // Remove existing theme classes
+        htmlElement.classList.remove('light', 'dark');
+        
+        // Add new theme class
+        htmlElement.classList.add(theme);
+        
+        // Update UI elements if they exist
+        this.updateThemeUI(theme);
+    },
+    
+    // Update theme toggle UI elements
+    updateThemeUI(theme) {
+        const themeIconMoon = document.getElementById('theme-icon-moon');
+        const themeIconSun = document.getElementById('theme-icon-sun');
+        const themeText = document.getElementById('theme-text');
+        
+        if (themeIconMoon && themeIconSun && themeText) {
+            if (theme === 'dark') {
+                themeIconMoon.classList.add('hidden');
+                themeIconSun.classList.remove('hidden');
+                themeText.textContent = 'Toggle Light Mode';
+            } else {
+                themeIconMoon.classList.remove('hidden');
+                themeIconSun.classList.add('hidden');
+                themeText.textContent = 'Toggle Dark Mode';
+            }
+        }
+    },
+    
+    // Toggle between light and dark themes
+    toggleTheme() {
+        const htmlElement = document.documentElement;
+        const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        this.applyTheme(newTheme);
+        this.setThemePreference(newTheme);
+    },
+    
+    // Initialize theme on page load
+    init() {
+        const savedTheme = this.getThemePreference();
+        this.applyTheme(savedTheme);
+        
+        // Set up theme toggle event listener (with retry logic)
+        this.setupThemeToggle();
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // Only auto-switch if user hasn't manually set a preference
+            if (!localStorage.getItem('theme')) {
+                const systemTheme = e.matches ? 'dark' : 'light';
+                this.applyTheme(systemTheme);
+            }
+        });
+    },
+    
+    // Setup theme toggle with retry logic for dynamically loaded elements
+    setupThemeToggle() {
+        const themeToggle = document.getElementById('theme-toggle-menu');
+        if (themeToggle) {
+            // Remove existing listener to prevent duplicates
+            themeToggle.removeEventListener('click', this.toggleTheme.bind(this));
+            // Add new listener
+            themeToggle.addEventListener('click', () => {
+                this.toggleTheme();
+            });
+        }
+    }
+};
+
+// Initialize immediately (before DOMContentLoaded to prevent flash)
+DarkModeManager.init();
+
+// Optional: Add this to your CSS to prevent flash of unstyled content
+const style = document.createElement('style');
+style.textContent = `
+    html:not(.light):not(.dark) {
+        display: none;
+    }
+`;
+document.head.appendChild(style);
+
+// In script.js (root level)
+loadComponent(`../Universal/header.html`, 'header-placeholder');
+loadComponent(`../Universal/footer.html`, 'footer-placeholder');
+loadComponent(`../Universal/nav.html`, 'nav-placeholder');
+loadComponent(`../Universal/search.html`, 'search-placeholder');
+loadComponent(`../Universal/menu.html`, 'menu-placeholder');
 
 function adjustForNavbar() {
     const navbar = document.querySelector('nav');
@@ -28,13 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-// In script.js (root level)
-
-loadComponent(`../Universal/header.html`, 'header-placeholder');
-loadComponent(`../Universal/footer.html`, 'footer-placeholder');
-loadComponent(`../Universal/nav.html`, 'nav-placeholder');
-loadComponent(`../Universal/search.html`, 'search-placeholder');
-loadComponent(`../Universal/menu.html`, 'menu-placeholder');
     // Vacancy Data for "Find job vacancies by"
     const vacancyData = {
         skills: ['Python', 'SQL', 'Java', 'AWS', 'Javascript', 'Git', 'Excel', 'Azure', 'Sales', 'Docker', 'Kubernetes', 'Data Analysis', 'MS Office', 'Project Management'],
@@ -79,7 +185,6 @@ loadComponent(`../Universal/menu.html`, 'menu-placeholder');
             btn.classList.add('active');
             const cat = btn.dataset.category;
             console.log(`Selected Top Picks category: ${cat}`); // Placeholder action
-            // Add your desired action here, e.g., filter jobs or navigate
         });
     });
 
@@ -89,14 +194,11 @@ loadComponent(`../Universal/menu.html`, 'menu-placeholder');
         vacancyOptionsContainer.addEventListener('click', (e) => {
             const option = e.target.closest('.job-vacancy-option');
             if (option) {
-                // Remove active class from all job-vacancy-options
                 vacancyOptionsContainer.querySelectorAll('.job-vacancy-option').forEach(opt => {
                     opt.classList.remove('active');
                 });
-                // Add active class to clicked option
                 option.classList.add('active');
-                console.log(`Selected job vacancy option: ${option.textContent}`); // Placeholder action
-                // Add your desired action here, e.g., filter jobs or navigate
+                console.log(`Selected job vacancy option: ${option.textContent}`);
             }
         });
     }
@@ -129,8 +231,12 @@ loadComponent(`../Universal/menu.html`, 'menu-placeholder');
     showSlide(currentSlide);
     setInterval(nextSlide, 5000);
 
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
+    if((prevBtn!=null)){
+        prevBtn.addEventListener('click', prevSlide);
+    }
+    if((nextBtn!=null)){
+        nextBtn.addEventListener('click', nextSlide);
+    }
 
     // Featured Employers Auto-Scroll
     const employerScroll = document.getElementById('employerScroll');
@@ -152,14 +258,15 @@ loadComponent(`../Universal/menu.html`, 'menu-placeholder');
         clearInterval(employerAutoScroll);
     }
 
-    employerScroll.addEventListener('mouseenter', stopEmployerAutoScroll);
-    employerScroll.addEventListener('mouseleave', startEmployerAutoScroll);
-    startEmployerAutoScroll();
+    if(employerScroll!=null){
+        employerScroll.addEventListener('mouseenter', stopEmployerAutoScroll);
+        employerScroll.addEventListener('mouseleave', startEmployerAutoScroll);
+        startEmployerAutoScroll();
+    }
 
     // Message Slider and Theme Toggle
     function initializeHeaderFeatures() {
         const messageSlides = document.querySelectorAll('.message-slide');
-        const themeToggle = document.getElementById('theme-toggle-menu');
         const themeIconMoon = document.getElementById('theme-icon-moon');
         const themeIconSun = document.getElementById('theme-icon-sun');
         const themeText = document.getElementById('theme-text');
@@ -183,23 +290,11 @@ loadComponent(`../Universal/menu.html`, 'menu-placeholder');
             setInterval(nextMessageSlide, 3500);
         }
 
-        if (themeToggle && themeIconMoon && themeIconSun && themeText) {
-            themeToggle.addEventListener('click', () => {
-                if (htmlElement.classList.contains('light')) {
-                    htmlElement.classList.remove('light');
-                    htmlElement.classList.add('dark');
-                    themeIconMoon.classList.add('hidden');
-                    themeIconSun.classList.remove('hidden');
-                    themeText.textContent = 'Toggle Light Mode';
-                } else {
-                    htmlElement.classList.remove('dark');
-                    htmlElement.classList.add('light');
-                    themeIconMoon.classList.remove('hidden');
-                    themeIconSun.classList.add('hidden');
-                    themeText.textContent = 'Toggle Dark Mode';
-                }
-            });
-        }
+        // Initialize theme toggle for dynamically loaded elements
+        DarkModeManager.setupThemeToggle();
+        // Update UI to match current theme
+        const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        DarkModeManager.updateThemeUI(currentTheme);
     }
 
     // Search Popup Functionality
@@ -311,27 +406,31 @@ loadComponent(`../Universal/menu.html`, 'menu-placeholder');
     const getJobBtn = document.getElementById('getJobBtn');
     const postJobBtn = document.getElementById('postJobBtn');
     
-    getJobBtn.classList.add('active');
-    getJobBtn.classList.remove('inactive');
-    postJobBtn.classList.add('inactive');
-    postJobBtn.classList.remove('active');
-    
-    postJobBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        getJobBtn.classList.remove('active');
-        getJobBtn.classList.add('inactive');
-        postJobBtn.classList.remove('inactive');
-        postJobBtn.classList.add('active');
-    });
-    
-    getJobBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        postJobBtn.classList.remove('active');
-        postJobBtn.classList.add('inactive');
-        getJobBtn.classList.remove('inactive');
+    if(getJobBtn!=null){
         getJobBtn.classList.add('active');
-    });
+        getJobBtn.classList.remove('inactive');
+        postJobBtn.classList.add('inactive');
+        postJobBtn.classList.remove('active');
+        getJobBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            postJobBtn.classList.remove('active');
+            postJobBtn.classList.add('inactive');
+            getJobBtn.classList.remove('inactive');
+            getJobBtn.classList.add('active');
+        });
+    }
+
+    if(postJobBtn!=null){
+        postJobBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            getJobBtn.classList.remove('active');
+            getJobBtn.classList.add('inactive');
+            postJobBtn.classList.remove('inactive');
+            postJobBtn.classList.add('active');
+        });
+    }
 });
+
 async function loadComponent(file, placeholderId) {
     console.log(`Attempting to load: ${file}`);
     try {
