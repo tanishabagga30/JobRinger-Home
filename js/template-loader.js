@@ -2,7 +2,7 @@
 
 async function loadTemplate() {
     // Set base path depending on current page location
-    const basePath = window.location.pathname.includes('jobspage') ? '..' : '.';
+    const basePath = "new.jobringer.com";
 
     // Define template paths
     const templates = {

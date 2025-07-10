@@ -5,48 +5,69 @@
         <div class="footer-left">
             <h2 class="section-title">Explore Jobs</h2>
             <div class="dropdown-container">
-                <!-- Dropdown 1: Jobs in Cities -->
-                <div class="dropdown">
-                    <label for="cities" class="dropdown-label">Jobs in Cities</label>
-                    <select id="cities" class="dropdown-select">
-                        <option value="">Select a city</option>
-                        <option value="bangalore">Jobs in Bangalore</option>
-                        <option value="gurgaon">Jobs in Gurgaon</option>
-                        <option value="mumbai">Jobs in Mumbai</option>
-                        <option value="delhi">Jobs in Delhi</option>
-                    </select>
-                </div>
-                <!-- Dropdown 2: Job Categories -->
-                <div class="dropdown">
-                    <label for="categories" class="dropdown-label">Job Categories</label>
-                    <select id="categories" class="dropdown-select">
-                        <option value="">Select a category</option>
-                        <option value="tech">Technology</option>
-                        <option value="finance">Finance</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="design">Design</option>
-                    </select>
-                </div>
-                <!-- Dropdown 3: Experience Level -->
-                <div class="dropdown">
-                    <label for="experience" class="dropdown-label">Experience Level</label>
-                    <select id="experience" class="dropdown-select">
-                        <option value="">Select experience</option>
-                        <option value="entry">Entry Level</option>
-                        <option value="mid">Mid Level</option>
-                        <option value="senior">Senior Level</option>
-                    </select>
-                </div>
-                <!-- Dropdown 4: Job Type -->
-                <div class="dropdown">
-                    <label for="job-type" class="dropdown-label">Job Type</label>
-                    <select id="job-type" class="dropdown-select">
-                        <option value="">Select job type</option>
-                        <option value="full-time">Full Time</option>
-                        <option value="part-time">Part Time</option>
-                        <option value="remote">Remote</option>
-                    </select>
-                </div>
+
+                <!-- Jobs in Cities -->
+                <details class="border-b border-gray-200 pb-2" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center w-full text-left font-medium text-gray-900 cursor-pointer px-2 py-1" itemprop="name">
+                    Jobs in Cities
+                    <svg class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                    </summary>
+                    <div class="mt-2 text-gray-700 pl-5 flex flex-col dropdown" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <a href="">Jobs in Bangalore</a>
+                        <a href="">Jobs in Gurgaon</a>
+                        <a href="">Jobs in Mumbai</a>
+                        <a href="">Jobs in Delhi</a>
+                    </div>
+                </details>
+
+                <!-- Job Categories -->
+                <details class="border-b border-gray-200 pb-2" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center w-full text-left font-medium text-gray-900 cursor-pointer px-2 py-1" itemprop="name">
+                    Job Categories
+                    <svg class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                    </summary>
+                    <div class="mt-2 text-gray-700 pl-5 flex flex-col dropdown" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <a href="">Technology</a>
+                        <a href="">Finance</a>
+                        <a href="">Marketing</a>
+                        <a href="">Design</a>
+                    </div>
+                </details>
+
+                <!-- Experience Level -->
+                <details class="border-b border-gray-200 pb-2" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center w-full text-left font-medium text-gray-900 cursor-pointer px-2 py-1" itemprop="name">
+                    Experience Level
+                    <svg class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                    </summary>
+                    <div class="mt-2 text-gray-700 pl-5 flex flex-col dropdown" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <a href="">Entry Level</a>
+                        <a href="">Mid Level</a>
+                        <a href="">Senior Level</a>
+                    </div>
+                </details>
+
+                <!-- Job Type -->
+                <details class="border-b border-gray-200 pb-2" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center w-full text-left font-medium text-gray-900 cursor-pointer px-2 py-1" itemprop="name">
+                    Job Type
+                    <svg class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                    </summary>
+                    <div class="mt-2 text-gray-700 pl-5 flex flex-col dropdown" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <a href="">Full Time</a>
+                        <a href="">Part Time</a>
+                        <a href="">Remote / Work From Home</a>
+                    </div>
+                </details>
+                
             </div>
         </div>
         <!-- Right Side: Contact, Social Media, Disclaimer -->

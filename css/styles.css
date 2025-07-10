@@ -46,6 +46,9 @@ html.dark .bg-white {
     color: var(--text_color_dark);
 }
 
+html.dark .text-gray-900 {
+    color: var(--text_color_dark);
+}
 html.dark .text-gray-800 {
     color: var(--text_color_dark);
 }
@@ -657,7 +660,7 @@ footer {
 }
 
 html.dark footer {
-    background: var(--primary_blue); /* Keep primary blue for dark mode footer */
+    background: var(--dark_background_secondary);
     box-shadow: inset 0 2px 3px var(--dark_shadow);
 }
 

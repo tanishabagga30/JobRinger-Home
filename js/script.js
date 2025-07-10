@@ -29,13 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 // In script.js (root level)
-const basePath = window.location.pathname.includes('HomePage') ? '..' : '.';
 
-loadComponent(`${basePath}/Universal/header.html`, 'header-placeholder');
-loadComponent(`${basePath}/Universal/footer.html`, 'footer-placeholder');
-loadComponent(`${basePath}/Universal/nav.html`, 'nav-placeholder');
-loadComponent(`${basePath}/Universal/search.html`, 'search-placeholder');
-loadComponent(`${basePath}/Universal/menu.html`, 'menu-placeholder');
+loadComponent(`../Universal/header.html`, 'header-placeholder');
+loadComponent(`../Universal/footer.html`, 'footer-placeholder');
+loadComponent(`../Universal/nav.html`, 'nav-placeholder');
+loadComponent(`../Universal/search.html`, 'search-placeholder');
+loadComponent(`../Universal/menu.html`, 'menu-placeholder');
     // Vacancy Data for "Find job vacancies by"
     const vacancyData = {
         skills: ['Python', 'SQL', 'Java', 'AWS', 'Javascript', 'Git', 'Excel', 'Azure', 'Sales', 'Docker', 'Kubernetes', 'Data Analysis', 'MS Office', 'Project Management'],
