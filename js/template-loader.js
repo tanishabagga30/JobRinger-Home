@@ -2,15 +2,15 @@
 
 async function loadTemplate() {
     // Set base path depending on current page location
-    const basePath = window.location.pathname.includes('jobspage') ? '..' : '.';
+    const basePath = "new.jobringer.com";
 
     // Define template paths
     const templates = {
-        header: `${basePath}/Universal/header.html`,
-        footer: `${basePath}/Universal/footer.html`,
-        nav: `${basePath}/Universal/nav.html`,
-        search: `${basePath}/Universal/search.html`,
-        menu: `${basePath}/Universal/menu.html`
+        header: `/Universal/header.html`,
+        footer: `/Universal/footer.html`,
+        nav: `/Universal/nav.html`,
+        search: `/Universal/search.html`,
+        menu: `/Universal/menu.html`
     };
 
     // Load each template
@@ -55,10 +55,17 @@ function setupNavigation() {
     });
 
     // Handle menu button
-    document.getElementById('openMenu')?.addEventListener('click', (e) => {
+    const menuNavBtn = document.querySelector('#nav-placeholder a#openMenu');
+    menuNavBtn.addEventListener('click', (e) => {
+        
         e.preventDefault();
-        document.getElementById('menu-placeholder').classList.add('active');
+        toggleMenuPopup();
     });
+
+    // document.getElementById('openMenu')?.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     document.getElementById('menu-placeholder').classList.add('active');
+    // });
 }
 
 // Start loading templates when DOM is ready
