@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Job Ringer - Job Description</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/universal.css">
+    <link rel="stylesheet" href="/css/job-description.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+    <!-- Universal Header -->
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+
+    <!-- Job Description Content -->
+    <main class="flex-grow px-2 py-3">
+        <div class="max-w-3xl mx-auto">
+            <button id="back-btn" class="mb-4 text-indigo-600 dark:text-indigo-400 text-sm flex items-center gap-1 hover:underline">
+                <i class="fas fa-arrow-left"></i> Back to Jobs
+            </button>
+            <div id="job-description-container" class="bg-white dark:bg-gray-800 p-4 rounded-md shadow">
+                <div class="flex items-start gap-3">
+                    <img id="job-logo" src="" alt="Company Logo" class="company-logo rounded-md w-12 h-12">
+                    <div class="flex-grow">
+                        <h1 id="job-title" class="text-lg font-semibold text-gray-800 dark:text-gray-100"></h1>
+                        <p id="job-company" class="text-indigo-600 text-sm dark:text-indigo-400"></p>
+                    </div>
+                    <button class="bookmark-btn text-gray-500 hover:text-yellow-400 dark:text-gray-300 dark:hover:text-yellow-400">
+                        <i class="far fa-bookmark text-lg"></i>
+                    </button>
+                </div>
+                <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
+                    <span id="job-location" class="detail-item"><i class="fas fa-map-marker-alt mr-1"></i></span>
+                    <span id="job-salary" class="detail-item"><i class="fas fa-dollar-sign mr-1"></i></span>
+                    <span id="job-experience" class="detail-item"><i class="fas fa-briefcase mr-1"></i></span>
+                    <span id="job-type" class="detail-item"><i class="fas fa-clock mr-1"></i></span>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <h2 class="text-sm font-semibold text-gray-800 dark:text-gray-100">Job Description</h2>
+                    <p id="job-description" class="text-xs text-gray-600 dark:text-gray-300 mt-2"></p>
+                </div>
+                <div class="mt-4">
+                    <h2 class="text-sm font-semibold text-gray-800 dark:text-gray-100">Responsibilities</h2>
+                    <ul id="job-responsibilities" class="text-xs text-gray-600 dark:text-gray-300 mt-2 list-disc pl-4"></ul>
+                </div>
+                <div class="mt-4">
+                    <h2 class="text-sm font-semibold text-gray-800 dark:text-gray-100">Qualifications</h2>
+                    <ul id="job-qualifications" class="text-xs text-gray-600 dark:text-gray-300 mt-2 list-disc pl-4"></ul>
+                </div>
+                <div class="mt-6 text-center">
+                    <button class="action-btn bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-sm flex items-center justify-center gap-1 mx-auto">
+                        <i class="fas fa-paper-plane"></i> Apply Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Universal Components -->
+    <div id="footer-placeholder"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/job-description.js"></script>
+</body>
+</html>

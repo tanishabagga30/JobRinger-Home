@@ -1,8 +1,10 @@
 
 :root {
     /* Defining color variables */
-    --primary_blue: #7752FE;
-    --secondary_blue: #8E8FFA;
+    --primary:#1eacc6; /* Match primary_blue */
+    --secondary: #1eacc6;
+    --primary_blue: #1eacc6;
+    --secondary_blue: #1eacc6;
     --pop_yellow: #C2D9FF;
     --light_yellow_bg: #C2D9FF;
     /* Light Mode */

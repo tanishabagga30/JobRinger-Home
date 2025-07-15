@@ -1,0 +1,51 @@
+/* Specific styles for the resume form page */
+body {
+    display: flex;
+    flex-direction: column; /* Explicitly set to match jobPage.html */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Form container */
+.form-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; /* Moved p-4 from HTML to CSS */
+}
+
+/* Custom styling for file input */
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 2px dashed #cbd5e1;
+    background-color: #f8fafc;
+    color: #475569;
+    padding: 12px 20px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease-in-out;
+}
+.custom-file-upload:hover {
+    border-color: #94a3b8;
+    background-color: #e2e8f0;
+}
+html.dark .custom-file-upload {
+    border-color: #4b5563; /* Tailwind gray-600 */
+    background-color: #374151; /* Tailwind gray-700 */
+    color: #d1d5db; /* Tailwind gray-300 */
+}
+html.dark .custom-file-upload:hover {
+    border-color: #6b7280; /* Tailwind gray-500 */
+    background-color: #4b5563; /* Tailwind gray-600 */
+}
+.required-star {
+    color: #ef4444; /* Tailwind red-500 */
+    margin-left: 4px;
+}

@@ -6,8 +6,8 @@
     <title>Job Ringer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="stylesheet" href="/css/universal.css">
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/home.css">
 
 </head>
 <body class="min-h-screen flex flex-col">
@@ -16,13 +16,13 @@
     <main class="flex-grow px-2 py-4">
         <section class="slider mb-4 rounded-xl overflow-hidden shadow-2xl">
             <div class="slide active">
-                <img src="https://placehold.co/600x250/E0E0E0/888888?text=Find+Your+Dream+Job" alt="Banner 1">
+                <img src="/images/time-prepare-holidays-cheeky-gorgeous-smiling-girl-with-red-curly-hair-pointing-right-advice.jpg" alt="Banner 1">
             </div>
             <div class="slide">
-                <img src="https://placehold.co/600x250/E0E0E0/888888?text=Post+Your+Job+Today" alt="Banner 2">
+                <img src="/images/1201.jpg" alt="Banner 2">
             </div>
             <div class="slide">
-                <img src="https://placehold.co/600x250/E0E0E0/888888?text=Explore+Opportunities" alt="Banner 3">
+                <img src="/images/6140787.jpg" alt="Banner 3">
             </div>
             <div class="slider-nav">
                 <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
@@ -97,8 +97,8 @@
         <section class="mb-4">
             <h2 class="text-base font-bold text-gray-800 mb-2">Supported By</h2>
             <div class="supported-by flex justify-center">
-                <img src="https://placehold.co/100x50/E0E0E0/888888?text=Government+Logo" alt="Government Funded Logo" class="max-w-full h-auto rounded-md">
-            </div>
+    <img src="images/startup-india-logo-e1701619660117.jpg" alt="Government Funded Logo" class="max-w-[200px] h-auto rounded-lg">
+</div>
         </section>
 
         <section class="mb-4">
@@ -147,13 +147,74 @@
                 </div>
             </div>
         </section>
-    </main>
+
+        <section class="mb-4">
+    <div class="flex items-center justify-between mb-2">
+        <h2 class="text-base font-bold text-gray-800">Trending Job Vacancies</h2>
+        <div class="job-slider-nav">
+            <button id="jobPrevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+            <button id="jobNextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+    <div class="job-card-slider-container">
+        <div class="job-card-slider">
+            <div class="job-card-wrapper" id="jobCardWrapper">
+                <div class="job-card">
+                    <div class="job-card-inner">
+                        <div class="flex items-center mb-2">
+                            <img src="https://placehold.co/40x40/E0E0E0/888888?text=Logo" alt="Company Logo" class="company-logo">
+                            <div>
+                                <h3 class="job-title">Software Engineer</h3>
+                                <p class="company-name">Tech Solutions Inc.</p>
+                            </div>
+                        </div>
+                        <p class="job-salary">₹8 - 12 LPA</p>
+                        <p class="job-description">
+                            Develop and maintain robust web applications, collaborate with cross-functional teams, and ensure high code quality.
+                        </p>
+                        <div class="job-details">
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore</span>
+                            <span><i class="fas fa-briefcase"></i> Full-time</span>
+                            <span><i class="fas fa-hourglass-half"></i> 5+ Yrs</span>
+                        </div>
+                        <a href="job-description.html?id=software-engineer" class="view-details-btn">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+                <!-- Repeat similar structure for other job cards -->
+                <div class="job-card">
+                    <div class="job-card-inner">
+                        <div class="flex items-center mb-2">
+                            <img src="https://placehold.co/40x40/E0E0E0/888888?text=Logo" alt="Company Logo" class="company-logo">
+                            <div>
+                                <h3 class="job-title">Marketing Specialist</h3>
+                                <p class="company-name">Global Marketing Co.</p>
+                            </div>
+                        </div>
+                        <p class="job-salary">₹5 - 7 LPA</p>
+                        <div class="job-details">
+                            <span><i class="fas fa-map-marker-alt"></i> Mumbai</span>
+                            <span><i class="fas fa-briefcase"></i> Hybrid</span>
+                        </div>
+                        <a href="#" class="view-details-btn">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+                <!-- Add more job cards as needed -->
+            </div>
+        </div>
+    </div>
+</section>
 
     <div id="footer-placeholder" class="mt-2"></div>
     <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
     <div id="search-placeholder"></div>
     <div id="menu-placeholder"></div>
 
-   <script src="/js/script.js"></script>
+    <script src="/js/script.js"></script>
+   
+    <script src="/js/employer-profile.js"></script>
 </body>
 </html>

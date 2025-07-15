@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Complete Your Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/universal.css">
+    <link rel="stylesheet" href="/css/resume.css">
+</head>
+<body class="antialiased min-h-screen flex flex-col bg-gray-50">
+    <!-- Universal Header -->
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+
+    <!-- Profile Form -->
+    <div class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+            <!-- Header Section -->
+            <div class="text-center mb-8">
+                <svg class="mx-auto h-12 w-12 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <h2 class="mt-4 text-3xl font-extrabold text-gray-900 dark:text-gray-100">
+                    Almost There!
+                </h2>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                    Help us tailor your experience by completing your profile.
+                </p>
+            </div>
+
+            <!-- Form Section -->
+            <form id="profileForm" class="space-y-6">
+                <!-- Resume Upload -->
+                <div>
+                    <label for="resume" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Upload Your Resume <span class="required-star">*</span>
+                    </label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md dark:border-gray-500">
+                        <div class="space-y-1 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                <path d="M28 8H12a2 2 0 00-2 2v20m32-12v8m0 0v8a2 2 0 01-2 2H12a2 2 0 01-2-2v-8m0-8V10a2 2 0 012-2h8l4-4h8m0 0h8a2 2 0 012 2v8m0 0l-4 4m-4-4H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="flex text-sm text-gray-600 dark:text-gray-300">
+                                <label for="resume-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 dark:bg-gray-700 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                    <span id="file-name">Upload a file</span>
+                                    <input id="resume-upload" name="resume" type="file" class="sr-only" accept=".pdf,.doc,.docx" required>
+                                </label>
+                                <p class="pl-1">or drag and drop</p>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                PDF, DOC, DOCX up to 10MB
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current CTC -->
+                <div>
+                    <label for="ctc" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Current CTC (in LPA) <span class="required-star">*</span>
+                    </label>
+                    <div class="mt-1">
+                        <input id="ctc" name="ctc" type="number" step="0.1" min="0" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-500" placeholder="e.g., 12.5">
+                    </div>
+                </div>
+
+                <!-- Notice Period -->
+                <div>
+                    <label for="notice-period" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Notice Period <span class="required-star">*</span>
+                    </label>
+                    <div class="mt-1 flex rounded-md shadow-sm">
+                        <input id="notice-period" name="noticePeriod" type="number" min="0" required class="flex-1 block w-full rounded-none rounded-l-md border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border px-3 py-2 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-500" placeholder="e.g., 30">
+                        <select id="notice-period-unit" name="noticePeriodUnit" class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+                            <option value="days">Days</option>
+                            <option value="weeks">Weeks</option>
+                            <option value="months">Months</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Current Phone Number -->
+                <div>
+                    <label for="new-number-field" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Current Phone Number <span class="required-star">*</span>
+                    </label>
+                    <div class="mt-1">
+                        <input id="new-number-field" name="phoneNumber" type="tel" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-500" placeholder="e.g., +91 1234567890">
+                    </div>
+                </div>
+
+                <!-- Proceed Button -->
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition duration-150 ease-in-out">
+                        Proceed
+                    </button>
+                </div>
+            </form>
+
+            <!-- Submission Message -->
+            <div id="submission-message" class="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md hidden dark:bg-green-900 dark:border-green-700 dark:text-green-300" role="alert">
+                <p class="font-bold">Success!</p>
+                <p class="text-sm">Your details have been submitted. Redirecting to jobs...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="mt-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md hidden dark:bg-red-900 dark:border-red-700 dark:text-red-300" role="alert">
+                <p class="font-bold">Error!</p>
+                <p class="text-sm">Please fill in all required fields correctly.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Universal Components -->
+    <div id="footer-placeholder"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/resume.js"></script>
+</body>
+</html>

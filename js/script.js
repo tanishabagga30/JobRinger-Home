@@ -264,6 +264,67 @@ document.addEventListener('DOMContentLoaded', () => {
         startEmployerAutoScroll();
     }
 
+    // NEW JAVASCRIPT FOR JOB CARD SLIDER
+    const jobCardWrapper = document.getElementById('jobCardWrapper');
+    const jobPrevBtn = document.getElementById('jobPrevBtn');
+    const jobNextBtn = document.getElementById('jobNextBtn');
+
+    if (jobCardWrapper && jobPrevBtn && jobNextBtn) {
+        let jobCardCurrentSlide = 0;
+        const jobCards = jobCardWrapper.children;
+        // The number of cards visible depends on CSS media queries.
+        // We'll calculate the scroll distance dynamically based on the first card's width.
+
+        function showJobCards() {
+            if (jobCards.length === 0) return; // Prevent error if no cards
+            // Get the width of a single job card, including its margin-right.
+            // This is crucial for correct sliding, especially with varying card widths from media queries.
+            const firstCard = jobCards[0];
+            const cardComputedStyle = window.getComputedStyle(firstCard);
+            const cardWidth = firstCard.offsetWidth + parseFloat(cardComputedStyle.marginRight);
+
+            jobCardWrapper.style.transform = `translateX(-${jobCardCurrentSlide * cardWidth}px)`;
+        }
+
+        jobNextBtn.addEventListener('click', () => {
+            const cardsPerView = Math.floor(jobCardWrapper.clientWidth / jobCards[0].offsetWidth); // Dynamically determine cards per view
+            if (jobCardCurrentSlide < jobCards.length - cardsPerView) {
+                jobCardCurrentSlide++;
+            } else {
+                jobCardCurrentSlide = 0; // Loop back to the beginning
+            }
+            showJobCards();
+        });
+
+        jobPrevBtn.addEventListener('click', () => {
+            const cardsPerView = Math.floor(jobCardWrapper.clientWidth / jobCards[0].offsetWidth); // Dynamically determine cards per view
+            if (jobCardCurrentSlide > 0) {
+                jobCardCurrentSlide--;
+            } else {
+                jobCardCurrentSlide = Math.max(0, jobCards.length - cardsPerView); // Loop to the end, ensuring it doesn't go negative
+            }
+            showJobCards();
+        });
+
+        // Initialize the slider position
+        showJobCards();
+        // Recalculate and show cards on window resize to adjust for responsive changes
+        window.addEventListener('resize', showJobCards);
+        
+        // Optional: Auto-slide for job cards
+        let jobCardAutoSlide = setInterval(() => {
+            jobNextBtn.click(); // Programmatically click next button
+        }, 3000); // Change slide every 3 seconds
+
+        // Pause auto-slide on hover
+        jobCardWrapper.addEventListener('mouseenter', () => clearInterval(jobCardAutoSlide));
+        jobCardWrapper.addEventListener('mouseleave', () => {
+            jobCardAutoSlide = setInterval(() => {
+                jobNextBtn.click();
+            }, 3000);
+        });
+    }
+
     // Message Slider and Theme Toggle
     function initializeHeaderFeatures() {
         const messageSlides = document.querySelectorAll('.message-slide');

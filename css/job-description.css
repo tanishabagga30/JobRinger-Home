@@ -1,0 +1,24 @@
+/* Job Description Page Styles */
+#job-description-container {
+    transition: all 0.3s ease;
+}
+
+.detail-item i {
+    font-size: 0.75rem; /* Matches text-[10px] */
+}
+
+.bookmark-btn i {
+    font-size: 1.125rem; /* Matches text-lg for bookmark */
+}
+
+@media (max-width: 640px) {
+    #job-description-container {
+        padding: 0.75rem;
+    }
+    #job-title {
+        font-size: 0.875rem; /* Matches text-sm */
+    }
+    #job-company {
+        font-size: 0.75rem; /* Matches text-xs */
+    }
+}

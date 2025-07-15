@@ -62,3 +62,184 @@
 .action-btn:hover {
   color: #0C356A;
 }
+/* Jobs Page Styles */
+.job-card {
+    transition: all 0.3s ease;
+}
+
+.job-card.female-job {
+    border: 1px solid #EC4899; /* Tailwind pink-500 */
+}
+
+.job-card.premium-job {
+    border: 1px solid #F59E0B; /* Tailwind amber-500 */
+}
+
+.detail-item i {
+    font-size: 0.75rem; /* Matches text-[10px] */
+}
+
+.bookmark-btn i {
+    font-size: 1rem; /* Matches text-base */
+}
+
+@media (max-width: 640px) {
+    .job-card {
+        padding: 0.5rem;
+    }
+    .company-logo {
+        width: 2rem;
+        height: 2rem;
+    }
+    .job-card h3 {
+        font-size: 0.75rem; /* Matches text-xs */
+    }
+    .detail-item {
+        font-size: 0.625rem; /* Matches text-[10px] */
+    }
+}
+
+#job-description-container {
+    transition: all 0.3s ease;
+}
+
+.detail-item i {
+    font-size: 0.75rem; /* Matches text-[10px] */
+}
+
+.bookmark-btn i {
+    font-size: 1.125rem; /* Matches text-lg for bookmark */
+}
+.job-card .action-btn:has(.fa-paper-plane) {
+    border: 1px solid #4F46E5; /* Tailwind indigo-600 */
+    color: #4F46E5; /* Tailwind indigo-600 */
+    background: #FFFFFF; /* Tailwind white */
+}
+/* Dark Mode Styles for Jobs Page */
+html.dark {
+    background-color: #1F2937; /* Tailwind gray-800 */
+}
+
+html.dark .job-status-bar {
+    background-color: #15803D; /* Tailwind green-700 */
+    color: #D1D5DB; /* Tailwind gray-300 */
+}
+
+html.dark .quick-search-btn {
+    background-color: #374151; /* Tailwind gray-700 */
+    color: #D1D5DB; /* Tailwind gray-300 */
+    border-color: #4B5563; /* Tailwind gray-600 */
+}
+
+html.dark .quick-search-btn:hover {
+    background-color: #78350F; /* Tailwind amber-900 */
+    color: #FBBF24; /* Tailwind amber-400 */
+    border-color: #FBBF24; /* Tailwind amber-400 */
+}
+
+html.dark .quick-search-btn.active {
+    background-color: #1E40AF; /* Tailwind blue-800 */
+    color: #FFFFFF; /* Tailwind white */
+    border-color: #1E40AF; /* Tailwind blue-800 */
+}
+
+html.dark .job-card {
+    background-color: #374151; /* Tailwind gray-700 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .job-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .job-card.female-job {
+    border: 1px solid #F472B6; /* Tailwind pink-400 */
+}
+
+html.dark .job-card.premium-job {
+    border: 1px solid #FBBF24; /* Tailwind amber-400 */
+}
+
+html.dark .company-logo {
+    border: 1px solid #4B5563; /* Tailwind gray-600 */
+}
+
+html.dark .bookmark-btn {
+    color: #9CA3AF; /* Tailwind gray-400 */
+}
+
+html.dark .bookmark-btn:hover {
+    color: #FBBF24; /* Tailwind amber-400 */
+}
+
+html.dark .action-btn {
+    color: #9CA3AF; /* Tailwind gray-400 */
+    background-color: #4B5563; /* Tailwind gray-600 */
+}
+
+html.dark .action-btn:hover {
+    color: #FBBF24; /* Tailwind amber-400 */
+    background-color: #6B7280; /* Tailwind gray-500 */
+}
+
+html.dark .job-card .action-btn:has(.fa-paper-plane) {
+    border: 1px solid #6366F1; /* Tailwind indigo-500 */
+    color: #FFFFFF; /* Tailwind white */
+    background: #4F46E5; /* Tailwind indigo-600 */
+}
+
+html.dark .filter-bar-container {
+    background-color: #1F2937; /* Tailwind gray-800 */
+    border-color: #4B5563; /* Tailwind gray-600 */
+}
+
+html.dark #filter-popup {
+    background-color: #1F2937; /* Tailwind gray-800 */
+}
+
+html.dark #filter-popup .bg-white {
+    background-color: #374151; /* Tailwind gray-700 */
+}
+
+html.dark #filter-popup h3 {
+    color: #D1D5DB; /* Tailwind gray-300 */
+}
+
+html.dark #filter-popup .text-gray-700 {
+    color: #9CA3AF; /* Tailwind gray-400 */
+}
+
+html.dark #filter-popup .bg-indigo-600 {
+    background-color: #4F46E5; /* Tailwind indigo-600 */
+}
+
+html.dark #filter-popup .bg-indigo-600:hover {
+    background-color: #4338CA; /* Tailwind indigo-700 */
+}
+
+html.dark #close-filter {
+    color: #9CA3AF; /* Tailwind gray-400 */
+}
+
+html.dark #close-filter:hover {
+    color: #EF4444; /* Tailwind red-500 */
+}
+
+@media (max-width: 640px) {
+    html.dark .job-card {
+        background-color: #374151; /* Tailwind gray-700 */
+    }
+}
+
+@media (max-width: 640px) {
+    #job-description-container {
+        padding: 0.75rem;
+    }
+    #job-title {
+        font-size: 0.875rem; /* Matches text-sm */
+    }
+    #job-company {
+        font-size: 0.75rem; /* Matches text-xs */
+    }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Job Ringer - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/css/universal.css">
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-indigo-50 to-white flex flex-col">
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
+      <!-- Login Steps Container -->
+      <div class="p-6 sm:p-8">
+        <!-- Logo -->
+        <div class="flex justify-center mb-6">
+          <div class="mx-auto h-20 w-20 rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 flex items-center justify-center shadow-lg">
+            <i class="fas fa-briefcase text-white text-3xl"></i>
+          </div>
+        </div>
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 text-center">Welcome back</h2>
+        <p class="mt-2 text-sm text-gray-600 text-center">Sign in to your account</p>
+
+        <!-- Step 1: Email -->
+        <div id="step-email" class="login-step active">
+          <form class="space-y-4" id="email-form">
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="your@email.com" required>
+            </div>
+            
+            <button id="btn-send-otp" type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 transition duration-200">
+              Continue with OTP
+            </button>
+
+            <div class="text-center">
+              <button id="btn-use-password" type="button" class="text-indigo-600 font-medium hover:text-indigo-800 transition">
+                Or login with password
+              </button>
+            </div>
+          </form>
+          
+          <div class="mt-6">
+            <div class="relative">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-2 bg-white text-gray-500">or continue with</span>
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+                <i class="fab fa-google text-red-500 mr-2"></i> Google
+              </a>
+              <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+                <i class="fab fa-linkedin text-blue-600 mr-2"></i> LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: OTP -->
+        <div id="step-otp" class="login-step hidden">
+          <h2 class="text-xl font-bold text-gray-800 mb-2 text-center">Verify your email</h2>
+          <p class="text-gray-600 mb-1 text-center">We sent a code to <span id="email-display" class="font-medium"></span></p>
+          <p id="otp-timer" class="text-sm text-indigo-600 mb-6 text-center">01:30</p>
+          
+          <form class="space-y-4" id="otp-form">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Enter OTP</label>
+              <div class="flex justify-between space-x-2">
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+                <input type="text" maxlength="1" class="otp-digit" required>
+              </div>
+            </div>
+            
+            <button id="btn-verify-otp" type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 transition duration-200">
+              Verify & Login
+            </button>
+            
+            <div class="text-center mt-4">
+              <button id="btn-resend-otp" type="button" class="text-indigo-600 text-sm font-medium hover:text-indigo-800 transition">
+                Didn't receive code? Resend
+              </button>
+            </div>
+            
+            <div class="text-center mt-6 pt-6 border-t border-gray-200">
+              <button id="btn-use-password-alt" type="button" class="text-indigo-600 font-medium hover:text-indigo-800 transition">
+                <i class="fas fa-key mr-1"></i> Login with password instead
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Step 3: Password -->
+        <div id="step-password" class="login-step hidden">
+          <h2 class="text-xl font-bold text-gray-800 mb-2 text-center">Enter your password</h2>
+          <p class="text-gray-600 mb-6 text-center">For <span id="password-email-display" class="font-medium"></span></p>
+          
+          <form class="space-y-4" id="password-form">
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <div class="relative">
+                <input type="password" id="password" name="password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="••••••••" required>
+                <span class="toggle-password absolute right-3 top-3.5 text-gray-400 hover:text-indigo-600 cursor-pointer">
+                  <i class="fas fa-eye"></i>
+                </span>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input id="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+              </div>
+              <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 transition duration-200">
+              Sign In
+            </button>
+            
+            <div class="text-center mt-6 pt-6 border-t border-gray-200">
+              <button id="back-to-otp" type="button" class="text-indigo-600 font-medium hover:text-indigo-800 transition">
+                <i class="fas fa-arrow-left mr-1"></i> Back to OTP login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Footer Links -->
+      <div class="px-6 py-4 bg-gray-50 text-center">
+        <p class="text-sm text-gray-600">
+          Don't have an account? <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 transition">Sign up</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
+  <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+
+  
+  <script src="/js/script.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>

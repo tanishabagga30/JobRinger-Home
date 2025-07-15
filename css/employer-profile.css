@@ -1,0 +1,11 @@
+@media (max-width: 639px) { /* Tailwinds 'sm' breakpoint is 640px */
+    .profile-card {
+        padding-top: 5rem; /* Increase top padding to make space for buttons */
+        position: relative;
+    }
+    .profile-actions-top-right {
+        top: 1rem; /* Adjust top position for mobile */
+        right: 1rem; /* Adjust right position for mobile */
+        position: absolute;
+    }
+}

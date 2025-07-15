@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Seeker Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/universal.css">
+    <link rel="stylesheet" href="/css/employer-profile.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+  <main class="p-4 max-w-3xl mx-auto">
+    <!-- Profile Card -->
+    <div class="relative bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 sm:p-6 mb-6">
+      <!-- Share and Bookmark Buttons -->
+      <div class="absolute right-3 top-3 flex gap-2">
+        <button id="bookmark-btn" class="text-gray-600 dark:text-gray-300 hover:text-blue-600">
+          <i class="far fa-bookmark"></i>
+        </button>
+        <button id="share-btn" class="text-gray-600 dark:text-gray-300 hover:text-green-600">
+          <i class="fas fa-share-alt"></i>
+        </button>
+      </div>
+
+      <!-- Header Section -->
+      <div class="flex items-start gap-4">
+        <img id="seeker-photo" class="w-20 h-20 rounded-full border-4 border-white shadow-md object-cover" src="" alt="Profile photo">
+        <div class="flex-1">
+          <h1 id="seeker-name" class="text-lg font-bold">Loading...</h1>
+          <p id="seeker-title" class="text-sm text-indigo-600 dark:text-indigo-400"></p>
+          <p id="seeker-job-type" class="text-xs text-gray-500 dark:text-gray-300"></p>
+
+          <!-- Info List -->
+          <ul class="mt-2 text-xs space-y-1">
+            <li><strong>CTC:</strong> <span id="seeker-ctc"></span></li>
+            <li><strong>Notice:</strong> <span id="seeker-notice-period"></span></li>
+            <li><strong>Location:</strong> <span id="seeker-location"></span></li>
+            <li><strong>Experience:</strong> <span id="seeker-experience-summary"></span></li>
+            <li><strong>Work Model:</strong> <span id="seeker-work-model"></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contact Buttons -->
+      <div class="mt-4 flex flex-col sm:flex-row gap-2">
+        <a id="contact-email-btn" target="_blank" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 text-sm rounded text-center">
+          <i class="fas fa-envelope mr-1"></i> Email
+        </a>
+        <a id="contact-whatsapp-btn" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 px-4 text-sm rounded text-center">
+          <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Resume -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-6">
+      <h2 class="text-lg font-semibold mb-2"><i class="fas fa-file-alt mr-2"></i>Resume</h2>
+      <div class="h-64 border rounded overflow-hidden">
+        <iframe id="resume-viewer" class="w-full h-full" src="" frameborder="0"></iframe>
+      </div>
+      <p class="text-xs text-center mt-2">
+        <a id="resume-download-link" href="#" target="_blank" class="text-blue-500 hover:underline">Download Resume</a>
+      </p>
+    </section>
+
+    <!-- Sections -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4">
+      <h2 class="font-semibold mb-2"><i class="fas fa-info-circle mr-2"></i>About</h2>
+      <p id="seeker-about" class="text-sm"></p>
+    </section>
+
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4">
+      <h2 class="font-semibold mb-2"><i class="fas fa-code mr-2"></i>Skills</h2>
+      <div id="seeker-skills" class="flex flex-wrap gap-2 text-xs"></div>
+    </section>
+
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4">
+      <h2 class="font-semibold mb-2"><i class="fas fa-graduation-cap mr-2"></i>Education</h2>
+      <div id="seeker-education" class="space-y-2"></div>
+    </section>
+
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4">
+      <h2 class="font-semibold mb-2"><i class="fas fa-briefcase mr-2"></i>Experience</h2>
+      <div id="seeker-experience-details" class="space-y-2"></div>
+    </section>
+
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4">
+      <h2 class="font-semibold mb-2"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
+      <div id="seeker-projects" class="space-y-2"></div>
+    </section>
+
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4">
+      <h2 class="font-semibold mb-2"><i class="fas fa-trophy mr-2"></i>Awards</h2>
+      <div id="seeker-awards" class="space-y-2"></div>
+    </section>
+  </main>
+<div id="footer-placeholder"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/employer-profile.js"></script>
+</body>
+</html>
