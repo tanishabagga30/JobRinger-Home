@@ -1,24 +1,113 @@
-/* Job Description Page Styles */
-#job-description-container {
+.job-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
-.detail-item i {
-    font-size: 0.75rem; /* Matches text-[10px] */
+.job-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-.bookmark-btn i {
-    font-size: 1.125rem; /* Matches text-lg for bookmark */
+.premium-job {
+    background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 100%);
+    border: 2px solid #f59e0b;
 }
 
-@media (max-width: 640px) {
-    #job-description-container {
-        padding: 0.75rem;
-    }
-    #job-title {
-        font-size: 0.875rem; /* Matches text-sm */
-    }
-    #job-company {
-        font-size: 0.75rem; /* Matches text-xs */
-    }
+.female-job {
+    background: linear-gradient(135deg, #fce7f3 0%, #f9a8d4 100%);
+    border: 2px solid #ec4899;
+}
+
+.company-logo {
+    object-fit: cover;
+    border: 2px solid #e5e7eb;
+}
+
+.detail-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 6px;
+    background: rgba(79, 70, 229, 0.1);
+    border-radius: 4px;
+    margin: 1px;
+}
+
+.action-btn {
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.pdf-viewer {
+    display: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4f46e5;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.similar-jobs {
+    display: none;
+    margin-top: 20px;
+}
+
+.dark .job-card {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+.dark .company-logo {
+    border-color: #4b5563;
+}
+
+.dark .detail-item {
+    background: rgba(79, 70, 229, 0.2);
 }

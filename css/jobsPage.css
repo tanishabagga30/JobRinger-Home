@@ -111,8 +111,8 @@
     font-size: 1.125rem; /* Matches text-lg for bookmark */
 }
 .job-card .action-btn:has(.fa-paper-plane) {
-    border: 1px solid #4F46E5; /* Tailwind indigo-600 */
-    color: #4F46E5; /* Tailwind indigo-600 */
+    border: 1px solid #1eacc6; /* Tailwind indigo-600 */
+    color: #1eacc6; /* Tailwind indigo-600 */
     background: #FFFFFF; /* Tailwind white */
 }
 /* Dark Mode Styles for Jobs Page */
@@ -138,9 +138,9 @@ html.dark .quick-search-btn:hover {
 }
 
 html.dark .quick-search-btn.active {
-    background-color: #1E40AF; /* Tailwind blue-800 */
+    background-color: #1eacc6; /* Tailwind blue-800 */
     color: #FFFFFF; /* Tailwind white */
-    border-color: #1E40AF; /* Tailwind blue-800 */
+    border-color: #1eacc6; /* Tailwind blue-800 */
 }
 
 html.dark .job-card {
@@ -184,9 +184,9 @@ html.dark .action-btn:hover {
 }
 
 html.dark .job-card .action-btn:has(.fa-paper-plane) {
-    border: 1px solid #6366F1; /* Tailwind indigo-500 */
+    border: 1px solid #1eacc6; /* Tailwind indigo-500 */
     color: #FFFFFF; /* Tailwind white */
-    background: #4F46E5; /* Tailwind indigo-600 */
+    background: #1eacc6; /* Tailwind indigo-600 */
 }
 
 html.dark .filter-bar-container {
@@ -211,11 +211,11 @@ html.dark #filter-popup .text-gray-700 {
 }
 
 html.dark #filter-popup .bg-indigo-600 {
-    background-color: #4F46E5; /* Tailwind indigo-600 */
+    background-color: #1eacc6; /* Tailwind indigo-600 */
 }
 
 html.dark #filter-popup .bg-indigo-600:hover {
-    background-color: #4338CA; /* Tailwind indigo-700 */
+    background-color: #1eacc6; /* Tailwind indigo-700 */
 }
 
 html.dark #close-filter {

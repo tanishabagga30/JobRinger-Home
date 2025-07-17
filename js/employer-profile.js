@@ -98,6 +98,118 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('seeker-experience-summary').textContent = seekerData.experienceSummary;
     document.getElementById('seeker-work-model').textContent = seekerData.workModel;
 
+    // Add this after populating the general seeker information
+function calculateMatchScore(seekerData, jobRequirements) {
+    // This would compare seeker data with your job requirements
+    // For demo purposes, we'll use some dummy matches
+    
+    // In a real app, you would compare with actual job requirements
+    const matches = {
+        ctc: true,          // CTC matches job range
+        location: true,     // Location matches job location
+        experience: true,   // Experience matches job requirements
+        skills: 'partial',  // Partial skills match
+        notice: false       // Notice period doesn't match
+    };
+    
+    // Calculate percentage match (this is simplified)
+    const totalCriteria = 5;
+    const matchedCriteria = Object.values(matches).filter(m => m === true).length;
+    const partialMatches = Object.values(matches).filter(m => m === 'partial').length;
+    const score = Math.round(((matchedCriteria + (partialMatches * 0.5)) / totalCriteria * 100));
+    
+    return { matches, score };
+}
+
+// Example job requirements (you would get this from your actual job data)
+const jobRequirements = {
+    minCtc: 15,         // 15 LPA minimum
+    maxCtc: 25,         // 25 LPA maximum
+    locations: ["Bengaluru", "Remote"], 
+    minExperience: 4,   // 4 years minimum
+    requiredSkills: ["Python", "Machine Learning", "AWS", "SQL"], 
+    maxNoticePeriod: 30 // 30 days maximum
+};
+
+// Calculate matches
+const { matches, score } = calculateMatchScore(seekerData, jobRequirements);
+// Update the match indicators
+function updateMatchIndicators(matches, score) {
+    const matchContainer = document.querySelector('.bg-white.dark\\:bg-gray-800.rounded-lg.shadow-md.p-4.mb-6');
+    
+    if (!matchContainer) {
+        console.error('Match score container not found');
+        return;
+    }
+
+    // Get all the flex containers (criteria items)
+    const criteriaItems = matchContainer.querySelectorAll('.flex.flex-col.items-center');
+    
+    if (criteriaItems.length < 5) {
+        console.error('Not enough criteria items found');
+        return;
+    }
+
+    // CTC Match (first item)
+    const ctcIndicator = criteriaItems[0].querySelector('div');
+    const ctcIcon = criteriaItems[0].querySelector('i');
+    if (!matches.ctc) {
+        ctcIndicator.className = ctcIndicator.className.replace('bg-green-100', 'bg-red-100').replace('dark:bg-green-900', 'dark:bg-red-900');
+        ctcIcon.className = ctcIcon.className.replace('fa-check', 'fa-times').replace('text-green-600', 'text-red-600').replace('dark:text-green-300', 'dark:text-red-300');
+    }
+    
+    // Location Match (second item)
+    const locationIndicator = criteriaItems[1].querySelector('div');
+    const locationIcon = criteriaItems[1].querySelector('i');
+    if (!matches.location) {
+        locationIndicator.className = locationIndicator.className.replace('bg-green-100', 'bg-red-100').replace('dark:bg-green-900', 'dark:bg-red-900');
+        locationIcon.className = locationIcon.className.replace('fa-check', 'fa-times').replace('text-green-600', 'text-red-600').replace('dark:text-green-300', 'dark:text-red-300');
+    }
+    
+    // Experience Match (third item)
+    const expIndicator = criteriaItems[2].querySelector('div');
+    const expIcon = criteriaItems[2].querySelector('i');
+    if (!matches.experience) {
+        expIndicator.className = expIndicator.className.replace('bg-green-100', 'bg-red-100').replace('dark:bg-green-900', 'dark:bg-red-900');
+        expIcon.className = expIcon.className.replace('fa-check', 'fa-times').replace('text-green-600', 'text-red-600').replace('dark:text-green-300', 'dark:text-red-300');
+    }
+    
+    // Skills Match (fourth item)
+    const skillsIndicator = criteriaItems[3].querySelector('div');
+    const skillsIcon = criteriaItems[3].querySelector('i');
+    if (matches.skills === 'partial') {
+        skillsIndicator.className = skillsIndicator.className.replace('bg-green-100', 'bg-yellow-100').replace('dark:bg-green-900', 'dark:bg-yellow-900');
+        skillsIcon.className = skillsIcon.className.replace('text-green-600', 'text-yellow-600').replace('dark:text-green-300', 'dark:text-yellow-300');
+    } else if (!matches.skills) {
+        skillsIndicator.className = skillsIndicator.className.replace('bg-green-100', 'bg-red-100').replace('dark:bg-green-900', 'dark:bg-red-900');
+        skillsIcon.className = skillsIcon.className.replace('fa-check', 'fa-times').replace('text-green-600', 'text-red-600').replace('dark:text-green-300', 'dark:text-red-300');
+    }
+    
+    // Notice Period Match (fifth item)
+    const noticeIndicator = criteriaItems[4].querySelector('div');
+    const noticeIcon = criteriaItems[4].querySelector('i');
+    if (matches.notice) {
+        noticeIndicator.className = noticeIndicator.className.replace('bg-red-100', 'bg-green-100').replace('dark:bg-red-900', 'dark:bg-green-900');
+        noticeIcon.className = noticeIcon.className.replace('fa-times', 'fa-check').replace('text-red-600', 'text-green-600').replace('dark:text-red-300', 'dark:text-green-300');
+    }
+    
+    // Update progress bar and score
+    const progressBar = matchContainer.querySelector('.mt-4 > div > div');
+    const scoreText = matchContainer.querySelector('.mt-4 + p');
+    if (progressBar && scoreText) {
+        progressBar.style.width = `${score}%`;
+        scoreText.textContent = `${score}% Match`;
+    }
+}
+if (job.category === 'premium') {
+    cardContainer.classList.add('premium-job');
+} else if (job.category === 'female') {
+    cardContainer.classList.add('female-job');
+}
+
+
+// Call this function after calculating matches
+updateMatchIndicators(matches, score);
     // Handle Contact Buttons
     const contactEmailBtn = document.getElementById('contact-email-btn');
     if (seekerData.contact.email) {
