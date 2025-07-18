@@ -225,7 +225,98 @@ html.dark #close-filter {
 html.dark #close-filter:hover {
     color: #EF4444; /* Tailwind red-500 */
 }
+/* Improved Sort Toggle Button Styles */
+.sort-toggle-container {
+    position: fixed;
+    right: 1rem;
+    bottom: 5rem;
+    z-index: 50;
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
 
+.sort-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.39);
+    position: relative;
+    overflow: hidden;
+}
+
+.sort-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+.sort-toggle-btn:active {
+    transform: translateY(0);
+}
+
+.sort-toggle-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.sort-toggle-btn:hover::before {
+    left: 100%;
+}
+
+.sort-toggle-btn i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.sort-toggle-btn:hover i {
+    transform: rotate(180deg);
+}
+
+.sort-toggle-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+/* Dark mode styles */
+html.dark .sort-toggle-btn {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
+}
+
+html.dark .sort-toggle-btn:hover {
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .sort-toggle-container {
+        right: 0.75rem;
+        bottom: 4.5rem;
+    }
+    
+    .sort-toggle-btn {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.8125rem;
+    }
+    
+    .sort-toggle-btn i {
+        font-size: 0.875rem;
+    }
+}
 @media (max-width: 640px) {
     html.dark .job-card {
         background-color: #374151; /* Tailwind gray-700 */

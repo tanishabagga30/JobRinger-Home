@@ -25,22 +25,23 @@
         </div>
     </section>
 
-    
-
     <!-- Application Status Bar -->
     <div class="job-status-bar text-center py-1 text-xs font-medium sticky top-[104px] z-10">
         You have <span class="font-bold">4</span> job applications left today!
     </div>
-    <div class="px-2 py-2 flex justify-end">
-        <select id="sort" class="text-xs border rounded-md px-1 py-0.5">
-            <option>Most Relevant</option>
-        </select>
+
+    <!-- Sort Toggle Button  -->
+    <div class="sort-toggle-container">
+        <button id="sort-toggle" class="sort-toggle-btn">
+            <i class="fas fa-sort-amount-down"></i>
+            <span class="sort-toggle-text">Most Relevant</span>
+        </button>
     </div>
 
     <!-- Jobs Listing -->
     <main class="flex-grow px-2 py-3">
         <div id="jobs-container" class="space-y-2"></div>
-        <button id="load-more-btn" class="mt-4 w-full bg-indigo-600 text-white text-xs py-2 rounded-md hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600">
+        <button id="load-more-btn" class="mt-4 w-full bg-cyan-600 text-white text-xs py-2 rounded-md hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600">
             Load More
         </button>
     </main>
@@ -61,7 +62,7 @@
                 <label><input type="checkbox" class="mr-2"> Part-time</label>
             </div>
             <div class="mt-4 text-right">
-                <button class="bg-indigo-600 text-white px-4 py-1 rounded text-sm hover:bg-indigo-700">Apply</button>
+                <button class="bg-cyan-600 text-white px-4 py-1 rounded text-sm hover:bg-cyan-700">Apply</button>
             </div>
         </div>
     </div>
@@ -74,7 +75,5 @@
 
     <script src="/js/script.js"></script>
     <script src="/js/jobs.js"></script>
-
-    
 </body>
 </html>

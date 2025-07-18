@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/css/login.css">
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-indigo-50 to-white flex flex-col">
+<body class="min-h-screen bg-gradient-to-br from-cyan-50 to-white flex flex-col">
   <!-- Header Placeholder -->
   <div id="header-placeholder"></div>
 
@@ -21,7 +21,7 @@
       <div class="p-6 sm:p-8">
         <!-- Logo -->
         <div class="flex justify-center mb-6">
-          <div class="mx-auto h-20 w-20 rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 flex items-center justify-center shadow-lg">
+          <div class="mx-auto h-20 w-20 rounded-full bg-gradient-to-r from-cyan-600 to-blue-500 flex items-center justify-center shadow-lg">
             <i class="fas fa-briefcase text-white text-3xl"></i>
           </div>
         </div>
@@ -33,15 +33,15 @@
           <form class="space-y-4" id="email-form">
             <div>
               <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="your@email.com" required>
+              <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition" placeholder="your@email.com" required>
             </div>
             
-            <button id="btn-send-otp" type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 transition duration-200">
+            <button id="btn-send-otp" type="submit" class="w-full bg-cyan-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-cyan-700 transition duration-200">
               Continue with OTP
             </button>
 
             <div class="text-center">
-              <button id="btn-use-password" type="button" class="text-indigo-600 font-medium hover:text-indigo-800 transition">
+              <button id="btn-use-password" type="button" class="text-cyan-600 font-medium hover:text-cyan-800 transition">
                 Or login with password
               </button>
             </div>
@@ -72,7 +72,7 @@
         <div id="step-otp" class="login-step hidden">
           <h2 class="text-xl font-bold text-gray-800 mb-2 text-center">Verify your email</h2>
           <p class="text-gray-600 mb-1 text-center">We sent a code to <span id="email-display" class="font-medium"></span></p>
-          <p id="otp-timer" class="text-sm text-indigo-600 mb-6 text-center">01:30</p>
+          <p id="otp-timer" class="text-sm text-cyan-600 mb-6 text-center">01:30</p>
           
           <form class="space-y-4" id="otp-form">
             <div>
@@ -87,18 +87,18 @@
               </div>
             </div>
             
-            <button id="btn-verify-otp" type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 transition duration-200">
+            <button id="btn-verify-otp" type="submit" class="w-full bg-cyan-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-cyan-700 transition duration-200">
               Verify & Login
             </button>
             
             <div class="text-center mt-4">
-              <button id="btn-resend-otp" type="button" class="text-indigo-600 text-sm font-medium hover:text-indigo-800 transition">
+              <button id="btn-resend-otp" type="button" class="text-cyan-600 text-sm font-medium hover:text-cyan-800 transition">
                 Didn't receive code? Resend
               </button>
             </div>
             
             <div class="text-center mt-6 pt-6 border-t border-gray-200">
-              <button id="btn-use-password-alt" type="button" class="text-indigo-600 font-medium hover:text-indigo-800 transition">
+              <button id="btn-use-password-alt" type="button" class="text-cyan-600 font-medium hover:text-cyan-800 transition">
                 <i class="fas fa-key mr-1"></i> Login with password instead
               </button>
             </div>
@@ -114,8 +114,8 @@
             <div>
               <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
               <div class="relative">
-                <input type="password" id="password" name="password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="••••••••" required>
-                <span class="toggle-password absolute right-3 top-3.5 text-gray-400 hover:text-indigo-600 cursor-pointer">
+                <input type="password" id="password" name="password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition" placeholder="••••••••" required>
+                <span class="toggle-password absolute right-3 top-3.5 text-gray-400 hover:text-cyan-600 cursor-pointer">
                   <i class="fas fa-eye"></i>
                 </span>
               </div>
@@ -123,18 +123,18 @@
             
             <div class="flex items-center justify-between">
               <div class="flex items-center">
-                <input id="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                <input id="remember-me" type="checkbox" class="h-4 w-4 text-cyan-600 focus:ring-cyan-500 border-gray-300 rounded">
                 <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
               </div>
-              <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">Forgot password?</a>
+              <a href="#" class="text-sm text-cyan-600 hover:text-cyan-800">Forgot password?</a>
             </div>
             
-            <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-indigo-700 transition duration-200">
+            <button type="submit" class="w-full bg-cyan-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-cyan-700 transition duration-200">
               Sign In
             </button>
             
             <div class="text-center mt-6 pt-6 border-t border-gray-200">
-              <button id="back-to-otp" type="button" class="text-indigo-600 font-medium hover:text-indigo-800 transition">
+              <button id="back-to-otp" type="button" class="text-cyan-600 font-medium hover:text-cyan-800 transition">
                 <i class="fas fa-arrow-left mr-1"></i> Back to OTP login
               </button>
             </div>
@@ -145,7 +145,7 @@
       <!-- Footer Links -->
       <div class="px-6 py-4 bg-gray-50 text-center">
         <p class="text-sm text-gray-600">
-          Don't have an account? <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 transition">Sign up</a>
+          Don't have an account? <a href="#" class="text-cyan-600 font-medium hover:text-cyan-800 transition">Sign up</a>
         </p>
       </div>
     </div>

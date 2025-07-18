@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/universal.css">
     <link rel="stylesheet" href="css/home.css">
-
 </head>
 <body class="min-h-screen flex flex-col">
     <div id="header-placeholder" class="sticky top-0 z-10"></div>
 
-    <main class="flex-grow px-2 py-4">
+    <main class="flex-grow px-2 pb-[10px]">
+        <!-- Banner Section -->
         <section class="slider mb-4 rounded-xl overflow-hidden shadow-2xl">
             <div class="slide active">
                 <img src="/images/time-prepare-holidays-cheeky-gorgeous-smiling-girl-with-red-curly-hair-pointing-right-advice.jpg" alt="Banner 1">
@@ -30,11 +30,112 @@
             </div>
         </section>
 
+        <!-- Job Buttons Section -->
         <section class="job-buttons mb-4">
-            <a href="#" class="job-toggle-btn active" id="getJobBtn">Get a Job</a>
-            <a href="#" class="job-toggle-btn inactive" id="postJobBtn">Post a Job</a>
+            <div class="job-button-container ">
+                <a href="#" class="job-toggle-btn active" id="getJobBtn">
+                    <div class="job-button-icon">
+                        <img src="/images/businessman.png" alt="Job Seeker Icon" class="job-button-img">
+                    </div>
+                    <div class="job-button-text">
+                        Job Seeker
+                        <div class="job-button-subtitle">Find your dream job</div>
+                    </div>
+                </a>
+            </div>
+            <div class="job-button-container">
+                <a href="#" class="job-toggle-btn inactive" id="postJobBtn">
+                    <div class="job-button-icon">
+                        <img src="/images/hr (1).png" alt="Employer Icon" class="job-button-img">
+                    </div>
+                    <div class="job-button-text">
+                        Employer
+                        <div class="job-button-subtitle">Post jobs & hire talent</div>
+                    </div>
+                </a>
+            </div>
         </section>
 
+        <!-- Find Job Vacancies By Section -->
+        <section class="mb-4">
+            <h2 class="text-base font-bold text-gray-800 mb-2">Find job vacancies by</h2>
+            <div id="vacancy-section">
+                <div class="flex flex-wrap gap-2 mb-2" id="vacancy-categories">
+                    <button class="vacancy-category-btn active" data-category="skills">Skills</button>
+                    <button class="vacancy-category-btn" data-category="location">Location</button>
+                    <button class="vacancy-category-btn" data-category="industry">Industry</button>
+                    <button class="vacancy-category-btn" data-category="functions">Functions</button>
+                    <button class="vacancy-category-btn" data-category="roles">Roles</button>
+                    <button class="vacancy-category-btn" data-category="company">Company</button>
+                </div>
+                <div id="vacancy-options"></div>
+                <a id="view-all-link" href="#">View all jobs by Skills ></a>
+            </div>
+        </section>
+
+        <!-- Trending Job Vacancies Section -->
+        <section class="mb-4">
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-base font-bold text-gray-800">Trending Job Vacancies</h2>
+                <div class="job-slider-nav">
+                    <button id="jobPrevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button id="jobNextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="job-card-slider-container">
+                <div class="job-card-slider">
+                    <div class="job-card-wrapper" id="jobCardWrapper">
+                        <div class="job-card p-2 rounded-md shadow text-xs">
+                            <div class="flex items-start gap-2">
+                                <img src="https://placehold.co/40x40/E0E0E0/888888?text=Logo" alt="Tech Solutions Inc. Logo" class="company-logo rounded-md w-10 h-10">
+                                <div class="flex-grow">
+                                    <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">Software Engineer</h3>
+                                    <p class="text-indigo-600 text-xs dark:text-indigo-400">Tech Solutions Inc.</p>
+                                    <div class="mt-1 flex flex-wrap gap-2 text-[10px] text-gray-600 dark:text-gray-300">
+                                        <span class="detail-item"><i class="fas fa-map-marker-alt mr-1"></i>Bangalore</span>
+                                        <span class="detail-item"><i class="fas fa-dollar-sign mr-1"></i>₹8 - 12 LPA</span>
+                                        <span class="detail-item"><i class="fas fa-briefcase mr-1"></i>5+ Yrs</span>
+                                    </div>
+                                </div>
+                                <button class="bookmark-btn text-gray-500 hover:text-yellow-400 dark:text-gray-300 dark:hover:text-yellow-400">
+                                    <i class="far fa-bookmark text-base"></i>
+                                </button>
+                            </div>
+                            <div class="mt-2 pt-2 border-t grid grid-cols-3 gap-1 text-[11px] text-gray-600 dark:text-gray-300 text-center">
+                                <button class="action-btn info-btn py-1 w-full bg-gray-100 rounded hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1" data-job-id="software-engineer"><i class="fas fa-info-circle"></i> Info</button>
+                                <button class="action-btn py-1 w-full bg-gray-100 rounded hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1"><i class="fas fa-share-alt"></i> Share</button>
+                                <button class="action-btn py-1 w-full bg-cyan-700 text-white rounded hover:bg-indigo-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 flex justify-center items-center gap-1"><i class="fas fa-paper-plane"></i> Apply</button>
+                            </div>
+                        </div>
+                        <div class="job-card p-2 rounded-md shadow text-xs">
+                            <div class="flex items-start gap-2">
+                                <img src="https://placehold.co/40x40/E0E0E0/888888?text=Logo" alt="Global Marketing Co. Logo" class="company-logo rounded-md w-10 h-10">
+                                <div class="flex-grow">
+                                    <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">Marketing Specialist</h3>
+                             
+                                    <p class="text-cyan-700 text-xs dark:text-cyan-700">Global Marketing Co.</p>
+                                    <div class="mt-1 flex flex-wrap gap-2 text-[10px] text-gray-600 dark:text-gray-300">
+                                        <span class="detail-item"><i class="fas fa-map-marker-alt mr-1"></i>Mumbai</span>
+                                        <span class="detail-item"><i class="fas fa-dollar-sign mr-1"></i>₹5 - 7 LPA</span>
+                                        <span class="detail-item"><i class="fas fa-briefcase mr-1"></i>Hybrid</span>
+                                    </div>
+                                </div>
+                                <button class="bookmark-btn text-gray-500 hover:text-yellow-400 dark:text-gray-300 dark:hover:text-yellow-400">
+                                    <i class="far fa-bookmark text-base"></i>
+                                </button>
+                            </div>
+                            <div class="mt-2 pt-2 border-t grid grid-cols-3 gap-1 text-[11px] text-gray-600 dark:text-gray-300 text-center">
+                                <button class="action-btn info-btn py-1 w-full bg-gray-100 rounded hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1" data-job-id="marketing-specialist"><i class="fas fa-info-circle"></i> Info</button>
+                                <button class="action-btn py-1 w-full bg-gray-100 rounded hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1"><i class="fas fa-share-alt"></i> Share</button>
+                                <button class="action-btn py-1 w-full bg-cyan-600 text-white rounded hover:bg-cyan-600 dark:bg-cyan-700 dark:hover:bg-indigo-600 flex justify-center items-center gap-1"><i class="fas fa-paper-plane"></i> Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Employers Section -->
         <section class="mb-4">
             <div class="flex items-center justify-between mb-1">
                 <h2 class="text-base font-bold text-gray-800">Featured Employers</h2>
@@ -64,6 +165,7 @@
             </div>
         </section>
 
+        <!-- Top Picks Section -->
         <section class="mb-4">
             <h2 class="text-base font-bold text-gray-800 mb-2">Top Picks</h2>
             <div class="grid grid-cols-2 gap-1 top-picks">
@@ -76,31 +178,7 @@
             </div>
         </section>
 
-        <section class="mb-4">
-            <h2 class="text-base font-bold text-gray-800 mb-2">Find job vacancies by</h2>
-            <div id="vacancy-section">
-                <div class="flex flex-wrap gap-2 mb-2" id="vacancy-categories">
-                    <button class="vacancy-category-btn active" data-category="skills">Skills</button>
-                    <button class="vacancy-category-btn" data-category="location">Location</button>
-                    <button class="vacancy-category-btn" data-category="industry">Industry</button>
-                    <button class="vacancy-category-btn" data-category="functions">Functions</button>
-                    <button class="vacancy-category-btn" data-category="roles">Roles</button>
-                    <button class="vacancy-category-btn" data-category="company">Company</button>
-                </div>
-
-                <div id="vacancy-options"></div>
-
-                <a id="view-all-link" href="#">View all jobs by Skills ></a>
-            </div>
-        </section>
-
-        <section class="mb-4">
-            <h2 class="text-base font-bold text-gray-800 mb-2">Supported By</h2>
-            <div class="supported-by flex justify-center">
-    <img src="images/startup-india-logo-e1701619660117.jpg" alt="Government Funded Logo" class="max-w-[200px] h-auto rounded-lg">
-</div>
-        </section>
-
+        <!-- How Job Ringer Works Section -->
         <section class="mb-4">
             <h2 class="text-base font-bold text-gray-800 mb-2">How Job Ringer Works</h2>
             <div class="how-it-works">
@@ -134,6 +212,7 @@
             </div>
         </section>
 
+        <!-- Stats Section -->
         <section class="mb-4">
             <h2 class="text-base font-bold text-gray-800 mb-2">Job Ringer Stats</h2>
             <div class="stats-summary">
@@ -148,65 +227,14 @@
             </div>
         </section>
 
-        <section class="mb-4">
-    <div class="flex items-center justify-between mb-2">
-        <h2 class="text-base font-bold text-gray-800">Trending Job Vacancies</h2>
-        <div class="job-slider-nav">
-            <button id="jobPrevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
-            <button id="jobNextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </div>
-    <div class="job-card-slider-container">
-        <div class="job-card-slider">
-            <div class="job-card-wrapper" id="jobCardWrapper">
-                <div class="job-card">
-                    <div class="job-card-inner">
-                        <div class="flex items-center mb-2">
-                            <img src="https://placehold.co/40x40/E0E0E0/888888?text=Logo" alt="Company Logo" class="company-logo">
-                            <div>
-                                <h3 class="job-title">Software Engineer</h3>
-                                <p class="company-name">Tech Solutions Inc.</p>
-                            </div>
-                        </div>
-                        <p class="job-salary">₹8 - 12 LPA</p>
-                        <p class="job-description">
-                            Develop and maintain robust web applications, collaborate with cross-functional teams, and ensure high code quality.
-                        </p>
-                        <div class="job-details">
-                            <span><i class="fas fa-map-marker-alt"></i> Bangalore</span>
-                            <span><i class="fas fa-briefcase"></i> Full-time</span>
-                            <span><i class="fas fa-hourglass-half"></i> 5+ Yrs</span>
-                        </div>
-                        <a href="job-description.html?id=software-engineer" class="view-details-btn">
-                            View Details
-                        </a>
-                    </div>
-                </div>
-                <!-- Repeat similar structure for other job cards -->
-                <div class="job-card">
-                    <div class="job-card-inner">
-                        <div class="flex items-center mb-2">
-                            <img src="https://placehold.co/40x40/E0E0E0/888888?text=Logo" alt="Company Logo" class="company-logo">
-                            <div>
-                                <h3 class="job-title">Marketing Specialist</h3>
-                                <p class="company-name">Global Marketing Co.</p>
-                            </div>
-                        </div>
-                        <p class="job-salary">₹5 - 7 LPA</p>
-                        <div class="job-details">
-                            <span><i class="fas fa-map-marker-alt"></i> Mumbai</span>
-                            <span><i class="fas fa-briefcase"></i> Hybrid</span>
-                        </div>
-                        <a href="#" class="view-details-btn">
-                            View Details
-                        </a>
-                    </div>
-                </div>
-                <!-- Add more job cards as needed -->
+        <!-- Supported By Section -->
+        <section class="supported-by-section mb-4 pb-[10px]">
+            <h2 class="text-base font-bold text-gray-800 mb-2">Supported By</h2>
+            <div class="supported-by flex justify-center">
+                <img src="images/startup-india-logo-e1701619660117.jpg" alt="Government Funded Logo" class="max-w-[200px] h-auto rounded-lg">
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+    </main>
 
     <div id="footer-placeholder" class="mt-2"></div>
     <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
@@ -214,7 +242,6 @@
     <div id="menu-placeholder"></div>
 
     <script src="/js/script.js"></script>
-   
     <script src="/js/employer-profile.js"></script>
 </body>
 </html>

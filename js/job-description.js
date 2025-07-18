@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function () {
+    initJobDescription();
+});
+
 function initJobDescription() {
     console.log("Job description page initialized");
 
@@ -25,9 +29,23 @@ function initJobDescription() {
             type: "Full-time",
             logo: "https://placehold.co/40x40/E0E0E0/888888?text=TSI",
             category: "premium",
-            description: "Develop and maintain scalable web applications using modern frameworks. Join our innovative team and work on cutting-edge projects that impact millions of users worldwide.",
-            responsibilities: ["Design and implement new features", "Optimize application performance", "Collaborate with cross-functional teams", "Mentor junior developers"],
-            qualifications: ["Bachelor's in Computer Science", "5+ years of software development experience", "Proficiency in JavaScript and React", "Experience with cloud platforms"]
+            descriptionHtml: `
+                <p class="mb-4">Develop and maintain scalable web applications using modern frameworks. Join our innovative team and work on cutting-edge projects that impact millions of users worldwide.</p>
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Responsibilities</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>Design and implement new features</li>
+                    <li>Optimize application performance</li>
+                    <li>Collaborate with cross-functional teams</li>
+                    <li>Mentor junior developers</li>
+                </ul>
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Qualifications</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>Bachelor's in Computer Science</li>
+                    <li>5+ years of software development experience</li>
+                    <li>Proficiency in JavaScript and React</li>
+                    <li>Experience with cloud platforms</li>
+                </ul>
+            `
         },
         {
             id: 2,
@@ -39,15 +57,92 @@ function initJobDescription() {
             type: "Full-time",
             logo: "https://placehold.co/40x40/D0E0D0/666666?text=IL",
             category: "female",
-            description: "Lead product development from ideation to launch, ensuring alignment with business goals.",
-            responsibilities: ["Define product roadmaps", "Work with engineering and design teams", "Analyze market trends"],
-            qualifications: ["Bachelor's in Business or related field", "3+ years in product management", "Strong analytical skills"]
+            descriptionHtml: `
+                <p class="mb-4">Lead product development from ideation to launch, ensuring alignment with business goals.</p>
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Responsibilities</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>Define product roadmaps</li>
+                    <li>Work with engineering and design teams</li>
+                    <li>Analyze market trends</li>
+                </ul>
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Qualifications</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>Bachelor's in Business or related field</li>
+                    <li>3+ years in product management</li>
+                    <li>Strong analytical skills</li>
+                </ul>
+            `
+        },
+        {
+            id: 3,
+            title: "Country Manager - B2B",
+            company: "Hindco",
+            location: "Gurgaon", // Assuming a location for the new job
+            salary: "Competitive", // Assuming a salary for the new job
+            experience: "12+ Years",
+            type: "Full-time - Permanent",
+            logo: "https://placehold.co/40x40/E0E0E0/888888?text=HC", // Placeholder logo for Hindco
+            category: "premium", // Example category
+            descriptionHtml: `
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Overview</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>Industry - PHARMACEUTICAL / MEDICAL DEVICES / CRO</li>
+                    <li>Functional Area - Sales / Business Development / Client Servicing</li>
+                    <li>Job Role - Country Manager - B2B</li>
+                    <li>Employment type - Full Time - Permanent</li>
+                    <li>Work Mode - In Office</li>
+                </ul>
+                
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Job Description | Role and Responsibilities</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>Developing and implementing business strategies tailored to the local market, identifying new business opportunities, and driving revenue growth.</li>
+                    <li>Creating and executing strategic plans to achieve company goals and objectives within the country.</li>
+                    <li>Leading, managing, and developing local teams, fostering a positive and productive work environment.</li>
+                    <li>Managing budgets, tracking financial performance, and ensuring profitability within the country.</li>
+                    <li>Ensuring compliance with all local laws, regulations, and company policies.</li>
+                    <li>Building and maintaining strong relationships with key stakeholders, including clients, partners, and local authorities.</li>
+                    <li>Providing regular performance reports to senior management, analyzing market trends, and providing strategic insights.</li>
+                    <li>Adapting global strategies to fit the local market and ensuring products and services are effectively localized.</li>
+                    <li>Representing the company in public and industry events, building a strong brand presence in the country.</li>
+                </ul>
+                
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Candidate Profile | Who Can Apply</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>Bachelor's / Master's degree in business administration, management, or a related field with 12+ years experience in sales / business development.</li>
+                    <li>Ability to lead and motivate teams, make strategic decisions, and manage complex operations.</li>
+                    <li>Ability to develop and implement effective business strategies.</li>
+                    <li>Excellent verbal and written communication skills, with the ability to communicate effectively with diverse audiences.</li>
+                    <li>Ability to analyze market trends, financial data, and performance reports.</li>
+                    <li>Ability to work effectively with people from diverse cultural backgrounds.</li>
+                </ul>
+                
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Education</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>Any Graduate - Any Specialization</li>
+                    <li>Any Post Graduate - Any Specialization</li>
+                    <li>Any Doctorate - Any Specialization</li>
+                </ul>
+                
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Job Related Keywords</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Sales, Business Development, Marketing, Sales Strategy, Sales Operations, B2B Sales, International Sales, Business Strategy</p>
+                
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">About Employer</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mb-4"><a href="http://www.hindco.com/" target="_blank" class="text-indigo-600 hover:underline">View Employer Profile http://www.hindco.com/</a></p>
+                
+                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Contact Details</h3>
+                <ul class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5">
+                    <li>resume@hindco.com</li>
+                </ul>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Candidate Can Connect Email Call WhatsApp SMS</p>
+            `
         }
     ];
 
     // Find job by ID
     const job = mockJobs.find(j => j.id === parseInt(jobId)) || mockJobs[0];
     const cardContainer = document.getElementById('job-card-container');
+    const jobDetailsContent = document.getElementById('job-details-content');
+
 
     if (!job) {
         cardContainer.innerHTML = `
@@ -75,9 +170,8 @@ function initJobDescription() {
     document.getElementById('job-salary').innerHTML = `<i class="fas fa-dollar-sign mr-1"></i>${job.salary}`;
     document.getElementById('job-experience').innerHTML = `<i class="fas fa-briefcase mr-1"></i>${job.experience}`;
     document.getElementById('job-type').innerHTML = `<i class="fas fa-clock mr-1"></i>${job.type}`;
-    document.getElementById('job-description').textContent = job.description;
-    document.getElementById('job-responsibilities').innerHTML = job.responsibilities.map(resp => `<li>${resp}</li>`).join('');
-    document.getElementById('job-qualifications').innerHTML = job.qualifications.map(qual => `<li>${qual}</li>`).join('');
+    jobDetailsContent.innerHTML = job.descriptionHtml;
+
 
     // Handle PDF viewer
     const viewJdBtn = document.getElementById('view-jd-btn');
@@ -105,9 +199,10 @@ function initJobDescription() {
     similarJobsToggle.addEventListener('change', () => {
         if (similarJobsToggle.checked) {
             similarJobsContent.style.display = 'block';
+            alert('Similar jobs recommendations enabled!');
             
-            // Generate similar jobs
-            const similarJobs = mockJobs.filter(j => j.id !== job.id).slice(0, 3);
+            // Generate similar jobs (excluding the current job)
+            const similarJobs = mockJobs.filter(j => j.id !== job.id).slice(0, 3); // Get top 3 similar jobs
             similarJobsList.innerHTML = similarJobs.map(similarJob => `
                 <div class="p-2 bg-white dark:bg-gray-600 rounded border border-gray-200 dark:border-gray-500">
                     <div class="flex items-center gap-2">
@@ -121,6 +216,7 @@ function initJobDescription() {
             `).join('');
         } else {
             similarJobsContent.style.display = 'none';
+            alert('Similar jobs recommendations disabled!');
         }
     });
 
@@ -154,8 +250,20 @@ function initJobDescription() {
             alert('Job link copied to clipboard!');
         }
     });
-}
 
-document.addEventListener('DOMContentLoaded', function () {
-    initJobDescription();
-});
+    // Handle apply now buttons
+    const applyNowTopBtn = document.querySelector('.job-card .action-btn');
+    const applyNowBottomBtn = document.getElementById('apply-now-bottom-btn');
+
+    const handleApplyNowClick = () => {
+        alert(`Applying for: ${job.title} at ${job.company}`);
+        // In a real application, you'd redirect to an application form or send data.
+    };
+
+    if (applyNowTopBtn) {
+        applyNowTopBtn.addEventListener('click', handleApplyNowClick);
+    }
+    if (applyNowBottomBtn) {
+        applyNowBottomBtn.addEventListener('click', handleApplyNowClick);
+    }
+}

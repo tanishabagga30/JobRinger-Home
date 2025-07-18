@@ -2,16 +2,21 @@ tailwind.config = {
     darkMode: 'class'
 }
 
+// Global variable for current sort mode
+let currentSort = 'relevant'; // 'relevant' or 'latest'
+
 function initComponents() {
     console.log("Jobs page initialized");
 
     setActiveNavItem();
     loadJobs();
 
+    // Load more jobs button
     document.addEventListener('click', function (event) {
         if (event.target.id === 'load-more-btn' || event.target.closest('#load-more-btn')) {
             loadMoreJobs();
         }
+        
         // Handle Info button click
         const infoBtn = event.target.closest('.action-btn.info-btn');
         if (infoBtn) {
@@ -22,15 +27,16 @@ function initComponents() {
         }
     });
 
+    // Quick search filter buttons
     document.querySelectorAll('.quick-search-btn').forEach(button => {
         button.addEventListener('click', function () {
             document.querySelectorAll('.quick-search-btn').forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            console.log(`Filter by: ${this.textContent}`);
             loadJobs();
         });
     });
 
+    // Filter popup handlers
     const openFilterBtn = document.getElementById('open-filter');
     const closeFilterBtn = document.getElementById('close-filter');
     const filterPopup = document.getElementById('filter-popup');
@@ -54,6 +60,16 @@ function initComponents() {
             loadJobs();
         });
     }
+
+    // Sort toggle button
+    const sortToggle = document.getElementById('sort-toggle');
+    if (sortToggle) {
+        sortToggle.addEventListener('click', function() {
+            currentSort = currentSort === 'relevant' ? 'latest' : 'relevant';
+            this.textContent = currentSort === 'relevant' ? 'Most Relevant' : 'Latest';
+            loadJobs();
+        });
+    }
 }
 
 function setActiveNavItem() {
@@ -64,6 +80,20 @@ function setActiveNavItem() {
             item.classList.add('text-indigo-600');
         }
     });
+}
+
+function sortJobs(jobs) {
+    if (currentSort === 'relevant') {
+        // Sort by relevance (premium jobs first, then others)
+        return [...jobs].sort((a, b) => {
+            if (a.category === 'premium' && b.category !== 'premium') return -1;
+            if (a.category !== 'premium' && b.category === 'premium') return 1;
+            return 0;
+        });
+    } else {
+        // Sort by latest (using ID as a proxy for date)
+        return [...jobs].sort((a, b) => b.id - a.id);
+    }
 }
 
 async function loadJobs() {
@@ -199,6 +229,8 @@ async function loadJobs() {
             );
         }
 
+        // Apply sorting
+        filteredJobs = sortJobs(filteredJobs);
         renderJobs(filteredJobs);
     } catch (error) {
         console.error("Error loading jobs:", error);
@@ -339,6 +371,8 @@ function loadMoreJobs() {
             );
         }
 
+        // Apply sorting
+        filteredJobs = sortJobs(filteredJobs);
         const newHtml = filteredJobs.map(job => `
             <div class="job-card p-2 rounded-md shadow text-xs ${job.category === 'female' ? 'female-job' : ''} ${job.category === 'premium' ? 'premium-job' : ''}">
                 <div class="flex items-start gap-2">
@@ -367,6 +401,98 @@ function loadMoreJobs() {
         container.querySelector('.text-center')?.remove();
         container.insertAdjacentHTML('beforeend', newHtml);
     }, 1000);
+}
+// Enhanced Sort Toggle Functionality
+function initSortToggle() {
+    const sortToggle = document.getElementById('sort-toggle');
+    if (!sortToggle) return;
+
+    sortToggle.addEventListener('click', function() {
+        // Toggle sort mode
+        currentSort = currentSort === 'relevant' ? 'latest' : 'relevant';
+        
+        // Update button text and icon
+        const textElement = this.querySelector('.sort-toggle-text');
+        const iconElement = this.querySelector('i');
+        
+        if (currentSort === 'latest') {
+            textElement.textContent = 'Latest';
+            iconElement.className = 'fas fa-sort-amount-up';
+        } else {
+            textElement.textContent = 'Most Relevant';
+            iconElement.className = 'fas fa-sort-amount-down';
+        }
+        
+        // Add a small animation feedback
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 150);
+        
+        console.log('Sort changed to:', currentSort);
+        
+        // Reload jobs with new sorting
+        loadJobs();
+    });
+}
+
+// Update the existing initComponents function to include the sort toggle
+function initComponents() {
+    console.log("Jobs page initialized");
+
+    setActiveNavItem();
+    loadJobs();
+    initSortToggle(); // Add this line
+
+    // Load more jobs button
+    document.addEventListener('click', function (event) {
+        if (event.target.id === 'load-more-btn' || event.target.closest('#load-more-btn')) {
+            loadMoreJobs();
+        }
+        
+        // Handle Info button click
+        const infoBtn = event.target.closest('.action-btn.info-btn');
+        if (infoBtn) {
+            const jobId = infoBtn.dataset.jobId;
+            if (jobId) {
+                window.location.href = `job-description.html?id=${jobId}`;
+            }
+        }
+    });
+
+    // Quick search filter buttons
+    document.querySelectorAll('.quick-search-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            document.querySelectorAll('.quick-search-btn').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            loadJobs();
+        });
+    });
+
+    // Filter popup handlers
+    const openFilterBtn = document.getElementById('open-filter');
+    const closeFilterBtn = document.getElementById('close-filter');
+    const filterPopup = document.getElementById('filter-popup');
+    const applyFilterBtn = filterPopup?.querySelector('button.bg-indigo-600');
+
+    if (openFilterBtn && filterPopup) {
+        openFilterBtn.addEventListener('click', () => {
+            filterPopup.classList.toggle('hidden');
+        });
+    }
+
+    if (closeFilterBtn && filterPopup) {
+        closeFilterBtn.addEventListener('click', () => {
+            filterPopup.classList.add('hidden');
+        });
+    }
+
+    if (applyFilterBtn) {
+        applyFilterBtn.addEventListener('click', () => {
+            filterPopup.classList.add('hidden');
+            loadJobs();
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {

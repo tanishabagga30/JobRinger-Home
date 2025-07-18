@@ -10,17 +10,14 @@
     <link rel="stylesheet" href="css/universal.css">
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
-    <!-- Universal Header -->
     <div id="header-placeholder" class="sticky top-0 z-10"></div>
 
-    <!-- Job Description Content -->
     <main class="flex-grow px-2 py-3">
         <div class="max-w-3xl mx-auto">
             <button id="back-btn" class="mb-4 text-indigo-600 dark:text-indigo-400 text-sm flex items-center gap-1 hover:underline">
                 <i class="fas fa-arrow-left"></i> Back to Jobs
             </button>
             
-            <!-- Job Card -->
             <div id="job-card-container" class="job-card p-4 rounded-md shadow text-xs mb-4">
                 <div class="flex items-start gap-3">
                     <img id="job-logo" src="" alt="Company Logo" class="company-logo rounded-md w-12 h-12">
@@ -44,7 +41,6 @@
                     </div>
                 </div>
                 
-                <!-- Action Buttons -->
                 <div class="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700 grid grid-cols-2 gap-3">
                     <button class="action-btn bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-sm flex items-center justify-center gap-2">
                         <i class="fas fa-paper-plane"></i> Apply Now
@@ -55,27 +51,24 @@
                 </div>
             </div>
             
-            <!-- Job Details -->
             <div class="bg-white dark:bg-gray-800 p-4 rounded-md shadow mb-4">
                 <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-3">Job Description</h2>
-                <p id="job-description" class="text-sm text-gray-600 dark:text-gray-300 mb-4"></p>
-                
-                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Responsibilities</h3>
-                <ul id="job-responsibilities" class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5"></ul>
-                
-                <h3 class="text-md font-semibold text-gray-800 dark:text-gray-100 mb-2">Qualifications</h3>
-                <ul id="job-qualifications" class="text-sm text-gray-600 dark:text-gray-300 mb-4 list-disc pl-5"></ul>
-                
-                <!-- View JD PDF Button -->
+                <div id="job-details-content" class="text-sm text-gray-600 dark:text-gray-300">
+                    </div>
+
                 <div class="mt-6 text-center">
                     <button id="view-jd-btn" class="action-btn bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-sm flex items-center justify-center gap-2 mx-auto">
                         <i class="fas fa-file-pdf"></i> View JD PDF
                     </button>
                 </div>
+                <div class="mt-4 text-center">
+                    <button id="apply-now-bottom-btn" class="action-btn bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-sm flex items-center justify-center gap-2 mx-auto">
+                        <i class="fas fa-paper-plane"></i> Apply Now
+                    </button>
+                </div>
             </div>
             
-            <!-- PDF Viewer -->
-            <div id="pdf-viewer" class="pdf-viewer bg-white dark:bg-gray-800 p-4 rounded-md shadow mb-4">
+            <div id="pdf-viewer" class="pdf-viewer bg-white dark:bg-gray-800 p-4 rounded-md shadow mb-4 hidden">
                 <div class="flex justify-between items-center mb-3">
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Job Description PDF</h3>
                     <button id="close-pdf-btn" class="text-gray-500 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400">
@@ -85,10 +78,9 @@
                 <iframe id="pdf-frame" src="" class="w-full h-96 border border-gray-300 dark:border-gray-600 rounded"></iframe>
             </div>
             
-            <!-- Similar第八Jobs Toggle -->
             <div class="bg-white dark:bg-gray-800 p-4 rounded-md shadow">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Create Similar Jobs</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Show Similar Jobs</h3>
                     <label class="toggle-switch">
                         <input type="checkbox" id="similar-jobs-toggle">
                         <span class="slider"></span>
@@ -96,20 +88,17 @@
                 </div>
                 <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Enable to generate similar job recommendations</p>
                 
-                <!-- Similar Jobs Content -->
-                <div id="similar-jobs-content" class="similar-jobs">
+                <div id="similar-jobs-content" class="similar-jobs hidden">
                     <div class="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-md">
                         <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-2">Similar Jobs</h4>
                         <div id="similar-jobs-list" class="space-y-2">
-                            <!-- Similar jobs will be populated here -->
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Universal Components -->
     <div id="footer-placeholder"></div>
     <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
     <div id="search-placeholder"></div>
