@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="/css/user-profile.css" rel="stylesheet">
+  <link href="/css/universal.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <div id="header-placeholder" class="sticky top-0 z-10"></div>
+  
+  <main class="p-4 max-w-4xl mx-auto">
+    <!-- Profile Header -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <div class="flex justify-between items-start mb-4">
+        <h1 class="text-2xl font-bold">My Profile</h1>
+        <div class="flex gap-2">
+          <button id="edit-btn" class="view-only bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
+            <i class="fas fa-edit mr-1"></i> Edit Profile
+          </button>
+          <button id="save-btn" class="edit-only bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">
+            <i class="fas fa-save mr-1"></i> Save Changes
+          </button>
+          <button id="cancel-btn" class="edit-only bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm">
+            <i class="fas fa-times mr-1"></i> Cancel
+          </button>
+        </div>
+      </div>
+
+      <!-- Profile Photo Section -->
+      <div class="flex items-start gap-6 mb-6">
+        <div class="relative">
+          <img id="profile-photo" class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover" 
+               src="" 
+               alt="Profile photo">
+          <button id="change-photo-btn" class="edit-only absolute bottom-0 right-0 bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-blue-700">
+            <i class="fas fa-camera text-xs"></i>
+          </button>
+          <input type="file" id="photo-input" class="hidden" accept="image/*">
+        </div>
+        
+        <div class="flex-1">
+          <!-- Name -->
+          <div class="mb-2">
+            <h2 id="user-name-display" class="view-only text-xl font-bold">Tanisha Bagga</h2>
+            <input id="user-name-input" class="edit-only w-full text-xl font-bold bg-transparent border-b-2 border-gray-300 focus:border-blue-500 outline-none py-1" 
+                   value="John Smith" placeholder="Full Name">
+          </div>
+          
+          <!-- Title -->
+          <div class="mb-2">
+            <p id="user-title-display" class="view-only text-indigo-600 dark:text-indigo-400 font-medium">Senior Software Engineer</p>
+            <input id="user-title-input" class="edit-only w-full text-indigo-600 dark:text-indigo-400 font-medium bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                   value="Senior Software Engineer" placeholder="Job Title">
+          </div>
+          
+          <!-- Job Type -->
+          <div class="mb-3">
+            <p id="user-job-type-display" class="view-only text-sm text-gray-600 dark:text-gray-300">Full-time</p>
+            <select id="user-job-type-input" class="edit-only w-full text-sm bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1">
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Contract">Contract</option>
+              <option value="Freelance">Freelance</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Info Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+        <!-- CTC -->
+        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+          <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Current CTC</label>
+          <p id="user-ctc-display" class="view-only">₹12,00,000 per annum</p>
+          <input id="user-ctc-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none" 
+                 value="₹12,00,000 per annum" placeholder="Current CTC">
+        </div>
+        
+        <!-- Notice Period -->
+        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+          <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Notice Period</label>
+          <p id="user-notice-display" class="view-only">30 days</p>
+          <select id="user-notice-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none">
+            <option value="Immediate">Immediate</option>
+            <option value="15 days">15 days</option>
+            <option value="30 days" selected>30 days</option>
+            <option value="60 days">60 days</option>
+            <option value="90 days">90 days</option>
+          </select>
+        </div>
+        
+        <!-- Location -->
+        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+          <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Location</label>
+          <p id="user-location-display" class="view-only">Bangalore, India</p>
+          <input id="user-location-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none" 
+                 value="Bangalore, India" placeholder="Location">
+        </div>
+        
+        <!-- Experience -->
+        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+          <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Total Experience</label>
+          <p id="user-experience-display" class="view-only">5 years</p>
+          <input id="user-experience-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none" 
+                 value="5 years" placeholder="Total Experience">
+        </div>
+        
+        <!-- Work Model -->
+        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+          <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Preferred Work Model</label>
+          <p id="user-work-model-display" class="view-only">Hybrid</p>
+          <select id="user-work-model-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none">
+            <option value="Remote">Remote</option>
+            <option value="Hybrid" selected>Hybrid</option>
+            <option value="On-site">On-site</option>
+          </select>
+        </div>
+        
+        <!-- Email -->
+        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+          <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Email</label>
+          <p id="user-email-display" class="view-only">john.smith@email.com</p>
+          <input id="user-email-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none" 
+                 value="john.smith@email.com" placeholder="Email" type="email">
+        </div>
+      </div>
+    </div>
+
+    <!-- Resume Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-semibold"><i class="fas fa-file-alt mr-2"></i>Resume</h2>
+        <button id="upload-resume-btn" class="edit-only bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
+          <i class="fas fa-upload mr-1"></i> Upload New Resume
+        </button>
+        <input type="file" id="resume-input" class="hidden" accept=".pdf,.doc,.docx">
+      </div>
+      <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
+        <i class="fas fa-file-pdf text-red-500 text-3xl mb-2"></i>
+        <p class="text-sm font-medium mb-1">John_Smith_Resume.pdf</p>
+        <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">Last updated: Jan 15, 2025</p>
+        <a href="#" class="text-blue-600 hover:text-blue-700 text-sm"><i class="fas fa-download mr-1"></i>Download Resume</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <h2 class="font-semibold mb-4"><i class="fas fa-info-circle mr-2"></i>About Me</h2>
+      <div id="about-display" class="view-only text-sm leading-relaxed">
+        Passionate software engineer with 5+ years of experience in full-stack development. Skilled in JavaScript, Python, and cloud technologies. Looking for challenging opportunities to grow and contribute to innovative projects.
+      </div>
+      <textarea id="about-input" class="edit-only w-full h-32 p-3 border border-gray-300 rounded-lg focus:border-blue-500 outline-none text-sm" 
+                placeholder="Tell employers about yourself...">Passionate software engineer with 5+ years of experience in full-stack development. Skilled in JavaScript, Python, and cloud technologies. Looking for challenging opportunities to grow and contribute to innovative projects.</textarea>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-semibold"><i class="fas fa-code mr-2"></i>Skills</h2>
+        <button id="add-skill-btn" class="edit-only bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs">
+          <i class="fas fa-plus mr-1"></i> Add Skill
+        </button>
+      </div>
+      <div id="skills-container" class="flex flex-wrap gap-2">
+        <!-- Skills will be populated by JavaScript -->
+      </div>
+      <div id="add-skill-form" class="edit-only hidden mt-3 flex gap-2">
+        <input id="new-skill-input" class="flex-1 px-3 py-2 border border-gray-300 rounded text-sm" placeholder="Enter skill name">
+        <button id="confirm-add-skill" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-sm">Add</button>
+        <button id="cancel-add-skill" class="bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 rounded text-sm">Cancel</button>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-semibold"><i class="fas fa-graduation-cap mr-2"></i>Education</h2>
+        <button id="add-education-btn" class="edit-only bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs">
+          <i class="fas fa-plus mr-1"></i> Add Education
+        </button>
+      </div>
+      <div id="education-container">
+        <!-- Education entries will be populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-semibold"><i class="fas fa-briefcase mr-2"></i>Work Experience</h2>
+        <button id="add-experience-btn" class="edit-only bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs">
+          <i class="fas fa-plus mr-1"></i> Add Experience
+        </button>
+      </div>
+      <div id="experience-container">
+        <!-- Experience entries will be populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-semibold"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
+        <button id="add-project-btn" class="edit-only bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs">
+          <i class="fas fa-plus mr-1"></i> Add Project
+        </button>
+      </div>
+      <div id="projects-container">
+        <!-- Projects will be populated by JavaScript -->
+      </div>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <script src="js/script.js"></script>
+
+  <script src="/js/user-profile.js"></script>
+</body>
+</html>

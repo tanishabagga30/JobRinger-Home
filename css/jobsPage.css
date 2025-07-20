@@ -238,7 +238,7 @@ html.dark #close-filter:hover {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    padding: 0.25rem 0.25rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
@@ -290,7 +290,25 @@ html.dark #close-filter:hover {
     font-weight: 600;
     letter-spacing: 0.025em;
 }
-
+.sticky-header-container {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            background: white;
+        }
+        
+        .sticky-header-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .job-status-bar {
+            background: #049904;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 6px 0;
+            font-size: 0.75rem;
+            line-height: 1rem;
+        }
 /* Dark mode styles */
 html.dark .sort-toggle-btn {
     background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);

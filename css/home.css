@@ -1,10 +1,7 @@
-/* HOME PAGE SPECIFIC STYLES */
-
-/* Slider Styles */
 .slider {
     position: relative;
     overflow: hidden;
-    height: 150px;
+    height: 180px;
 }
 
 .slide {
@@ -35,29 +32,31 @@
 }
 
 .slider-nav button {
-    background: rgba(0, 0, 0, 0.5);
-    color: #FFFFFF;
+    background: transparent;
+    color: white;
     border: none;
     padding: 15px;
     cursor: pointer;
-    font-size: 1.5rem;
-    transition: background 0.3s;
+    font-size: 2rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .slider-nav button:hover {
-    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
 }
 
 /* Job Buttons */
 .job-buttons {
     display: flex;
     flex-direction: row;
-    gap: 6px;
+    gap: 10px;
     background: var(--card_bg_light);
-    padding: 3px;
-    border-radius: 10px;
+    padding: 5px;
+    border-radius: 12px;
     box-shadow: 0 3px 8px var(--light_shadow);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 html.dark .job-buttons {
@@ -73,20 +72,20 @@ html.dark .job-buttons {
 .job-toggle-btn {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    padding: 6px 4px;
-    border-radius: 8px;
+    justify-content: flex-start;
+    padding: 12px 8px;
+    border-radius: 10px;
     font-weight: 600;
-    font-size: 0.7rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
     border: 1px solid transparent;
     background: var(--card_bg_light);
     color: var(--gray_text_light);
     text-decoration: none;
-    min-height: 28px;
-    gap: 2px;
+    min-height: 60px;
+    gap: 10px;
     position: relative;
     overflow: hidden;
 }
@@ -148,8 +147,8 @@ html.dark .job-toggle-btn.inactive:hover {
 }
 
 .job-button-icon {
-    width: 20px;
-    height: 20px;
+    width: 32px;
+    height: 32px;
     transition: transform 0.3s ease;
 }
 
@@ -164,18 +163,23 @@ html.dark .job-toggle-btn.inactive:hover {
 }
 
 .job-button-text {
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 600;
-    text-align: center;
-    line-height: 1.1;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.job-button-title {
+    font-size: 1rem;
 }
 
 .job-button-subtitle {
-    font-size: 0.55rem;
+    font-size: 0.8rem;
     opacity: 0.8;
     font-weight: 400;
-    margin-top: 1px;
+    margin-top: 2px;
 }
+
 
 /* Featured Employers */
 .featured-employers {
@@ -624,7 +628,7 @@ section {
 
 /* Supported By Section */
 .supported-by {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 /* Job Slider Navigation */

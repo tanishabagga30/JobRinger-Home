@@ -66,7 +66,7 @@ function initComponents() {
     if (sortToggle) {
         sortToggle.addEventListener('click', function() {
             currentSort = currentSort === 'relevant' ? 'latest' : 'relevant';
-            this.textContent = currentSort === 'relevant' ? 'Most Relevant' : 'Latest';
+            this.textContent = currentSort === 'relevant' ? 'Relevant' : 'Latest';
             loadJobs();
         });
     }
@@ -419,7 +419,7 @@ function initSortToggle() {
             textElement.textContent = 'Latest';
             iconElement.className = 'fas fa-sort-amount-up';
         } else {
-            textElement.textContent = 'Most Relevant';
+            textElement.textContent = 'Relevant';
             iconElement.className = 'fas fa-sort-amount-down';
         }
         

@@ -8,33 +8,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/css/universal.css">
     <link rel="stylesheet" href="/css/jobsPage.css">
+    <style>
+        
+    </style>
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50">
-    <!-- Universal Header -->
-    <div id="header-placeholder" class="sticky top-0 z-10"></div>
-
-    <!-- Filter Bar -->
-    <section class="filter-bar-container px-2 py-1 border-b border-gray-200 text-xs overflow-x-auto">
-        <div class="flex items-center gap-1 w-max">
-            <button id="open-filter" class="quick-search-btn"><i class="fas fa-filter"></i></button>
-            <button class="quick-search-btn active">All</button>
-            <button class="quick-search-btn">Remote</button>
-            <button class="quick-search-btn">Female</button>
-            <button class="quick-search-btn">Fresher</button>
-            <button class="quick-search-btn">WFH</button>
+    <!-- Combined Sticky Header Container -->
+    <div class="sticky-header-container">
+        <!-- Universal Header -->
+        <div id="header-placeholder" class="sticky-header-group"></div>
+        
+        <!-- Filter Bar -->
+        <section class="filter-bar-container px-2 py-1 border-b border-gray-200 text-xs overflow-x-auto">
+            <div class="flex items-center gap-1 w-max">
+                <button id="open-filter" class="quick-search-btn"><i class="fas fa-filter"></i></button>
+                <button class="quick-search-btn active">All</button>
+                <button class="quick-search-btn">Remote</button>
+                <button class="quick-search-btn">Female</button>
+                <button class="quick-search-btn">Fresher</button>
+                <button class="quick-search-btn">WFH</button>
+            </div>
+        </section>
+        
+        <!-- Application Status Bar -->
+        <div class="job-status-bar text-center font-medium">
+            You have <span class="font-bold">4</span> job applications left today!
         </div>
-    </section>
-
-    <!-- Application Status Bar -->
-    <div class="job-status-bar text-center py-1 text-xs font-medium sticky top-[104px] z-10">
-        You have <span class="font-bold">4</span> job applications left today!
     </div>
 
-    <!-- Sort Toggle Button  -->
+    <!-- Sort Toggle Button -->
     <div class="sort-toggle-container">
         <button id="sort-toggle" class="sort-toggle-btn">
             <i class="fas fa-sort-amount-down"></i>
-            <span class="sort-toggle-text">Most Relevant</span>
+            <span class="sort-toggle-text">Relevant</span>
         </button>
     </div>
 
@@ -46,6 +52,7 @@
         </button>
     </main>
 
+    <!-- Rest of your code remains the same -->
     <!-- Filter Popup Modal -->
     <div id="filter-popup" class="fixed inset-0 bg-black bg-opacity-40 hidden items-end sm:items-center justify-center z-50">
         <div class="bg-white w-full sm:w-80 p-4 rounded-t-lg sm:rounded-lg shadow-lg">

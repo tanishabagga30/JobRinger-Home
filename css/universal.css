@@ -457,6 +457,36 @@ html.dark footer .disclaimer {
     color: var(--dark_gray_text);
     background-color: rgba(255, 255, 255, 0.05);
 }
+.footer-bottom {
+    padding: 0rem 0;
+    text-align: center;
+    color: #a3a2a2;
+    font-size: 0.65rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.footer-link {
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-link:hover {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+.copyright {
+    color: #6b7280;
+    font-size: 0.55rem;
+}
 
 @media (max-width: 768px) {
     footer .container {
