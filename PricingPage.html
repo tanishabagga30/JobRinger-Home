@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Job Package - Exclusive Offer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1eacc6;
+            --primary-dark: #1a9db8;
+            --secondary-color: #2c3e50;
+            --accent-color: #f39c12;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --border-color: #e9ecef;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #ecf0f1;
+            --text-secondary: #bdc3c7;
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-card: #0f3460;
+            --border-color: #2c3e50;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .theme-toggle i {
+            font-size: 18px;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle .active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header p {
+            font-size: 20px;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* Premium Card */
+        .premium-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+            z-index: 2;
+        }
+
+        /* Price Section */
+        .price-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .price-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: var(--bg-card);
+            clip-path: polygon(0 100%, 100% 0, 100% 100%);
+        }
+
+        .price-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .original-price {
+            font-size: 28px;
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        .discount {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .new-price {
+            font-size: 64px;
+            font-weight: 300;
+            margin-top: 15px;
+            letter-spacing: -2px;
+        }
+
+        .validity {
+            font-size: 18px;
+            margin-top: 20px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .features h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-primary);
+            grid-column: 1 / -1;
+            font-weight: 400;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 25px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .feature-item:hover {
+            transform: translateX(5px);
+            border-left-color: var(--primary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            background: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            font-size: 22px;
+            box-shadow: 0 5px 15px rgba(30, 172, 198, 0.3);
+        }
+
+        .feature-text {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        /* Timer */
+        .timer-container {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .timer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .timer-box {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 25px 20px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 140px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timer-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        .timer-value {
+            font-size: 42px;
+            font-weight: 700;
+            display: block;
+            color: var(--primary-color);
+        }
+
+        .timer-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 18px 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(30, 172, 198, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(30, 172, 198, 0.4);
+        }
+
+        .bonus-text {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-top: 25px;
+            font-size: 22px;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--bg-secondary);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+        }
+
+        .proof-icon {
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .proof-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Footer Note */
+        .footer-note {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 24px;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-cta:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .header p {
+                font-size: 18px;
+            }
+            
+            .price-section {
+                padding: 40px 30px;
+            }
+            
+            .price-section h2 {
+                font-size: 28px;
+            }
+            
+            .original-price {
+                font-size: 24px;
+            }
+            
+            .discount {
+                font-size: 14px;
+                padding: 4px 12px;
+            }
+            
+            .new-price {
+                font-size: 48px;
+            }
+            
+            .validity {
+                font-size: 16px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+                padding: 40px 30px;
+            }
+            
+            .features h3 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+            
+            .feature-item {
+                padding: 20px;
+            }
+            
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .feature-text {
+                font-size: 16px;
+            }
+            
+            .cta-button {
+                font-size: 16px;
+                padding: 15px 40px;
+            }
+            
+            .bonus-text {
+                font-size: 18px;
+            }
+            
+            .timer-box {
+                min-width: 100px;
+                padding: 20px 15px;
+            }
+            
+            .timer-value {
+                font-size: 32px;
+            }
+            
+            .timer-label {
+                font-size: 12px;
+            }
+            
+            .floating-cta {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .social-proof {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-sun active" id="light-icon"></i>
+        <i class="fas fa-moon" id="dark-icon"></i>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Exclusive Premium Package</h1>
+            <p>Register now to access our premium recruitment services with a complimentary welcome offer</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="premium-card">
+                <div class="premium-badge">Limited Time</div>
+                
+                <div class="price-section">
+                    <h2>Welcome Premium Package</h2>
+                    <div class="price-container">
+                        <span class="original-price">₹1,760.00</span>
+                        <span class="discount">100% OFF</span>
+                    </div>
+                    <div class="new-price">FREE</div>
+                    <div class="validity">30-Day Premium Access</div>
+                </div>
+                
+                <div class="features">
+                    <h3>Premium Features Included</h3>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+                        <div class="feature-text">International Job Posting with 30-Day Visibility</div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-search"></i></div>
+                        <div class="feature-text">Unlimited Premium Database Search Access</div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-file-download"></i></div>
+                        <div class="feature-text">10 Premium Resume Downloads</div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-star"></i></div>
+                        <div class="feature-text">30-Day Featured Employer Status</div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-user-friends"></i></div>
+                        <div class="feature-text">Premium Subuser Account</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-proof">
+                <div class="proof-item">
+                    <div class="proof-icon"><i class="fas fa-users"></i></div>
+                    <div class="proof-text">5,000+ Happy Employers</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="proof-text">50,000+ Jobs Posted</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-icon"><i class="fas fa-star"></i></div>
+                    <div class="proof-text">4.9/5 Customer Rating</div>
+                </div>
+            </div>
+            
+            <div class="timer-container">
+                <div class="timer-title">Offer Expires In</div>
+                <div class="timer">
+                    <div class="timer-box">
+                        <span class="timer-value" id="hours">02</span>
+                        <span class="timer-label">Hours</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-value" id="minutes">45</span>
+                        <span class="timer-label">Minutes</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-value" id="seconds">30</span>
+                        <span class="timer-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <button class="cta-button">Claim Premium Access</button>
+                <div class="bonus-text">All Premium Services Complimentary for 30 Days</div>
+            </div>
+            
+            <div class="footer-note">
+                *This exclusive offer is available for new premium registrations only. Complimentary access expires after 30 days.
+            </div>
+        </div>
+    </div>
+    
+    <button class="floating-cta"><i class="fas fa-crown"></i></button>
+    
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const lightIcon = document.getElementById('light-icon');
+            const darkIcon = document.getElementById('dark-icon');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                lightIcon.classList.add('active');
+                darkIcon.classList.remove('active');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                darkIcon.classList.add('active');
+                lightIcon.classList.remove('active');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const lightIcon = document.getElementById('light-icon');
+            const darkIcon = document.getElementById('dark-icon');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                darkIcon.classList.add('active');
+                lightIcon.classList.remove('active');
+            }
+        });
+        
+        // Countdown timer
+        function startTimer() {
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+            
+            let hours = 2;
+            let minutes = 45;
+            let seconds = 30;
+            
+            setInterval(() => {
+                if (seconds > 0) {
+                    seconds--;
+                } else {
+                    seconds = 59;
+                    if (minutes > 0) {
+                        minutes--;
+                    } else {
+                        minutes = 59;
+                        if (hours > 0) {
+                            hours--;
+                        } else {
+                            // Timer expired
+                            hours = 0;
+                            minutes = 0;
+                            seconds = 0;
+                        }
+                    }
+                }
+                
+                hoursElement.textContent = hours.toString().padStart(2, '0');
+                minutesElement.textContent = minutes.toString().padStart(2, '0');
+                secondsElement.textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+        
+        startTimer();
+        
+        // Add click handlers
+        document.querySelectorAll('.cta-button, .floating-cta').forEach(button => {
+            button.addEventListener('click', () => {
+                // In a real implementation, this would navigate to registration
+                alert('Redirecting to premium registration page...');
+            });
+        });
+    </script>
+</body>
+</html>

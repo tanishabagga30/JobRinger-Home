@@ -35,9 +35,9 @@ body {
 }
 
 @media (min-width: 768px) {
-    body {
+    /* body {
         display: none;
-    }
+    } */
 }
 
 /* Dark Mode Styles */
@@ -489,7 +489,7 @@ html.dark footer .disclaimer {
 }
 
 @media (max-width: 768px) {
-    footer .container {
+    /* footer .container {
         grid-template-columns: 1fr 1fr;
         gap: 0.5rem;
     }
@@ -518,7 +518,7 @@ html.dark footer .disclaimer {
 
     footer .social-icon {
         font-size: 0.9rem;
-    }
+    } */
 }
 .search-popup {
     position: fixed;

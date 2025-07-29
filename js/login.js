@@ -48,9 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show success message before redirect
         showSuccessMessage('Login successful! Please complete your profile...');
         setTimeout(() => {
+          window.location.href = 'jobsPage.html';
+        }, 1500);
+        
+      }
+      else{
+          // Show success message before redirect
+        showSuccessMessage('Login successful! Please complete your profile...');
+        setTimeout(() => {
           window.location.href = 'resume.html';
         }, 1500);
-      }
+        }
       
     } catch (error) {
       console.error('Login error:', error);

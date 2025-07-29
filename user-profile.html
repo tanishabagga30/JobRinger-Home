@@ -6,14 +6,58 @@
   <title>My Profile</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="/css/user-profile.css" rel="stylesheet">
-  <link href="/css/universal.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/universal.css">
+  <style>
+    /* Add some basic styles for edit/view mode and responsive adjustments */
+    .view-only {
+      display: block;
+    }
+    .edit-only {
+      display: none;
+    }
+    body.edit-mode .view-only {
+      display: none;
+    }
+    body.edit-mode .edit-only {
+      display: block;
+    }
+
+    /* For inline display of labels and inputs/values */
+    .field-row {
+      display: flex;
+      flex-direction: column; /* Stack on mobile by default */
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 640px) { /* sm breakpoint */
+      .field-row {
+        flex-direction: row; /* Row on larger screens */
+        align-items: center;
+        justify-content: space-between;
+      }
+      .field-row label {
+        flex-shrink: 0;
+        width: 150px; /* Adjust as needed */
+      }
+      .field-row .field-content {
+        flex-grow: 1;
+      }
+    }
+
+    /* Toast notification styles */
+    .fade-in {
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
   <div id="header-placeholder" class="sticky top-0 z-10"></div>
   
   <main class="p-4 max-w-4xl mx-auto">
-    <!-- Profile Header -->
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
       <div class="flex justify-between items-start mb-4">
         <h1 class="text-2xl font-bold">My Profile</h1>
@@ -30,12 +74,11 @@
         </div>
       </div>
 
-      <!-- Profile Photo Section -->
       <div class="flex items-start gap-6 mb-6">
         <div class="relative">
           <img id="profile-photo" class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover" 
-               src="" 
-               alt="Profile photo">
+                src="" 
+                alt="Profile photo">
           <button id="change-photo-btn" class="edit-only absolute bottom-0 right-0 bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-blue-700">
             <i class="fas fa-camera text-xs"></i>
           </button>
@@ -43,21 +86,18 @@
         </div>
         
         <div class="flex-1">
-          <!-- Name -->
           <div class="mb-2">
             <h2 id="user-name-display" class="view-only text-xl font-bold">Tanisha Bagga</h2>
             <input id="user-name-input" class="edit-only w-full text-xl font-bold bg-transparent border-b-2 border-gray-300 focus:border-blue-500 outline-none py-1" 
-                   value="John Smith" placeholder="Full Name">
+                        value="John Smith" placeholder="Full Name">
           </div>
           
-          <!-- Title -->
           <div class="mb-2">
             <p id="user-title-display" class="view-only text-indigo-600 dark:text-indigo-400 font-medium">Senior Software Engineer</p>
             <input id="user-title-input" class="edit-only w-full text-indigo-600 dark:text-indigo-400 font-medium bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
-                   value="Senior Software Engineer" placeholder="Job Title">
+                        value="Senior Software Engineer" placeholder="Job Title">
           </div>
           
-          <!-- Job Type -->
           <div class="mb-3">
             <p id="user-job-type-display" class="view-only text-sm text-gray-600 dark:text-gray-300">Full-time</p>
             <select id="user-job-type-input" class="edit-only w-full text-sm bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1">
@@ -70,17 +110,14 @@
         </div>
       </div>
 
-      <!-- Quick Info Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-        <!-- CTC -->
         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
           <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Current CTC</label>
           <p id="user-ctc-display" class="view-only">₹12,00,000 per annum</p>
           <input id="user-ctc-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none" 
-                 value="₹12,00,000 per annum" placeholder="Current CTC">
+                      value="₹12,00,000 per annum" placeholder="Current CTC">
         </div>
         
-        <!-- Notice Period -->
         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
           <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Notice Period</label>
           <p id="user-notice-display" class="view-only">30 days</p>
@@ -93,23 +130,20 @@
           </select>
         </div>
         
-        <!-- Location -->
         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
           <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Location</label>
           <p id="user-location-display" class="view-only">Bangalore, India</p>
           <input id="user-location-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none" 
-                 value="Bangalore, India" placeholder="Location">
+                      value="Bangalore, India" placeholder="Location">
         </div>
         
-        <!-- Experience -->
         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
           <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Total Experience</label>
           <p id="user-experience-display" class="view-only">5 years</p>
           <input id="user-experience-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none" 
-                 value="5 years" placeholder="Total Experience">
+                      value="5 years" placeholder="Total Experience">
         </div>
         
-        <!-- Work Model -->
         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
           <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Preferred Work Model</label>
           <p id="user-work-model-display" class="view-only">Hybrid</p>
@@ -120,20 +154,208 @@
           </select>
         </div>
         
-        <!-- Email -->
         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
           <label class="font-medium text-gray-600 dark:text-gray-300 block mb-1">Email</label>
           <p id="user-email-display" class="view-only">john.smith@email.com</p>
           <input id="user-email-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none" 
-                 value="john.smith@email.com" placeholder="Email" type="email">
+                      value="john.smith@email.com" placeholder="Email" type="email">
         </div>
       </div>
     </div>
 
-    <!-- Resume Section -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <h2 class="font-semibold mb-4"><i class="fas fa-file-alt mr-2"></i>Resume Title</h2>
+      <div class="field-row mb-2">
+        <label for="resume-title-input" class="font-medium text-gray-600 dark:text-gray-300">Title:</label>
+        <div class="field-content">
+          <p id="resume-title-display" class="view-only">My Professional Resume</p>
+          <input id="resume-title-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="My Professional Resume" placeholder="Resume Title">
+        </div>
+      </div>
+
+      <h2 class="font-semibold mb-4 mt-6"><i class="fas fa-info-circle mr-2"></i>About Candidate / Summary</h2>
+      <div id="about-display" class="view-only text-sm leading-relaxed">
+        Passionate software engineer with 5+ years of experience in full-stack development. Skilled in JavaScript, Python, and cloud technologies. Looking for challenging opportunities to grow and contribute to innovative projects.
+      </div>
+      <textarea id="about-input" class="edit-only w-full h-32 p-3 border border-gray-300 rounded-lg focus:border-blue-500 outline-none text-sm" 
+                 placeholder="Tell employers about yourself...">Passionate software engineer with 5+ years of experience in full-stack development. Skilled in JavaScript, Python, and cloud technologies. Looking for challenging opportunities to grow and contribute to innovative projects.</textarea>
+    </section>
+
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+      <h2 class="font-semibold mb-4"><i class="fas fa-user-circle mr-2"></i>Candidate Details</h2>
+      
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">I am:</label>
+        <div class="field-content">
+          <p id="candidate-type-display" class="view-only">Intern</p>
+          <select id="candidate-type-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1">
+            <option value="Intern">Intern</option>
+            <option value="Fresher">Fresher</option>
+            <option value="Experienced">Experienced</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Current Payroll:</label>
+        <div class="field-content">
+          <p id="current-payroll-display" class="view-only">-</p>
+          <input id="current-payroll-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="" placeholder="Current Payroll">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Current / Last Industry:</label>
+        <div class="field-content">
+          <p id="current-industry-display" class="view-only">-</p>
+          <input id="current-industry-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="" placeholder="Current / Last Industry">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Preferred Industry:</label>
+        <div class="field-content">
+          <p id="preferred-industry-display" class="view-only">-</p>
+          <input id="preferred-industry-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="" placeholder="Preferred Industry">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Current / Last Functional Area:</label>
+        <div class="field-content">
+          <p id="current-functional-area-display" class="view-only">-</p>
+          <input id="current-functional-area-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="" placeholder="Current / Last Functional Area">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Current / Last Job Role:</label>
+        <div class="field-content">
+          <p id="current-job-role-display" class="view-only">Data Analyst, Web Developer</p>
+          <input id="current-job-role-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="Data Analyst, Web Developer, Web Programmer, Software Developer / Programmer, Software Engineer / Programmer, Intern" placeholder="Current / Last Job Role">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Current Location:</label>
+        <div class="field-content">
+          <p id="current-location-display" class="view-only">Delhi NCR</p>
+          <input id="current-location-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="Delhi NCR" placeholder="Current Location">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Preferred Location:</label>
+        <div class="field-content">
+          <p id="preferred-location-display" class="view-only">-</p>
+          <input id="preferred-location-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="" placeholder="Preferred Location">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Keywords for job search:</label>
+        <div class="field-content">
+          <p id="keywords-display" class="view-only">C++ Developer, Java</p>
+          <input id="keywords-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="C++ Developer,Java,javasc,Java Script / Javascript,C Language,HTML Developer,CSS,Python,Machine Learning,Web Programmer" placeholder="Keywords for job search">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Techno-Functional Skills:</label>
+        <div class="field-content">
+          <p id="techno-skills-display" class="view-only">-</p>
+          <input id="techno-skills-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="" placeholder="Techno-Functional Skills">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Total Experience:</label>
+        <div class="field-content">
+          <p id="total-experience-detail-display" class="view-only">0 Year(s) 0 Month(s)</p>
+          <input id="total-experience-detail-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="0 Year(s) 0 Month(s)" placeholder="Total Experience">
+        </div>
+      </div>
+      
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Employment experience:</label>
+        <div class="field-content">
+          <p id="employment-experience-display" class="view-only">0 Year(s) 0 Month(s)</p>
+          <input id="employment-experience-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="0 Year(s) 0 Month(s)" placeholder="Employment experience">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Internship / Training experience:</label>
+        <div class="field-content">
+          <p id="internship-experience-display" class="view-only">0 Year(s) 0 Month(s)</p>
+          <input id="internship-experience-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="0 Year(s) 0 Month(s)" placeholder="Internship / Training experience">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Current / Last Salary:</label>
+        <div class="field-content">
+          <p id="current-salary-display" class="view-only">₹ INR 0 Annually</p>
+          <input id="current-salary-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="₹ INR 0 Annually" placeholder="Current / Last Salary">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Expected Salary:</label>
+        <div class="field-content">
+          <p id="expected-salary-display" class="view-only">0</p>
+          <input id="expected-salary-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="0" placeholder="Expected Salary">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Salary Negotiable:</label>
+        <div class="field-content">
+          <p id="salary-negotiable-display" class="view-only">Not Negotiable</p>
+          <select id="salary-negotiable-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1">
+            <option value="Yes">Yes</option>
+            <option value="Not Negotiable" selected>Not Negotiable</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Notice Period:</label>
+        <div class="field-content">
+          <p id="notice-period-detail-display" class="view-only">Immediate Not Negotiable</p>
+          <input id="notice-period-detail-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="Immediate Not Negotiable" placeholder="Notice Period">
+        </div>
+      </div>
+
+      <div class="field-row mb-2">
+        <label class="font-medium text-gray-600 dark:text-gray-300">Buy Out:</label>
+        <div class="field-content">
+          <p id="buy-out-display" class="view-only">-</p>
+          <input id="buy-out-input" class="edit-only w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none py-1" 
+                 value="" placeholder="Buy Out">
+        </div>
+      </div>
+    </section>
+
     <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
       <div class="flex justify-between items-center mb-4">
-        <h2 class="text-lg font-semibold"><i class="fas fa-file-alt mr-2"></i>Resume</h2>
+        <h2 class="text-lg font-semibold"><i class="fas fa-file-alt mr-2"></i>Resume File</h2>
         <button id="upload-resume-btn" class="edit-only bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
           <i class="fas fa-upload mr-1"></i> Upload New Resume
         </button>
@@ -147,17 +369,6 @@
       </div>
     </section>
 
-    <!-- About Section -->
-    <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-      <h2 class="font-semibold mb-4"><i class="fas fa-info-circle mr-2"></i>About Me</h2>
-      <div id="about-display" class="view-only text-sm leading-relaxed">
-        Passionate software engineer with 5+ years of experience in full-stack development. Skilled in JavaScript, Python, and cloud technologies. Looking for challenging opportunities to grow and contribute to innovative projects.
-      </div>
-      <textarea id="about-input" class="edit-only w-full h-32 p-3 border border-gray-300 rounded-lg focus:border-blue-500 outline-none text-sm" 
-                placeholder="Tell employers about yourself...">Passionate software engineer with 5+ years of experience in full-stack development. Skilled in JavaScript, Python, and cloud technologies. Looking for challenging opportunities to grow and contribute to innovative projects.</textarea>
-    </section>
-
-    <!-- Skills Section -->
     <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
       <div class="flex justify-between items-center mb-4">
         <h2 class="font-semibold"><i class="fas fa-code mr-2"></i>Skills</h2>
@@ -166,8 +377,7 @@
         </button>
       </div>
       <div id="skills-container" class="flex flex-wrap gap-2">
-        <!-- Skills will be populated by JavaScript -->
-      </div>
+        </div>
       <div id="add-skill-form" class="edit-only hidden mt-3 flex gap-2">
         <input id="new-skill-input" class="flex-1 px-3 py-2 border border-gray-300 rounded text-sm" placeholder="Enter skill name">
         <button id="confirm-add-skill" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-sm">Add</button>
@@ -175,7 +385,6 @@
       </div>
     </section>
 
-    <!-- Education Section -->
     <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
       <div class="flex justify-between items-center mb-4">
         <h2 class="font-semibold"><i class="fas fa-graduation-cap mr-2"></i>Education</h2>
@@ -184,11 +393,32 @@
         </button>
       </div>
       <div id="education-container">
-        <!-- Education entries will be populated by JavaScript -->
+        </div>
+      <div id="add-education-form" class="edit-only hidden mt-4 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+        <h3 class="font-medium mb-3">Add New Education</h3>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Degree</label>
+          <input type="text" id="edu-degree-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., Bachelor of Technology">
+        </div>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Institution</label>
+          <input type="text" id="edu-institution-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., Indian Institute of Technology">
+        </div>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Year (e.g., 2015-2019)</label>
+          <input type="text" id="edu-year-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., 2015-2019">
+        </div>
+        <div class="mb-3">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Grade / CGPA</label>
+          <input type="text" id="edu-grade-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., CGPA: 8.5/10">
+        </div>
+        <div class="flex gap-2 justify-end">
+          <button id="confirm-add-education" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add</button>
+          <button id="cancel-add-education" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm">Cancel</button>
+        </div>
       </div>
     </section>
 
-    <!-- Experience Section -->
     <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
       <div class="flex justify-between items-center mb-4">
         <h2 class="font-semibold"><i class="fas fa-briefcase mr-2"></i>Work Experience</h2>
@@ -197,11 +427,32 @@
         </button>
       </div>
       <div id="experience-container">
-        <!-- Experience entries will be populated by JavaScript -->
+        </div>
+      <div id="add-experience-form" class="edit-only hidden mt-4 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+        <h3 class="font-medium mb-3">Add New Experience</h3>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Title</label>
+          <input type="text" id="exp-title-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., Software Engineer">
+        </div>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Company</label>
+          <input type="text" id="exp-company-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., Google">
+        </div>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Duration (e.g., 2019 - Present)</label>
+          <input type="text" id="exp-duration-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., 2019 - Present">
+        </div>
+        <div class="mb-3">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Description</label>
+          <textarea id="exp-description-input" class="w-full h-24 px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="Describe your responsibilities and achievements"></textarea>
+        </div>
+        <div class="flex gap-2 justify-end">
+          <button id="confirm-add-experience" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add</button>
+          <button id="cancel-add-experience" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm">Cancel</button>
+        </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
       <div class="flex justify-between items-center mb-4">
         <h2 class="font-semibold"><i class="fas fa-project-diagram mr-2"></i>Projects</h2>
@@ -210,16 +461,38 @@
         </button>
       </div>
       <div id="projects-container">
-        <!-- Projects will be populated by JavaScript -->
+        </div>
+      <div id="add-project-form" class="edit-only hidden mt-4 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+        <h3 class="font-medium mb-3">Add New Project</h3>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Project Name</label>
+          <input type="text" id="project-name-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., E-commerce Platform">
+        </div>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Description</label>
+          <textarea id="project-description-input" class="w-full h-24 px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="Briefly describe the project"></textarea>
+        </div>
+        <div class="mb-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Technologies Used</label>
+          <input type="text" id="project-technologies-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., React, Node.js, MongoDB">
+        </div>
+        <div class="mb-3">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Project Link (Optional)</label>
+          <input type="url" id="project-link-input" class="w-full px-3 py-2 border border-gray-300 rounded text-sm focus:border-blue-500 outline-none" placeholder="e.g., https://github.com/myproject">
+        </div>
+        <div class="flex gap-2 justify-end">
+          <button id="confirm-add-project" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Add</button>
+          <button id="cancel-add-project" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm">Cancel</button>
+        </div>
       </div>
     </section>
   </main>
   <div id="footer-placeholder"></div>
-    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
-    <div id="search-placeholder"></div>
-    <div id="menu-placeholder"></div>
-
-    <script src="js/script.js"></script>
+  <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+  <div id="search-placeholder"></div>
+  <div id="menu-placeholder"></div>
+  
+  <script src="/js/script.js"></script>
 
   <script src="/js/user-profile.js"></script>
 </body>

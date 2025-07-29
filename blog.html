@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Job Ringer - Career Insights & Advice</title>
+    
+    <!-- Load Font Awesome first -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Then load Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Then your custom CSS -->
+    <link rel="stylesheet" href="/css/universal.css">
+    <link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <main class="blog-container">
+        <section class="hero-section">
+            <div class="container">
+                <h1>Job Ringer Insights</h1>
+                <p>Unlock your potential with expert career advice, industry trends, and job search strategies.</p>
+                <div class="search-container">
+                    <input type="text" placeholder="Search articles...">
+                    <button aria-label="Search"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-section">
+            <div class="container">
+                <div class="content-grid">
+                    <aside class="sidebar">
+                        <div class="widget categories">
+                            <h3><i class="fas fa-folder-open"></i>Categories</h3>
+                            <ul>
+                                <li><a href="#">Career Advice <span class="count">24</span></a></li>
+                                <li><a href="#">Interview Tips <span class="count">18</span></a></li>
+                                <li><a href="#">Resume Writing <span class="count">15</span></a></li>
+                                <li><a href="#">Industry Trends <span class="count">32</span></a></li>
+                                <li><a href="#">Work-Life Balance <span class="count">10</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="widget tags">
+                            <h3><i class="fas fa-tags"></i>Trending Tags</h3>
+                            <div class="tag-cloud">
+                                <a href="#">#careerdevelopment</a>
+                                <a href="#">#interviewsuccess</a>
+                                <a href="#">#resumetips</a>
+                                <a href="#">#jobsearch</a>
+                                <a href="#">#remotework</a>
+                                <a href="#">#professionalgrowth</a>
+                            </div>
+                        </div>
+                        <div class="widget newsletter">
+                            <h3><i class="fas fa-paper-plane"></i>Join Our Newsletter</h3>
+                            <p>Get exclusive career insights in your inbox. No spam, just value.</p>
+                            <form>
+                                <input type="email" placeholder="Enter your email">
+                                <button type="submit">Subscribe</button>
+                            </form>
+                        </div>
+                        <div class="widget timeline-widget">
+                            <h3><i class="fas fa-clock"></i>Recent Posts</h3>
+                            <div class="timeline">
+                                <div class="timeline-item left">
+                                    <h4>Top Interview Tips</h4>
+                                    <p>July 20, 2025</p>
+                                </div>
+                                <div class="timeline-item right">
+                                    <h4>Resume Red Flags</h4>
+                                    <p>July 15, 2025</p>
+                                </div>
+                                <div class="timeline-item left">
+                                    <h4>Remote Work Trends</h4>
+                                    <p>July 10, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <div class="main-content">
+                        <div class="section-header">
+                            <h2>Latest Insights</h2>
+                            <div class="sort-container">
+                                <select>
+                                    <option>Sort by: Latest</option>
+                                    <option>Sort by: Popular</option>
+                                    <option>Sort by: Trending</option>
+                                    <option>Sort by: Alphabetical</option>
+                                </select>
+                                <div class="chevron"><i class="fas fa-chevron-down"></i></div>
+                            </div>
+                        </div>
+                        <div id="blogs-container">
+                            <!-- Blogs will be rendered here via JavaScript -->
+                        </div>
+                        <div class="load-more-container">
+                            <button id="load-more-btn" class="load-more-btn">Load More</button>
+                        </div>
+                        <div class="sidebar-mobile" style="display: none;">
+                            <div class="widget categories">
+                                <h3><i class="fas fa-folder-open"></i>Categories</h3>
+                                <ul>
+                                    <li><a href="#">Career Advice <span class="count">24</span></a></li>
+                                    <li><a href="#">Interview Tips <span class="count">18</span></a></li>
+                                    <li><a href="#">Resume Writing <span class="count">15</span></a></li>
+                                    <li><a href="#">Industry Trends <span class="count">32</span></a></li>
+                                    <li><a href="#">Work-Life Balance <span class="count">10</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="widget tags">
+                                <h3><i class="fas fa-tags"></i>Trending Tags</h3>
+                                <div class="tag-cloud">
+                                    <a href="#">#careerdevelopment</a>
+                                    <a href="#">#interviewsuccess</a>
+                                    <a href="#">#resumetips</a>
+                                    <a href="#">#jobsearch</a>
+                                    <a href="#">#remotework</a>
+                                    <a href="#">#professionalgrowth</a>
+                                </div>
+                            </div>
+                            <div class="widget newsletter">
+                                <h3><i class="fas fa-paper-plane"></i>Join Our Newsletter</h3>
+                                <p>Get exclusive career insights in your inbox. No spam, just value.</p>
+                                <form>
+                                    <input type="email" placeholder="Enter your email">
+                                    <button type="submit">Subscribe</button>
+                                </form>
+                            </div>
+                            <div class="widget timeline-widget">
+                                <h3><i class="fas fa-clock"></i>Recent Posts</h3>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <h4>Top Interview Tips</h4>
+                                        <p>July 20, 2025</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h4>Resume Red Flags</h4>
+                                        <p>July 15, 2025</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <h4>Remote Work Trends</h4>
+                                        <p>July 10, 2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="card">
+                    <i class="fas fa-award"></i>
+                    <h2>Elevate Your Career</h2>
+                    <p>Subscribe for exclusive career tips, industry insights, and job opportunities.</p>
+                    <form>
+                        <input type="text" placeholder="Your Full Name">
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit">Subscribe Now</button>
+                    </form>
+                    <p class="privacy">We respect your privacy. Unsubscribe anytime.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Your existing content -->
+    <div id="footer-placeholder"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <script src="/js/script.js"></script>
+    <script src="/js/blog.js"></script>
+</body>
+</html>
