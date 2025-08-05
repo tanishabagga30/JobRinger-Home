@@ -817,3 +817,50 @@ html.dark #theme-toggle-menu:hover {
     font-size: 0.9rem;
     font-weight: medium;
 }
+/* Minimal universal CSS to ensure compatibility */
+:root {
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: 'Merriweather', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button, input, textarea {
+    font-family: inherit;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.transition-slow {
+    transition: all 0.4s ease;
+}
+
+/* Ensure dark mode compatibility */
+body.dark {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}

@@ -1,10 +1,17 @@
 /* Contact Page Specific Styles */
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 /* Ensure body is visible and uses flexbox for full height */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0; /* Add margin reset */
 }
 
 /* Override universal.css's body { display: none; } at min-width: 768px */
@@ -37,17 +44,17 @@ body {
     margin: 0 auto;
     flex: 1;
     position: relative;
-    width: 100%; /* Default to full width */
+    width: 100%;
 }
 
 /* Mobile-specific base styles */
 @media (max-width: 767px) {
     .contact-us-container {
-        padding: 0 10px; /* Reduced padding for mobile */
+        padding: 0 10px;
     }
 
     h1, h2, h3 {
-        font-size: 1.5rem; /* Reduced for mobile readability */
+        font-size: 1.5rem;
     }
 
     p {
@@ -64,7 +71,7 @@ body {
 .contact-hero {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    padding: 40px 0 60px; /* Reduced padding for mobile */
+    padding: 30px 0 30px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -76,7 +83,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 30px; /* Reduced wave height for mobile */
+    height: 30px;
     background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"%3E%3Cpath fill="%23ffffff" d="M0,0 C280,100 720,100 1440,0 L1440,100 L0,100 Z"/%3E%3C/svg%3E') no-repeat bottom;
     background-size: cover;
 }
@@ -87,35 +94,37 @@ html.dark .contact-hero::after {
 
 .contact-hero h1 {
     font-family: 'Merriweather', serif;
-    font-size: 2rem; /* Adjusted for mobile */
+    font-size: 2rem;
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     animation: fadeIn 1s ease-out;
 }
 
 .contact-hero p {
-    font-size: 1rem; /* Adjusted for mobile */
-    max-width: 100%; /* Full width on mobile */
+    font-size: 1rem;
+    max-width: 100%;
     margin: 0 auto;
     opacity: 0.9;
 }
 
-/* Contact Method Selector (Unique Feature) */
+/* Contact Method Selector */
 .contact-method-selector {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Reduced gap for mobile */
+    gap: 10px;
     margin: 20px 0;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 0 10px;
+    overflow-x: auto;
 }
 
 .contact-method-card {
     background: var(--card-bg);
-    padding: 15px; /* Reduced padding for mobile */
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 130px; /* Reduced width for mobile */
+    width: 100px;
+    min-width: 100px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -133,20 +142,20 @@ html.dark .contact-hero::after {
 }
 
 .contact-method-card i {
-    font-size: 1.5rem; /* Reduced for mobile */
+    font-size: 1.2rem;
     color: var(--primary);
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 .contact-method-card h3 {
     font-family: 'Merriweather', serif;
-    font-size: 1rem; /* Adjusted for mobile */
-    margin-bottom: 5px;
+    font-size: 0.9rem;
+    margin-bottom: 3px;
     color: var(--text-light);
 }
 
 .contact-method-card p {
-    font-size: 0.75rem; /* Adjusted for mobile */
+    font-size: 0.65rem;
     color: var(--gray_text_light);
 }
 
@@ -164,14 +173,13 @@ html.dark .contact-method-card p {
     color: var(--dark_gray_text);
 }
 
-/* Decorative vector-like shape (CSS-based) */
 .contact-method-card::before {
     content: '';
     position: absolute;
-    top: -15px;
-    right: -15px;
-    width: 40px; /* Reduced for mobile */
-    height: 40px;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
     background: radial-gradient(circle, rgba(30, 172, 198, 0.2), transparent);
     border-radius: 50%;
     opacity: 0.5;
@@ -179,31 +187,32 @@ html.dark .contact-method-card p {
 
 /* Form Section */
 .contact-form-section {
-    padding: 20px 0; /* Reduced padding for mobile */
+    padding: 20px 0;
     position: relative;
 }
 
 .contact-form-section .container {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Reduced gap for mobile */
-    padding: 0 10px;
+    gap: 20px;
+    padding: 0; /* Remove padding here as it's on parent */
 }
 
 .contact-form {
     background: var(--card-bg);
-    padding: 20px; /* Reduced padding for mobile */
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     position: relative;
     animation: slideIn 0.8s ease-out;
+    flex: 1;
 }
 
 .contact-form h2 {
     font-family: 'Merriweather', serif;
     color: var(--primary);
     margin-bottom: 15px;
-    font-size: 1.5rem; /* Adjusted for mobile */
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
 }
@@ -221,18 +230,18 @@ html.dark .contact-method-card p {
     margin-bottom: 5px;
     font-weight: 500;
     color: var(--text-light);
-    font-size: 0.9rem; /* Adjusted for mobile */
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 10px; /* Reduced padding for mobile */
+    padding: 10px;
     border: 1px solid var(--border-light);
     border-radius: 6px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem; /* Adjusted for mobile */
+    font-size: 0.95rem;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -264,19 +273,22 @@ html.dark .contact-method-card p {
 /* Contact Info */
 .contact-info {
     display: flex;
-    flex-direction: column;
-    gap: 20px; /* Reduced gap for mobile */
+    flex-direction: column; /* MODIFIED: Stack vertically on mobile */
+    gap: 20px; /* MODIFIED: Use a larger gap for vertical stacking */
+    flex: 1;
 }
 
 .contact-address,
 .contact-details {
     background: var(--card-bg);
-    padding: 15px; /* Reduced padding for mobile */
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     position: relative;
     animation: slideIn 0.8s ease-out 0.2s;
     animation-fill-mode: backwards;
+    flex: 1;
+    min-width: 0;
 }
 
 .contact-address h2,
@@ -284,13 +296,13 @@ html.dark .contact-method-card p {
     font-family: 'Merriweather', serif;
     color: var(--primary);
     margin-bottom: 10px;
-    font-size: 1.25rem; /* Adjusted for mobile */
+    font-size: 1.5rem;
 }
 
 .contact-details .detail-item {
     display: flex;
     align-items: center;
-    gap: 5px; /* Reduced gap for mobile */
+    gap: 5px;
     margin-bottom: 10px;
 }
 
@@ -298,11 +310,11 @@ html.dark .contact-method-card p {
     color: var(--primary);
 }
 
-/* CTA Section with decorative shape */
+/* CTA Section with social media icons */
 .contact-cta {
     background: linear-gradient(to right, var(--primary), #168a9f);
     color: white;
-    padding: 40px 0; /* Reduced padding for mobile */
+    padding: 40px 0;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -321,26 +333,27 @@ html.dark .contact-method-card p {
 
 .contact-cta h2 {
     font-family: 'Merriweather', serif;
-    font-size: 1.5rem; /* Adjusted for mobile */
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
     position: relative;
 }
 
-.cta-btn {
-    background: #10b981;
-    color: white;
-    padding: 12px 20px; /* Adjusted for mobile */
-    border-radius: 6px;
-    text-decoration: none;
-    display: inline-block;
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     margin-top: 10px;
-    font-weight: 600;
-    transition: background 0.3s, transform 0.2s;
 }
 
-.cta-btn:hover {
-    background: #059669;
-    transform: scale(1.05);
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.social-icons a:hover {
+    color: #10b981;
+    transform: scale(1.2);
 }
 
 /* Dark Mode */
@@ -412,6 +425,11 @@ html.dark .form-group label {
         max-width: 50%;
     }
 
+    .contact-info {
+        flex-direction: row; /* MODIFIED: Side-by-side on desktop */
+        gap: 40px; /* MODIFIED: Adjust gap for desktop */
+    }
+
     .submit-btn {
         width: auto;
         padding: 12px 40px;
@@ -443,8 +461,6 @@ html.dark .form-group label {
 @media (min-width: 1200px) {
     .contact-us-container {
         padding: 0 40px;
-        width: 100%;
-        max-width: none;
     }
 
     .contact-hero {
@@ -456,7 +472,7 @@ html.dark .form-group label {
     }
 
     .contact-form-section .container {
-        padding: 0 40px;
+        padding: 0;
     }
 
     .contact-form,

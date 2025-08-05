@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Employers on Jobringer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/Active-employers.css">
+    <link rel="stylesheet" href="/css/universal.css">
+</head>
+<body>
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+    <!-- Header -->
+    <header class="bg-cyan-600 text-white py-6">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold">Active Employers on Jobringer</h1>
+            <p class="mt-2">Explore companies actively hiring on our platform</p>
+        </div>
+    </header>
+
+    <!-- Search and Filter Section -->
+    <section class="search-filter py-6">
+        <div class="container mx-auto px-4">
+            <div class="search-filter-wrapper flex flex-col md:flex-row gap-4">
+                <!-- Search Bar -->
+                <div class="search-container flex-1">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search Active Employers on Jobringer"
+                        class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    />
+                </div>
+                <!-- Filter Dropdown -->
+                <div class="filter-container w-full md:w-64">
+                    <select id="filterSelect" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        <option value="active-jobs">List By: Active Jobs</option>
+                        <option value="recent">Recent</option>
+                        <option value="a">A</option>
+                        <option value="b">B</option>
+                        <option value="c">C</option>
+                        <option value="d">D</option>
+                        <option value="e">E</option>
+                        <option value="f">F</option>
+                        <option value="g">G</option>
+                        <option value="h">H</option>
+                        <option value="i">I</option>
+                        <option value="j">J</option>
+                        <option value="k">K</option>
+                        <option value="l">L</option>
+                        <option value="m">M</option>
+                        <option value="n">N</option>
+                        <option value="o">O</option>
+                        <option value="p">P</option>
+                        <option value="q">Q</option>
+                        <option value="r">R</option>
+                        <option value="s">S</option>
+                        <option value="t">T</option>
+                        <option value="u">U</option>
+                        <option value="v">V</option>
+                        <option value="w">W</option>
+                        <option value="x">X</option>
+                        <option value="y">Y</option>
+                        <option value="z">Z</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employers List -->
+    <section class="employers pb-6">
+        <div class="container mx-auto px-4">
+            <div id="employersList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <!-- Load More Button -->
+            <div class="load-more text-center mt-6">
+                <button id="loadMoreBtn" class="bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-700 transition">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Employers Section -->
+    <section class="mb-4">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between mb-1">
+                <h2 class="text-base font-bold text-gray-800">Featured Employers</h2>
+            </div>
+            <div class="featured-employers flex space-x-4 pb-2 overflow-x-auto" id="employerScroll"></div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/Active-employers.js"></script>
+</body>
+</html>
