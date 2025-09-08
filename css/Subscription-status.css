@@ -1,0 +1,251 @@
+/* css/subscription-status.css */
+/* Premium styles for the subscription management page */
+
+.subscription-card {
+    background: var(--card_bg_light);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px -2px rgba(24, 39, 75, 0.1), 0 2px 4px -2px rgba(24, 39, 75, 0.06);
+    border: 1px solid var(--border_light);
+    overflow: hidden;
+}
+html.dark .subscription-card {
+    background: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(45deg, var(--primary_blue), #1ab4d0);
+    color: #ffffff;
+}
+html.dark .plan-header {
+    background: linear-gradient(45deg, var(--pop_yellow), #d6e1ff);
+    color: var(--body_color_dark);
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.plan-renews {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.status-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+html.dark .status-badge {
+    background: rgba(0,0,0,0.2);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text_color_light);
+}
+html.dark .section-title {
+    color: var(--text_color_dark);
+}
+
+.feature-list {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+.feature-list .fa-check { color: #22C55E; }
+.feature-list .fa-times { color: #EF4444; }
+
+.section-divider {
+    border: 0;
+    border-top: 1px solid var(--border_light);
+    margin: 1.5rem 0;
+}
+html.dark .section-divider {
+    border-top-color: var(--dark_border);
+}
+
+.billing-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--body_color_light);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+html.dark .billing-details {
+    background-color: var(--body_color_dark);
+}
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+}
+.payment-method .fab {
+    font-size: 1.5rem;
+    color: var(--primary_blue);
+}
+html.dark .payment-method .fab {
+    color: var(--pop_yellow);
+}
+
+.text-link {
+    font-weight: 500;
+    color: var(--primary_blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+.text-link:hover { text-decoration: underline; }
+html.dark .text-link { color: var(--pop_yellow); }
+
+.card-footer {
+    background-color: var(--body_color_light);
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border_light);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+html.dark .card-footer {
+    background-color: #161d28;
+    border-top-color: var(--dark_border);
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.375rem;
+    background-image: linear-gradient(45deg, var(--primary_blue) 0%, #4dd3e8 100%);
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 5px -1px rgba(30, 172, 198, 0.4);
+}
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px -2px rgba(30, 172, 198, 0.5);
+}
+html.dark .btn-primary {
+    background-image: linear-gradient(45deg, var(--pop_yellow) 0%, #E0E9FF 100%);
+    color: #1A222C;
+    box-shadow: 0 2px 5px -1px rgba(194, 217, 255, 0.3);
+}
+html.dark .btn-primary:hover {
+    box-shadow: 0 4px 8px -2px rgba(194, 217, 255, 0.4);
+}
+.btn-cancel {
+    font-weight: 500;
+    color: var(--gray_medium_light);
+    text-decoration: none;
+}
+.btn-cancel:hover { color: #c53030; text-decoration: underline; }
+html.dark .btn-cancel:hover { color: #FC8181; }
+
+.billing-history-container {
+    background-color: var(--card_bg_light);
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    box-shadow: 0 4px 12px -2px rgba(24, 39, 75, 0.1), 0 2px 4px -2px rgba(24, 39, 75, 0.06);
+    /* UPDATED: Added for mobile responsiveness */
+    overflow-x: auto;
+}
+html.dark .billing-history-container {
+    background-color: var(--dark_background_secondary);
+    box-shadow: none;
+}
+
+.billing-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    /* UPDATED: Ensures table doesn't collapse too much */
+    min-width: 500px;
+}
+.billing-history-table th, .billing-history-table td {
+    text-align: left;
+    padding: 1rem;
+    white-space: nowrap;
+}
+.billing-history-table th {
+    color: var(--gray_medium_light);
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+html.dark .billing-history-table th { color: var(--dark_gray_text); }
+.billing-history-table tbody tr { border-bottom: 1px solid var(--border_light); }
+.billing-history-table tbody tr:last-child { border-bottom: none; }
+html.dark .billing-history-table tbody tr { border-bottom-color: var(--dark_border); }
+
+
+/* --- ADDED: MOBILE RESPONSIVE STYLES --- */
+@media (max-width: 640px) {
+    main header h1 {
+        font-size: 1.75rem; /* Make main title smaller */
+    }
+    .plan-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    .plan-name {
+        font-size: 1.25rem; /* Smaller plan name */
+    }
+    .card-body {
+        padding: 1rem; /* Reduce padding on mobile */
+    }
+    .feature-list {
+        /* Force single column for very small screens */
+        grid-template-columns: 1fr;
+    }
+    .billing-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .card-footer {
+        flex-direction: column-reverse; /* Puts primary button on top */
+        gap: 0.75rem;
+    }
+    .btn-primary, .btn-cancel {
+        width: 100%;
+        text-align: center;
+    }
+    .btn-cancel {
+        padding: 0.6rem 0; /* Give it some space */
+    }
+    .billing-history-table td, .billing-history-table th {
+        padding: 0.75rem; /* Reduce table padding */
+    }
+}

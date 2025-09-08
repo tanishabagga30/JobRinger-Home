@@ -1,253 +1,245 @@
-// Featured Employers Auto-Scroll
-const employerScroll = document.getElementById('employerScroll');
-let employerScrollAmount = 0;
-const employerScrollSpeed = 0.5;
-let employerAutoScroll;
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(initializeHomepage, 100); 
+});
 
-function startEmployerAutoScroll() {
-    employerAutoScroll = setInterval(() => {
-        employerScrollAmount += employerScrollSpeed;
-        if (employerScrollAmount >= employerScroll.scrollWidth - employerScroll.clientWidth) {
-            employerScrollAmount = 0;
-        }
-        employerScroll.scrollLeft = employerScrollAmount;
-    }, 30);
+function initializeHomepage() {
+    setupViewSwitcher();
+    setupDesktopBannerSlider();
+    setupMobileBannerSlider();
+    setupVacancySection('vacancy-section-desktop');
+    setupNewVacancySystem();
+    loadJobs();
+    loadEmployerSlider();
 }
 
-function stopEmployerAutoScroll() {
-    clearInterval(employerAutoScroll);
-}
+function setupViewSwitcher() {
+    const getJobBtn = document.getElementById('getJobBtn');
+    const postJobBtn = document.getElementById('postJobBtn');
+    const jobSeekerView = document.getElementById('job-seeker-view');
+    const employerView = document.getElementById('employer-view');
+    const toggleSlider = document.querySelector('.toggle-slider'); 
 
-if(employerScroll!=null){
-    employerScroll.addEventListener('mouseenter', stopEmployerAutoScroll);
-    employerScroll.addEventListener('mouseleave', startEmployerAutoScroll);
-    startEmployerAutoScroll();
-}
+    if (!getJobBtn || !postJobBtn || !toggleSlider) return;
 
-///////////////////////////////////////////////
-
-async function loadEmployerSlider() {
-    const container = document.getElementById('employerScroll');
-    if (!container) {
-        console.warn("Element with ID 'employerScroll' not found in the DOM.");
-        return;
-    }
-
-    try {
-        // Using fetch API for AJAX call
-        const response = await fetch('https://jobringer.com/api/featured_employers_api.php', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                // Add authentication headers if needed
-                // 'Authorization': 'Bearer ' + token
-            }
-        });
-
-        // Check if response is successful
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        // Parse JSON response
-        const employersData = await response.json();
-        
-        // Validate that we received an array
-        if (!Array.isArray(employersData)) {
-            throw new Error('Invalid response format: expected array');
-        }
-
-        // Transform data if needed to match expected structure
-        const employer = employersData.map(emp => ({
-            id: emp.id,
-            company_name: emp.company_name,
-            company_logo: emp.company_logo || `https://placehold.co/60x60/E0E0E0/888888?text=${emp.company_name?.substring(0, 2).toUpperCase() || 'JB'}`,
-            company_details: emp.company_details,
-            company_unique_no: emp.company_unique_no
-        }));
-        console.log(employer);
-        
-        container.innerHTML = employer.map(emp => `
-        <a href="${emp.company_details}" target="_blank">
-            <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
-                <img src="${emp.company_logo}" alt="${emp.company_name}" class="max-w-full max-h-full rounded-md">
-            </div>
-        </a>
-    `).join('');
-        
-    } catch (error) {
-        console.error("Error loading jobs:", error);
-        showErrorState();
-    }
-}
-
-///////////////////////////////////////////////
-
-// NEW JAVASCRIPT FOR JOB CARD SLIDER
-const jobCardWrapper = document.getElementById('jobCardWrapper');
-const jobPrevBtn = document.getElementById('jobPrevBtn');
-const jobNextBtn = document.getElementById('jobNextBtn');
-
-if (jobCardWrapper && jobPrevBtn && jobNextBtn) {
-    let jobCardCurrentSlide = 0;
-    const jobCards = jobCardWrapper.children;
-    // The number of cards visible depends on CSS media queries.
-    // We'll calculate the scroll distance dynamically based on the first card's width.
-
-    function showJobCards() {
-        if (jobCards.length === 0) return; // Prevent error if no cards
-        // Get the width of a single job card, including its margin-right.
-        // This is crucial for correct sliding, especially with varying card widths from media queries.
-        const firstCard = jobCards[0];
-        const cardComputedStyle = window.getComputedStyle(firstCard);
-        const cardWidth = firstCard.offsetWidth + parseFloat(cardComputedStyle.marginRight);
-
-        jobCardWrapper.style.transform = `translateX(-${jobCardCurrentSlide * cardWidth}px)`;
-    }
-
-    jobNextBtn.addEventListener('click', () => {
-        const cardsPerView = Math.floor(jobCardWrapper.clientWidth / jobCards[0].offsetWidth); // Dynamically determine cards per view
-        if (jobCardCurrentSlide < jobCards.length - cardsPerView) {
-            jobCardCurrentSlide++;
+    function updateView(showSeeker) {
+        jobSeekerView.classList.toggle('hidden', !showSeeker);
+        employerView.classList.toggle('hidden', showSeeker);
+        getJobBtn.classList.toggle('active', showSeeker);
+        postJobBtn.classList.toggle('active', !showSeeker);
+        if (showSeeker) {
+            toggleSlider.style.width = `${getJobBtn.offsetWidth}px`;
+            toggleSlider.style.transform = `translateX(0)`;
         } else {
-            jobCardCurrentSlide = 0; // Loop back to the beginning
+            toggleSlider.style.width = `${postJobBtn.offsetWidth}px`;
+            toggleSlider.style.transform = `translateX(${getJobBtn.offsetWidth}px)`;
         }
-        showJobCards();
-    });
+    }
+    getJobBtn?.addEventListener('click', (e) => { e.preventDefault(); updateView(true); });
+    postJobBtn?.addEventListener('click', (e) => { e.preventDefault(); updateView(false); });
 
-    jobPrevBtn.addEventListener('click', () => {
-        const cardsPerView = Math.floor(jobCardWrapper.clientWidth / jobCards[0].offsetWidth); // Dynamically determine cards per view
-        if (jobCardCurrentSlide > 0) {
-            jobCardCurrentSlide--;
-        } else {
-            jobCardCurrentSlide = Math.max(0, jobCards.length - cardsPerView); // Loop to the end, ensuring it doesn't go negative
+    const resizeObserver = new ResizeObserver(() => {
+        const isSeekerActive = getJobBtn.classList.contains('active');
+        updateView(isSeekerActive);
+    });
+    resizeObserver.observe(document.querySelector('.toggle-switch'));
+
+    updateView(true); 
+}
+
+
+// --- Logic for the Original Desktop Vacancy Section ---
+const vacancyData = {
+    Technology: ["Software Engineer", "Data Scientist", "DevOps", "Frontend", "Backend", "Product Manager"],
+    Finance: ["Accountant", "Financial Analyst", "Auditor", "Investment Banker", "Controller"],
+    Healthcare: ["Nurse", "Medical Assistant", "Physician", "Pharmacist", "Physical Therapist"],
+    Education: ["Teacher", "Professor", "Counselor", "Principal", "Instructional Designer"],
+    Retail: ["Store Manager", "Sales Associate", "Merchandiser", "Buyer", "Cashier"]
+};
+
+function populateDesktopVacancyOptions(optionsContainer, category) {
+    if (!optionsContainer) return;
+    // [FIX] Use the dedicated CSS class '.job-vacancy-option-desktop'
+    const desktopVacancyOptionHTML = (vacancyData[category] || []).map(option => {
+        return `<button class="job-vacancy-option-desktop">${option}</button>`
+    }).join('');
+    optionsContainer.innerHTML = desktopVacancyOptionHTML;
+}
+
+function setupVacancySection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    const categoriesContainer = section.querySelector('.category-pill-group');
+    const optionsContainer = section.querySelector('[id^="vacancy-options-"]');
+    if (!categoriesContainer || !optionsContainer) return;
+
+    const initialCategory = categoriesContainer.querySelector('.category-pill.active')?.dataset.category;
+    if (initialCategory) {
+        populateDesktopVacancyOptions(optionsContainer, initialCategory);
+    }
+
+    categoriesContainer.addEventListener('click', (e) => {
+        const pill = e.target.closest('.category-pill');
+        if (pill) {
+            categoriesContainer.querySelector('.category-pill.active')?.classList.remove('active');
+            pill.classList.add('active');
+            populateDesktopVacancyOptions(optionsContainer, pill.dataset.category);
         }
-        showJobCards();
-    });
-
-    // Initialize the slider position
-    showJobCards();
-    // Recalculate and show cards on window resize to adjust for responsive changes
-    window.addEventListener('resize', showJobCards);
-    
-    // Optional: Auto-slide for job cards
-    let jobCardAutoSlide = setInterval(() => {
-        jobNextBtn.click(); // Programmatically click next button
-    }, 3000); // Change slide every 3 seconds
-
-    // Pause auto-slide on hover
-    jobCardWrapper.addEventListener('mouseenter', () => clearInterval(jobCardAutoSlide));
-    jobCardWrapper.addEventListener('mouseleave', () => {
-        jobCardAutoSlide = setInterval(() => {
-            jobNextBtn.click();
-        }, 3000);
     });
 }
 
 
+// --- Logic for the New Mobile Vacancy Section ---
+const newVacancyData = {
+    skills: ["JavaScript", "Python", "React", "Node.js", "SQL", "Java", "AWS", "Docker", "Git"],
+    location: ["Bengaluru", "Pune", "Hyderabad", "Chennai", "Mumbai", "Delhi NCR", "Remote"],
+    industry: ["IT Services", "Finance", "Healthcare", "E-commerce", "Education", "Manufacturing"],
+    functions: ["Engineering", "Sales", "Marketing", "HR", "Operations", "Finance"],
+    roles: ["Software Dev", "Data Analyst", "Product Manager", "Sales Executive", "Designer"],
+    company: ["TCS", "Infosys", "Wipro", "HCL", "Accenture", "Capgemini"]
+};
+
+function setupNewVacancySystem() {
+    const categoriesContainer = document.getElementById('vacancy-categories');
+    const optionsContainer = document.getElementById('vacancy-options');
+    const viewAllLink = document.getElementById('view-all-link');
+
+    if (!categoriesContainer || !optionsContainer || !viewAllLink) return;
+
+    const populateOptions = (category) => {
+        const options = newVacancyData[category] || [];
+        optionsContainer.innerHTML = options.map(option => 
+            `<button class="job-vacancy-option">${option}</button>`
+        ).join('');
+        const linkText = category.charAt(0).toUpperCase() + category.slice(1);
+        viewAllLink.textContent = `View all jobs by ${linkText} >`;
+        viewAllLink.href = `#jobs-by-${category}`;
+    };
+
+    categoriesContainer.addEventListener('click', (e) => {
+        const button = e.target.closest('.vacancy-category-btn');
+        if (!button) return;
+        categoriesContainer.querySelector('.active')?.classList.remove('active');
+        button.classList.add('active');
+        const category = button.dataset.category;
+        populateOptions(category);
+    });
+
+    populateOptions('skills');
+}
+
+
+// --- Functions for Job Cards, Banners, and Employers ---
 async function loadJobs() {
     const container = document.getElementById('jobCardWrapper');
-    if (!container) {
-        console.warn("Element with ID 'jobs-container' not found in the DOM.");
-        return;
-    }
-    container.innerHTML = `
-        <div class="text-center py-10">
-            <i class="fas fa-spinner fa-spin text-2xl text-gray-400"></i>
-            <p class="mt-2 text-gray-500">Loading jobs...</p>
-        </div>
-    `;
-
+    if (!container) return;
+    container.innerHTML = `<div class="w-full text-center py-10"><i class="fas fa-spinner fa-spin text-2xl text-cyan-500"></i></div>`;
     try {
-        // Using fetch API for AJAX call
-        const response = await fetch('https://jobringer.com/api/job_list_api.php', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                // Add authentication headers if needed
-                // 'Authorization': 'Bearer ' + token
-            }
-        });
-
-        // Check if response is successful
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        // Parse JSON response
+        const response = await fetch('https://jobringer.com/api/job_list_api.php');
+        if (!response.ok) throw new Error(`HTTP error`);
         const jobsData = await response.json();
-        
-        // Validate that we received an array
-        if (!Array.isArray(jobsData)) {
-            throw new Error('Invalid response format: expected array');
-        }
-
-        // Transform data if needed to match expected structure
-        const jobs = jobsData.map(job => ({
-            id: job.id,
-            title: job.title,
-            company: job.company,
-            location: job.location,
-            salary: job.salary,
-            experience: job.experience,
-            type: job.work_mode, // Based on your PHP API
-            employment_type: job.employment_type,
-            logo: job.logo || `https://placehold.co/60x60/E0E0E0/888888?text=${job.company?.substring(0, 2).toUpperCase() || 'JB'}`
-        }));
-        console.log(jobs);
-        
-        renderJobs(jobs);
-        
+        renderJobs(jobsData);
+        setupJobSliderControls();
     } catch (error) {
         console.error("Error loading jobs:", error);
-        showErrorState();
+        container.innerHTML = `<div class="w-full text-center py-10 text-slate-500">Failed to load jobs.</div>`;
     }
 }
 
 function renderJobs(jobs) {
     const container = document.getElementById('jobCardWrapper');
-    if (!container) {
-        console.warn("Element with ID 'jobs-container' not found in the DOM.");
-        return;
-    }
+    if (!container || !jobs || jobs.length === 0) return;
 
-    if (jobs.length === 0) {
-        container.innerHTML = `
-            <div class="text-center py-10">
-                <i class="far fa-folder-open text-3xl text-gray-400"></i>
-                <p class="mt-2 text-gray-500">No jobs found matching your criteria</p>
-            </div>
-        `;
-        return;
-    }
+    container.innerHTML = jobs.map(job => {
+        const salary = job.salary || 'Not Disclosed';
+        const workMode = job.work_mode || 'N/A';
+        let displayLocation = 'N/A';
+        let locationTooltipHtml = '';
 
-    container.innerHTML = jobs.map(job => `
-        <div class="job-card p-2 rounded-md shadow text-xs ${job.category === 'female' ? 'female-job' : ''} ${job.category === 'premium' ? 'premium-job' : ''}">
-            <div class="flex items-start gap-2">
-                <img src="${job.logo}" alt="${job.company} Logo" class="company-logo rounded-md w-10 h-10">
-                <div class="flex-grow">
-                    <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
-                    <p class="text-cyan-600 text-xs dark:text-cyan-400">${job.company}</p>
+        if (typeof job.location === 'string') {
+            const locations = job.location.split(',').map(loc => loc.trim()).filter(Boolean);
+            if (locations.length > 0) {
+                displayLocation = locations[0];
+                if (locations.length > 1) {
+                    displayLocation += ` +${locations.length - 1}`;
+                    const fullLocationList = locations.map(loc => `<li>${loc}</li>`).join('');
+                    locationTooltipHtml = `<div class="location-tooltip"><ul>${fullLocationList}</ul></div>`;
+                }
+            }
+        }
+
+        return `
+            <div class="job-card p-4 rounded-lg shadow-md text-sm">
+                <div class="flex items-start gap-4">
+                    <img src="${job.logo || `https://ui-avatars.com/api/?name=${job.company?.replace(/\s/g, "+")}`}" alt="${job.company} Logo" class="company-logo rounded-md w-12 h-12 object-contain border">
+                    <div class="flex-grow overflow-hidden">
+                        <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
+                        <p class="text-sm text-cyan-600 dark:text-cyan-400">${job.company}</p>
+                        <div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
+                            <span class="detail-item inline-flex items-center location-tooltip-container">
+                                <i class="fas fa-map-marker-alt mr-1.5"></i>${displayLocation}
+                                ${locationTooltipHtml}
+                            </span>
+                            <span class="detail-item inline-flex items-center"><i class="fas fa-dollar-sign mr-1.5"></i>${salary}</span>
+                            <span class="detail-item inline-flex items-center"><i class="fas fa-briefcase mr-1.5"></i>${workMode}</span>
+                        </div>
+                    </div>
+                    <button class="bookmark-btn text-gray-500 hover:text-yellow-400 dark:text-gray-300 dark:hover:text-yellow-400 flex-shrink-0">
+                        <i class="far fa-bookmark text-xl"></i>
+                    </button>
                 </div>
-                <button class="bookmark-btn text-gray-500 hover:text-yellow-400 dark:text-gray-300 dark:hover:text-yellow-400">
-                    <i class="far fa-bookmark text-base"></i>
-                </button>
-            </div>
-            <div class="mt-2 flex flex-wrap gap-2 text-[10px] text-gray-600 dark:text-gray-300">
-                <span class="detail-item"><i class="fas fa-map-marker-alt mr-1"></i>${job.location}</span>
-                <span class="detail-item"><i class="fas fa-dollar-sign mr-1"></i>${job.salary}</span>
-                <span class="detail-item"><i class="fas fa-briefcase mr-1"></i>${job.experience}</span>
-            </div>
-            <div class="mt-2 pt-2 border-t grid grid-cols-3 gap-1 text-[11px] text-gray-600 dark:text-gray-300 text-center">
-                <button class="action-btn info-btn py-1 w-full bg-gray-100 rounded hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1" data-job-id="${job.id}"><i class="fas fa-info-circle"></i> Info</button>
-                <button class="action-btn py-1 w-full bg-gray-100 rounded hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1"><i class="fas fa-share-alt"></i> Share</button>
-                <button class="action-btn py-1 w-full bg-cyan-600 text-white rounded hover:bg-cyan-600 dark:bg-cyan-700 dark:hover:bg-yellow-600 flex justify-center items-center gap-1"><i class="fas fa-paper-plane"></i> Apply</button>
-            </div>
-        </div>
-    `).join('');
+                <div class="mt-4 pt-3 border-t grid grid-cols-3 gap-2 text-sm text-gray-700 dark:text-gray-300 text-center">
+                    <button class="action-btn info-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5" data-job-id="${job.id}"><i class="fas fa-info-circle"></i> Info</button>
+                    <button class="action-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5"><i class="fas fa-share-alt"></i> Share</button>
+                    <button class="action-btn py-1.5 w-full bg-cyan-600 text-white rounded-md hover:bg-cyan-700 flex justify-center items-center gap-1.5 font-semibold"><i class="fas fa-paper-plane"></i> Apply</button>
+                </div>
+            </div>`;
+    }).join('');
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    loadJobs();
-    loadEmployerSlider();
-});
+function setupJobSliderControls() {
+    const wrapper = document.getElementById('jobCardWrapper'); const prevBtn = document.getElementById('jobPrevBtn'); const nextBtn = document.getElementById('jobNextBtn'); if (!wrapper || !prevBtn || !nextBtn) return;
+    const getScrollStep = () => wrapper.children.length > 0 ? wrapper.children[0].offsetWidth + 12 : 300;
+    nextBtn.addEventListener('click', () => { wrapper.scrollBy({ left: getScrollStep(), behavior: 'smooth' }); }); prevBtn.addEventListener('click', () => { wrapper.scrollBy({ left: -getScrollStep(), behavior: 'smooth' }); });
+}
+function setupDesktopBannerSlider() {
+    const banner = document.querySelector('.hero-banner-collage'); if (!banner) return;
+    const slides = banner.querySelectorAll('.slide'); const nextBtn = banner.querySelector('#nextBtn'); const prevBtn = banner.querySelector('#prevBtn'); let currentSlide = 0; if (slides.length <= 1) return;
+    function showSlide(index) { slides.forEach((slide, i) => slide.classList.toggle('active', i === index)); }
+    function next() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
+    nextBtn.addEventListener('click', next); prevBtn.addEventListener('click', () => { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }); setInterval(next, 5000); showSlide(currentSlide);
+}
+function setupMobileBannerSlider() {
+    const banner = document.querySelector('.slider.lg\\:hidden'); if (!banner) return;
+    const slides = banner.querySelectorAll('.slide'); const nextBtn = banner.querySelector('#nextBtnMobile'); const prevBtn = banner.querySelector('#prevBtnMobile'); let currentSlide = 0; if (slides.length <= 1) return;
+    function showSlide(index) { slides.forEach((slide, i) => { slide.style.display = (i === index) ? 'block' : 'none'; }); }
+    function next() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
+    nextBtn.addEventListener('click', next); prevBtn.addEventListener('click', () => { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }); setInterval(next, 5000); showSlide(currentSlide);
+}
+async function loadEmployerSlider() {
+    const container = document.getElementById('employerScroll'); if (!container) return;
+    try {
+        const response = await fetch('https://jobringer.com/api/featured_employers_api.php'); if (!response.ok) return;
+        const employersData = await response.json();
+        const duplicatedData = [...employersData, ...employersData];
+        container.innerHTML = duplicatedData.map(emp => `<a href="${emp.company_details}" target="_blank" class="employer-logo-card bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg flex items-center justify-center p-2"><img src="${emp.company_logo || `https://placehold.co/100x40/E0E0E0/888888?text=${emp.company_name?.substring(0, 2).toUpperCase()}`}" alt="${emp.company_name}" class="max-w-full max-h-full object-contain"></a>`).join('');
+        if (window.innerWidth >= 1024) {
+            startEmployerAutoScroll();
+        }
+    } catch (error) { console.error("Error loading employers:", error); }
+}
+function startEmployerAutoScroll() {
+    const scrollContainer = document.getElementById('employerScroll'); if (!scrollContainer) return;
+    let scrollAmount = 0; let animationFrameId;
+    function scroll() { 
+        scrollAmount += 0.5; 
+        if (scrollAmount >= scrollContainer.scrollWidth / 2) { 
+            scrollAmount = 0; 
+        } 
+        scrollContainer.scrollLeft = scrollAmount; 
+        animationFrameId = requestAnimationFrame(scroll); 
+    }
+    scroll();
+
+    scrollContainer.addEventListener('mouseenter', () => cancelAnimationFrame(animationFrameId));
+    scrollContainer.addEventListener('mouseleave', () => requestAnimationFrame(scroll));
+}

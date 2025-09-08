@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job - JobRinger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/post_job.css">
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="content-wrapper">
+        <main class="post-job-main">
+            <h1 class="page-title">Post a Job</h1>
+            
+            <!-- Job Type Selector -->
+            <section class="job-type-selector-wrapper">
+                <div class="job-type-selector">
+                    <div class="job-type-card active" data-job-type="classic">
+                        <div class="card-content">
+                            <h3 class="card-title">Classic</h3>
+                            <p class="card-description">For Jobs in India | Unlimited</p>
+                        </div>
+                    </div>
+                    <div class="job-type-card" data-job-type="premium">
+                        <div class="card-content">
+                            <h3 class="card-title">Premium</h3>
+                            <p class="card-description">For Jobs with Enhanced Visibility</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Form Section -->
+            <section class="form-container">
+                <div class="progress-indicator">
+                    <div class="step active" data-step="1">Job Details</div>
+                    <div class="step" data-step="2">More Details</div>
+                    <div class="step" data-step="3">Candidate Specs</div>
+                    <div class="step" data-step="4">Review & Post</div>
+                </div>
+
+                <form id="post-job-form">
+                    <!-- Stage 1: Job Details -->
+                    <div id="stage-1" class="form-stage active">
+                        <h2 class="stage-header">Post a Job - <span id="job-type-name">Classic</span></h2>
+                        <div class="input-group">
+                            <label for="job-title">Job Title <span class="required">*</span></label>
+                            <input type="text" id="job-title" placeholder="Enter Job Title" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="work-mode">Work Mode <span class="required">*</span></label>
+                            <select id="work-mode" required>
+                                <option value="" disabled selected>Select Work Mode</option>
+                                <option value="remote">Work from Home / Remote</option>
+                                <option value="on-site">On-Site</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="employment-type">Employment Type <span class="required">*</span></label>
+                            <select id="employment-type" required>
+                                <option value="" disabled selected>Select Employment Type</option>
+                                <option value="full-time">Full-Time</option>
+                                <option value="part-time">Part-Time</option>
+                                <option value="internship">Internship</option>
+                                <option value="contract">Contract</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="employment-spec">Employment Specification <span class="required">*</span></label>
+                            <select id="employment-spec" required>
+                                <option value="" disabled selected>Select Specification</option>
+                                <option>Fresher</option>
+                                <option>Experienced</option>
+                                <option>Walk-In</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="job-description">Job Description <span class="required">*</span></label>
+                            <textarea id="job-description" rows="5" placeholder="What an employee has to do?" required></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="hiring-for">Hiring For</label>
+                            <input type="text" id="hiring-for" placeholder="e.g., Business Unit">
+                        </div>
+                        <div class="input-group">
+                            <label for="keywords">Keywords / Desired Skills <span class="required">*</span></label>
+                            <input type="text" id="keywords" placeholder="Keywords related to desired skills, designation, others" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="state">State <span class="required">*</span></label>
+                            <select id="state" required>
+                                <option value="" disabled selected>Select State</option>
+                                <option>Maharashtra</option>
+                                <option>Haryana</option>
+                                <!-- ... add all states here ... -->
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="city">Job Location | City <span class="required">*</span></label>
+                            <input type="text" id="city" placeholder="Enter city" required>
+                        </div>
+                        <div class="button-container">
+                            <button type="button" class="btn btn-next">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2: More Details -->
+                    <div id="stage-2" class="form-stage">
+                        <h2 class="stage-header">Post a Job - <span id="job-type-name-2">Classic</span></h2>
+                        <div class="input-group">
+                            <label for="industry">Industry <span class="required">*</span></label>
+                            <select id="industry" required>
+                                <option value="" disabled selected>Select Industry</option>
+                                <option>ACCOUNTING / ACCOUNTANT FIRM</option>
+                                <option>ADVERTISING / PUBLIC RELATIONS</option>
+                                <!-- ... add all industries here ... -->
+                            </select>
+                        </div>
+                        <div class="input-group-grid">
+                            <div class="input-group">
+                                <label for="min-exp">Min Experience</label>
+                                <input type="number" id="min-exp" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="max-exp">Max Experience</label>
+                                <input type="number" id="max-exp" value="5">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="gender-pref">Gender Preference</label>
+                            <select id="gender-pref">
+                                <option>Open to All</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>CTC Range</label>
+                            <div class="ctc-range-inputs">
+                                <select id="currency">
+                                    <option>₹</option>
+                                    <option>$</option>
+                                </select>
+                                <input type="number" id="salary-from" placeholder="Salary From">
+                                <input type="number" id="salary-to" placeholder="Salary To">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="hide-salary">
+                                <label for="hide-salary">Hide salary details</label>
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button type="button" class="btn btn-back">Back</button>
+                            <button type="button" class="btn btn-next">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3: Candidate Specs (for Premium) -->
+                    <div id="stage-3" class="form-stage">
+                        <h2 class="stage-header">Post a Job - <span id="job-type-name-3">Premium</span></h2>
+                        <div class="input-group">
+                            <label for="candidate-profile">Candidate Profile / Specifications</label>
+                            <textarea id="candidate-profile" rows="5" placeholder="Specify candidate profile"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Education</label>
+                            <div class="qual-group">
+                                <input type="text" placeholder="Specify Qualifications">
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button type="button" class="btn btn-back">Back</button>
+                            <button type="button" class="btn btn-next">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Stage 4: Review & Post -->
+                    <div id="stage-4" class="form-stage">
+                        <h2 class="stage-header">Review & Post</h2>
+                        <div class="input-group-small">
+                            <label>Job Ad Response Mail Settings</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="individual-mail" checked>
+                                <label for="individual-mail">Get Individual Mail on each new apply</label>
+                            </div>
+                        </div>
+                        <div class="input-group-small">
+                            <label>Summary of all Job Responses in Email - Frequency</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="mail-frequency" value="off"> Off</label>
+                                <label><input type="radio" name="mail-frequency" value="daily"> Daily</label>
+                                <label><input type="radio" name="mail-frequency" value="every-2-days"> Every 2 Days</label>
+                                <label><input type="radio" name="mail-frequency" value="every-3-days"> Every 3 Days</label>
+                            </div>
+                        </div>
+                        <div class="input-group-small">
+                            <label for="contact-email">Contact Person Email <span class="required">*</span></label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+                        <div class="input-group-small">
+                            <label for="contact-person-name">Contact Person Name</label>
+                            <input type="text" id="contact-person-name">
+                        </div>
+                        <div class="input-group-small">
+                            <label for="contact-person-designation">Contact Person Designation</label>
+                            <input type="text" id="contact-person-designation">
+                        </div>
+                        <div class="input-group-small">
+                            <label for="mobile-no">Mobile No</label>
+                            <input type="tel" id="mobile-no">
+                        </div>
+                        <div class="input-group-small">
+                            <label for="whatsapp-no">Whatsapp No</label>
+                            <input type="tel" id="whatsapp-no">
+                        </div>
+                        <div class="button-container-final">
+                            <button type="button" class="btn btn-back">Back</button>
+                            <button type="submit" class="btn btn-post-job">Post the Job</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <div id="footer-placeholder" class="mt-auto"></div>
+    <script src="js/script.js"></script>
+    <script src="js/post_job.js"></script>
+</body>
+</html>

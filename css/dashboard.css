@@ -1,0 +1,616 @@
+/* --- DASHBOARD SPECIFIC STYLES --- */
+
+/* Unified Navigation Container for both mobile and desktop */
+.nav-container {
+    padding: 0.5rem 0.5rem;
+    z-index: 50;
+    background: var(--card_bg_light);
+    border-bottom: 1px solid var(--border_light);
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevents horizontal scroll for this container */
+}
+
+html.dark .nav-container {
+    background: var(--dark_background_secondary);
+    border-bottom: 1px solid var(--dark_border);
+}
+
+.nav-slider-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nav-slider-container::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-slider-track {
+    display: inline-block;
+    padding: 0 0.25rem;
+}
+
+.nav-slider-item {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--gray_medium_light);
+    background-color: var(--body_color_light);
+    border: 1px solid var(--border_light);
+    transition: all 0.2s ease-in-out;
+    margin-right: 0.4rem;
+}
+
+.nav-slider-item.active {
+    background: var(--primary_blue);
+    color: #fff;
+    border-color: var(--primary_blue);
+    font-weight: 600;
+}
+
+.nav-slider-item:hover {
+    background: var(--light_yellow_bg);
+    color: var(--primary_blue);
+    font-weight: 600;
+}
+
+html.dark .nav-slider-item {
+    color: var(--dark_gray_text);
+    background-color: var(--dark_input_bg);
+    border-color: var(--dark_border);
+}
+
+html.dark .nav-slider-item.active {
+    background: var(--pop_yellow);
+    color: var(--text_color_dark);
+    border-color: var(--pop_yellow);
+}
+
+html.dark .nav-slider-item:hover {
+    background: rgba(var(--pop_yellow), 0.1);
+    color: var(--pop_yellow);
+}
+
+/* Dashboard Main Layout */
+.dashboard-container {
+    display: flex;
+    flex-direction: column; /* Force vertical stack on all screens by default */
+    gap: 1rem;
+    padding: 0.75rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevents horizontal scroll from overflowing content */
+}
+
+/* Dashboard Main Content Area */
+.dashboard-main {
+    flex-grow: 1;
+    width: 100%; /* Ensure main content takes full width */
+}
+
+/* Dashboard Grid for widgets */
+.dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* --- Common Card Styles --- */
+.card {
+    background: var(--card_bg_light);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px var(--light_shadow);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--border_light);
+}
+
+html.dark .card {
+    background: var(--dark_background_secondary);
+    box-shadow: 0 2px 8px var(--dark_shadow);
+    border-color: var(--dark_border);
+}
+
+/* Button Classes */
+.btn-primary-small, .btn-secondary-small {
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+/* New class for the profile section buttons to ensure uniform size and padding */
+.btn-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 3rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+/* Shorter buttons length */
+.btn-profile.btn-primary-small, .btn-profile.btn-secondary-small {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+}
+.btn-profile span.text-xs {
+    font-size: 0.6rem;
+    margin-top: 0.1rem;
+}
+
+.btn-primary-small {
+    background: var(--primary_blue);
+    color: #fff;
+    border: none;
+}
+.btn-primary-small:hover {
+    filter: brightness(1.1);
+}
+
+.btn-secondary-small {
+    background: transparent;
+    border: 1px solid var(--primary_blue);
+    color: var(--primary_blue);
+}
+.btn-secondary-small:hover {
+    background: var(--primary_blue);
+    color: #fff;
+}
+
+html.dark .btn-secondary-small {
+    border-color: var(--pop_yellow);
+    color: var(--pop_yellow);
+}
+html.dark .btn-secondary-small:hover {
+    background: var(--pop_yellow);
+    color: var(--text_color_dark);
+}
+
+/* User Profile & Subscription */
+.profile-section {
+    padding: 1rem;
+}
+/* Adjust spacing for the profile avatar and name */
+.profile-section .flex.items-center.space-x-4.mb-4 {
+    margin-bottom: 0.75rem !important;
+}
+
+.avatar-lg {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: var(--primary_blue);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+html.dark .avatar-lg {
+    background: var(--pop_yellow);
+    color: var(--text_color_dark);
+}
+
+.subscription-option-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border_light);
+    background: var(--body_color_light);
+    font-size: 0.8rem;
+}
+html.dark .subscription-option-item {
+    border-color: var(--dark_border);
+    background: var(--dark_input_bg);
+}
+
+/* New Subscription active state styles */
+.subscription-option-item.active-subscription {
+    border-color: #10B981;
+    background-color: rgba(16, 185, 129, 0.05);
+}
+html.dark .subscription-option-item.active-subscription {
+    border-color: #34D399;
+    background-color: rgba(52, 211, 153, 0.1);
+}
+.active-status {
+    color: #10B981;
+    font-weight: 600;
+}
+html.dark .active-status {
+    color: #34D399;
+}
+
+/* User Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+.stat-item {
+    text-align: center;
+    background: var(--body_color_light);
+    padding: 0.75rem 0.4rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+html.dark .stat-item {
+    background: var(--dark_input_bg);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary_blue);
+    transition: color 0.2s;
+}
+html.dark .stat-value {
+    color: var(--pop_yellow);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--gray_medium_light);
+}
+html.dark .stat-label {
+    color: var(--dark_gray_text);
+}
+
+
+/* --- Job Card Slider Styles (from Home Page) --- */
+.job-card-slider-container { overflow: hidden; }
+.job-card-slider { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
+.job-card-slider::-webkit-scrollbar { display: none; }
+.job-card-wrapper { display: flex; gap: 0.75rem; padding-bottom: 10px; }
+.job-card { 
+    flex: 0 0 85%; 
+    scroll-snap-align: start; 
+    background: var(--card_bg_light); 
+    border: 1px solid var(--border_light); 
+    display: flex; 
+    flex-direction: column; 
+    padding: 1rem; 
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px var(--light_shadow);
+}
+@media (min-width: 640px) { .job-card { flex: 0 0 48%; } }
+@media (min-width: 1024px) { .job-card { flex: 0 0 32%; } }
+.job-card > div:first-of-type { flex-grow: 1; }
+.job-card h3, .job-card p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.job-card > div:last-of-type { flex-shrink: 0; }
+.job-slider-nav { margin-bottom: 1rem; }
+.slider-btn { background: var(--card_bg_light); border: 1px solid var(--border_light); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+
+/* Job Card Specific Styles from Home Page */
+.job-card .company-logo { width: 3.5rem; height: 3.5rem; object-fit: contain; border: 1px solid var(--border_light); }
+.job-card h3 { font-size: 1rem; line-height: 1.2; font-weight: 600; }
+.job-card p { font-size: 0.8rem; color: var(--primary_blue); }
+.job-card .detail-item i { color: inherit; }
+.job-card .detail-item { font-size: 0.75rem; color: var(--gray_medium_light); }
+.job-card .bookmark-btn { color: var(--gray_medium_light); transition: color 0.2s; }
+.job-card .bookmark-btn:hover { color: #facc15; }
+.job-card .action-btn { font-size: 0.75rem; }
+.job-card .action-btn i { margin-right: 0.25rem; }
+.job-card .action-btn.info-btn { background-color: var(--body_color_light); color: var(--gray_medium_light); }
+.job-card .action-btn.info-btn:hover { background-color: var(--light_yellow_bg); color: var(--primary_blue); }
+.location-tooltip-container { position: relative; cursor: help; }
+.location-tooltip { visibility: hidden; opacity: 0; position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%); background-color: #334155; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; white-space: normal; width: max-content; max-width: 250px; z-index: 20; transition: opacity 0.2s, visibility 0.2s; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+.location-tooltip-container:hover .location-tooltip { visibility: visible; opacity: 1; }
+.location-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 5px; border-style: solid; border-color: #334155 transparent transparent transparent; }
+.location-tooltip ul { list-style-position: inside; padding-left: 0; }
+.location-tooltip ul li { text-align: left; }
+.job-card .flex.items-start.gap-4 { align-items: flex-start; }
+.job-card .info-status { font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 9999px; white-space: nowrap; }
+
+.info-status-applied {
+    background-color: #cff4fc;
+    color: #055160;
+}
+.info-status-shortlisted {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+.info-status-saved {
+    background-color: #fce3a7;
+    color: #7b4c00;
+}
+
+
+/* --- Mobile Layout (max-width: 1023px) --- */
+@media (max-width: 1023px) {
+    /* Make everything smaller */
+    .card {
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 4px var(--light_shadow);
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+    }
+
+    .text-base {
+        font-size: 0.85rem;
+    }
+
+    .text-xs {
+        font-size: 0.65rem;
+    }
+
+    .avatar-lg {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 0.85rem;
+    }
+
+    .btn-primary-small, .btn-secondary-small {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.65rem;
+    }
+
+    .btn-profile {
+        min-height: 2.5rem;
+        padding: 0.1rem 0.3rem;
+        font-size: 0.65rem;
+    }
+
+    .btn-profile span.text-xs {
+        font-size: 0.55rem;
+        margin-top: 0;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
+    }
+
+    .stat-item {
+        padding: 0.5rem 0.3rem;
+    }
+
+    .stats-grid {
+        gap: 0.5rem;
+    }
+
+    /* Make job cards smaller for recommended and saved jobs */
+    .job-card {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+        min-width: 240px; /* Smaller min-width for mobile */
+    }
+
+    .job-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .job-card p {
+        font-size: 0.7rem;
+    }
+
+    .job-card .company-logo {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .job-card .detail-item {
+        font-size: 0.65rem;
+    }
+
+    .job-card .detail-item i {
+        margin-right: 0.5rem;
+    }
+
+    .job-card .action-btn {
+        font-size: 0.7rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .job-card .action-btn i {
+        margin-right: 0.15rem;
+    }
+
+    .job-card .bookmark-btn i {
+        font-size: 1rem;
+    }
+
+    .job-card .info-status {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .job-card .flex.items-start.gap-4 {
+        gap: 0.75rem;
+    }
+
+    .job-card .mt-4 {
+        margin-top: 0.75rem;
+    }
+
+    .job-card .mt-2 {
+        margin-top: 0.5rem;
+    }
+
+    .job-card-wrapper {
+        gap: 0.5rem;
+    }
+
+    /* Reduce application status div size */
+    .application-status-section .space-y-3 {
+        space-y: 0.5rem; /* Reduce spacing between application cards */
+    }
+
+    .application-status-section .mb-3 {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Make subscription smaller and fix expired date location */
+    .subscription-option-item {
+        padding: 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    .subscription-option-item span.font-medium {
+        font-size: 0.7rem;
+    }
+
+    .subscription-section .space-y-2 {
+        gap: 0.5rem;
+    }
+
+    .subscription-option-item .flex.items-center.gap-2 {
+        gap: 0.5rem;
+    }
+
+    .active-status {
+        font-size: 0.65rem;
+    }
+
+    /* Make job cards scrollable horizontally on mobile */
+    .recommended-jobs-section .job-card-wrapper,
+    .saved-jobs-section .job-card-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 0.75rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        padding-bottom: 0.5rem;
+    }
+    .recommended-jobs-section .job-card-wrapper::-webkit-scrollbar,
+    .saved-jobs-section .job-card-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    .recommended-jobs-section .job-card-wrapper .job-card,
+    .saved-jobs-section .job-card-wrapper .job-card {
+        min-width: 240px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        white-space: normal;
+    }
+    
+    /* Hide slider controls on mobile */
+    .recommended-jobs-section .job-slider-nav,
+    .saved-jobs-section .job-slider-nav {
+        display: none;
+    }
+    .job-card-slider-container {
+        overflow: hidden;
+    }
+    .job-card-slider {
+        overflow-x: unset;
+    }
+
+    /* Subscription section mobile styles */
+    .subscription-section .space-y-2 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .subscription-option-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.4rem;
+        border-radius: 0.5rem;
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    .subscription-option-item span:first-of-type {
+        font-size: 0.7rem;
+        margin-bottom: 0 !important;
+    }
+    .subscription-option-item .btn-primary-small {
+        margin-top: 0;
+    }
+}
+
+
+/* --- Desktop Layout (min-width: 1024px) --- */
+@media (min-width: 1024px) {
+    .dashboard-container {
+        display: block;
+    }
+
+    .dashboard-main {
+        margin-top: 2rem;
+    }
+    
+    .nav-container .nav-slider-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .dashboard-grid {
+        display: grid;
+        grid-template-areas:
+            "profile stats"
+            "applications subscription"
+            "recommended recommended"
+            "saved saved";
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }
+
+    .profile-section { grid-area: profile; }
+    .user-stats-section { grid-area: stats; }
+    .application-status-section { grid-area: applications; }
+    .subscription-section { grid-area: subscription; }
+    .recommended-jobs-section { grid-area: recommended; }
+    .saved-jobs-section { grid-area: saved; }
+    
+    /* Re-enable horizontal scrolling for job cards on desktop */
+    .job-card-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 0.75rem;
+        padding-bottom: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .job-card-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    .job-card {
+        flex: 0 0 32%;
+        min-width: 300px;
+        scroll-snap-align: start;
+        box-shadow: 0 4px 8px var(--light_shadow);
+    }
+    
+    /* Show slider controls on desktop */
+    .recommended-jobs-section .job-slider-nav,
+    .saved-jobs-section .job-slider-nav {
+        display: flex;
+    }
+    .job-card-slider-container {
+        overflow: hidden;
+    }
+    .job-card-slider {
+        overflow-x: unset;
+    }
+}

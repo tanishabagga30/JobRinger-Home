@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Application Status - Job Ringer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Universal CSS - Unchanged -->
+    <link rel="stylesheet" href="css/universal.css">
+    <!-- Application Status specific CSS -->
+    <link rel="stylesheet" href="css/Aplication-status.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900">
+    <!-- Universal Header -->
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+
+    <!-- Main content container -->
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <header class="mb-6">
+            <h1 class="text-3xl sm:text-4xl font-bold text-cyan-600 dark:text-cyan-400">Application Status</h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">Track the progress of your job applications.</p>
+        </header>
+
+        <!-- ADDED: Search Bar Section -->
+        <section class="mb-6">
+             <div class="relative">
+                <input type="search" id="search-input" placeholder="Search by job title or company..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:ring-cyan-500 focus:border-cyan-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Filter Buttons -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Filter by Status</h2>
+            <div id="status-filters" class="flex flex-wrap gap-2">
+                <button class="status-filter-btn active" data-status="all">All Applications</button>
+                <button class="status-filter-btn" data-status="Suitable / Shortlisted">Shortlisted</button>
+                <button class="status-filter-btn" data-status="On Hold">On Hold</button>
+                <button class="status-filter-btn" data-status="Not Suitable">Not Suitable</button>
+            </div>
+        </section>
+
+        <!-- Application List Container -->
+        <section>
+            <div id="applications-list" class="space-y-4">
+                <!-- Application cards will be dynamically inserted here by JavaScript -->
+            </div>
+             <div id="no-applications-message" class="hidden text-center py-10 px-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <i class="fas fa-folder-open fa-3x text-gray-400 dark:text-gray-500 mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-200">No applications to show</h3>
+                <p class="text-gray-500 dark:text-gray-400 mt-1">Your applications will appear here. Try adjusting your search or filter.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Universal Components -->
+    <div id="footer-placeholder" class="mt-2"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <!-- Universal script -->
+    <script src="js/script.js"></script>
+    <!-- Application Status specific script -->
+    <script src="js/application-status.js"></script>
+</body>
+</html>

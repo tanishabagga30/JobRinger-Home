@@ -1,0 +1,133 @@
+/* Styles for the Filter Buttons (Unchanged) */
+.status-filter-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: #e5e7eb; /* gray-200 */
+    color: #374151; /* gray-700 */
+    transition: all 0.2s ease-in-out;
+}
+html.dark .status-filter-btn {
+    background-color: #374151; /* gray-700 */
+    color: #d1d5db; /* gray-300 */
+}
+.status-filter-btn.active {
+    background-color: var(--primary-blue);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+html.dark .status-filter-btn.active {
+    background-color: var(--pop-yellow);
+    color: #111827;
+}
+
+/* --- UPDATED TIMELINE STYLES --- */
+
+/* New container to allow horizontal scrolling on small screens */
+.timeline-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 0.5rem 0;
+}
+/* Hide scrollbar for a cleaner look */
+.timeline-container::-webkit-scrollbar {
+    display: none;
+}
+.timeline-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* The timeline itself */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    /* Set a minimum width to ensure it overflows and becomes scrollable */
+    min-width: 500px; 
+}
+
+/* The connector line behind the steps */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 10px; /* Position relative to the center of the marker */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #e5e7eb; /* gray-200 */
+    z-index: 1;
+}
+html.dark .timeline::before {
+    background-color: #4b5563; /* gray-600 */
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+    padding: 0 5px; /* Add some padding to prevent text collision */
+}
+
+.timeline-step .timeline-marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #d1d5db; /* gray-300 */
+    border: 3px solid #f9fafb; /* gray-50 */
+    transition: all 0.3s ease;
+}
+html.dark .timeline-step .timeline-marker {
+    background-color: #6b7280; /* gray-500 */
+    border-color: #1f2937; /* gray-800 */
+}
+
+.timeline-step .timeline-label {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    color: #6b7280; /* gray-500 */
+    font-weight: 500;
+    white-space: nowrap; /* Prevent label from wrapping */
+}
+html.dark .timeline-step .timeline-label {
+    color: #9ca3af; /* gray-400 */
+}
+
+/* ADDED: Styles for the date below the timeline label */
+.timeline-date {
+    font-size: 0.65rem; /* Smaller font size */
+    color: #9ca3af; /* gray-400 */
+    margin-top: 2px;
+    white-space: nowrap;
+}
+html.dark .timeline-date {
+    color: #6b7280; /* gray-500 */
+}
+
+
+/* Styling for COMPLETED steps */
+.timeline-step.completed .timeline-marker {
+    background-color: #22c55e; /* green-500 */
+}
+html.dark .timeline-step.completed .timeline-marker {
+    background-color: #4ade80; /* green-400 */
+}
+.timeline-step.completed .timeline-label {
+    color: #111827; /* gray-900 */
+    font-weight: 600;
+}
+html.dark .timeline-step.completed .timeline-label {
+    color: #f9fafb; /* gray-50 */
+}
+/* ADDED: Completed date has a slightly darker color */
+.timeline-step.completed .timeline-date {
+    color: #4b5563; /* gray-600 */
+}
+html.dark .timeline-step.completed .timeline-date {
+    color: #9ca3af; /* gray-400 */
+}

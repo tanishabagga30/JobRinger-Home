@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Your Notifications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#ffffff"/>
+    <link rel="stylesheet" href="/css/universal.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+
+  <!-- Main Content Area -->
+  <main class="w-full max-w-md md:max-w-2xl mx-auto p-4 md:py-8">
+
+    <!-- "Back to Home" Link -->
+    <div class="mb-6">
+      <a href="/" class="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 font-semibold transition-colors">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+      </a>
+    </div>
+
+    <!-- Special "Job Rings" Notification Card -->
+    <section class="bg-white rounded-xl shadow-sm ring-1 ring-black ring-opacity-5 mb-8 p-5 text-center">
+      <div class="flex justify-center items-center mb-3">
+        <div class="relative">
+          <i class="fas fa-gem text-5xl text-cyan-500"></i>
+          <!-- The number '5' badge -->
+          <span class="absolute -top-1 -right-2 bg-cyan-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">
+            5
+          </span>
+        </div>
+      </div>
+      <h2 class="text-xl font-bold text-gray-900">You have 5 Job Rings</h2>
+      <p class="text-sm text-gray-600 mt-1 mb-4">
+        You have <strong class="text-gray-800">5 free chances</strong> to apply to new jobs today.
+      </p>
+      <a href="/jobs" class="w-full sm:w-auto sm:px-12 inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2.5 rounded-lg transition-transform active:scale-95">
+        Use a Job Ring
+      </a>
+    </section>
+
+    <!-- Header for Recent Activity -->
+    <div class="text-xs font-semibold uppercase text-gray-400 tracking-wider mb-3 px-1">
+      Recent Activity
+    </div>
+
+    <!-- List of Other Notifications -->
+    <div class="bg-white rounded-xl shadow-sm ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+      <!-- Notification Item 1 -->
+      <div class="flex items-start gap-4 p-4">
+        <div class="mt-1">
+          <i class="fas fa-eye text-lg text-gray-400"></i>
+        </div>
+        <div class="flex-1">
+          <p class="text-sm text-gray-800">
+            Your application for <strong class="font-semibold">IT Intern</strong> at HINDCO was viewed.
+          </p>
+          <time class="text-xs text-gray-400 mt-1">15 minutes ago</time>
+        </div>
+      </div>
+
+      <!-- Notification Item 2 -->
+      <div class="flex items-start gap-4 p-4">
+        <div class="mt-1">
+          <i class="fas fa-briefcase text-lg text-gray-400"></i>
+        </div>
+        <div class="flex-1">
+          <p class="text-sm text-gray-800">
+            <strong class="font-semibold">3 new jobs</strong> match your profile.
+          </p>
+          <time class="text-xs text-gray-400 mt-1">2 hours ago</time>
+        </div>
+      </div>
+      
+       <!-- Notification Item 3 -->
+       <div class="flex items-start gap-4 p-4">
+        <div class="mt-1">
+          <i class="fas fa-user-check text-lg text-green-500"></i>
+        </div>
+        <div class="flex-1">
+          <p class="text-sm text-gray-800">
+            Your profile has been <strong class="font-semibold">verified</strong>. You now have a Green Tick!
+          </p>
+          <time class="text-xs text-gray-400 mt-1">1 day ago</time>
+        </div>
+      </div>
+    </div>
+    
+  </main>
+   <div id="footer-placeholder"></div>
+      <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+      <div id="search-placeholder"></div>
+      <div id="menu-placeholder"></div>
+    <script src="/js/script.js"></script> 
+
+</body>
+</html>

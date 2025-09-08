@@ -1,0 +1,211 @@
+
+
+.company-card {
+    background-color: var(--card_bg_light);
+    border-radius: 0.6rem; /* Softer corners */
+    overflow: hidden;
+    /* A softer, more layered shadow */
+    box-shadow: 0 2px 4px -2px rgba(24, 39, 75, 0.08), 0 4px 8px -4px rgba(24, 39, 75, 0.08);
+    border: 1px solid var(--border_light);
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.company-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 4px 8px -2px rgba(24, 39, 75, 0.1), 0 8px 16px -4px rgba(24, 39, 75, 0.1);
+}
+
+html.dark .company-card {
+    background-color: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 2px 4px var(--dark_shadow);
+}
+/* Adds a subtle border glow on hover in dark mode */
+html.dark .company-card:hover {
+     box-shadow: 0 0 0 1px var(--pop_yellow), 0 4px 12px var(--dark_shadow);
+}
+
+.card-banner {
+    height: 70px; /* Slightly more space */
+    position: relative;
+}
+.card-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Gradient overlay for better text contrast */
+.card-banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+    transition: height 0.3s ease;
+}
+.company-card:hover .card-banner::after {
+    height: 70%;
+}
+html.dark .card-banner::after {
+     background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 1rem; /* A bit more padding */
+    margin-top: -30px; /* Pulls logo up */
+    position: relative;
+    z-index: 2;
+}
+.company-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid var(--card_bg_light);
+    background-color: var(--card_bg_light);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+html.dark .company-logo {
+    border-color: var(--dark_background_secondary);
+    background-color: var(--dark_background_secondary);
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.card-body {
+    padding: 0.5rem 1rem;
+    flex-grow: 1;
+}
+.company-name {
+    font-size: 1.1rem;
+    font-weight: 700; /* Bolder for more emphasis */
+    color: var(--text_color_light);
+}
+.company-name:hover {
+    color: var(--primary_blue);
+}
+html.dark .company-name {
+    color: var(--text_color_dark);
+}
+html.dark .company-name:hover {
+    color: var(--pop_yellow);
+}
+
+.company-industry {
+    font-size: 0.75rem;
+    color: var(--gray_medium_light);
+    margin-bottom: 0.75rem;
+}
+html.dark .company-industry {
+    color: var(--dark_gray_text);
+}
+
+.company-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--gray_text_light);
+}
+html.dark .company-stats {
+    color: var(--dark_gray_text);
+}
+.company-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.company-stats i {
+    color: var(--gray_medium_light);
+    font-size: 0.7rem;
+}
+html.dark .company-stats i {
+    color: var(--dark_gray_text);
+    opacity: 0.8;
+}
+
+.card-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--border_light);
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+}
+html.dark .card-footer {
+    border-top-color: var(--dark_border);
+}
+
+/* PREMIUM BUTTON STYLE */
+.view-jobs-btn {
+    display: inline-block;
+    flex-grow: 1;
+    text-align: center;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    /* Gradient background */
+    background-image: linear-gradient(45deg, var(--primary_blue) 0%, #4dd3e8 100%);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 5px -1px rgba(30, 172, 198, 0.4);
+}
+.view-jobs-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px -2px rgba(30, 172, 198, 0.5);
+}
+html.dark .view-jobs-btn {
+    /* The provided --pop_yellow is light blue, creating a cool gradient */
+    background-image: linear-gradient(45deg, var(--pop_yellow) 0%, #E0E9FF 100%);
+    color: #1A222C; /* Dark text for light button */
+    box-shadow: 0 2px 5px -1px rgba(194, 217, 255, 0.3);
+}
+html.dark .view-jobs-btn:hover {
+    box-shadow: 0 4px 8px -2px rgba(194, 217, 255, 0.4);
+}
+
+/* PREMIUM FOLLOWING BUTTON STYLE */
+.unfollow-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--border_light);
+    background-color: transparent; /* Cleaner look */
+    color: var(--gray_text_light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+.unfollow-btn i {
+    font-size: 0.7rem;
+}
+html.dark .unfollow-btn {
+    border-color: var(--dark_border);
+    color: var(--dark_gray_text);
+}
+
+.unfollow-btn:hover {
+    background-color: #FFF5F5; /* Very light red */
+    border-color: #FEB2B2; /* Light red border */
+    color: #C53030; /* Darker red text */
+}
+
+html.dark .unfollow-btn:hover {
+    background-color: rgba(229, 62, 62, 0.1);
+    border-color: rgba(229, 62, 62, 0.4);
+    color: #FC8181; /* Light red text */
+}

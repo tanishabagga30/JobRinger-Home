@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Job Alerts - Job Ringer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/job-alerts.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
+    <!-- Universal Header -->
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+
+    <!-- Main content container -->
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <header class="page-header">
+            <div>
+                <h1 class="text-3xl sm:text-4xl font-bold text-cyan-600 dark:text-cyan-400">Job Alerts</h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-1">Get notified about new jobs that match your criteria.</p>
+            </div>
+            <!-- THIS IS THE CORRECTED LINE -->
+            <a href="create-job-alert.html" class="btn-primary">
+                <i class="fas fa-plus mr-2"></i>Create New Alert
+            </a>
+        </header>
+
+        <!-- Job Alerts List Container -->
+        <section id="job-alerts-list" class="alerts-container">
+            <!-- Job Alert cards will be dynamically inserted here -->
+        </section>
+
+        <!-- Placeholder for when no alerts are found -->
+        <div id="no-alerts-message" class="hidden text-center py-12 px-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <i class="far fa-bell-slash fa-4x text-gray-300 dark:text-gray-600 mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-200">You have no active job alerts.</h3>
+            <p class="text-gray-500 dark:text-gray-400 mt-1">Click "Create New Alert" to get started.</p>
+        </div>
+    </main>
+
+    <!-- Universal Components -->
+    <div id="footer-placeholder" class="mt-2"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <!-- Universal script -->
+    <script src="js/script.js"></script>
+    <!-- Job Alerts specific script -->
+    <script src="js/job-alerts.js"></script>
+</body>
+</html>

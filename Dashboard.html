@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JobRinger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="content-wrapper">
+        <div id="main-nav-container" class="nav-container">
+            <div id="main-nav-slider" class="nav-slider-container">
+                <div class="nav-slider-track">
+                    <a href="#" class="nav-slider-item active" data-page="dashboard">Dashboard</a>
+                    <a href="#" class="nav-slider-item" data-page="profile">My Profile</a>
+                    <a href="#" class="nav-slider-item" data-page="search-jobs">Search Jobs</a>
+                    <a href="#" class="nav-slider-item" data-page="recommended-jobs">Recommended Jobs</a>
+                    <a href="#" class="nav-slider-item" data-page="saved-jobs">Saved Jobs</a>
+                    <a href="#" class="nav-slider-item" data-page="application-status">Application Status</a>
+                    <a href="#" class="nav-slider-item" data-page="job-alerts">Job Alerts</a>
+                    <a href="#" class="nav-slider-item" data-page="viewed-bookmarked">Viewed/Bookmarked</a>
+                    <a href="#" class="nav-slider-item" data-page="companies-following">Companies Following</a>
+                    <a href="#" class="nav-slider-item" data-page="subscription-status">Subscription Status</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard-container">
+            
+            <main class="dashboard-main">
+                <h1 class="text-2xl lg:text-3xl font-bold mb-4">Dashboard</h1>
+                
+                <div class="dashboard-grid">
+                    <div class="profile-section card">
+                        <div class="flex items-center space-x-4 mb-3">
+                            <div class="avatar-lg bg-cyan-600 dark:bg-cyan-400 text-white dark:text-gray-900 rounded-full flex-shrink-0">
+                                TB
+                            </div>
+                            <div>
+                                <h2 class="text-base font-semibold">Tanisha Bagga</h2>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Intern</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-2">
+                            <span>Profile Completeness</span>
+                            <span class="font-bold">21%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-3">
+                            <div class="bg-cyan-600 dark:bg-cyan-400 h-2 rounded-full" style="width: 21%"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button class="btn-profile btn-primary-small">Update Profile</button>
+                            <button class="btn-profile btn-secondary-small">
+                                Edit Resume
+                                <span class="block text-xs text-center text-slate-500 dark:text-slate-400 mt-0.5">Last Uploaded: 24/08/2025</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="user-stats-section card">
+                        <h3 class="font-semibold text-base mb-3">User Stats</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <p class="stat-value">3</p>
+                                <p class="stat-label">Jobs Applied</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">3</p>
+                                <p class="stat-label">Profile Views</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">0</p>
+                                <p class="stat-label">Bookmarks</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">1</p>
+                                <p class="stat-label">Shortlisted</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="application-status-section card">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-semibold text-base">Application Status</h3>
+                            <a href="#" class="text-xs text-cyan-600 dark:text-cyan-400 hover:underline">View All</a>
+                        </div>
+                        <div class="space-y-2" id="application-list">
+                        </div>
+                    </div>
+
+                    <div class="subscription-section card">
+                        <h3 class="font-semibold text-base mb-3">Green Tick Subscription <i class="fas fa-check-circle text-cyan-500"></i></h3>
+                        <div class="space-y-2">
+                            <div class="subscription-option-item">
+                                <span class="font-medium text-xs text-slate-700 dark:text-slate-300">GREEN TICK (₹330/- | 90 Days)</span>
+                                <button class="btn-primary-small">Buy Now</button>
+                            </div>
+                            <div class="subscription-option-item active-subscription">
+                                <span class="font-medium text-xs text-slate-700 dark:text-slate-300">GREEN TICK (₹99/- | 30 Days)</span>
+                                <span class="active-status">Active</span>
+                            </div>
+                            <div class="subscription-option-item">
+                                <span class="font-medium text-xs text-slate-700 dark:text-slate-300">GREEN TICK (₹99/- | 30 Days)</span>
+                                <div class="flex items-center gap-2">
+                                    <button class="btn-primary-small">Buy Now</button>
+                                    <span class="text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">Expired on: 24/08/2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommended-jobs-section card">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-semibold text-base">New Recommended Jobs</h3>
+                            <div class="job-slider-nav flex items-center gap-2">
+                                <button id="recommendedPrevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+                                <button id="recommendedNextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="job-card-slider-container">
+                            <div class="job-card-slider">
+                                <div class="job-card-wrapper" id="recommendedJobCardWrapper"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="saved-jobs-section card">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-semibold text-base">Saved Jobs</h3>
+                            <div class="job-slider-nav flex items-center gap-2">
+                                <button id="savedPrevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+                                <button id="savedNextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="job-card-slider-container">
+                            <div class="job-card-slider">
+                                <div class="job-card-wrapper" id="savedJobCardWrapper"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div id="footer-placeholder" class="mt-auto"></div>
+    </div>
+    
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

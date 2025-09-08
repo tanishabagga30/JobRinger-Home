@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Career Packages - Elevate Your Professional Journey</title>
-    <!-- External CSS link -->
     <link rel="stylesheet" href="css/pppJobseeker.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/universal.css">
 </head>
 <body>
     <div id="header-placeholder" class="sticky top-0 z-10"></div>
     <div class="container">
-       
+        
         <div class="header">
             <h1>Premium Career Packages</h1>
             <p>Elevate your professional journey with our exclusive career advancement solutions</p>
@@ -28,6 +25,7 @@
         </div>
         
         <div class="main-content">
+            <!-- These top sections will be reordered on mobile via CSS -->
             <div class="urgency-banner"><i class="fas fa-gem"></i><span>Exclusive Offer: 40% Premium Discount - Limited Availability</span></div>
             <div class="timer-container">
                 <div class="timer-title">Offer Concludes In</div>
@@ -57,7 +55,10 @@
                                 <div class="h-package-duration">10 Credits / Lifetime Validity</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Secure Access</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Secure Access</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -78,7 +79,10 @@
                                 <div class="h-package-duration">per 10 Days</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Elevate Profile</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Elevate Profile</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -100,7 +104,10 @@
                                 <div class="h-package-duration">per 10 Days</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Attain Status</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Attain Status</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -122,7 +129,10 @@
                                 <div class="h-package-duration">per 10 Days</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Activate Alerts</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Activate Alerts</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -141,28 +151,31 @@
                 <div class="package-grid">
                     <!-- JOB GETTER Card -->
                     <div class="h-package-card">
-                        <div class="h-package-main">
-                            <div class="h-package-info">
-                                <h3 class="h-package-title">JOB GETTER</h3>
-                                <div class="h-package-price">
-                                    <span class="new-price">₹99</span>
-                                    <span class="original-price">₹110</span>
-                                    <span class="discount">10% OFF</span>
-                                </div>
-                                <div class="h-package-duration">per 10 Days</div>
-                            </div>
-                            <div class="h-package-actions">
-                                <button class="buy-button">Begin Journey</button>
-                                <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
-                            </div>
-                        </div>
-                        <div class="h-package-details">
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> Combines <strong>Featured Resume</strong> enhancement</li>
-                                <li><i class="fas fa-check-circle"></i> Plus <strong>Star Applicant</strong> privileges</li>
-                                <li><i class="fas fa-check-circle"></i> Ideal for <strong>dedicated professionals</strong> starting their push</li>
-                            </ul>
-                        </div>
+                         <div class="h-package-main">
+                             <div class="h-package-info">
+                                 <h3 class="h-package-title">JOB GETTER</h3>
+                                 <div class="h-package-price">
+                                     <span class="new-price">₹99</span>
+                                     <span class="original-price">₹110</span>
+                                     <span class="discount">10% OFF</span>
+                                 </div>
+                                 <div class="h-package-duration">per 10 Days</div>
+                             </div>
+                             <div class="h-package-actions">
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Begin Journey</span>
+                                </button>
+                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
+                             </div>
+                         </div>
+                         <div class="h-package-details">
+                             <ul>
+                                 <li><i class="fas fa-check-circle"></i> Combines <strong>Featured Resume</strong> enhancement</li>
+                                 <li><i class="fas fa-check-circle"></i> Plus <strong>Star Applicant</strong> privileges</li>
+                                 <li><i class="fas fa-check-circle"></i> Ideal for <strong>dedicated professionals</strong> starting their push</li>
+                             </ul>
+                         </div>
                     </div>
                     <!-- JOB WINNER Card -->
                     <div class="h-package-card featured">
@@ -178,7 +191,10 @@
                                 <div class="h-package-duration">per 10 Days</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Secure Victory</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Secure Victory</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -191,8 +207,8 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- JOB GETTER + Card -->
-                     <div class="h-package-card">
+                     <!-- JOB GETTER + Card -->
+                    <div class="h-package-card">
                         <div class="h-package-main">
                             <div class="h-package-info">
                                 <h3 class="h-package-title">JOB GETTER +</h3>
@@ -204,7 +220,10 @@
                                 <div class="h-package-duration">per 20 Days</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Elevate Further</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Elevate Further</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -229,7 +248,10 @@
                                 <div class="h-package-duration">per 30 Days</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Maximize</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Maximize</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -255,7 +277,10 @@
                                 <div class="h-package-duration">per 30 Days</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Acquire Status</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Acquire Status</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -281,7 +306,10 @@
                                 <div class="h-package-duration">per 90 Days</div>
                             </div>
                             <div class="h-package-actions">
-                                <button class="buy-button">Secure Elite</button>
+                                <button class="buy-button">
+                                    <span class="default-text">Buy Now</span>
+                                    <span class="hover-text">Secure Elite</span>
+                                </button>
                                 <div class="view-details-btn"><span>View Details</span> <i class="fas fa-chevron-down"></i></div>
                             </div>
                         </div>
@@ -350,13 +378,11 @@
         </div>
     </div>
     <div id="footer-placeholder"></div>
-      <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
-      <div id="search-placeholder"></div>
-      <div id="menu-placeholder"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
 
-      <script src="/js/script.js"></script>
-
-   
+    <script src="/js/script.js"></script>
     <script src="js/pppJobseeker.js"></script>
 </body>
 </html>

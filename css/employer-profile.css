@@ -1,48 +1,399 @@
-/* Custom styles for HINDCO Consulting Services Employer Profile */
+/* --- UNIVERSAL STYLES (for consistency) --- */
 
-/* Container width */
-.container {
-    max-width: 1200px;
+:root {
+    --primary_blue: #0ea5e9;
+    --pop_yellow: #facc15;
+    --dark_background: #111827;
+    --dark_background_secondary: #1f2937;
+    --dark_border: #4b5563;
+    --text_color_dark: #f3f4f6;
+    --dark_gray_text: #9ca3af;
+    --dark_input_bg: #374151;
+    --card_bg_light: #ffffff;
+    --body_color_light: #f1f5f9;
+    --border_light: #e2e8f0;
+    --gray_medium_light: #64748b;
+    --light_shadow: rgba(0,0,0,0.05);
+    --dark_shadow: rgba(0,0,0,0.3);
 }
 
-/* Hover effects for job cards */
-.job-card-hover {
-    transition: all 0.3s ease;
+.content-wrapper {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.job-card-hover:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.card {
+    background: var(--card_bg_light);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px var(--light_shadow);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--border_light);
 }
 
-/* Social media icon hover effects */
-.social-icon-hover {
-    transition: all 0.2s ease;
+html.dark .card {
+    background: var(--dark_background_secondary);
+    box-shadow: 0 2px 8px var(--dark_shadow);
+    border-color: var(--dark_border);
 }
 
-.social-icon-hover:hover {
-    transform: scale(1.1);
+.btn-primary, .btn-secondary, .btn-primary-small, .btn-secondary-small {
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    font-size: 0.875rem;
+    white-space: nowrap;
 }
 
-/* Button hover effects */
-.btn-hover {
-    transition: all 0.2s ease;
+.btn-primary {
+    background: var(--primary_blue);
+    color: #fff;
+    border: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-primary:hover {
+    filter: brightness(1.1);
 }
 
-/* Custom focus styles */
-.focus-ring:focus {
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--primary_blue);
+    color: var(--primary_blue);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-secondary:hover {
+    background: var(--primary_blue);
+    color: #fff;
+}
+
+html.dark .btn-secondary {
+    border-color: var(--pop_yellow);
+    color: var(--pop_yellow);
+}
+html.dark .btn-secondary:hover {
+    background: var(--pop_yellow);
+    color: var(--text_color_dark);
+}
+
+/* Social button style */
+.social-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--body_color_light);
+    color: var(--primary_blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+}
+.social-btn:hover {
+    background: var(--primary_blue);
+    color: #fff;
+}
+html.dark .social-btn {
+    background: var(--dark_input_bg);
+    color: var(--pop_yellow);
+}
+html.dark .social-btn:hover {
+    background: var(--pop_yellow);
+    color: var(--text_color_dark);
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border_light);
+    background: var(--body_color_light);
+    transition: all 0.2s;
+    font-size: 0.875rem;
+}
+.form-input:focus, .form-textarea:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(30, 172, 198, 0.3);
+    border-color: var(--primary_blue);
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+html.dark .form-input, html.dark .form-textarea {
+    background: var(--dark_input_bg);
+    border-color: var(--dark_border);
+    color: var(--text_color_dark);
+}
+html.dark .form-input:focus, html.dark .form-textarea:focus {
+    border-color: var(--pop_yellow);
+    box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.2);
 }
 
-/* Responsive adjustments for small screens */
-@media (max-width: 640px) {
-    .job-card {
-        padding: 1rem;
+.modal-content-wrapper {
+    background: var(--card_bg_light);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 480px;
+}
+html.dark .modal-content-wrapper {
+    background: var(--dark_background_secondary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Job card styling (aligned with jobPage.html) */
+.job-card {
+    background-color: white;
+    border: 1px solid #e2e8f0; /* slate-200 */
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden; /* For corner tags */
+}
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.company-logo {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #f1f5f9; /* slate-100 */
+}
+.detail-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+.detail-pill i {
+    margin-right: 6px;
+    color: #64748b; /* slate-500 */
+}
+
+/* Premium / Female Corner Tags */
+.corner-tag {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 4px 12px 4px 20px;
+    color: white;
+    border-bottom-left-radius: 0.75rem;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+}
+.corner-tag.premium {
+    background: linear-gradient(135deg, #fefefe86, #ececebc9); 
+    color: rgb(255, 234, 0);
+}
+.corner-tag.female {
+    background: linear-gradient(135deg, #fefefe86, #ececebc9); 
+    color: hotpink;
+}
+
+/* Dark Mode Card Styles */
+html.dark .job-card {
+    border-color: #334155; /* slate-700 */
+}
+html.dark .company-logo {
+    border-color: #334155; /* slate-700 */
+}
+html.dark .detail-pill {
+    color: #cbd5e1; /* slate-300 */
+}
+
+/* Action Buttons */
+.action-btn {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+.action-btn.apply-border {
+    background-color: transparent;
+    color: #0891b2; /* cyan-600 */
+    border: 1.5px solid #0891b2;
+    font-weight: 600;
+    box-shadow: none;
+}
+.action-btn.apply-border:hover {
+    background-color: #0891b2;
+    color: white;
+    transform: none;
+}
+html.dark .action-btn.apply-border {
+    color: #06b6d4; /* cyan-500 */
+    border-color: #06b6d4;
+}
+html.dark .action-btn.apply-border:hover {
+    background-color: #06b6d4;
+    color: #0f172a; /* slate-900 */
+}
+.action-btn.secondary {
+    background-color: #f1f5f9; /* slate-100 */
+    color: #475569; /* slate-600 */
+}
+.action-btn.secondary:hover {
+    background-color: #e2e8f0; /* slate-200 */
+}
+html.dark .action-btn.secondary {
+    background-color: #334155; /* slate-700 */
+    color: #cbd5e1; /* slate-300 */
+}
+html.dark .action-btn.secondary:hover {
+    background-color: #475569; /* slate-600 */
+}
+
+/* Dashboard-specific layout classes */
+.dashboard-container {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.dashboard-main {
+    flex-grow: 1;
+    width: 100%;
+}
+
+/* Grid layout for job cards on desktop */
+@media (min-width: 1024px) {
+    #job-list-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
     }
-    
-    .view-btn {
-        width: 100%;
-        margin-top: 0.75rem;
+}
+
+/* Mobile-specific styles (max-width: 768px) */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 0.5rem;
+    }
+    .card {
+        padding: 0.75rem;
+    }
+    h1 {
+        font-size: 1.25rem;
+    }
+    h2 {
+        font-size: 1rem;
+    }
+    .text-sm {
+        font-size: 0.75rem;
+    }
+    .text-xs {
+        font-size: 0.65rem;
+    }
+    .btn-primary, .btn-secondary {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    .social-btn {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+    .job-card {
+        padding: 0.75rem;
+    }
+    .job-card h3 {
+        font-size: 0.9rem;
+    }
+    .form-input, .form-textarea {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+    .modal-content-wrapper {
+        width: 95%;
+        margin: 0 1rem;
+    }
+}
+/* Mobile-specific styles (max-width: 768px) */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 0.25rem;
+    }
+    .card {
+        padding: 0.5rem;
+    }
+    h1 {
+        font-size: 1rem;
+    }
+    h2 {
+        font-size: 0.85rem;
+    }
+    h3 {
+        font-size: 0.8rem;
+    }
+    p, .text-sm {
+        font-size: 0.7rem;
+    }
+    .text-xs {
+        font-size: 0.6rem;
+    }
+
+    /* Buttons smaller */
+    .btn-primary, .btn-secondary {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+        border-radius: 0.4rem;
+    }
+    .btn-primary-small, .btn-secondary-small {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.65rem;
+    }
+
+    /* Social buttons */
+    .social-btn {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.7rem;
+    }
+
+    /* Job cards */
+    .job-card {
+        padding: 0.5rem;
+    }
+    .job-card h3 {
+        font-size: 0.8rem;
+    }
+    .company-logo {
+        width: 36px;
+        height: 36px;
+    }
+    .detail-pill {
+        font-size: 0.6rem;
+        padding: 2px 6px;
+    }
+
+    /* Form inputs */
+    .form-input, .form-textarea {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    /* Action buttons */
+    .action-btn {
+        font-size: 0.7rem;
+        padding: 6px 8px;
+    }
+
+    /* Modal */
+    .modal-content-wrapper {
+        width: 95%;
+        margin: 0 auto;
+        padding: 0.75rem;
     }
 }

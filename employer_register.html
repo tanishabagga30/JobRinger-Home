@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Registration - JobRinger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/employer_register.css">
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="content-wrapper">
+        <main class="main-content">
+            <div class="registration-container">
+                <div class="registration-card">
+                    <h1 class="page-title">Employer Registration</h1>
+                    
+                    <div class="progress-indicator">
+                        <div class="step active" data-step="1">
+                            <span class="step-circle">1</span>
+                            <span class="step-text">Company Info</span>
+                        </div>
+                        <div class="step" data-step="2">
+                            <span class="step-circle">2</span>
+                            <span class="step-text">Location</span>
+                        </div>
+                        <div class="step" data-step="3">
+                            <span class="step-circle">3</span>
+                            <span class="step-text">Contact Details</span>
+                        </div>
+                    </div>
+                    
+                    <form id="registration-form" class="registration-form">
+                        <div id="stage-1" class="form-stage active">
+                            <h2 class="stage-title">Company Information <span class="required-star">*</span></h2>
+                            
+                            <div class="form-group">
+                                <label for="employer-type">Please Select Employer Type<span class="required-star">*</span></label>
+                                <select id="employer-type" required>
+                                    <option value="" disabled selected>Please Select Employer Type</option>
+                                    <option value="direct">Direct Employer</option>
+                                    <option value="individual">Individual Professional</option>
+                                    <option value="recruitment">Recruitment Agency/Executive Search Firm</option>
+                                    <option value="freelance">Independent / Freelance Recruiter</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="business-email">Business email ID<span class="required-star">*</span></label>
+                                <input type="email" id="business-email" value="tanishabagga30@gmail.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="secondary-email">Secondary email to contact</label>
+                                <input type="email" id="secondary-email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password<span class="required-star">*</span></label>
+                                <input type="password" id="password" placeholder="Enter Password" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password<span class="required-star">*</span></label>
+                                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company-name">Company / Individual Name as per Official Documents<span class="required-star">*</span></label>
+                                <input type="text" id="company-name" placeholder="Enter Company Name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company-url">Company URL / Website</label>
+                                <input type="url" id="company-url" placeholder="Enter Website URL">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company-logo">Company Logo</label>
+                                <div class="file-upload-container">
+                                    <input type="file" id="company-logo" accept="image/jpeg,image/png">
+                                    <span class="file-info">JPG, PNG - 2MB max</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="about-company">About Company<span class="required-star">*</span></label>
+                                <textarea id="about-company" placeholder="Enter Company Description" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="industry-type">Industry Type<span class="required-star">*</span></label>
+                                <select id="industry-type" required>
+                                    <option value="" disabled selected>Select Industry Type</option>
+                                    <option>ACCOUNTING / ACCOUNTANT FIRM</option>
+                                    <option>ADVERTISING / PUBLIC RELATIONS</option>
+                                    <option>AGRICULTURE</option>
+                                    <option>AIRLINES / AVIATION</option>
+                                    <option>AUTOMOBILE / AUTOMOTIVE</option>
+                                    </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="employee-strength">Employee Strength<span class="required-star">*</span></label>
+                                <select id="employee-strength" required>
+                                    <option value="" disabled selected>0-1</option>
+                                    <option>1-10</option>
+                                    <option>11-50</option>
+                                    <option>51-200</option>
+                                    <option>201-500</option>
+                                    <option>500+</option>
+                                </select>
+                            </div>
+                            
+                            <div class="button-group">
+                                <button type="button" class="btn-continue" onclick="nextStage()">Continue</button>
+                            </div>
+                        </div>
+
+                        <div id="stage-2" class="form-stage">
+                            <h2 class="stage-title">Business Location Details <span class="required-star">*</span></h2>
+                            
+                            <div class="form-group">
+                                <label for="country">Country<span class="required-star">*</span></label>
+                                <input type="text" id="country" value="India" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="state">State<span class="required-star">*</span></label>
+                                <input type="text" id="state" placeholder="Enter State" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city">City<span class="required-star">*</span></label>
+                                <input type="text" id="city" placeholder="Enter City" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pincode">Pincode</label>
+                                <input type="text" id="pincode" placeholder="Enter pincode">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="official-address">Official Address<span class="required-star">*</span></label>
+                                <textarea id="official-address" placeholder="Enter Office Address" rows="4" required></textarea>
+                            </div>
+                            
+                            <h2 class="stage-title mt-8">Taxation / Billing Details</h2>
+                            <div class="form-group">
+                                <label>GST Registered<span class="required-star">*</span></label>
+                                <div class="radio-group">
+                                    <input type="radio" id="gst-yes" name="gst-registered" value="yes" required>
+                                    <label for="gst-yes">Yes</label>
+                                    <input type="radio" id="gst-no" name="gst-registered" value="no">
+                                    <label for="gst-no">No</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="gst-no-input">GST No</label>
+                                <input type="text" id="gst-no-input" placeholder="Enter GST No">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pan-no">PAN No<span class="required-star">*</span></label>
+                                <input type="text" id="pan-no" placeholder="Enter PAN No" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="msme-no">MSME/Udyam No</label>
+                                <input type="text" id="msme-no" placeholder="eg. UDYAM-XX-00-0000000">
+                            </div>
+                            
+                            <div class="button-group">
+                                <button type="button" class="btn-back" onclick="prevStage()">Back</button>
+                                <button type="button" class="btn-continue" onclick="nextStage()">Continue</button>
+                            </div>
+                        </div>
+
+                        <div id="stage-3" class="form-stage">
+                            <h2 class="stage-title">Contact Details <span class="required-star">*</span></h2>
+                            
+                            <div class="form-group">
+                                <label for="contact-person">Contact Person Name<span class="required-star">*</span></label>
+                                <input type="text" id="contact-person" placeholder="Enter Contact Person Name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-designation">Contact Person Designation<span class="required-star">*</span></label>
+                                <input type="text" id="contact-designation" placeholder="Enter Person Designation" required>
+                            </div>
+
+                            <div class="form-group mobile-input">
+                                <label for="mobile-no">Mobile No<span class="required-star">*</span></label>
+                                <div class="input-with-icon">
+                                    <span class="icon-text">+91</span>
+                                    <input type="text" id="mobile-no" placeholder="Enter Mobile No" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="landline">Landline</label>
+                                <input type="text" id="landline" placeholder="LandLine Number With STD code">
+                            </div>
+                            
+                            <h2 class="stage-title mt-8">Email Id's for getting job response</h2>
+                            
+                            <div class="form-group">
+                                <label for="email-1">Email ID 1<span class="required-star">*</span></label>
+                                <input type="email" id="email-1" value="tanishabagga30@gmail.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email-2">Email ID 2</label>
+                                <input type="email" id="email-2" placeholder="alternate Job Resopnse Email ID">
+                            </div>
+
+                            <div class="button-group">
+                                <button type="button" class="btn-back" onclick="prevStage()">Back</button>
+                                <button type="submit" class="btn-register">Register Now</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+        <div id="footer-placeholder" class="mt-auto"></div>
+    </div>
+     <script src="js/script.js"></script>
+    <script src="js/employer_register.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Companies You Follow - Job Ringer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/companies-following.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
+    <!-- Universal Header -->
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+
+    <!-- Main content container -->
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <header class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-cyan-600 dark:text-cyan-400">Companies You Follow</h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">Your personalized feed of company updates and job openings.</p>
+        </header>
+
+        <!-- Search and Sort Controls -->
+        <section class="mb-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+            <div class="flex flex-col sm:flex-row gap-4 items-center">
+                <div class="relative flex-grow w-full">
+                    <input type="search" id="search-input" placeholder="Search companies..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:ring-cyan-500 focus:border-cyan-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <label for="sort-select" class="text-sm font-medium text-gray-700 dark:text-gray-300">Sort by:</label>
+                    <select id="sort-select" class="border-gray-300 rounded-md shadow-sm focus:ring-cyan-500 focus:border-cyan-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        <option value="date_followed_desc">Date Followed (Newest)</option>
+                        <option value="date_followed_asc">Date Followed (Oldest)</option>
+                        <option value="name_asc">Name (A-Z)</option>
+                        <option value="name_desc">Name (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Companies List Container -->
+        <section>
+            <div id="companies-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Company cards will be dynamically inserted here by JavaScript -->
+            </div>
+             <div id="no-companies-message" class="hidden text-center py-12 px-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <i class="far fa-building fa-4x text-gray-300 dark:text-gray-600 mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-200">No companies found</h3>
+                <p class="text-gray-500 dark:text-gray-400 mt-1">Try adjusting your search or follow some companies to get started.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Universal Components -->
+    <div id="footer-placeholder" class="mt-2"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/companies-following.js"></script>
+</body>
+</html>

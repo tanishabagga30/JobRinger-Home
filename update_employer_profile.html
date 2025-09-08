@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JobRinger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/update_employer_profile.css">
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="content-wrapper">
+        <main class="main-content">
+            <div class="profile-container">
+                <div class="profile-card">
+                    <h1 class="page-title">Edit Your Profile</h1>
+                    
+                    <form id="update-profile-form">
+
+                        
+                        <div class="section-header">
+                            <h2 class="stage-title">Company Information</h2>
+                            <button type="button" class="btn-edit" data-section="company">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                        <div id="company-section" class="profile-section view-mode">
+                            <div class="form-group">
+                                <label>Employer Type</label>
+                                <span class="profile-value" data-field="employer-type">Recruitment Agency/Executive Search Firm</span>
+                                <select id="employer-type" class="editable-field hidden">
+                                    <option value="recruitment" selected>Recruitment Agency/Executive Search Firm</option>
+                                    <option value="direct">Direct Employer</option>
+                                    <option value="individual">Individual Professional</option>
+                                    <option value="freelance">Independent / Freelance Recruiter</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Business email ID</label>
+                                <span class="profile-value" data-field="business-email">tanishabagga30@gmail.com</span>
+                                <input type="email" id="business-email" class="editable-field hidden" value="tanishabagga30@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Secondary email to contact</label>
+                                <span class="profile-value" data-field="secondary-email">Not provided</span>
+                                <input type="email" id="secondary-email" class="editable-field hidden" value="">
+                            </div>
+                            <div class="form-group">
+                                <label>Company / Individual Name</label>
+                                <span class="profile-value" data-field="company-name">HINDCO Consulting Services</span>
+                                <input type="text" id="company-name" class="editable-field hidden" value="HINDCO Consulting Services">
+                            </div>
+                            <div class="form-group">
+                                <label>Company URL / Website</label>
+                                <span class="profile-value" data-field="company-url">https://www.hindco.in</span>
+                                <input type="url" id="company-url" class="editable-field hidden" value="https://www.hindco.in">
+                            </div>
+                            <div class="form-group">
+                                <label>About Company</label>
+                                <p class="profile-value" data-field="about-company">HINDCO is a leading Executive Search & Career Coaching Firm...</p>
+                                <textarea id="about-company" rows="4" class="editable-field hidden">HINDCO is a leading Executive Search & Career Coaching Firm...</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Industry Type</label>
+                                <span class="profile-value" data-field="industry-type">HR Staffing & Recruitment Firms / Employment Agency / Background - Reference Check Firms</span>
+                                <select id="industry-type" class="editable-field hidden">
+                                    <option value="recruitment" selected>HR Staffing & Recruitment Firms / Employment Agency / Background - Reference Check Firms</option>
+                                    <option value="accounting">ACCOUNTING / ACCOUNTANT FIRM</option>
+                                    <option value="advertising">ADVERTISING / PUBLIC RELATIONS</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Employee Strength</label>
+                                <span class="profile-value" data-field="employee-strength">11-50</span>
+                                <select id="employee-strength" class="editable-field hidden">
+                                    <option>0-1</option>
+                                    <option>1-10</option>
+                                    <option selected>11-50</option>
+                                    <option>51-200</option>
+                                </select>
+                            </div>
+                            <div class="button-group hidden">
+                                <button type="button" class="btn-cancel" data-section="company">Cancel</button>
+                            </div>
+                        </div>
+
+                        <div class="section-header">
+                            <h2 class="stage-title">Business Location Details</h2>
+                            <button type="button" class="btn-edit" data-section="location">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                        <div id="location-section" class="profile-section view-mode">
+                             <div class="form-group">
+                                <label>Country</label>
+                                <span class="profile-value" data-field="country">India</span>
+                                <input type="text" id="country" class="editable-field hidden" value="India">
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                <span class="profile-value" data-field="state">Maharashtra</span>
+                                <input type="text" id="state" class="editable-field hidden" value="Maharashtra">
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <span class="profile-value" data-field="city">Mumbai</span>
+                                <input type="text" id="city" class="editable-field hidden" value="Mumbai">
+                            </div>
+                            <div class="form-group">
+                                <label>Official Address</label>
+                                <p class="profile-value" data-field="official-address">631, Building No.3, Navjivan Society, Lamington Road, Mumbai 400008</p>
+                                <textarea id="official-address" rows="4" class="editable-field hidden">631, Building No.3, Navjivan Society, Lamington Road, Mumbai 400008</textarea>
+                            </div>
+                            <div class="button-group hidden">
+                                <button type="button" class="btn-cancel" data-section="location">Cancel</button>
+                            </div>
+                        </div>
+
+                        <div class="section-header">
+                            <h2 class="stage-title">Contact Details</h2>
+                            <button type="button" class="btn-edit" data-section="contact">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                        <div id="contact-section" class="profile-section view-mode">
+                            <div class="form-group">
+                                <label>Contact Person Name</label>
+                                <span class="profile-value" data-field="contact-person">Tanisha Bagga</span>
+                                <input type="text" id="contact-person" class="editable-field hidden" value="Tanisha Bagga">
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Person Designation</label>
+                                <span class="profile-value" data-field="contact-designation">HR Manager</span>
+                                <input type="text" id="contact-designation" class="editable-field hidden" value="HR Manager">
+                            </div>
+                            <div class="form-group mobile-input">
+                                <label>Mobile No</label>
+                                <span class="profile-value" data-field="mobile-no">+91 9876543210</span>
+                                <div class="input-with-icon editable-field hidden">
+                                    <span class="icon-text">+91</span>
+                                    <input type="text" id="mobile-no" value="9876543210">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email ID 1</label>
+                                <span class="profile-value" data-field="email-1">tanishabagga30@gmail.com</span>
+                                <input type="email" id="email-1" class="editable-field hidden" value="tanishabagga30@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Email ID 2</label>
+                                <span class="profile-value" data-field="email-2">alternate_email@gmail.com</span>
+                                <input type="email" id="email-2" class="editable-field hidden" value="alternate_email@gmail.com">
+                            </div>
+                            <div class="button-group hidden">
+                                <button type="button" class="btn-cancel" data-section="contact">Cancel</button>
+                            </div>
+                        </div>
+
+                        <div class="update-profile-btn-container">
+                             <button type="submit" class="btn-register">Update Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+        <div id="footer-placeholder" class="mt-auto"></div>
+    </div>
+    <script src="js/update_employer_profile.js"></script>
+    <script src="js/script.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,274 @@
+/* Inherit universal styles from the main file */
+@import url('universal.css');
+
+/* --- Registration Page Specific Styles --- */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 120px);
+}
+
+.registration-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.registration-card {
+    background: var(--card_bg_light);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid var(--border_light);
+    transition: all 0.2s;
+}
+html.dark .registration-card {
+    background: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary_blue);
+}
+html.dark .page-title {
+    color: var(--pop_yellow);
+}
+
+/* Progress Indicator */
+.progress-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 0 1rem;
+}
+.progress-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: #e2e8f0;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+html.dark .progress-indicator::before {
+    background: #4b5563;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+.step-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid #e2e8f0;
+    transition: all 0.2s;
+}
+.step-text {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #6b7280;
+    transition: all 0.2s;
+}
+
+.step.active .step-circle {
+    background: var(--primary_blue);
+    color: white;
+    border-color: var(--primary_blue);
+}
+.step.active .step-text {
+    color: var(--primary_blue);
+    font-weight: 600;
+}
+html.dark .step.active .step-circle {
+    background: var(--pop_yellow);
+    border-color: var(--pop_yellow);
+    color: #111827;
+}
+html.dark .step.active .step-text {
+    color: var(--pop_yellow);
+}
+
+/* Form Styling */
+.form-stage {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.form-stage.active {
+    display: block;
+}
+.stage-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border_light);
+    padding-bottom: 1rem;
+}
+.required-star {
+    color: #ef4444;
+    margin-left: 0.25rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text_color_light);
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border_light);
+    background: var(--body_color_light);
+    color: var(--text_color_light);
+    transition: all 0.2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--primary_blue);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+.form-group input::placeholder, .form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+.file-upload-container input[type="file"] {
+    padding: 0.5rem;
+    border: 1px solid var(--border_light);
+    border-radius: 0.5rem;
+}
+.file-info {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+.radio-group input[type="radio"] {
+    width: auto;
+}
+
+.input-with-icon {
+    display: flex;
+    align-items: center;
+}
+.input-with-icon .icon-text {
+    background: #e5e7eb;
+    padding: 0.75rem 1rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border: 1px solid var(--border_light);
+    border-right: none;
+}
+.input-with-icon input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.btn-continue, .btn-register {
+    background: var(--primary_blue);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+.btn-continue:hover, .btn-register:hover {
+    background: #1d4ed8;
+}
+.btn-back {
+    background: var(--body_color_light);
+    color: var(--text_color_light);
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border_light);
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+.btn-back:hover {
+    background: #e5e7eb;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+    .registration-card {
+        padding: 1rem;
+    }
+    .page-title {
+        font-size: 1.5rem;
+    }
+    .progress-indicator {
+        padding: 0;
+    }
+    .step-circle {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    .step-text {
+        font-size: 0.7rem;
+    }
+    .stage-title {
+        font-size: 1.1rem;
+    }
+    .form-group label {
+        font-size: 0.8rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+        padding: 0.6rem 0.8rem;
+    }
+    .button-group {
+        flex-direction: column;
+    }
+    .btn-continue, .btn-register, .btn-back {
+        width: 100%;
+        text-align: center;
+    }
+}

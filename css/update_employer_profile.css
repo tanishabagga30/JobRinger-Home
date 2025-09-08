@@ -1,0 +1,255 @@
+/* A self-contained stylesheet for the employer profile edit page */
+
+/* Define the base color scheme for light and dark modes */
+.light {
+    --primary_blue: #0ea5e9;
+    --pop_yellow: #facc15;
+    --card_bg: #ffffff;
+    --body_bg: #f8fafc;
+    --text_color: #1e293b;
+    --secondary_text: #64748b;
+    --border_color: #e2e8f0;
+    --input_bg: #f1f5f9;
+    --shadow_color: rgba(0,0,0,0.08);
+}
+
+.dark {
+    --primary_blue: #0ea5e9;
+    --pop_yellow: #facc15;
+    --card_bg: #1f2937;
+    --body_bg: #0f172a;
+    --text_color: #e2e8f0;
+    --secondary_text: #94a3b8;
+    --border_color: #475569;
+    --input_bg: #334155;
+    --shadow_color: rgba(0,0,0,0.4);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--body_bg);
+    color: var(--text_color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.profile-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.profile-card {
+    background: var(--card_bg);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px var(--shadow_color);
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid var(--border_color);
+    transition: all 0.3s ease;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text_color);
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--primary_blue);
+    padding-bottom: 0.5rem;
+}
+html.dark .page-title {
+    border-bottom-color: var(--pop_yellow);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border_color);
+}
+
+.stage-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary_blue);
+}
+html.dark .stage-title {
+    color: var(--pop_yellow);
+}
+
+.section-header .btn-edit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--input_bg);
+    border: 1px solid var(--border_color);
+    color: var(--secondary_text);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.section-header .btn-edit:hover {
+    background-color: var(--primary_blue);
+    color: white;
+    border-color: var(--primary_blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(14, 165, 233, 0.2);
+}
+
+html.dark .section-header .btn-edit:hover {
+    background-color: var(--pop_yellow);
+    color: #1f2937;
+    border-color: var(--pop_yellow);
+    box-shadow: 0 4px 6px rgba(250, 204, 21, 0.2);
+}
+
+.profile-section {
+    transition: all 0.3s ease;
+}
+
+.profile-section .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.profile-section label {
+    font-weight: 500;
+    color: var(--secondary_text);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.profile-value {
+    font-size: 1rem;
+    color: var(--text_color);
+    padding: 0.5rem 0;
+    font-weight: 600;
+}
+
+.profile-section.view-mode .profile-value {
+    display: block;
+}
+
+.profile-section.edit-mode .profile-value,
+.profile-section.view-mode .editable-field,
+.profile-section.view-mode .button-group {
+    display: none;
+}
+
+.profile-section.edit-mode .editable-field,
+.profile-section.edit-mode .button-group {
+    display: block;
+}
+
+.profile-section.edit-mode .editable-field {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border_color);
+    background: var(--input_bg);
+    transition: all 0.2s;
+    font-size: 0.875rem;
+}
+
+.profile-section.edit-mode .editable-field:focus {
+    outline: none;
+    border-color: var(--primary_blue);
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+
+html.dark .profile-section.edit-mode .editable-field:focus {
+    border-color: var(--pop_yellow);
+    box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.2);
+}
+
+.mobile-input .profile-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-input .input-with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.mobile-input .icon-text {
+    padding: 0.6rem;
+    background-color: #e2e8f0;
+    border-radius: 0.5rem 0 0 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+}
+
+html.dark .mobile-input .icon-text {
+    background-color: #334155;
+    color: #cbd5e1;
+}
+
+.mobile-input .input-with-icon input {
+    border-left: none;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.btn-cancel {
+    background: transparent;
+    color: var(--secondary_text);
+    border: 1px solid var(--border_color);
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: var(--input_bg);
+}
+
+.update-profile-btn-container {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px dashed var(--border_color);
+}
+
+.btn-register {
+    padding: 0.75rem 2.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    background: #0ea5e9;
+    border: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3);
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(14, 165, 233, 0.4);
+}
