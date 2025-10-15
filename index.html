@@ -11,21 +11,15 @@
 </head>
 
 
-
-
-
 <div id="header-placeholder" class="sticky top-0 z-50"></div>
 <body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
-   
-
-
     <div id="header-placeholder"></div>
     <div id="nav-placeholder"></div>
     <div id="menu-placeholder"></div>
     <div id="search-placeholder"></div>
 
+
     <div class="content-wrapper">
-     
         <main class="flex-grow">
             <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-center">
                 <div class="toggle-container">
@@ -38,7 +32,8 @@
                 </div>
             </section>
 
-             <div id="job-seeker-view">
+
+            <div id="job-seeker-view">
                 <section class="slider lg:hidden mb-8 mx-4 rounded-xl overflow-hidden shadow-lg">
                     <div class="slide active"><img src="https://placehold.co/600x400/334155/ffffff?text=Dream+Job" alt="Banner 1"></div>
                     <div class="slide"><img src="https://placehold.co/600x400/1e40af/ffffff?text=New+Career" alt="Banner 2"></div>
@@ -48,20 +43,20 @@
                         <button id="nextBtnMobile"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </section>
-                   
+                            
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="hidden lg:grid grid-cols-12 gap-6 mb-12">
                         <div class="col-span-9">
                             <section class="hero-banner-collage relative rounded-xl overflow-hidden shadow-lg animate-fade-in text-white">
-                                <div class="slide active"><img src="https://placehold.co/1200x400/334155/ffffff?text=Find+Your+Dream+Job" alt="Banner 1" class="w-full h-full object-cover"></div>
-                                <div class="slide"><img src="https://placehold.co/1200x400/1e40af/ffffff?text=Explore+New+Careers" alt="Banner 2" class="w-full h-full object-cover"></div>
-                                <div class="slide"><img src="https://placehold.co/1200x400/7c2d12/ffffff?text=Get+Hired+Today" alt="Banner 3" class="w-full h-full object-cover"></div>
-                                <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center p-8 text-center"><h1 class="text-3xl font-bold mb-3">Find Your Dream Job Today</h1><p class="text-lg mb-4 max-w-xl">Search millions of openings and find the one that's right for you.</p></div>
+                                <div class="slide active"><img src="images/jobringer-banner-1.png" alt="Banner 1" class="w-full h-full object-cover"></div>
+                                <div class="slide"><img src="images/jobringer-banner-2.png" alt="Banner 2" class="w-full h-full object-cover"></div>
+                                <div class="slide"><img src="images/jobringer-banner-3.png" alt="Banner 3" class="w-full h-full object-cover"></div>
+                                
                                 <div class="slider-nav"><button id="prevBtn"><i class="fas fa-chevron-left"></i></button><button id="nextBtn"><i class="fas fa-chevron-right"></i></button></div>
                             </section>
                         </div>
                         <div class="col-span-3">
-                            <div class="side-info-card h-full">
+                            <div class="side-info-card h-40">
                                 <h3 class="text-lg font-bold mb-3">Industry Updates</h3>
                                 <div class="space-y-3">
                                     <div class="info-card"><img src="https://placehold.co/100x100/16a34a/ffffff?text=AI" alt="AI Jobs"><div class="info-card-content"><h4><a href="#">OpenAI jobs in India: Multiple vacancies announced</a></h4><span class="text-xs text-slate-500 dark:text-slate-400">Hindustan Times</span></div></div>
@@ -89,6 +84,7 @@
                         </div>
                     </div>
 
+
                     <div class="mobile-reorder-container">
                         <section id="mobile-vacancy-wrapper" class="mb-8 lg:hidden">
                             <h2 class="text-lg font-bold mb-3">Find job vacancies by</h2>
@@ -109,10 +105,10 @@
                             <h2 class="text-2xl font-bold text-center mb-6">Featured Employers</h2>
                             <div class="featured-employers" id="employerScroll"></div>
                         </section>
-                            <section id="trending-jobs-section" class="mb-12 animate-fade-in">
-                                <div class="flex items-center justify-between mb-4"><h2 class="text-xl font-bold">Trending Job Vacancies</h2><div class="job-slider-nav flex items-center gap-2"><button id="jobPrevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button><button id="jobNextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button></div></div>
-                                <div class="job-card-slider-container"><div class="job-card-slider"><div class="job-card-wrapper" id="jobCardWrapper"></div></div></div>
-                            </section>
+                        <section id="trending-jobs-section" class="mb-12 animate-fade-in">
+                            <div class="flex items-center justify-between mb-4"><h2 class="text-xl font-bold">Trending Job Vacancies</h2><div class="job-slider-nav flex items-center gap-2"><button id="jobPrevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button><button id="jobNextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button></div></div>
+                            <div class="job-card-slider-container"><div class="job-card-slider"><div class="job-card-wrapper" id="jobCardWrapper"></div></div></div>
+                        </section>
                         <section id="mobile-industry-updates" class="mb-8 lg:hidden">
                             <div class="side-info-card h-full">
                                 <h3 class="text-lg font-bold mb-3">Industry Updates</h3>
@@ -133,6 +129,121 @@
                         </section>
                     </div>
 
+
+                    <!-- Blog Section for Job Seeker -->
+                    <section id="blog-section-seeker" class="my-8 animate-fade-in">
+                        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 class="text-2xl font-bold text-center mb-6 text-purple-800 dark:text-purple-300">Latest Career Insights</h2>
+                            <div class="flex items-center justify-between mb-4">
+                                <div></div>
+                                <div class="blog-slider-nav flex items-center gap-2">
+                                    <button id="blogPrevBtnSeeker" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+                                    <button id="blogNextBtnSeeker" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="blog-card-slider-container">
+                                <div class="blog-card-slider">
+                                    <div class="blog-card-wrapper" id="blogCardWrapperSeeker">
+                                        <article class="blog-card bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-200/50 dark:border-purple-700/50">
+                                            <div class="blog-icon mb-3 text-2xl text-purple-600 dark:text-purple-400"><i class="fas fa-chart-line"></i></div>
+                                            <h3 class="text-base font-semibold mb-2 text-gray-800 dark:text-gray-200"><a href="https://www.forbes.com/sites/karadennison/2025/03/17/what-to-expect-from-the-job-market-as-a-job-seeker-in-2025/" target="_blank">What To Expect From The Job Market As A Job Seeker In 2025</a></h3>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">Significant trends have been standing out recently. A cooling market, the rise of AI-driven hiring, the stabilization of remote and hybrid...</p>
+                                            <a href="https://www.forbes.com/sites/karadennison/2025/03/17/what-to-expect-from-the-job-market-as-a-job-seeker-in-2025/" target="_blank" class="text-purple-600 dark:text-purple-400 font-medium text-xs hover:underline flex items-center"><span>Read Full Article</span> <i class="fas fa-arrow-right ml-1"></i></a>
+                                        </article>
+                                        <article class="blog-card bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200/50 dark:border-orange-700/50">
+                                            <div class="blog-icon mb-3 text-2xl text-orange-600 dark:text-orange-400"><i class="fas fa-lightbulb"></i></div>
+                                            <h3 class="text-base font-semibold mb-2 text-gray-800 dark:text-gray-200"><a href="https://www.linkedin.com/pulse/employment-market-2025-trends-challenges-opportunities-ig-recruit-oewpf" target="_blank">The Employment Market in 2025: Trends, Challenges, and Opportunities</a></h3>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">The employment market in 2025 is undergoing a significant transformation, shaped by rapid technological advancements, evolving workforce expectations, and...</p>
+                                            <a href="https://www.linkedin.com/pulse/employment-market-2025-trends-challenges-opportunities-ig-recruit-oewpf" target="_blank" class="text-orange-600 dark:text-orange-400 font-medium text-xs hover:underline flex items-center"><span>Read Full Article</span> <i class="fas fa-arrow-right ml-1"></i></a>
+                                        </article>
+                                        <article class="blog-card bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-green-200/50 dark:border-green-700/50">
+                                            <div class="blog-icon mb-3 text-2xl text-green-600 dark:text-green-400"><i class="fas fa-users"></i></div>
+                                            <h3 class="text-base font-semibold mb-2 text-gray-800 dark:text-gray-200"><a href="https://www.linkedin.com/business/talent/blog/talent-strategy/most-in-demand-jobs" target="_blank">What Are the Most In-Demand Jobs of 2025?</a></h3>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">The three most in-demand jobs overall — software engineer, nurse, and salesperson — remained the same this quarter, though nurse and salesperson...</p>
+                                            <a href="https://www.linkedin.com/business/talent/blog/talent-strategy/most-in-demand-jobs" target="_blank" class="text-green-600 dark:text-green-400 font-medium text-xs hover:underline flex items-center"><span>Read Full Article</span> <i class="fas fa-arrow-right ml-1"></i></a>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-6">
+                                <a href="/blogs" class="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition-colors shadow-lg">Explore All Blogs</a>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <section class="mb-12 animate-fade-in">
+                        <h2 class="text-2xl font-bold text-center mb-6">How It Works for Job Seekers</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 how-it-works">
+                            <div class="how-it-works-card">
+                                <div class="how-it-works-icon bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-200">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="how-it-works-content">
+                                    <h3 class="font-bold">Create Your Profile</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Build a professional profile and upload your resume in minutes.</p>
+                                </div>
+                            </div>
+                            <div class="how-it-works-card">
+                                <div class="how-it-works-icon bg-emerald-100 text-emerald-600 dark:bg-emerald-900 dark:text-emerald-200">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="how-it-works-content">
+                                    <h3 class="font-bold">Search and Filter</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Explore millions of job openings by location, title, or keyword.</p>
+                                </div>
+                            </div>
+                            <div class="how-it-works-card">
+                                <div class="how-it-works-icon bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-200">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="how-it-works-content">
+                                    <h3 class="font-bold">Apply with Ease</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Apply to jobs instantly with a single click or a quick application.</p>
+                                </div>
+                            </div>
+                            <div class="how-it-works-card">
+                                <div class="how-it-works-icon bg-yellow-100 text-yellow-600 dark:bg-yellow-900 dark:text-yellow-200">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div class="how-it-works-content">
+                                    <h3 class="font-bold">Get Notified</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Set up job alerts and get new opportunities delivered to your inbox.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="mb-12 animate-fade-in">
+                        <h2 class="text-2xl font-bold text-center mb-6">Top Categories to Explore</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                            <div class="top-category-card">
+                                <img src="https://placehold.co/100x100/cbd5e1/334155?text=IT" alt="IT Jobs" class="rounded-lg mb-2 mx-auto">
+                                <span class="font-semibold text-center text-sm">IT & Software</span>
+                            </div>
+                            <div class="top-category-card">
+                                <img src="https://placehold.co/100x100/cbd5e1/334155?text=Fin" alt="Finance Jobs" class="rounded-lg mb-2 mx-auto">
+                                <span class="font-semibold text-center text-sm">Finance & Accounting</span>
+                            </div>
+                            <div class="top-category-card">
+                                <img src="https://placehold.co/100x100/cbd5e1/334155?text=Mkt" alt="Marketing Jobs" class="rounded-lg mb-2 mx-auto">
+                                <span class="font-semibold text-center text-sm">Marketing</span>
+                            </div>
+                            <div class="top-category-card">
+                                <img src="https://placehold.co/100x100/cbd5e1/334155?text=HR" alt="HR Jobs" class="rounded-lg mb-2 mx-auto">
+                                <span class="font-semibold text-center text-sm">Human Resources</span>
+                            </div>
+                            <div class="top-category-card">
+                                <img src="https://placehold.co/100x100/cbd5e1/334155?text=Design" alt="Design Jobs" class="rounded-lg mb-2 mx-auto">
+                                <span class="font-semibold text-center text-sm">Design & Creative</span>
+                            </div>
+                            <div class="top-category-card">
+                                <img src="https://placehold.co/100x100/cbd5e1/334155?text=Sales" alt="Sales Jobs" class="rounded-lg mb-2 mx-auto">
+                                <span class="font-semibold text-center text-sm">Sales</span>
+                            </div>
+                        </div>
+                    </section>
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in mb-12">
                         <section>
                             <h2 class="text-xl font-bold mb-4">Job Ringer Stats</h2>
@@ -164,8 +275,25 @@
                             </div>
                         </section>
                     </div>
+
+
+                    <section class="my-12 animate-fade-in bg-cyan-600 text-white p-8 rounded-2xl shadow-xl flex flex-col lg:flex-row items-center justify-between">
+                        <div class="lg:w-1/2 text-center lg:text-left mb-6 lg:mb-0">
+                            <h2 class="text-2xl font-bold mb-2">Find Your Perfect Job On-the-Go</h2>
+                            <p class="text-lg">Download the Job Ringer app for exclusive job alerts and a seamless application experience.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#" class="bg-white text-slate-800 px-6 py-3 rounded-full font-semibold flex items-center gap-3 hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-apple text-2xl"></i> App Store
+                            </a>
+                            <a href="#" class="bg-white text-slate-800 px-6 py-3 rounded-full font-semibold flex items-center gap-3 hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-google-play text-2xl"></i> Google Play
+                            </a>
+                        </div>
+                    </section>
                 </div>
             </div>
+
 
             <div id="employer-view" class="hidden">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -175,12 +303,223 @@
                         <p class="mb-8 max-w-xl mx-auto">Post a job and connect with millions of qualified candidates.</p>
                         <button class="w-full sm:w-auto bg-cyan-600 text-white px-10 py-3 rounded-full hover:bg-cyan-700 font-semibold transition-colors shadow-lg">Post a Job Now</button>
                     </div>
+
+
+                    <section class="my-12 animate-fade-in">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-2xl font-bold">Top Talents</h2>
+                            <div class="talent-slider-nav flex items-center gap-2">
+                                <button id="talentPrevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+                                <button id="talentNextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div id="top-talents-wrapper" class="relative">
+                            <div class="talent-card-slider-container">
+                                <div class="talent-card-slider">
+                                    <div id="top-talents-grid" class="talent-card-wrapper">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="talent-grid-overlay" class="hidden"></div>
+                    </section>
+                    
+                    <!-- Blog Section for Employer View -->
+                    <section id="blog-section-employer" class="my-8 animate-fade-in">
+                        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 class="text-2xl font-bold text-center mb-6 text-indigo-800 dark:text-indigo-300">Hiring Strategies & Insights</h2>
+                            <div class="flex items-center justify-between mb-4">
+                                <div></div>
+                                <div class="blog-slider-nav flex items-center gap-2">
+                                    <button id="blogPrevBtnEmployer" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
+                                    <button id="blogNextBtnEmployer" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="blog-card-slider-container">
+                                <div class="blog-card-slider">
+                                    <div class="blog-card-wrapper" id="blogCardWrapperEmployer">
+                                        <article class="blog-card bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/20 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-indigo-200/50 dark:border-indigo-700/50">
+                                            <div class="blog-icon mb-3 text-2xl text-indigo-600 dark:text-indigo-400"><i class="fas fa-briefcase"></i></div>
+                                            <h3 class="text-base font-semibold mb-2 text-gray-800 dark:text-gray-200"><a href="https://business.linkedin.com/talent-solutions/resources/future-of-recruiting" target="_blank">The Future of Recruiting 2025</a></h3>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">And indeed, LinkedIn data shows that companies with the most skills-based searches are +12% more likely to make a quality hire.</p>
+                                            <a href="https://business.linkedin.com/talent-solutions/resources/future-of-recruiting" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-medium text-xs hover:underline flex items-center"><span>Read Full Article</span> <i class="fas fa-arrow-right ml-1"></i></a>
+                                        </article>
+                                        <article class="blog-card bg-gradient-to-br from-rose-50 to-red-50 dark:from-rose-900/20 dark:to-red-900/20 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-rose-200/50 dark:border-rose-700/50">
+                                            <div class="blog-icon mb-3 text-2xl text-rose-600 dark:text-rose-400"><i class="fas fa-magnet"></i></div>
+                                            <h3 class="text-base font-semibold mb-2 text-gray-800 dark:text-gray-200"><a href="https://www.linkedin.com/business/talent/blog/talent-acquisition/hiring-trends-you-need-to-know-2025" target="_blank">The 5 Hiring Trends You Need to Know for 2025</a></h3>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">1. AI in hiring: From deployment to invention · 2. The role of the recruiter is changing — forever · 3. Candidate cheating and the rise of assessments · 4. The...</p>
+                                            <a href="https://www.linkedin.com/business/talent/blog/talent-acquisition/hiring-trends-you-need-to-know-2025" target="_blank" class="text-rose-600 dark:text-rose-400 font-medium text-xs hover:underline flex items-center"><span>Read Full Article</span> <i class="fas fa-arrow-right ml-1"></i></a>
+                                        </article>
+                                        <article class="blog-card bg-gradient-to-br from-lime-50 to-teal-50 dark:from-lime-900/20 dark:to-teal-900/20 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-lime-200/50 dark:border-lime-700/50">
+                                            <div class="blog-icon mb-3 text-2xl text-lime-600 dark:text-lime-400"><i class="fas fa-rocket"></i></div>
+                                            <h3 class="text-base font-semibold mb-2 text-gray-800 dark:text-gray-200"><a href="https://www.indeed.com/hire/c/info/future-of-the-great-resignation" target="_blank">2025 Hiring Trends: The State of the Great Resignation</a></h3>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">2. Offer greater flexibility and/or remote work options · 94% of Gen-Z and 84% of millennials say they would not take a job that required them to...</p>
+                                            <a href="https://www.indeed.com/hire/c/info/future-of-the-great-resignation" target="_blank" class="text-lime-600 dark:text-lime-400 font-medium text-xs hover:underline flex items-center"><span>Read Full Article</span> <i class="fas fa-arrow-right ml-1"></i></a>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-6">
+                                <a href="/blogs" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors shadow-lg">Explore All Blogs</a>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <section class="my-12 animate-fade-in">
+                        <h2 class="text-2xl font-bold text-center mb-6">Why Post a Job with Job Ringer?</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="how-it-works-card">
+                                <div class="how-it-works-icon bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-200">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="how-it-works-content">
+                                    <h3 class="font-bold">Maximize Visibility</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Reach a wide audience of qualified candidates and get noticed faster.</p>
+                                </div>
+                            </div>
+                            <div class="how-it-works-card">
+                                <div class="how-it-works-icon bg-rose-100 text-rose-600 dark:bg-rose-900 dark:text-rose-200">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="how-it-works-content">
+                                    <h3 class="font-bold">Access Top Talent</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Connect with a diverse pool of professionals actively seeking new roles.</p>
+                                </div>
+                            </div>
+                            <div class="how-it-works-card">
+                                <div class="how-it-works-icon bg-orange-100 text-orange-600 dark:bg-orange-900 dark:text-orange-200">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <div class="how-it-works-content">
+                                    <h3 class="font-bold">Simplified Hiring Tools</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Manage applicants, track progress, and communicate with candidates all in one place.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <section class="my-12 animate-fade-in testimonials-section">
+                        <h2 class="text-2xl font-bold text-center mb-6">Success Stories</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="success-story-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                                <img src="https://placehold.co/100x100/1e40af/ffffff?text=E" alt="Employee Headshot" class="w-24 h-24 rounded-full flex-shrink-0 object-cover">
+                                <div class="text-center sm:text-left">
+                                    <h3 class="text-lg font-bold mb-1">Emily R. - Senior Product Manager</h3>
+                                    <p class="text-cyan-600 dark:text-cyan-400 mb-2">Hired by Google</p>
+                                    <p class="text-sm italic text-slate-600 dark:text-slate-400">"Job Ringer's powerful search tools helped me find a niche role that perfectly matched my skills. The platform's professional networking features connected me with the right people, leading to an interview and ultimately, my dream job."</p>
+                                </div>
+                            </div>
+                            <div class="success-story-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                                <img src="https://placehold.co/100x100/7c2d12/ffffff?text=S" alt="Employer Headshot" class="w-24 h-24 rounded-full flex-shrink-0 object-cover">
+                                <div class="text-center sm:text-left">
+                                    <h3 class="text-lg font-bold mb-1">Sarah K. - Head of HR, TechSpark</h3>
+                                    <p class="text-cyan-600 dark:text-cyan-400 mb-2">Filled 5 Tech Roles in 30 Days</p>
+                                    <p class="text-sm italic text-slate-600 dark:text-slate-400">"We were struggling to find specialized talent, but Job Ringer changed that. Within a month, we hired five developers thanks to the targeted outreach and quality candidates we found on the platform. It's now our go-to hiring solution."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="my-12 animate-fade-in bg-slate-200 dark:bg-gray-700 p-8 rounded-2xl shadow-xl text-center">
+                        <h2 class="text-2xl font-bold mb-4">Ready to find your next great hire?</h2>
+                        <p class="mb-6 max-w-xl mx-auto text-slate-700 dark:text-slate-300">Join a growing network of top companies and gain access to a world-class talent pool. Sign up today and get started for free.</p>
+                        <button class="bg-cyan-600 text-white px-10 py-3 rounded-full hover:bg-cyan-700 font-semibold transition-colors shadow-lg">Create a Free Employer Account</button>
+                    </section>
+
+
+                    <section class="my-12 animate-fade-in bg-cyan-600 text-white p-8 rounded-2xl shadow-xl flex flex-col lg:flex-row items-center justify-between">
+                        <div class="lg:w-1/2 text-center lg:text-left mb-6 lg:mb-0">
+                            <h2 class="text-2xl font-bold mb-2">Manage Your Hiring On-the-Go</h2>
+                            <p class="text-lg">Download the Job Ringer app to review applications and connect with candidates from anywhere.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#" class="bg-white text-slate-800 px-6 py-3 rounded-full font-semibold flex items-center gap-3 hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-apple text-2xl"></i> App Store
+                            </a>
+                            <a href="#" class="bg-white text-slate-800 px-6 py-3 rounded-full font-semibold flex items-center gap-3 hover:bg-gray-100 transition-colors">
+                                <i class="fab fa-google-play text-2xl"></i> Google Play
+                            </a>
+                        </div>
+                    </section>
                 </div>
             </div>
         </main>
         <div id="footer-placeholder" class="mt-auto"></div>
     </div>
 
+
+    <!-- Candidate Modal -->
+    <div id="candidate-view-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 backdrop-blur-sm">
+        <div class="modal-content bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-lg mx-4 flex flex-col transform transition-all duration-300 scale-95 opacity-0">
+            <!-- Modal Header -->
+            <div class="flex-shrink-0 flex justify-between items-center p-4 border-b border-slate-100 dark:border-gray-700">
+                <div>
+                    <h3 id="modal-candidate-name" class="text-xl font-bold">Candidate Profile</h3>
+                    <p id="modal-candidate-title" class="text-sm font-semibold text-cyan-600 dark:text-cyan-400"></p>
+                </div>
+                <button id="closeModalBtn" class="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+
+
+            <!-- Modal Body (Scrollable) -->
+            <div id="candidate-details-container" class="flex-grow p-6 relative overflow-y-auto">
+                <div id="candidate-details-content" class="space-y-6">
+                    <!-- Basic Info -->
+                    <div class="flex items-start">
+                        <div class="profile-pic-wrapper w-24 h-24 rounded-full overflow-hidden mr-5 border-2 border-cyan-600 flex-shrink-0">
+                            <img id="modal-candidate-img" src="" alt="Profile" class="w-full h-full object-cover">
+                        </div>
+                        <div class="pt-2">
+                             <p id="modal-candidate-education" class="font-semibold text-slate-800 dark:text-slate-200"></p>
+                            <p id="modal-candidate-grad" class="text-sm text-slate-600 dark:text-slate-400"></p>
+                            <p id="modal-candidate-availability" class="text-sm text-slate-600 dark:text-slate-400 mt-1"></p>
+                        </div>
+                    </div>
+                    <!-- About Me -->
+                    <div class="info-block">
+                        <h4 class="font-bold text-lg mb-2 border-b pb-1 border-slate-200 dark:border-gray-600">About Me</h4>
+                        <p id="modal-candidate-about" class="text-sm text-slate-600 dark:text-slate-400 whitespace-pre-wrap"></p>
+                    </div>
+                    <!-- Key Skills -->
+                    <div class="info-block">
+                        <h4 class="font-bold text-lg mb-2 border-b pb-1 border-slate-200 dark:border-gray-600">Key Skills</h4>
+                        <div id="modal-candidate-skills" class="flex flex-wrap gap-2"></div>
+                    </div>
+                    <!-- Work Experience -->
+                    <div class="info-block">
+                        <h4 class="font-bold text-lg mb-2 border-b pb-1 border-slate-200 dark:border-gray-600">Work Experience</h4>
+                        <div id="modal-candidate-experience" class="space-y-4"></div>
+                    </div>
+                    <!-- Projects -->
+                    <div class="info-block">
+                        <h4 class="font-bold text-lg mb-2 border-b pb-1 border-slate-200 dark:border-gray-600">Projects</h4>
+                        <div id="modal-candidate-projects" class="space-y-4"></div>
+                    </div>
+                </div>
+
+
+                <!-- Lock Overlay (for logged-out users) -->
+                <div id="modal-lock-overlay" class="absolute inset-0 flex-col items-center justify-center p-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm hidden">
+                    <i class="fas fa-lock text-5xl text-red-500 mb-4 animate-bounce"></i>
+                    <h4 class="text-xl font-bold mb-2 text-slate-800 dark:text-white">Profile Details Locked</h4>
+                    <p class="text-center text-slate-600 dark:text-slate-300 mb-4">You need an active Employer Account to view full candidate details.</p>
+                    <button id="modalSignupBtn" class="bg-cyan-600 text-white px-6 py-2 rounded-full hover:bg-cyan-700 font-semibold transition-colors shadow-lg">Unlock Full Access</button>
+                </div>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div id="modal-footer" class="flex-shrink-0 p-4 border-t border-slate-100 dark:border-gray-700">
+                <!-- Buttons will be dynamically inserted here by JS -->
+            </div>
+        </div>
+    </div>
     <script src="js/script.js"></script>
     <script src="js/home.js"></script>
 </body>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Jobs - Employer Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/manage-jobs.css">
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+    
+    <div class="content-wrapper">
+        <div class="manage-jobs-container">
+            <main class="manage-jobs-main">
+                <div class="page-header">
+                    <h1 class="text-2xl font-bold">Manage Jobs</h1>
+                    <div class="header-actions">
+                        <button id="delete-jobs-btn" class="btn-secondary-lg hidden">
+                            <i class="fas fa-trash-alt mr-2"></i>
+                            Delete Selected
+                        </button>
+                        <a href="#" class="btn-primary-lg inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-full font-medium text-sm hover:bg-blue-700">
+                            <i class="fas fa-plus mr-2"></i>
+                            Post a New Job
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="filters-and-stats-wrapper">
+                    <div class="filters-container">
+                        <div class="filter-group">
+                            <label for="status-filter" class="filter-label">Status:</label>
+                            <select id="status-filter" class="filter-select">
+                                <option value="all">All</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                                <option value="expired">Expired</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="show-per-page" class="filter-label">Show:</label>
+                            <select id="show-per-page" class="filter-select">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20" selected>20</option>
+                                <option value="40">40</option>
+                                <option value="80">80</option>
+                                <option value="100">100</option>
+                            </select>
+                            <span class="per-page-text">per page</span>
+                        </div>
+                    </div>
+                    <div class="total-stats">
+                        <p id="total-stats-text">Showing 1 to 20 of 11758 jobs</p>
+                    </div>
+                </div>
+ 
+                <div class="job-list-container">
+                    <div id="job-cards-container"></div>
+                    <div class="pagination-container">
+                        <button id="prev-page-btn" class="page-btn-sm disabled"><i class="fas fa-chevron-left"></i></button>
+                        <div id="page-numbers" class="flex gap-1"></div>
+                        <button id="next-page-btn" class="page-btn-sm"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div id="footer-placeholder" class="mt-auto"></div>
+    </div>
+    
+    <script src="js/script.js"></script>
+    <script src="js/manage-jobs.js"></script>
+    
+</body>
+</html>

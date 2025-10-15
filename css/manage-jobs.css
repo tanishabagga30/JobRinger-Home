@@ -1,0 +1,550 @@
+/* --- MANAGE JOBS SPECIFIC STYLES --- */
+
+/* Main container */
+.manage-jobs-container {
+    padding: 1.25rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+.btn-primary-lg { /* Existing style for Post New Job button */
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    background-color: #2563eb;
+    color: white;
+    transition: background-color 0.2s;
+}
+.btn-primary-lg:hover {
+    background-color: #1d4ed8;
+}
+html.dark .btn-primary-lg {
+    background-color: #facc15;
+    color: #1f2937;
+}
+html.dark .btn-primary-lg:hover {
+    background-color: #eab308;
+}
+
+.btn-secondary-lg {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background: transparent;
+    border: 1px solid #2563eb;
+    color: #2563eb;
+}
+.btn-secondary-lg:hover {
+    background: #2563eb;
+    color: #fff;
+}
+html.dark .btn-secondary-lg {
+    border-color: #facc15;
+    color: #facc15;
+}
+html.dark .btn-secondary-lg:hover {
+    background: #facc15;
+    color: #1f2937;
+}
+
+/* Filters and stats */
+.filters-and-stats-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.filters-container {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+}
+html.dark .filter-label {
+    color: #d1d5db;
+}
+
+.filter-select {
+    appearance: none;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background-color: #f8fafc;
+    font-size: 0.875rem;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1rem;
+}
+
+html.dark .filter-select {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>');
+}
+
+.per-page-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+html.dark .per-page-text {
+    color: #9ca3af;
+}
+
+.total-stats {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+html.dark .total-stats {
+    color: #9ca3af;
+}
+
+/* Job Cards */
+#job-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.job-card-manage {
+    background: #ffffff;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.job-card-manage:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+html.dark .job-card-manage {
+    background: #1f2937;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-color: #4b5563;
+}
+
+.job-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+/* MODIFIED: Wrapper for checkbox and title/badge */
+.job-title-control-wrapper {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 0.75rem; /* Increased gap slightly */
+}
+
+.job-title-wrapper {
+    flex-grow: 1;
+    display: flex; /* ADDED: To align title and badge */
+    align-items: center;
+    gap: 0.75rem; /* Space between title and badge */
+}
+
+.job-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: #1f2937;
+    white-space: nowrap; /* Prevent title from wrapping before badge */
+}
+
+html.dark .job-title {
+    color: #e5e7eb;
+}
+
+/* MODIFIED: Application Badge Style (Gray/Neutral) */
+.applications-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    /* MODIFIED: Changed to neutral gray/light gray */
+    background-color: #e5e7eb; 
+    color: #4b5563; 
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 0; /* Removed margin-top for perfect vertical alignment */
+}
+
+html.dark .applications-badge {
+    background-color: #374151;
+    color: #e5e7eb; 
+}
+
+.job-ref {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.job-status {
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Status colors */
+.status-published { background-color: #d1e7dd; color: #0f5132; }
+.status-draft { background-color: #ffedd5; color: #9a3412; }
+.status-inactive { background-color: #fcebeb; color: #8c2f2f; }
+.status-active { background-color: #e3f3ff; color: #0c4a6e; }
+.status-expired { background-color: #f3e5f5; color: #512da8; }
+
+html.dark .status-published { background-color: #34d399; color: #064e3b; }
+html.dark .status-draft { background-color: #fdba74; color: #7c2d12; }
+html.dark .status-inactive { background-color: #fca5a5; color: #7f1d1d; }
+html.dark .status-active { background-color: #38bdf8; color: #075985; }
+html.dark .status-expired { background-color: #b39ddb; color: #2e1d6d; }
+
+/* Secondary details - horizontal */
+.secondary-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e5e7eb;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+html.dark .secondary-details {
+    border-color: #4b5563;
+}
+
+.secondary-details .detail-item {
+    flex: 1;
+    text-align: center;
+}
+
+.secondary-details .detail-label {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.secondary-details .detail-value {
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 0.25rem;
+}
+
+html.dark .detail-value {
+    color: #e5e7eb;
+}
+
+/* Action Buttons */
+.job-actions-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+html.dark .job-actions-mobile {
+    border-color: #4b5563;
+}
+
+.action-btn-mobile {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.job-actions-desktop {
+    display: none;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+html.dark .job-actions-desktop {
+    border-color: #4b5563;
+}
+
+.action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.action-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-decoration: none;
+}
+
+.action-link:hover {
+    color: #2563eb;
+}
+
+html.dark .action-link:hover {
+    color: #facc15;
+}
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.page-btn-sm {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    border: 1px solid #e5e7eb;
+    background-color: #f8fafc;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn-sm.active {
+    background-color: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+
+.page-btn-sm:hover:not(.active):not(.disabled) {
+    background-color: #dbeafe;
+}
+
+.page-btn-sm.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+html.dark .page-btn-sm {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
+}
+
+html.dark .page-btn-sm.active {
+    background-color: #facc15;
+    color: #1f2937;
+    border-color: #facc15;
+}
+
+/* Checkbox style */
+.job-checkbox {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+
+/* --- Mobile-specific styles (max-width: 767px) --- */
+@media (max-width: 767px) {
+    .manage-jobs-container {
+        padding: 1rem;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .btn-secondary-lg,
+    .btn-primary-lg {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .filters-and-stats-wrapper {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .filters-container {
+        gap: 0.5rem;
+    }
+    .filter-label, .filter-select {
+        font-size: 0.75rem;
+    }
+    .filter-select {
+        padding: 0.375rem 1.5rem 0.375rem 0.5rem;
+        background-size: 0.875rem;
+    }
+    .per-page-text, .total-stats {
+        font-size: 0.75rem;
+    }
+
+    .job-card-manage {
+        padding: 1rem;
+        border-radius: 0.375rem;
+    }
+    .job-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .job-title {
+        font-size: 1rem;
+    }
+    .job-ref {
+        display: none;
+    }
+    .applications-badge {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+    }
+    .header-right {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .job-status {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+    }
+    
+    /* Mobile-specific fix for title/badge alignment */
+    .job-title-control-wrapper {
+        align-items: flex-start; /* Align checkbox to top */
+    }
+    .job-title-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .secondary-details {
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: space-between;
+        font-size: 0.7rem;
+    }
+    .secondary-details .detail-item {
+        flex: 1;
+        text-align: center;
+    }
+
+    .action-btn-mobile {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .job-actions-desktop {
+        display: none;
+    }
+
+    .pagination-container {
+        gap: 0.25rem;
+        margin-top: 1rem;
+    }
+    .page-btn-sm {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* --- Desktop Styles (min-width: 768px) --- */
+@media (min-width: 768px) {
+    .manage-jobs-container {
+        padding: 1.5rem;
+    }
+
+    .filters-and-stats-wrapper {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    .job-card-header {
+        align-items: center;
+    }
+    .job-title-wrapper {
+        flex-direction: row; /* Ensure title and badge are side-by-side on desktop */
+        align-items: center;
+    }
+    .header-right {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+    .job-actions-mobile {
+        display: none;
+    }
+    .job-actions-desktop {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

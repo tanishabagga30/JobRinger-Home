@@ -48,29 +48,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return `
             <div class="job-card p-4 rounded-lg shadow-md text-sm">
-                <div class="flex items-start gap-4">
-                    <img src="${job.logo}" alt="${job.company} Logo" class="company-logo rounded-md object-contain border">
-                    <div class="flex-grow overflow-hidden">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
-                        <p class="text-sm text-cyan-600 dark:text-cyan-400">${job.company}</p>
-                        <div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
-                            <span class="detail-item inline-flex items-center location-tooltip-container">
-                                <i class="fas fa-map-marker-alt mr-1.5"></i>${displayLocation}
-                                ${locationTooltipHtml}
-                            </span>
-                            <span class="detail-item inline-flex items-center"><i class="fas fa-dollar-sign mr-1.5"></i>${salary}</span>
-                            <span class="detail-item inline-flex items-center"><i class="fas fa-briefcase mr-1.5"></i>${workMode}</span>
-                        </div>
+            <div class="flex items-start gap-4">
+                <img src="${job.logo}" alt="${job.company} Logo" class="company-logo rounded-md object-contain border">
+                <div class="flex-grow overflow-hidden">
+                    <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
+                    <p class="text-sm text-cyan-600 dark:text-cyan-400">${job.company}</p>
+                    <div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
+                        <span class="detail-item inline-flex items-center location-tooltip-container">
+                            <i class="fas fa-map-marker-alt mr-1.5"></i>${displayLocation}
+                            ${locationTooltipHtml}
+                        </span>
+                        <span class="detail-item inline-flex items-center"><i class="fas fa-dollar-sign mr-1.5"></i>${salary}</span>
+                        <span class="detail-item inline-flex items-center"><i class="fas fa-briefcase mr-1.5"></i>${workMode}</span>
                     </div>
-                    <button class="bookmark-btn text-gray-500 hover:text-yellow-400 dark:text-gray-300 dark:hover:text-yellow-400 flex-shrink-0">
-                        <i class="far fa-bookmark text-xl"></i>
-                    </button>
                 </div>
-                <div class="mt-4 pt-3 border-t grid grid-cols-3 gap-2 text-sm text-gray-700 dark:text-gray-300 text-center">
-                    <button class="action-btn info-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5" data-job-id="${job.id}"><i class="fas fa-info-circle"></i> Info</button>
-                    <button class="action-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5"><i class="fas fa-share-alt"></i> Share</button>
-                    <button class="action-btn py-1.5 w-full bg-cyan-600 text-white rounded-md hover:bg-cyan-700 flex justify-center items-center gap-1.5 font-semibold"><i class="fas fa-paper-plane"></i> Apply</button>
-                </div>
+                <button class="bookmark-btn text-gray-500 hover:text-yellow-400 dark:text-gray-300 dark:hover:text-yellow-400 flex-shrink-0">
+                    <i class="far fa-bookmark text-xl"></i>
+                </button>
+            </div>
+            <div class="mt-4 pt-3 border-t grid grid-cols-3 gap-2 text-sm text-gray-700 dark:text-gray-300 text-center">
+                <button class="action-btn info-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5" data-job-id="${job.id}"><i class="fas fa-info-circle"></i> Info</button>
+                <button class="action-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5"><i class="fas fa-share-alt"></i> Share</button>
+                <button class="action-btn py-1.5 w-full bg-cyan-600 text-white rounded-md hover:bg-cyan-700 flex justify-center items-center gap-1.5 font-semibold"><i class="fas fa-paper-plane"></i> Apply</button>
+            </div>
             </div>`;
     };
 
@@ -111,31 +111,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return `
             <div class="job-card p-4 rounded-lg shadow-md text-sm">
-                <div class="flex items-start gap-4">
-                    <img src="${job.logo}" alt="${job.company} Logo" class="company-logo rounded-md object-contain border">
-                    <div class="flex-grow overflow-hidden">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
-                        <p class="text-sm text-cyan-600 dark:text-cyan-400">${job.company}</p>
-                        <div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
-                            <span class="detail-item inline-flex items-center location-tooltip-container">
-                                <i class="fas fa-map-marker-alt mr-1.5"></i>${displayLocation}
-                                ${locationTooltipHtml}
-                            </span>
-                            <span class="detail-item inline-flex items-center"><i class="fas fa-dollar-sign mr-1.5"></i>${salary}</span>
-                            <span class="detail-item inline-flex items-center"><i class="fas fa-briefcase mr-1.5"></i>${workMode}</span>
-                        </div>
+            <div class="flex items-start gap-4">
+                <img src="${job.logo}" alt="${job.company} Logo" class="company-logo rounded-md object-contain border">
+                <div class="flex-grow overflow-hidden">
+                    <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
+                    <p class="text-sm text-cyan-600 dark:text-cyan-400">${job.company}</p>
+                    <div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
+                        <span class="detail-item inline-flex items-center location-tooltip-container">
+                            <i class="fas fa-map-marker-alt mr-1.5"></i>${displayLocation}
+                            ${locationTooltipHtml}
+                        </span>
+                        <span class="detail-item inline-flex items-center"><i class="fas fa-dollar-sign mr-1.5"></i>${salary}</span>
+                        <span class="detail-item inline-flex items-center"><i class="fas fa-briefcase mr-1.5"></i>${workMode}</span>
                     </div>
-                    <button class="bookmark-btn text-yellow-400 dark:text-yellow-400 flex-shrink-0">
-                        <i class="fas fa-bookmark text-xl"></i>
-                    </button>
                 </div>
-                <div class="mt-4 pt-3 border-t grid grid-cols-2 gap-2 text-sm text-gray-700 dark:text-gray-300 text-center">
-                    <button class="action-btn info-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5" data-job-id="${job.id}"><i class="fas fa-info-circle"></i> View</button>
-                    <button class="action-btn py-1.5 w-full bg-cyan-600 text-white rounded-md hover:bg-cyan-700 flex justify-center items-center gap-1.5 font-semibold"><i class="fas fa-paper-plane"></i> Apply</button>
-                </div>
-                <div class="mt-2 text-sm text-gray-700 dark:text-gray-300 text-center">
-                    <p class="flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt"></i> Saved on: ${job.savedDate}</p>
-                </div>
+                <button class="bookmark-btn text-yellow-400 dark:text-yellow-400 flex-shrink-0">
+                    <i class="fas fa-bookmark text-xl"></i>
+                </button>
+            </div>
+            <div class="mt-4 pt-3 border-t grid grid-cols-2 gap-2 text-sm text-gray-700 dark:text-gray-300 text-center">
+                <button class="action-btn info-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5" data-job-id="${job.id}"><i class="fas fa-info-circle"></i> View</button>
+                <button class="action-btn py-1.5 w-full bg-cyan-600 text-white rounded-md hover:bg-cyan-700 flex justify-center items-center gap-1.5 font-semibold"><i class="fas fa-paper-plane"></i> Apply</button>
+            </div>
+            <div class="mt-2 text-sm text-gray-700 dark:text-gray-300 text-center">
+                <p class="flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt"></i> Saved on: ${job.savedDate}</p>
+            </div>
             </div>`;
     };
 
@@ -184,4 +184,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // New: Add interactivity to welcome banner tip button
+    const tipButton = document.querySelector('.welcome-banner button');
+    if (tipButton) {
+        tipButton.addEventListener('click', () => {
+            alert('Quick Tip: Complete your profile to 100% to get 3x more recommendations! Start with adding skills and experience.');
+        });
+    }
+
+    // New: Add hover effects for updates and tips (already in CSS, but ensure JS for dynamic if needed)
 });

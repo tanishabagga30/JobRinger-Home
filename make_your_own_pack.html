@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Your Own Pack - JobRinger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/make_your_own_pack.css">
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+
+    <!-- Header Placeholder (from universal.css) -->
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+
+    <!-- Main Content Container -->
+    <div class="page-container">
+        <h1 class="text-2xl lg:text-3xl font-bold text-center mb-6">Make Your Own Pack</h1>
+        <div class="card p-6">
+            <div id="service-list" class="space-y-4 md:space-y-6">
+                <!-- Service items will be generated here by JavaScript -->
+            </div>
+            
+            <hr class="my-6 border-t border-gray-200 dark:border-gray-700">
+
+            <!-- Total Calculation Section -->
+            <div class="total-container">
+                <span class="text-lg md:text-xl font-bold">Total:</span>
+                <span id="total-price" class="text-2xl md:text-3xl font-extrabold text-blue-500 dark:text-yellow-400">Rs. 0.00</span>
+            </div>
+            
+            <div class="flex justify-center mt-6">
+                <button class="btn-primary-small">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Placeholder (from universal.css) -->
+    <div id="nav-placeholder"></div>
+     <script src="js/script.js"></script>
+    <script src="js/make_your_own_pack.js"></script>
+</body>
+</html>

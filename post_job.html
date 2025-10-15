@@ -42,8 +42,6 @@
                 <div class="progress-indicator">
                     <div class="step active" data-step="1">Job Details</div>
                     <div class="step" data-step="2">More Details</div>
-                    <div class="step" data-step="3">Candidate Specs</div>
-                    <div class="step" data-step="4">Review & Post</div>
                 </div>
 
                 <form id="post-job-form">
@@ -100,19 +98,42 @@
                                 <option value="" disabled selected>Select State</option>
                                 <option>Maharashtra</option>
                                 <option>Haryana</option>
-                                <!-- ... add all states here ... -->
+                                <option>Jharkhand</option>
                             </select>
                         </div>
                         <div class="input-group">
                             <label for="city">Job Location | City <span class="required">*</span></label>
                             <input type="text" id="city" placeholder="Enter city" required>
                         </div>
+                        
+                        <!-- Premium-only section is now always visible -->
+                        <div class="premium-fields-container premium-disabled">
+                            <div class="premium-overlay-info">
+                                <i class="fas fa-crown text-3xl mb-2 text-yellow-400"></i>
+                                <p>Unlock these features by choosing <strong class="text-yellow-400">Premium</strong> for enhanced visibility.</p>
+                                <div class="button-container mt-4">
+                                     <button type="button" class="btn btn-premium-upgrade">Upgrade Now</button>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Attach JD <span class="premium-badge">Premium</span></label>
+                                <input type="file" id="attach-jd">
+                            </div>
+                            <div class="input-group">
+                                <label>Select Logo <span class="premium-badge">Premium</span></label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="logo-option" value="default"> Default Logo</label>
+                                    <label><input type="radio" name="logo-option" value="custom"> Custom Logo</label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="button-container">
                             <button type="button" class="btn btn-next">Next</button>
                         </div>
                     </div>
 
-                    <!-- Stage 2: More Details -->
+                    <!-- Stage 2: More Details & Settings -->
                     <div id="stage-2" class="form-stage">
                         <h2 class="stage-header">Post a Job - <span id="job-type-name-2">Classic</span></h2>
                         <div class="input-group">
@@ -121,7 +142,6 @@
                                 <option value="" disabled selected>Select Industry</option>
                                 <option>ACCOUNTING / ACCOUNTANT FIRM</option>
                                 <option>ADVERTISING / PUBLIC RELATIONS</option>
-                                <!-- ... add all industries here ... -->
                             </select>
                         </div>
                         <div class="input-group-grid">
@@ -160,71 +180,29 @@
                                 <label for="hide-salary">Hide salary details</label>
                             </div>
                         </div>
-                        <div class="button-container">
-                            <button type="button" class="btn btn-back">Back</button>
-                            <button type="button" class="btn btn-next">Next</button>
+                        
+                        <!-- Premium-only section is now always visible -->
+                        <div class="premium-fields-container premium-disabled">
+                             <div class="premium-overlay-info">
+                                <i class="fas fa-crown text-3xl mb-2 text-yellow-400"></i>
+                                <p>Upgrade to <strong class="text-gold">Premium</strong> to customize candidate specifications.</p>
+                                <div class="button-container mt-4">
+                                     <button type="button" class="btn btn-premium-upgrade">Upgrade Now</button>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="candidate-profile">Candidate Profile / Specifications <span class="premium-badge">Premium</span></label>
+                                <textarea id="candidate-profile" rows="5" placeholder="Specify candidate profile"></textarea>
+                            </div>
+                            <div class="input-group">
+                                <label>Education <span class="premium-badge">Premium</span></label>
+                                <div class="qual-group">
+                                    <input type="text" placeholder="Specify Qualifications">
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Stage 3: Candidate Specs (for Premium) -->
-                    <div id="stage-3" class="form-stage">
-                        <h2 class="stage-header">Post a Job - <span id="job-type-name-3">Premium</span></h2>
-                        <div class="input-group">
-                            <label for="candidate-profile">Candidate Profile / Specifications</label>
-                            <textarea id="candidate-profile" rows="5" placeholder="Specify candidate profile"></textarea>
-                        </div>
-                        <div class="input-group">
-                            <label>Education</label>
-                            <div class="qual-group">
-                                <input type="text" placeholder="Specify Qualifications">
-                            </div>
-                        </div>
                         <div class="button-container">
-                            <button type="button" class="btn btn-back">Back</button>
-                            <button type="button" class="btn btn-next">Next</button>
-                        </div>
-                    </div>
-
-                    <!-- Stage 4: Review & Post -->
-                    <div id="stage-4" class="form-stage">
-                        <h2 class="stage-header">Review & Post</h2>
-                        <div class="input-group-small">
-                            <label>Job Ad Response Mail Settings</label>
-                            <div class="checkbox-group">
-                                <input type="checkbox" id="individual-mail" checked>
-                                <label for="individual-mail">Get Individual Mail on each new apply</label>
-                            </div>
-                        </div>
-                        <div class="input-group-small">
-                            <label>Summary of all Job Responses in Email - Frequency</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="mail-frequency" value="off"> Off</label>
-                                <label><input type="radio" name="mail-frequency" value="daily"> Daily</label>
-                                <label><input type="radio" name="mail-frequency" value="every-2-days"> Every 2 Days</label>
-                                <label><input type="radio" name="mail-frequency" value="every-3-days"> Every 3 Days</label>
-                            </div>
-                        </div>
-                        <div class="input-group-small">
-                            <label for="contact-email">Contact Person Email <span class="required">*</span></label>
-                            <input type="email" id="contact-email" required>
-                        </div>
-                        <div class="input-group-small">
-                            <label for="contact-person-name">Contact Person Name</label>
-                            <input type="text" id="contact-person-name">
-                        </div>
-                        <div class="input-group-small">
-                            <label for="contact-person-designation">Contact Person Designation</label>
-                            <input type="text" id="contact-person-designation">
-                        </div>
-                        <div class="input-group-small">
-                            <label for="mobile-no">Mobile No</label>
-                            <input type="tel" id="mobile-no">
-                        </div>
-                        <div class="input-group-small">
-                            <label for="whatsapp-no">Whatsapp No</label>
-                            <input type="tel" id="whatsapp-no">
-                        </div>
-                        <div class="button-container-final">
                             <button type="button" class="btn btn-back">Back</button>
                             <button type="submit" class="btn btn-post-job">Post the Job</button>
                         </div>

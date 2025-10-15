@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/result-page.css">
+</head>
+<body>
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="results-container w-full px-2 md:px-4">
+        <div class="results-header bg-gray-100 dark:bg-gray-800 p-3 rounded-lg shadow-sm mb-4 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-2 flex-wrap">
+                <div class="stat-item">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Resume Downloads</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Excel Downloads</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">2561</span>
+                    <span class="stat-label">Profiles Found</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button id="download-btn" class="action-btn-secondary">
+                    <i class="fas fa-download mr-1"></i>Download
+                </button>
+                <div class="sort-dropdown">
+                    <label for="sort-by" class="sort-label">Sort by:</label>
+                    <select id="sort-by" class="sort-select">
+                        <option value="relevance">Relevance</option>
+                        <option value="last-active">Last Active</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content grid grid-cols-1 lg:grid-cols-4 gap-4">
+            <aside class="filters-sidebar lg:col-span-1 p-3 rounded-lg shadow-lg">
+                <h2 class="text-lg font-bold mb-3">Filters</h2>
+                <form id="filters-form" class="space-y-3">
+                    <div class="filter-group">
+                        <label for="keywords" class="filter-label">Keywords</label>
+                        <input type="text" id="keywords" name="keywords" placeholder="e.g., Engineer">
+                        <div class="radio-group">
+                            <label><input type="radio" name="keyword-match" value="any" checked> Any</label>
+                            <label><input type="radio" name="keyword-match" value="all"> All</label>
+                            <label><input type="radio" name="keyword-match" value="exact"> Exact Phrase</label>
+                        </div>
+                    </div>
+                    <button class="resume-btn"><i class="fas fa-paperclip mr-1"></i> Resume Attached</button>
+                    <div class="filter-group">
+                        <label for="gender-preference" class="filter-label">Gender Preference</label>
+                        <select id="gender-preference" name="gender-preference">
+                            <option>All</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="industry" class="filter-label">Industry</label>
+                        <input type="text" id="industry" name="industry" placeholder="e.g., IT Software">
+                    </div>
+                    <div class="filter-group">
+                        <label for="experience" class="filter-label">Experience</label>
+                        <input type="text" id="experience" name="experience" placeholder="e.g., 2-5 Years">
+                    </div>
+                    <div class="filter-group">
+                        <label for="functional-area" class="filter-label">Functional Area</label>
+                        <input type="text" id="functional-area" name="functional-area" placeholder="e.g., IT Software">
+                    </div>
+                    <div class="filter-group">
+                        <label for="salary" class="filter-label">Salary</label>
+                        <input type="text" id="salary" name="salary" placeholder="e.g., 5 LPA">
+                    </div>
+                    <button type="submit" class="apply-btn">Apply</button>
+                </form>
+            </aside>
+            
+            <div class="candidate-list-section lg:col-span-3">
+                <p class="text-xs text-gray-600 dark:text-gray-400 mb-3">Showing 1 to 20 of 2561</p>
+                
+                <div id="candidate-cards-container" class="space-y-4">
+                    </div>
+                
+                <div id="pagination-container" class="pagination-container mt-6 flex justify-center items-center space-x-1">
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer-placeholder"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/result-page.js"></script>
+</body>
+</html>

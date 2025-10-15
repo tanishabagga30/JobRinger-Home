@@ -1,30 +1,174 @@
+/* Custom Styles for Active Employers Page - Bold Minimalist Edition */
+
+/* General cleanup */
+.scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Featured Employers Scroll */
 .featured-employers {
     overflow-x: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    gap: 1.25rem; /* Increased gap */
+    padding-bottom: 0.5rem;
 }
 
-.featured-employers::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-}
-
-.card {
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 5rem;
-    width: 5rem;
+/* Featured Card: Stronger border, shadow, and hover */
+.featured-card {
+    min-width: 160px;
+    background: #ffffff;
+    border-radius: 0.75rem; /* Slightly larger radius */
+    padding: 1.25rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow base */
+    transition: all 0.2s ease;
+    border: 1px solid #d1d5db; /* Darker light gray border */
     flex-shrink: 0;
+}
+
+.featured-card:hover {
+    transform: translateY(-3px); /* Stronger lift */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More visible shadow on hover */
+}
+
+/* Featured Logo: Monochromatic initial, darker background */
+.featured-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto 0.75rem;
+    background: #e5e7eb; /* Light gray background */
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    font-weight: 700; /* Bolder text */
+    color: #374151; /* Darker gray text */
+    font-size: 1.25rem;
 }
 
-.card img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 0.25rem;
+/* Employer Card: Bolder borders and lift effect */
+.employer-card {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Stronger default shadow */
+    transition: all 0.2s ease;
+    border: 1px solid #d1d5db;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.employer-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Significantly bolder shadow on hover */
+    border-color: #2563eb; /* Blue highlight on hover */
+}
+
+.employer-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    width: 100%;
+}
+
+/* Employer Logo: Darker background for logo initial */
+.employer-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700; /* Bolder text */
+    color: #1f2937;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.employer-name {
+    font-size: 1.125rem; /* Slightly larger text */
+    font-weight: 700; /* Bolder name */
+    color: #111827; /* Darkest text */
+}
+
+/* Jobs Badge: Punchier blue accent */
+.jobs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: #2563eb; /* Primary blue background */
+    color: white; /* White text for contrast */
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.view-jobs-btn {
+    /* Slightly more pronounced link */
+    background: none;
+    color: #2563eb;
+    padding: 0.5rem 0;
+    font-weight: 700; /* Bolder link text */
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    margin-top: auto;
+    font-size: 0.9rem;
+    border-bottom: 2px solid transparent; /* Stronger initial border */
+}
+
+.view-jobs-btn:hover {
+    color: #1e40af;
+    border-bottom: 2px solid #2563eb; /* Stronger underline on hover */
+}
+
+/* --- Dark Mode Adjustments --- */
+.dark .featured-card,
+.dark .employer-card {
+    background: #111827; /* Darker background */
+    border-color: #374151;
+    box-shadow: none;
+}
+
+.dark .featured-card:hover,
+.dark .employer-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-color: #3b82f6;
+}
+
+.dark .featured-logo,
+.dark .employer-logo {
+    background: #1f2937;
+    color: #d1d5db;
+}
+
+.dark .employer-name {
+    color: #ffffff;
+}
+
+.dark .jobs-badge {
+    background: #3b82f6; /* Lighter blue for dark mode contrast */
+    color: #111827;
+}
+
+.dark .view-jobs-btn {
+    color: #60a5fa;
+}
+
+.dark .view-jobs-btn:hover {
+    color: #3b82f6;
+    border-bottom: 2px solid #60a5fa;
 }

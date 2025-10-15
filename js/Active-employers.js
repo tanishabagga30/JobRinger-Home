@@ -103,8 +103,8 @@ const employers = [
 ];
 
 // State management
-let displayedEmployers = 20;
-const employersPerLoad = 20;
+let displayedEmployers = 9;
+const employersPerLoad = 9;
 
 // DOM elements
 const employersList = document.getElementById("employersList");
@@ -113,22 +113,42 @@ const searchInput = document.getElementById("searchInput");
 const filterSelect = document.getElementById("filterSelect");
 const employerScroll = document.getElementById("employerScroll");
 
+// Update stats
+document.getElementById('totalEmployers').textContent = employers.length;
+document.getElementById('totalJobs').textContent = employers.reduce((sum, emp) => sum + emp.jobs, 0).toLocaleString() + '+';
+
 // Render employer card for main list
 function renderEmployer(employer) {
+    const initial = employer.name.charAt(0).toUpperCase();
     return `
-        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-            <h3 class="text-xl font-semibold">${employer.name}</h3>
-            <p class="text-gray-600 mt-2">${employer.jobs} Jobs</p>
-            <a href="https://jobringer.com" class="text-blue-600 hover:underline mt-4 inline-block">View Jobs</a>
+        <div class="employer-card">
+            <div class="employer-header">
+                <div class="employer-logo">${initial}</div>
+                <h3 class="employer-name">${employer.name}</h3>
+            </div>
+            <div class="jobs-badge">
+                <i class="fas fa-briefcase"></i>
+                ${employer.jobs} Jobs
+            </div>
+            <a href="https://jobringer.com" class="view-jobs-btn">
+                <i class="fas fa-eye mr-1"></i> View
+            </a>
         </div>
     `;
 }
 
-
-function renderFeaturedEmployer(employer, index) {
+// Render featured employer card
+function renderFeaturedEmployer(employer) {
+    const initial = employer.name.charAt(0).toUpperCase();
     return `
-        <div class="card p-3 rounded-lg shadow-md h-20 w-20 flex-shrink-0">
-            <img src="https://placehold.co/60x60/E0E0E0/888888?text=${employer.name.charAt(0)}" alt="${employer.name}" class="max-w-full max-h-full rounded-md">
+        <div class="featured-card">
+            <div class="featured-header">
+                <div class="featured-logo">${initial}</div>
+                <h4 class="featured-name text-sm font-medium">${employer.name}</h4>
+            </div>
+            <div class="jobs-badge text-xs px-2 py-0.5">
+                ${employer.jobs} Jobs
+            </div>
         </div>
     `;
 }
@@ -139,20 +159,18 @@ function renderEmployersList(data) {
         .slice(0, displayedEmployers)
         .map(renderEmployer)
         .join("");
-    loadMoreBtn.style.display =
-        displayedEmployers >= data.length ? "none" : "block";
+    loadMoreBtn.style.display = displayedEmployers >= data.length ? "none" : "block";
 }
 
-// Render featured employers (top 7 by job count)
+// Render featured employers (top 10 by job count)
 function renderFeaturedEmployers() {
     const topEmployers = employers
         .sort((a, b) => b.jobs - a.jobs)
-        .slice(0, 7);
+        .slice(0, 10);
     employerScroll.innerHTML = topEmployers
-        .map((employer, index) => renderFeaturedEmployer(employer, index))
+        .map(renderFeaturedEmployer)
         .join("");
 }
-
 
 function filterAndSortEmployers() {
     let filtered = [...employers];
@@ -161,9 +179,7 @@ function filterAndSortEmployers() {
 
     // Apply search
     if (searchTerm) {
-        filtered = filtered.filter((e) =>
-            e.name.toLowerCase().includes(searchTerm)
-        );
+        filtered = filtered.filter((e) => e.name.toLowerCase().includes(searchTerm));
     }
 
     // Apply filter
@@ -172,17 +188,14 @@ function filterAndSortEmployers() {
     } else if (filterValue === "recent") {
         filtered.sort((a, b) => b.jobs - a.jobs);
     } else if (filterValue.match(/^[a-z]$/)) {
-        filtered = filtered.filter(
-            (e) => e.name.toLowerCase().startsWith(filterValue)
-        );
+        filtered = filtered.filter((e) => e.name.toLowerCase().startsWith(filterValue));
         filtered.sort((a, b) => a.name.localeCompare(b.name));
     } else if (filterValue === "others") {
-        filtered = filtered.filter(
-            (e) => !e.name.match(/^[a-zA-Z]/)
-        );
+        filtered = filtered.filter((e) => !/^[a-zA-Z]/.test(e.name.charAt(0).toLowerCase()));
         filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
 
+    displayedEmployers = 9;
     renderEmployersList(filtered);
 }
 
@@ -193,40 +206,140 @@ loadMoreBtn.addEventListener("click", () => {
 });
 
 // Search input event
-searchInput.addEventListener("input", filterAndSortEmployers);
+searchInput.addEventListener("input", debounce(filterAndSortEmployers, 300));
 
 // Filter select event
 filterSelect.addEventListener("change", () => {
-    displayedEmployers = employersPerLoad;
+    displayedEmployers = 9;
     filterAndSortEmployers();
 });
 
-// Featured Employers Auto-Scroll
-let employerScrollAmount = 0;
-const employerScrollSpeed = 0.5;
-let employerAutoScroll;
-
-function startEmployerAutoScroll() {
-    if (!employerScroll) return;
-    employerAutoScroll = setInterval(() => {
-        employerScrollAmount += employerScrollSpeed;
-        if (employerScrollAmount >= employerScroll.scrollWidth - employerScroll.clientWidth) {
-            employerScrollAmount = 0;
-        }
-        employerScroll.scrollLeft = employerScrollAmount;
-    }, 30);
+// Featured scroll functions
+function scrollFeatured(direction) {
+    const scrollAmount = 150;
+    if (direction === 'left') {
+        employerScroll.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+        employerScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
 }
 
-function stopEmployerAutoScroll() {
-    clearInterval(employerAutoScroll);
+// Auto-scroll for featured
+let autoScrollInterval;
+function startAutoScroll() {
+    autoScrollInterval = setInterval(() => {
+        employerScroll.scrollBy({ left: 1, behavior: 'auto' });
+    }, 50);
+}
+
+function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
 }
 
 if (employerScroll) {
-    employerScroll.addEventListener("mouseenter", stopEmployerAutoScroll);
-    employerScroll.addEventListener("mouseleave", startEmployerAutoScroll);
-    startEmployerAutoScroll();
+    employerScroll.addEventListener("mouseenter", stopAutoScroll);
+    employerScroll.addEventListener("mouseleave", startAutoScroll);
+    startAutoScroll();
+}
+
+// Debounce utility
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 // Initial render
 renderEmployersList(employers);
 renderFeaturedEmployers();
+
+// Navbar fallback
+document.addEventListener('DOMContentLoaded', () => {
+    const navPlaceholder = document.getElementById('nav-placeholder');
+    if (navPlaceholder && !navPlaceholder.children.length) {
+        navPlaceholder.innerHTML = '<nav class="bg-white dark:bg-gray-800 shadow-sm p-2"><ul class="flex space-x-4 justify-center"><li><a href="#" class="text-sm text-gray-600 hover:text-blue-500">Home</a></li><li><a href="#" class="text-sm text-gray-600 hover:text-blue-500">Jobs</a></li><li><a href="#" class="text-sm text-gray-600 hover:text-blue-500">Employers</a></li><li><a href="#" class="text-sm text-gray-600 hover:text-blue-500">Profile</a></li></ul></nav>';
+    }
+});
+// ... existing code ...
+
+// Render employer card for main list
+function renderEmployer(employer) {
+    const initial = employer.name.charAt(0).toUpperCase();
+    return `
+        <div class="employer-card animate-fade-in">
+            <div class="employer-header">
+                <div class="employer-logo">${initial}</div>
+                <h3 class="employer-name">${employer.name}</h3>
+            </div>
+            <div class="jobs-badge">
+                <i class="fas fa-briefcase"></i>
+                ${employer.jobs} Jobs
+            </div>
+            <a href="https://jobringer.com" class="view-jobs-btn">
+                View Company <i class="fas fa-arrow-right ml-1 text-xs"></i> 
+            </a>
+        </div>
+    `;
+}
+
+// Render featured employer card
+function renderFeaturedEmployer(employer) {
+    const initial = employer.name.charAt(0).toUpperCase();
+    return `
+        <div class="featured-card">
+            <div class="featured-header">
+                <div class="featured-logo">${initial}</div>
+                <h4 class="featured-name text-sm font-medium text-gray-700 dark:text-gray-300">${employer.name}</h4>
+            </div>
+            <div class="jobs-badge text-xs px-2 py-0.5 mt-2">
+                ${employer.jobs} Jobs
+            </div>
+        </div>
+    `;
+}
+
+// ... existing code ...
+
+// Render employer card for main list
+function renderEmployer(employer) {
+    const initial = employer.name.charAt(0).toUpperCase();
+    return `
+        <div class="employer-card animate-fade-in">
+            <div class="employer-header">
+                <div class="employer-logo">${initial}</div>
+                <h3 class="employer-name">${employer.name}</h3>
+            </div>
+            <div class="jobs-badge">
+                <i class="fas fa-briefcase"></i>
+                ${employer.jobs} Active Jobs
+            </div>
+            <a href="https://jobringer.com" class="view-jobs-btn">
+                View Openings <i class="fas fa-arrow-right ml-1 text-xs"></i> 
+            </a>
+        </div>
+    `;
+}
+
+// Render featured employer card
+function renderFeaturedEmployer(employer) {
+    const initial = employer.name.charAt(0).toUpperCase();
+    return `
+        <div class="featured-card">
+            <div class="featured-header">
+                <div class="featured-logo">${initial}</div>
+                <h4 class="featured-name text-base font-semibold text-gray-800 dark:text-gray-200">${employer.name}</h4>
+            </div>
+            <div class="jobs-badge text-xs px-2 py-0.5 mt-2">
+                ${employer.jobs} Jobs
+            </div>
+        </div>
+    `;
+}
+
+// ... rest of the JavaScript remains the same ...

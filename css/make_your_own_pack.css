@@ -1,0 +1,183 @@
+/* Make Your Own Pack Specific Styles */
+
+/* Main card for the page content */
+.card {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: var(--card_bg_light);
+    border: 1px solid var(--border_light);
+    box-shadow: 0 4px 12px var(--light_shadow);
+    transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+html.dark .card {
+    background-color: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    box-shadow: 0 4px 12px var(--dark_shadow);
+}
+
+/* Page container and header styles */
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+h1 {
+    color: var(--text_color_light);
+    transition: color 0.3s;
+}
+
+html.dark h1 {
+    color: var(--text_color_dark);
+}
+
+/* Service item container */
+.service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background-color: var(--body_color_light);
+    border: 1px solid var(--border_light);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+html.dark .service-item {
+    background-color: var(--dark_input_bg);
+    border-color: var(--dark_border);
+}
+
+.service-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.service-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text_color_light);
+    transition: color 0.3s;
+}
+
+html.dark .service-name {
+    color: var(--text_color_dark);
+}
+
+.service-price {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--gray_medium_light);
+    transition: color 0.3s;
+}
+
+html.dark .service-price {
+    color: var(--dark_gray_text);
+}
+
+/* Quantity input group */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.quantity-btn {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--primary);
+    color: #fff;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+html.dark .quantity-btn {
+    background-color: var(--pop_yellow);
+    color: var(--dark_background_secondary);
+}
+
+.quantity-btn:hover {
+    filter: brightness(1.1);
+}
+
+.quantity-input {
+    width: 3.5rem;
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border_light);
+    background-color: var(--card_bg_light);
+    font-size: 1rem;
+    color: var(--text_color_light);
+    transition: all 0.2s ease-in-out;
+}
+
+html.dark .quantity-input {
+    background-color: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    color: var(--text_color_dark);
+}
+
+/* Total display and button */
+.total-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background-color: var(--body_color_light);
+    border: 1px solid var(--border_light);
+}
+
+html.dark .total-container {
+    background-color: var(--dark_input_bg);
+    border-color: var(--dark_border);
+}
+
+.btn-primary-small {
+    padding: 0.6rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: #fff;
+    transition: filter 0.2s ease-in-out;
+    border: none;
+}
+
+html.dark .btn-primary-small {
+    background-color: var(--pop_yellow);
+    color: var(--dark_background_secondary);
+}
+
+.btn-primary-small:hover {
+    filter: brightness(1.1);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .service-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+    }
+
+    .service-details {
+        flex-direction: row;
+        gap: 2rem;
+        margin-bottom: 0;
+    }
+}

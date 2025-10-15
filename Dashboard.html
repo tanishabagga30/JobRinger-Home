@@ -34,9 +34,28 @@
         </div>
         
         <div class="dashboard-container">
-            
+        
             <main class="dashboard-main">
                 <h1 class="text-2xl lg:text-3xl font-bold mb-4">Dashboard</h1>
+                
+                <!-- New Welcome Banner -->
+                <div class="welcome-banner bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white p-4 rounded-xl mb-6 shadow-lg">
+                    <div class="flex items-center justify-between flex-wrap gap-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-rocket text-2xl"></i>
+                            <div>
+                                <h2 class="text-lg font-semibold">Welcome back, Tanisha!</h2>
+                                <p class="text-sm opacity-90">Your job search is heating up! We've got fresh opportunities and tips to land your dream role faster.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="bg-white/20 px-3 py-1 rounded-full">+15% more matches this week</span>
+                            <button class="bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full transition-colors">
+                                <i class="fas fa-star mr-1"></i>Quick Tip
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="dashboard-grid">
                     <div class="profile-section card">
@@ -93,26 +112,58 @@
                             <a href="#" class="text-xs text-cyan-600 dark:text-cyan-400 hover:underline">View All</a>
                         </div>
                         <div class="space-y-2" id="application-list">
+                            <div class="application-item-card">
+                                <img src="https://via.placeholder.com/150" alt="Company Logo" class="company-logo">
+                                <div class="info">
+                                    <p class="job-title">Software Engineer Intern</p>
+                                    <p class="company-name">Google LLC</p>
+                                </div>
+                                <span class="status-badge status-shortlisted">Shortlisted</span>
+                            </div>
+                            <div class="application-item-card">
+                                <img src="https://via.placeholder.com/150" alt="Company Logo" class="company-logo">
+                                <div class="info">
+                                    <p class="job-title">Frontend Developer</p>
+                                    <p class="company-name">Microsoft</p>
+                                </div>
+                                <span class="status-badge status-applied">Applied</span>
+                            </div>
+                            <div class="application-item-card">
+                                <img src="https://via.placeholder.com/150" alt="Company Logo" class="company-logo">
+                                <div class="info">
+                                    <p class="job-title">UX Designer</p>
+                                    <p class="company-name">Apple Inc.</p>
+                                </div>
+                                <span class="status-badge status-rejected">Rejected</span>
+                            </div>
                         </div>
                     </div>
-
                     <div class="subscription-section card">
-                        <h3 class="font-semibold text-base mb-3">Green Tick Subscription <i class="fas fa-check-circle text-cyan-500"></i></h3>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-semibold text-base">My Subscriptions</h3>
+                            <a href="#" class="text-xs text-cyan-600 dark:text-cyan-400 hover:underline">View All</a>
+                        </div>
                         <div class="space-y-2">
-                            <div class="subscription-option-item">
-                                <span class="font-medium text-xs text-slate-700 dark:text-slate-300">GREEN TICK (₹330/- | 90 Days)</span>
-                                <button class="btn-primary-small">Buy Now</button>
-                            </div>
-                            <div class="subscription-option-item active-subscription">
-                                <span class="font-medium text-xs text-slate-700 dark:text-slate-300">GREEN TICK (₹99/- | 30 Days)</span>
-                                <span class="active-status">Active</span>
-                            </div>
-                            <div class="subscription-option-item">
-                                <span class="font-medium text-xs text-slate-700 dark:text-slate-300">GREEN TICK (₹99/- | 30 Days)</span>
-                                <div class="flex items-center gap-2">
-                                    <button class="btn-primary-small">Buy Now</button>
-                                    <span class="text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">Expired on: 24/08/2025</span>
+                            <div class="subscription-item-card expired">
+                                <div class="flex-grow flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-gray-400 dark:text-gray-500 text-lg"></i>
+                                    <div>
+                                        <p class="font-medium">Green Tick Subscription</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Expired on: 24/08/2025</p>
+                                    </div>
                                 </div>
+                                <button class="btn-primary-small font-bold text-sm buy-now-btn">Buy Now</button>
+                            </div>
+
+                            <div class="subscription-item-card active">
+                                <div class="flex-grow flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-green-500 dark:text-green-400 text-lg"></i>
+                                    <div>
+                                        <p class="font-bold">Green Tick Subscription</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Renews on: 24/09/2025</p>
+                                    </div>
+                                </div>
+                                <span class="active-status text-xs font-semibold">Active</span>
                             </div>
                         </div>
                     </div>
@@ -144,6 +195,102 @@
                             <div class="job-card-slider">
                                 <div class="job-card-wrapper" id="savedJobCardWrapper"></div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- New Industry Updates Section -->
+                    <div class="industry-updates-section card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-semibold text-base flex items-center gap-2">
+                                <i class="fas fa-chart-line text-amber-500"></i>
+                                Industry Updates
+                            </h3>
+                            <a href="#" class="text-xs text-cyan-600 dark:text-cyan-400 hover:underline">See More Trends</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="update-item flex items-start gap-3 p-3 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border-l-4 border-amber-400">
+                                <i class="fas fa-bolt text-amber-500 mt-1 flex-shrink-0"></i>
+                                <div class="flex-grow">
+                                    <h4 class="font-semibold text-sm text-slate-800 dark:text-slate-200">AI Job Market Surge</h4>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">AI roles have grown 25% in Q3 2025. Focus on Python and TensorFlow to boost your applications by 40%.</p>
+                                    <div class="mt-2 flex items-center gap-2 text-xs text-amber-600 dark:text-amber-400">
+                                        <span>Source: LinkedIn Report</span>
+                                        <a href="#" class="underline hover:no-underline">Read Full</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="update-item flex items-start gap-3 p-3 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-lg border-l-4 border-emerald-400">
+                                <i class="fas fa-users text-emerald-500 mt-1 flex-shrink-0"></i>
+                                <div class="flex-grow">
+                                    <h4 class="font-semibold text-sm text-slate-800 dark:text-slate-200">Remote Work Boom</h4>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Over 60% of tech jobs now offer remote options. Update your preferences to match hybrid roles in your area.</p>
+                                    <div class="mt-2 flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400">
+                                        <span>Updated: Oct 10, 2025</span>
+                                        <a href="#" class="underline hover:no-underline">Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="update-item flex items-start gap-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border-l-4 border-blue-400">
+                                <i class="fas fa-lightbulb text-blue-500 mt-1 flex-shrink-0"></i>
+                                <div class="flex-grow">
+                                    <h4 class="font-semibold text-sm text-slate-800 dark:text-slate-200">Top Skill: Cloud Computing</h4>
+                                    <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">AWS certifications can increase your shortlist rate by 35%. Start a free course today!</p>
+                                    <div class="mt-2 flex items-center gap-2 text-xs text-blue-600 dark:text-blue-400">
+                                        <span>Tip of the Day</span>
+                                        <a href="#" class="underline hover:no-underline">Enroll Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t text-center">
+                            <button class="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-amber-600 hover:to-orange-600 transition-all">
+                                <i class="fas fa-sync-alt mr-2"></i>Refresh Updates
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- New Quick Tips Section -->
+                    <div class="quick-tips-section card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-semibold text-base flex items-center gap-2">
+                                <i class="fas fa-lightbulb text-yellow-500"></i>
+                                Quick Job Search Tips
+                            </h3>
+                            <a href="#" class="text-xs text-cyan-600 dark:text-cyan-400 hover:underline">More Tips</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="tip-item p-3 bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                                    <div class="flex-grow">
+                                        <h4 class="font-semibold text-sm">Tailor Your Resume</h4>
+                                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Customize keywords from job descriptions to pass ATS filters—boosts visibility by 50%.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tip-item p-3 bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                                    <div class="flex-grow">
+                                        <h4 class="font-semibold text-sm">Network on LinkedIn</h4>
+                                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Connect with 5 recruiters weekly—leads to 3x more interview invites.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tip-item p-3 bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                                    <div class="flex-grow">
+                                        <h4 class="font-semibold text-sm">Practice Interviews</h4>
+                                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Use mock sessions on our platform to improve confidence and answers.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button class="text-cyan-600 dark:text-cyan-400 hover:underline text-sm font-semibold">
+                                <i class="fas fa-book mr-1"></i>View Full Guide
+                            </button>
                         </div>
                     </div>
                 </div>

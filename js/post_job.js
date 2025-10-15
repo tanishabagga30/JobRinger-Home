@@ -6,6 +6,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStage = 1;
     let selectedJobType = 'classic';
 
+    const premiumFieldsContainers = document.querySelectorAll('.premium-fields-container');
+    const premiumUpgradeButtons = document.querySelectorAll('.btn-premium-upgrade');
+
+    // Function to set the visual state of premium fields
+    function setPremiumFieldsState(jobType) {
+        premiumFieldsContainers.forEach(container => {
+            const inputs = container.querySelectorAll('input, select, textarea');
+            const overlay = container.querySelector('.premium-overlay-info');
+
+            if (jobType === 'classic') {
+                container.classList.add('premium-disabled');
+                inputs.forEach(input => input.disabled = true);
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'auto';
+            } else {
+                container.classList.remove('premium-disabled');
+                inputs.forEach(input => input.disabled = false);
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+        });
+    }
+
     // --- Job Type Selection ---
     jobTypeSelector.addEventListener('click', (e) => {
         const card = e.target.closest('.job-type-card');
@@ -15,9 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
         card.classList.add('active');
         selectedJobType = card.dataset.jobType;
         
+        setPremiumFieldsState(selectedJobType);
+
         // Reset form and show the first stage for the new job type
         currentStage = 1;
         updateFormView();
+    });
+
+    // --- Upgrade Button Handler ---
+    premiumUpgradeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const premiumCard = document.querySelector('.job-type-card[data-job-type="premium"]');
+            if (premiumCard) {
+                document.querySelector('.job-type-card.active').classList.remove('active');
+                premiumCard.classList.add('active');
+                selectedJobType = 'premium';
+                setPremiumFieldsState(selectedJobType);
+            }
+        });
     });
 
     // --- Form Navigation ---
@@ -37,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleNext() {
         const currentStageEl = document.getElementById(`stage-${currentStage}`);
-        const requiredFields = currentStageEl.querySelectorAll('[required]');
+        const requiredFields = currentStageEl.querySelectorAll('[required]:not([disabled])');
         let allFieldsValid = true;
 
         requiredFields.forEach(field => {
@@ -50,14 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (allFieldsValid) {
-            // Logic for different job types and stages
-            if (selectedJobType === 'classic' && currentStage === 2) {
-                currentStage = 4; // Skip Stage 3 for Classic
-            } else if (currentStage === 3) {
-                 currentStage = 4; // Move to final stage
-            } else {
-                currentStage++;
-            }
+            currentStage++;
             updateFormView();
         } else {
             alert('Please fill out all required fields.');
@@ -65,11 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleBack() {
-        if (selectedJobType === 'classic' && currentStage === 4) {
-            currentStage = 2; // Go back to Stage 2 from Stage 4
-        } else {
-            currentStage--;
-        }
+        currentStage--;
         updateFormView();
     }
 
@@ -77,12 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateFormView() {
         // Update stage name
         document.getElementById('job-type-name').textContent = selectedJobType.charAt(0).toUpperCase() + selectedJobType.slice(1);
-        if(document.getElementById('job-type-name-2')) {
-           document.getElementById('job-type-name-2').textContent = selectedJobType.charAt(0).toUpperCase() + selectedJobType.slice(1);
-        }
-        if(document.getElementById('job-type-name-3')) {
-           document.getElementById('job-type-name-3').textContent = selectedJobType.charAt(0).toUpperCase() + selectedJobType.slice(1);
-        }
+        document.getElementById('job-type-name-2').textContent = selectedJobType.charAt(0).toUpperCase() + selectedJobType.slice(1);
 
         // Show/hide stages
         formStages.forEach(stage => stage.classList.remove('active'));
@@ -90,17 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update progress indicator
         progressSteps.forEach(step => step.classList.remove('active'));
-        if (selectedJobType === 'classic' && currentStage > 2) {
-             document.querySelector('.step[data-step="1"]').classList.add('active');
-             document.querySelector('.step[data-step="2"]').classList.add('active');
-             document.querySelector('.step[data-step="4"]').classList.add('active');
-        } else {
-            for (let i = 1; i <= currentStage; i++) {
-                document.querySelector(`.step[data-step="${i}"]`).classList.add('active');
-            }
+        for (let i = 1; i <= currentStage; i++) {
+            document.querySelector(`.step[data-step="${i}"]`).classList.add('active');
         }
     }
 
     // Initial load
+    setPremiumFieldsState('classic');
     updateFormView();
-});
+}); 

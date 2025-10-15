@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Jobseekers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/search-jobseeker.css">
+</head>
+<body>
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder">
+        <nav>
+            <div>
+                <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-briefcase"></i> Post a Job</a>
+                <a href="#"><i class="fas fa-list"></i> Manage Jobs</a>
+                <a href="#"><i class="fas fa-users"></i> Find Candidates</a>
+                <a href="#"><i class="fas fa-file-alt"></i> Applications</a>
+                <a href="#"><i class="fas fa-envelope"></i> Messages</a>
+                <a href="#"><i class="fas fa-building"></i> Company Profile</a>
+            </div>
+        </nav>
+    </div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="page-container w-full max-w-4xl mx-auto p-6 md:p-8 space-y-8">
+        <h1 class="text-3xl font-bold text-center">Search Jobseekers</h1>
+
+        <form id="searchForm" class="space-y-6 max-w-3xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
+                <div class="flex-1">
+                    <label for="keywords" class="block text-sm font-medium">Keywords</label>
+                    <input type="text" id="keywords" name="keywords" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm" placeholder="e.g., Software Engineer, Project Manager">
+                </div>
+                <div class="flex-1 mt-4 md:mt-0">
+                    <div class="text-sm font-medium mb-1">Search Type</div>
+                    <div class="flex space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="searchType" value="any" class="form-radio" checked>
+                            <span class="ml-2">Any</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="searchType" value="all" class="form-radio">
+                            <span class="ml-2">All</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label for="functionalArea" class="block text-sm font-medium">Functional Area</label>
+                    <input type="text" id="functionalArea" name="functionalArea" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm">
+                </div>
+                <div>
+                    <label for="location" class="block text-sm font-medium">Location</label>
+                    <input type="text" id="location" name="location" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm">
+                </div>
+                <div>
+                    <label for="industry" class="block text-sm font-medium">Industry</label>
+                    <input type="text" id="industry" name="industry" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm">
+                </div>
+            </div>
+
+            <div>
+                <label for="contactDetails" class="block text-sm font-medium">Contact Details (Name/Mobile number/email)</label>
+                <input type="text" id="contactDetails" name="contactDetails" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="minExperience" class="block text-sm font-medium">Min Experience (yrs)</label>
+                    <select id="minExperience" name="minExperience" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border focus:outline-none focus:ring-2 sm:text-sm rounded-md shadow-sm">
+                        <option value="0">Min Exp</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="maxExperience" class="block text-sm font-medium">Max Experience (yrs)</label>
+                    <select id="maxExperience" name="maxExperience" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border focus:outline-none focus:ring-2 sm:text-sm rounded-md shadow-sm">
+                        <option value="50">Max Exp</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium">CTC Range (Per Annum)</label>
+                <div class="flex justify-between items-center mt-2 mb-4">
+                    <span id="minCTCValue" class="font-semibold text-lg">0</span>
+                    <span id="maxCTCValue" class="font-semibold text-lg">50,000,000</span>
+                </div>
+                <div id="ctc-range-slider" class="slider-container">
+                    <div class="slider-track"></div>
+                    <div class="slider-range"></div>
+                    <div class="slider-handle min-handle"></div>
+                    <div class="slider-handle max-handle"></div>
+                </div>
+                <input type="hidden" id="minCTC" name="minCTC">
+                <input type="hidden" id="maxCTC" name="maxCTC">
+            </div>
+
+            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 pt-4">
+                <button type="submit" class="w-full md:w-1/2 flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-search mr-2"></i>Search Jobseekers
+                </button>
+                
+                <div class="w-full md:w-1/2 flex items-center justify-center p-3 border rounded-md shadow-sm text-sm font-medium transition-all duration-300">
+                    <label for="resumeAttached" class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="resumeAttached" name="resumeAttached" class="form-checkbox" unchecked>
+                        <span class="ml-2">Only Show Candidates with Resume Attached</span>
+                    </label>
+                </div>
+                
+            </div>
+        </form>
+
+        <div id="messageBox" class="hidden mt-4 p-4 rounded-md text-sm text-center">
+            Form submitted successfully.
+        </div>
+
+        <div id="results-section" class="hidden space-y-4">
+            <h2 class="text-xl md:text-2xl font-bold">Search Results</h2>
+            <div id="candidate-list-container" class="grid grid-cols-1 gap-4"></div>
+            <div class="pagination-container">
+                <button id="prev-page-btn" class="page-btn-sm disabled"><i class="fas fa-chevron-left"></i></button>
+                <div id="page-numbers" class="flex gap-1"></div>
+                <button id="next-page-btn" class="page-btn-sm"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder">
+        
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/search-jobseekers.js"></script>
+</body>
+</html>

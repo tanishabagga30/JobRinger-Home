@@ -1,4 +1,4 @@
-/* --- Universal CSS with Responsive Navigation --- */
+/* --- Universal CSS with Responsive Navigation (REVISED - CLICK TO TOGGLE) --- */
 
 /* --- ROOT VARIABLES & BASE STYLES --- */
 :root {
@@ -27,6 +27,48 @@
     --dark_shadow: rgba(0, 0, 0, 0.3);
     --dark_gray_text: #CBD5E0;
     --dark_input_bg: #2D3748;
+
+    /* Desktop Sidebar Variables (Integrated with site theme) */
+    --bg--primary: var(--card_bg_light);
+    --bg--active: rgba(30, 172, 198, 0.1);
+    --bg--hover: rgba(30, 172, 198, 0.05);
+    --bg--focus: rgba(30, 172, 198, 0.1);
+    --gray--primary: var(--gray_medium_light);
+    --gray--secondary: var(--gray_text_light);
+    --dark--primary: var(--primary_blue);
+    --dark--secondary: var(--border_light);
+    --accent--primary: var(--primary_blue);
+    --accent--secondary: var(--secondary_blue);
+    --expanded: 16.875rem;
+    --collapsed: 3.25rem;
+    --svg: 1.125rem;
+    --item: 2.25rem;
+    --brad-outer: 0.75rem;
+    --frame-space: 0.5rem;
+    --brad-inner: calc(var(--brad-outer) - var(--frame-space));
+}
+
+html.dark {
+    /* Existing dark mode overrides */
+    --body_color_dark: #1A202C;
+    --text_color_dark: #F7FAFC;
+    --dark_background_secondary: #2D3748;
+    --dark_border: #4A5568;
+    --dark_shadow: rgba(0, 0, 0, 0.3);
+    --dark_gray_text: #CBD5E0;
+    --dark_input_bg: #2D3748;
+
+    /* Dark mode for sidebar (integrated) */
+    --bg--primary: var(--dark_background_secondary);
+    --bg--active: rgba(30, 172, 198, 0.2);
+    --bg--hover: rgba(30, 172, 198, 0.1);
+    --bg--focus: rgba(30, 172, 198, 0.2);
+    --gray--primary: var(--dark_gray_text);
+    --gray--secondary: var(--text_color_dark);
+    --dark--primary: var(--pop_yellow);
+    --dark--secondary: var(--dark_border);
+    --accent--primary: var(--pop_yellow);
+    --accent--secondary: var(--primary_blue);
 }
 
 * {
@@ -42,7 +84,7 @@ body {
     padding-bottom: 75px; 
     overflow-x: hidden;
     line-height: 1.5;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s, padding-left 300ms ease-out; /* Added padding transition */
 }
 
 a {
@@ -58,10 +100,13 @@ html.dark .text-gray-600, html.dark .text-gray-700 { color: var(--dark_gray_text
 html.dark .border-gray-300 { border-color: var(--dark_border); }
 html.dark input { background-color: var(--dark_input_bg); color: var(--text_color_dark); }
 
-/* --- HEADER --- */
+/* --- HEADER (MODIFIED FOR DESKTOP ALIGNMENT) --- */
 header {
     background: var(--card_bg_light);
     border-bottom: 1px solid var(--border_light);
+    position: sticky; /* Stick the header to the top of the content area */
+    top: 0; /* Keep it fixed when scrolling main content */
+    z-index: 100;
 }
 html.dark header { background: var(--dark_background_secondary); border-bottom-color: var(--dark_border); }
 
@@ -72,7 +117,7 @@ html.dark .message-slider { background: var(--dark_background_secondary); border
 html.dark .message-slide { color: var(--pop_yellow); }
 .message-slide.active { display: block; }
 
-/* --- UNIVERSAL NAVIGATION STYLES --- */
+/* --- UNIVERSAL NAVIGATION STYLES (Mobile Bottom Nav - UNCHANGED) --- */
 #nav-placeholder {
     padding: 10px 0;
     border-top-left-radius: 1rem;
@@ -85,49 +130,61 @@ html.dark .message-slide { color: var(--pop_yellow); }
     z-index: 1000;
     box-shadow: 0 -2px 10px var(--light_shadow);
     top: auto;
-    width: auto;
+    width: 100%;
     height: auto;
+    display: block;
 }
-#nav-placeholder nav, #nav-placeholder nav > div {
+#nav-placeholder #mobile-nav {
     display: flex;
     justify-content: space-evenly;
-    align-items: center; /* Changed to center for better vertical alignment */
-    gap: 16px; /* Increased gap for better icon separation */
+    align-items: center;
+    gap: 16px;
+    padding: 0 10px;
 }
-#nav-placeholder nav a {
-    padding: 12px 10px !important; /* Increased padding and override Tailwind's p-1 */
+/* ... (Rest of Mobile Nav Styles) ... */
+#nav-placeholder #mobile-nav .flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+#nav-placeholder #mobile-nav a {
+    padding: 12px 10px !important;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: var(--gray_text_light);
     text-decoration: none;
-    font-size: 0.7rem; /* Slightly larger text for clarity */
+    font-size: 0.7rem;
     gap: 6px;
-    flex: 1; /* Ensure equal width for each item */
+    flex: 1;
     text-align: center;
+    transition: color 0.2s ease;
 }
-#nav-placeholder nav i { 
-    font-size: 1.25rem; /* Slightly increased icon size */
+#nav-placeholder #mobile-nav i { 
+    font-size: 1.25rem;
     color: var(--gray_medium_light); 
+    transition: color 0.2s ease;
 }
-#nav-placeholder nav a:hover, #nav-placeholder nav a.active { 
+#nav-placeholder #mobile-nav a:hover, #nav-placeholder #mobile-nav a.active { 
     color: var(--primary_blue); 
 }
-#nav-placeholder nav a:hover i, #nav-placeholder nav a.active i { 
+#nav-placeholder #mobile-nav a:hover i, #nav-placeholder #mobile-nav a.active i { 
     color: var(--primary_blue); 
 }
 
 /* Mobile-specific adjustments for smaller screens */
 @media (max-width: 640px) {
-    #nav-placeholder nav, #nav-placeholder nav > div {
-        gap: 12px; /* Slightly reduced gap for very small screens */
+    #nav-placeholder #mobile-nav .flex {
+        gap: 12px;
     }
-    #nav-placeholder nav a {
-        padding: 10px 8px !important; /* Slightly smaller padding for small screens */
-        font-size: 0.65rem; /* Smaller text for small screens */
+    #nav-placeholder #mobile-nav a {
+        padding: 10px 8px !important;
+        font-size: 0.65rem;
     }
-    #nav-placeholder nav i {
-        font-size: 1.2rem; /* Slightly smaller icons for small screens */
+    #nav-placeholder #mobile-nav i {
+        font-size: 1.2rem;
     }
 }
 
@@ -136,71 +193,438 @@ html.dark #nav-placeholder {
     background: var(--dark_background_secondary); 
     box-shadow: 0 -2px 10px var(--dark_shadow); 
 }
-html.dark #nav-placeholder nav a { 
+html.dark #nav-placeholder #mobile-nav a { 
     color: var(--dark_gray_text); 
 }
-html.dark #nav-placeholder nav i { 
+html.dark #nav-placeholder #mobile-nav i { 
     color: var(--text_color_dark); 
 }
-html.dark #nav-placeholder nav a:hover, html.dark #nav-placeholder nav a.active { 
+html.dark #nav-placeholder #mobile-nav a:hover, html.dark #nav-placeholder #mobile-nav a.active { 
     color: var(--pop_yellow); 
 }
-html.dark #nav-placeholder nav a:hover i, html.dark #nav-placeholder nav a.active i { 
+html.dark #nav-placeholder #mobile-nav a:hover i, html.dark #nav-placeholder #mobile-nav a.active i { 
     color: var(--pop_yellow); 
+}
+
+/* Hide mobile nav in desktop */
+@media (min-width: 1024px) {
+    #nav-placeholder #mobile-nav {
+        display: none !important;
+    }
+    body {
+        padding-bottom: 0 !important;
+    }
+}
+
+/* Hide desktop nav in mobile */
+@media (max-width: 1023px) {
+    #nav-placeholder #desktop-nav {
+        display: none !important;
+    }
 }
 
 /* --- DESKTOP LAYOUT & LEFT NAVIGATION (min-width: 1024px) --- */
 @media (min-width: 1024px) {
+    /* CRITICAL FIX: Add padding to the body for content offset */
     body {
-        padding-left: 80px !important;
-        padding-top: 95px !important; 
-        padding-bottom: 0 !important;
+        padding-left: var(--collapsed); 
+        transition: padding-left 300ms ease-out; /* Ensure smooth content shift */
     }
-    header {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 2000 !important;
-        padding-left: 80px !important;
-    }
+    
+    /* REVERTED: Adjust content padding when the sidebar is CHECKED */
+    /* REMOVED: This is now handled by JS using body:has(input:checked) which is unreliable */
+    
+    /* MODIFY: Position and size the sidebar correctly */
     #nav-placeholder {
-        top: 0;
-        left: 0;
-        bottom: 0;
+        position: fixed !important;
+        top: 0 !important; /* Start from the top edge */
+        left: 0 !important;
+        bottom: 0 !important;
         right: auto; 
-        width: 80px;
-        height: 100%;
-        background: var(--card_bg_light);
+        width: var(--collapsed) !important;
+        height: 100vh !important; /* Full height */
+        background: var(--bg--primary); /* Use the sidebar background color */
         border-right: 1px solid var(--border_light);
-        padding-top: 95px;
+        padding: 0 !important;
+        border-radius: 0;
+        box-shadow: none; /* Removed shadow for integrated look */
+        z-index: 1999 !important;
+        transition: width 300ms ease-out !important;
+        will-change: width;
+    }
+    
+    /* REVERTED: Expand the container when checkbox is CHECKED */
+    #nav-placeholder:has(input:checked) {
+        width: var(--expanded) !important;
+    }
+    
+    #nav-placeholder #desktop-nav {
+        display: flex !important;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Full height adjustments for sidebar */
+    .vertical-sidebar {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+    }
+    
+    /* MODIFIED: Remove border-radius and shadow from inner nav */
+    nav {
         border-radius: 0;
         box-shadow: none;
-        z-index: 1999 !important;
-    }
-    #nav-placeholder nav, #nav-placeholder nav > div {
-        flex-direction: column;
-        justify-content: flex-start;
+        height: 100%;
         width: 100%;
-        gap: 0.5rem;
-        align-items: center;
+        background: transparent; /* Let #nav-placeholder define the background */
     }
-    #nav-placeholder nav a {
-        padding: 0.75rem 0.5rem !important; /* Override Tailwind p-1 for desktop */
-        width: 90%;
-        border-radius: 8px;
-        font-size: 0.8rem; /* Slightly larger text for desktop */
-    }
-    #nav-placeholder nav i {
-        font-size: 1.25rem; /* Consistent icon size for desktop */
-    }
+    
     html.dark #nav-placeholder {
-        background: var(--dark_background_secondary);
         border-right-color: var(--dark_border);
+    }
+    
+    /* Adjust menu popup for desktop (though not used) */
+    .menu-popup {
+        left: var(--collapsed) !important;
+        width: calc(75% - var(--collapsed)); 
+        max-width: calc(300px - var(--collapsed));
+    }
+    .menu-popup.active {
+        left: var(--collapsed) !important;
     }
 }
 
-/* --- FOOTER --- */
+/* --- DESKTOP SIDEBAR STYLES (REFINED FOR CLICK TOGGLE) --- */
+.vertical-sidebar {
+    display: flex;
+    inline-size: var(--collapsed);
+    transition: inline-size 300ms ease-out !important;
+    will-change: inline-size;
+    font-family: inherit;
+}
+
+/* REVERTED: Expand the inner sidebar wrapper when CHECKED */
+.vertical-sidebar:has(input:checked) {
+    inline-size: var(--expanded);
+}
+
+.vertical-sidebar input[type="checkbox"] {
+    display: none;
+}
+
+/* MODIFIED: Inner NAV styling for a cleaner look */
+nav {
+    background: var(--bg--primary); /* Keep background here for non-media query use */
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    border-radius: 0; 
+    transition: none;
+    padding: var(--frame-space);
+    box-shadow: none; 
+}
+
+/* REVERTED: Restore header and toggle button CSS */
+header {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding-top: 0.5rem; /* Reduced padding for a tighter fit */
+}
+
+.sidebar__toggle-container {
+    block-size: var(--item);
+    display: flex;
+    justify-content: end;
+}
+
+.nav__toggle {
+    block-size: 100%;
+    background: none;
+    transition: all 233ms ease-in;
+    border-radius: var(--brad-inner);
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.toggle--icons {
+    block-size: inherit;
+    aspect-ratio: 1;
+    display: inline-grid;
+    place-content: center;
+    grid-template-areas: "icon";
+    z-index: 10;
+}
+
+.toggle-icon {
+    grid-area: icon;
+    color: var(--gray--primary);
+    transition: color 233ms ease-in, opacity 233ms ease-in;
+}
+
+.nav__toggle:hover {
+    outline: 2px solid var(--accent--primary);
+}
+
+.toggle--icons:hover .toggle-icon {
+    color: var(--dark--primary);
+}
+
+.sidebar__wrapper {
+    --list-gap: 0.5rem;
+    display: flex;
+    flex-flow: column;
+    gap: var(--list-gap);
+    flex: 1;
+    overflow: hidden;
+    padding-top: 1rem;
+}
+
+/* --- Add these new styles for the collapsed desktop sidebar --- */
+@media (min-width: 1024px) {
+    /* When the sidebar is collapsed, hide the 'More' list and all text headings */
+    .vertical-sidebar:not(:has(#sidebar-toggle:checked)) .list--secondary,
+    .vertical-sidebar:not(:has(#sidebar-toggle:checked)) .item--heading {
+        display: none;
+    }
+
+    /* Adjust the primary icon list for better spacing in the collapsed state */
+    .vertical-sidebar:not(:has(#sidebar-toggle:checked)) .list--primary {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Vertically center the group of icons */
+        flex-grow: 1;           /* Allow the list to fill the available vertical space */
+        gap: 1.5rem;            /* Increase the space between icons */
+    }
+
+    /* Make the icons larger in the collapsed state */
+    .vertical-sidebar:not(:has(#sidebar-toggle:checked)) .sidebaritem .icon i {
+        font-size: 1.6rem; /* Increase icon size for better visibility */
+        line-height: 1;
+    }
+
+    /* Center the larger icons perfectly within their containers */
+    .vertical-sidebar:not(:has(#sidebar-toggle:checked)) .sidebarlink {
+        justify-content: center;
+        padding-inline: 0;
+    }
+}
+
+.sidebar__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: column;
+    gap: 0.125rem;
+    overflow: hidden;
+    flex: 1;
+}
+
+.sidebar__item {
+    block-size: var(--item);
+    border-radius: var(--brad-inner);
+    position: relative;
+    /* NEW/MODIFIED: Allow item to auto-size when submenu is open */
+    transition: block-size 300ms ease-out;
+}
+.vertical-sidebar:has(input:checked) .sidebar__item {
+    block-size: auto;
+}
+
+/* NEW: Force list item height to --item when collapsed (fixes sublist gap issue) */
+.vertical-sidebar:not(:has(input:checked)) .sidebar__item {
+    block-size: var(--item);
+}
+
+
+.item--heading {
+    display: flex;
+    align-items: end;
+    block-size: auto;
+    padding: 0.5rem 0;
+}
+
+.sidebar__item--heading {
+    margin-block-end: 0.4rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+    font-weight: 500;
+    color: var(--gray--primary);
+    transition: color 200ms ease-in;
+}
+
+.sidebar__list:has(.sidebar__link):hover .sidebar__item--heading {
+    color: var(--gray--secondary);
+}
+
+.sidebar__link {
+    display: flex;
+    text-decoration: none;
+    block-size: 100%;
+    align-items: center;
+    gap: 0.5rem;
+    outline: 2px solid transparent;
+    border-radius: inherit;
+    /* Added padding to shift icons slightly left when collapsed */
+    padding-inline: calc(var(--frame-space) / 2); 
+}
+
+.icon {
+    aspect-ratio: 1;
+    block-size: 100%;
+    display: inline-grid;
+    place-content: center;
+    flex-shrink: 0;
+}
+
+.icon i {
+    place-self: center;
+    inline-size: var(--svg);
+    block-size: var(--svg);
+    color: var(--gray--primary);
+}
+
+.text {
+    pointer-events: none;
+    color: var(--gray--secondary);
+    font-size: 0.875em;
+    font-weight: 500;
+    transition: color 266ms ease-out;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+/* REVERTED: Show item text when CHECKED */
+.vertical-sidebar:has(input:checked) .text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 🌙 THEME TOGGLE SPECIFIC FIX: Ensure theme text is hidden when not checked */
+.vertical-sidebar:not(:has(input:checked)) #theme-text {
+    opacity: 0 !important; /* Force hide text in collapsed state */
+    transform: translateX(10px) !important;
+}
+
+.sidebar__link:hover {
+    background: var(--bg--hover);
+}
+
+.sidebar__link:hover .icon i {
+    color: var(--accent--primary);
+}
+
+/* REVERTED: Text color change on CHECKED state hover */
+.vertical-sidebar:has(input:checked) .sidebar__link:hover .text {
+    color: var(--dark--primary);
+}
+
+.sidebar__link:focus {
+    outline: 2px solid var(--accent--secondary);
+    outline-offset: -2px;
+    background: var(--bg--focus);
+}
+
+.sidebar__link:focus .icon i {
+    color: var(--accent--primary);
+}
+
+.sidebar__link:active {
+    background-color: var(--bg--active);
+}
+
+/* Submenu Styles (MODIFIED for smooth open/close) */
+.sidebar__sublist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Use flex to control children */
+    flex-direction: column;
+    max-height: 0; /* Use max-height for smooth transition */
+    overflow: hidden;
+    visibility: hidden;
+    transition: all 300ms ease-in-out; 
+    
+    background: var(--bg--hover);
+    border-radius: 0 0 var(--brad-inner) var(--brad-inner);
+    margin-top: -0.125rem;
+}
+
+/* REVERTED: Expand submenu when CHECKED */
+.vertical-sidebar:has(input:checked) .sidebar__sublist {
+    max-height: 20rem; /* Sufficient height */
+    visibility: visible;
+}
+
+.sidebar__subitem {
+    padding: 0.25rem 1rem;
+    padding-left: calc(var(--item) + 0.5rem); /* Align subitem text past the main icon space */
+}
+
+.sidebar__sublink {
+    display: block;
+    color: var(--gray--secondary);
+    font-size: 0.8em;
+    padding: 0.25rem 0;
+    border-radius: var(--brad-inner);
+    transition: color 200ms ease, background 200ms ease;
+}
+
+.sidebar__sublink:hover {
+    color: var(--accent--primary);
+    background: var(--bg--focus);
+}
+
+/* Icon visibility for collapsed/expanded */
+.vertical-sidebar:not(:has(input:checked)) .toggle--open,
+.vertical-sidebar:has(input:checked) .toggle--close {
+    opacity: 0;
+}
+
+.vertical-sidebar:not(:has(input:checked)) :where(.item--heading) {
+    opacity: 0;
+}
+
+.vertical-sidebar:has(input:checked) :where(.item--heading) {
+    transition: opacity 300ms ease-in 200ms;
+    opacity: 1;
+}
+
+/* Tooltips for collapsed state */
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: fixed;
+    translate: calc(var(--item) * 1.5) calc(var(--item) * 0.125);
+    border-radius: var(--brad-inner);
+    padding: 0.5rem 0.75rem;
+    color: #ddd;
+    background-color: hsl(198 16% 30%);
+    box-shadow: 0 6px 12px -6px #0003;
+    opacity: 0;
+    pointer-events: none;
+    scale: 0 0;
+    z-index: 999;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 350ms ease-out;
+    white-space: nowrap;
+}
+
+.vertical-sidebar:not(:has(input:checked))
+    .sidebar__link:where(:hover, :focus-visible)[data-tooltip]::before {
+    opacity: 1;
+    scale: 1;
+}
+
+/* --- FOOTER & POPUPS (UNCHANGED) --- */
 footer {
     background: #FFFFFF;
     padding: 1rem;
@@ -252,3 +676,17 @@ html.dark footer .disclaimer { color: var(--dark_gray_text); background-color: r
 .search-popup-overlay, .menu-popup-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1029; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
 .search-popup-overlay.active, .menu-popup-overlay.active { opacity: 1; pointer-events: all; }
 html.dark .search-popup, html.dark .menu-popup { background: var(--dark_background_secondary); }
+
+/* Hide mobile menu popup in desktop */
+@media (min-width: 1024px) {
+    .menu-popup,
+    .menu-popup-overlay,
+    #menu-placeholder {
+        display: none !important;
+    }
+    
+    /* Ensure no accidental activation */
+    .menu-popup.active {
+        display: none !important;
+    }
+}

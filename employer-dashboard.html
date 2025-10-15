@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard - JobRinger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/employer-dashboard.css">
+</head>
+<body>
+
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div> 
+    <div id="menu-placeholder"></div>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <div class="post-job-banner">
+                <h3 class="font-bold text-lg text-white">Grow Your Team</h3>
+                <p class="text-sm text-gray-200 mt-1 mb-4">Find the best talent for your company.</p>
+                <button class="btn btn-primary-yellow w-full"><i class="fas fa-plus-circle mr-2"></i>Post a Job</button>
+            </div>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="#" class="nav-item active"><i class="fas fa-briefcase"></i><span>Manage Jobs</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-users"></i><span>Job Applicants</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-building"></i><span>Company Profile</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-search"></i><span>Search</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-bookmark"></i><span>Saved Searches</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-id-card"></i><span>Bookmarked Profiles</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-cloud-upload-alt"></i><span>Post 3rd Party Jobs</span></a></li>
+                    <hr class="nav-divider">
+                    <li><a href="#" class="nav-item"><i class="fas fa-rocket"></i><span>Active Subscription</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-history"></i><span>Subscription History</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Reports</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-headset"></i><span>Sales Enquiry</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content pt-16">
+            <h1 class="text-2xl lg:text-3xl font-bold mb-4">Dashboard</h1>
+
+            <div class="stats-container">
+                <div class="card stat-card">
+                    <div class="stat-icon-wrapper bg-cyan-100 dark:bg-cyan-900"><i class="fas fa-file-alt text-cyan-600 dark:text-cyan-400"></i></div>
+                    <div><p class="stat-value">288</p><p class="stat-label">Jobs Posted</p></div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon-wrapper bg-red-100 dark:bg-red-900"><i class="fas fa-clock text-red-600 dark:text-red-400"></i></div>
+                    <div><p class="stat-value">0 <span class="text-lg font-medium">Days</span></p><p class="stat-label">Database Search</p></div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon-wrapper bg-amber-100 dark:bg-amber-900"><i class="fas fa-bell text-amber-600 dark:text-amber-400"></i></div>
+                    <div><p class="stat-value">5</p><p class="stat-label">New Notifications</p></div>
+                </div>
+            </div>
+
+            <div class="subscription-promo">
+                <div class="promo-icon"><i class="fas fa-star"></i></div>
+                <div>
+                    <h3 class="font-bold text-lg">Unlock Your Hiring Potential</h3>
+                    <p class="text-sm mt-1 mb-4">Get unlimited database searches and premium features to find the best candidates faster.</p>
+                </div>
+                <button class="btn-promo">View Plans</button>
+            </div>
+
+            <div class="card">
+                <div class="flex justify-between items-center mb-4"><h3 class="font-semibold text-lg">Recently Posted Jobs</h3><a href="#" class="text-sm text-cyan-600 dark:text-cyan-400 hover:underline">View All</a></div>
+                <div class="table-container">
+                    <table class="w-full text-left">
+                        <thead><tr><th>Job Title</th><th>Posted On</th><th>Responses</th></tr></thead>
+                        <tbody>
+                            <tr><td>Social Media Marketing Internship</td><td>13-10-2025</td><td><span class="response-count">0</span></td></tr>
+                            <tr><td>IT Fresher</td><td>25-09-2025</td><td><span class="response-count high">1857</span></td></tr>
+                            <tr><td>iOS Developer</td><td>17-09-2025</td><td><span class="response-count">3</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-grid-lower">
+                <div class="card flex flex-col h-full">
+                    <div class="flex justify-between items-center mb-4"><h3 class="font-semibold text-lg">Applications Received</h3><a href="#" class="text-sm text-cyan-600 dark:text-cyan-400 hover:underline">View All</a></div>
+                    <ul class="applicant-list flex-grow"> 
+                        <li><img src="https://ui-avatars.com/api/?name=Priyam+Mallick&background=random" alt="Avatar"><div class="applicant-info"><p><strong>Priyam Mallick</strong> applied for <strong>IT Fresher</strong>.</p><span class="applicant-time">2 hours ago</span></div></li>
+                        <li><img src="https://ui-avatars.com/api/?name=Shwethaa&background=random" alt="Avatar"><div class="applicant-info"><p><strong>Shwethaa</strong> applied for <strong>IT Fresher</strong>.</p><span class="applicant-time">5 hours ago</span></div></li>
+                        <li><img src="https://ui-avatars.com/api/?name=Nishant+Patkar&background=random" alt="Avatar"><div class="applicant-info"><p><strong>Nishant Patkar</strong> applied for <strong>IT Fresher</strong>.</p><span class="applicant-time">1 day ago</span></div></li>
+                    </ul>
+                </div>
+                <div class="card flex flex-col h-full">
+                    <h3 class="font-semibold text-lg mb-4">Recent Activities</h3>
+                    <ul class="activity-list flex-grow">
+                        <li><i class="fas fa-plus-circle text-green-500"></i><div><p>New job "Product Designer" was posted.</p><span class="activity-time">1 hour ago</span></div></li>
+                        <li><i class="fas fa-redo-alt text-blue-500"></i><div><p>Your subscription was successfully renewed.</p><span class="activity-time">1 day ago</span></div></li>
+                        <li><i class="fas fa-user-check text-purple-500"></i><div><p>3 new applications for "IT Fresher".</p><span class="activity-time">2 days ago</span></div></li>
+                    </ul>
+                </div>
+                <div class="card subscription-status-card flex flex-col h-full">
+                    <h3 class="font-semibold text-lg mb-4">Subscription Status</h3>
+                    <div class="current-plan">
+                        <p class="plan-name">Premium Plan</p>
+                        <p class="plan-expiry">Expires on: Nov 30, 2025</p>
+                        <span class="status-badge active">Active</span>
+                    </div>
+                    <button class="btn-manage">Manage Plan</button>
+                    <hr class="card-divider"/>
+                    <h4 class="font-semibold text-md mb-3">History</h4>
+                    <ul class="history-list">
+                        <li>Basic Plan <span>(Expired Dec 2024)</span></li>
+                        <li>Starter Plan <span>(Expired Dec 2023)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="footer-placeholder" class="mt-auto"></div>
+    <script src="js/script.js"></script>
+    <script src="js/employer-dashboard.js"></script>
+</body>
+</html>

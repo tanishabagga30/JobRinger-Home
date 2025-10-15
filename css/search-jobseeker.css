@@ -1,0 +1,411 @@
+/* Custom CSS to hide default arrows on number inputs */
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Page Container */
+.page-container {
+    background: var(--card_bg_light);
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 10px var(--light_shadow);
+}
+html.dark .page-container {
+    background: var(--dark_background_secondary);
+    box-shadow: 0 2px 10px var(--dark_shadow);
+}
+
+/* Form Styles */
+.page-container input,
+.page-container select {
+    background: var(--card_bg_light);
+    border-color: var(--border_light);
+    color: var(--text_color_light);
+}
+html.dark .page-container input,
+html.dark .page-container select {
+    background: var(--dark_input_bg);
+    border-color: var(--dark_border);
+    color: var(--text_color_dark);
+}
+.page-container input:focus,
+.page-container select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(30, 172, 198, 0.3);
+}
+html.dark .page-container input:focus,
+html.dark .page-container select:focus {
+    border-color: var(--pop_yellow);
+    box-shadow: 0 0 0 2px rgba(194, 217, 255, 0.3);
+}
+.page-container label {
+    color: var(--text_color_light);
+}
+html.dark .page-container label {
+    color: var(--text_color_dark);
+}
+
+/* Radio/Checkbox Styles (Reusing form-radio base styles for consistency) */
+.form-radio, .form-checkbox {
+    appearance: none;
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--gray_text_light);
+    cursor: pointer;
+    vertical-align: middle;
+    transition: all 0.2s;
+}
+.form-radio {
+    border-radius: 50%;
+}
+
+.form-radio:checked, .form-checkbox:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+.form-radio:focus, .form-checkbox:focus {
+    box-shadow: 0 0 0 2px rgba(30, 172, 198, 0.3);
+}
+html.dark .form-radio:checked, html.dark .form-checkbox:checked {
+    background-color: var(--pop_yellow);
+    border-color: var(--pop_yellow);
+}
+html.dark .form-radio:focus, html.dark .form-checkbox:focus {
+    box-shadow: 0 0 0 2px rgba(194, 217, 255, 0.3);
+}
+
+/* Checkmark for Checkbox (tailwind approach - no background image needed for checkmark if using a custom font/SVG, but often necessary for clean cross-browser styling) */
+.form-checkbox:checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 00-1.414 0L7 8.586 4.207 5.793a1 1 0 00-1.414 1.414l3.5 3.5a1 1 0 001.414 0l5-5a1 1 0 000-1.414z'/%3e%3c/svg%3e");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+html.dark .form-checkbox:checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%231f2937' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 00-1.414 0L7 8.586 4.207 5.793a1 1 0 00-1.414 1.414l3.5 3.5a1 1 0 001.414 0l5-5a1 1 0 000-1.414z'/%3e%3c/svg%3e");
+}
+
+/* Submit Button */
+.page-container button[type="submit"] {
+    background: var(--primary);
+    color: #fff;
+}
+.page-container button[type="submit"]:hover {
+    background: var(--secondary);
+}
+html.dark .page-container button[type="submit"] {
+    background: var(--pop_yellow);
+    color: var(--dark_background_secondary);
+}
+html.dark .page-container button[type="submit"]:hover {
+    background: #b0c7ff;
+}
+
+/* Resume Attached Checkbox Wrapper Styles (Reusing old button border styles) */
+.page-container .flex-col > .flex:last-child {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--card_bg_light);
+    /* No hover effect on the box, just the checkbox/label */
+}
+html.dark .page-container .flex-col > .flex:last-child {
+    border-color: var(--pop_yellow);
+    color: var(--pop_yellow);
+    background: var(--dark_input_bg);
+}
+
+.page-container #messageBox {
+    background: rgba(30, 172, 198, 0.1);
+    color: var(--primary);
+}
+html.dark .page-container #messageBox {
+    background: rgba(194, 217, 255, 0.1);
+    color: var(--pop_yellow);
+}
+
+/* CTC Slider Styles */
+.slider-container {
+    position: relative;
+    height: 24px;
+    width: 100%;
+}
+.slider-track,
+.slider-range {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    border-radius: 9999px;
+}
+.slider-track {
+    width: 100%;
+    background: var(--border_light);
+}
+html.dark .slider-track {
+    background: var(--dark_border);
+}
+.slider-range {
+    background: var(--primary);
+}
+html.dark .slider-range {
+    background: var(--pop_yellow);
+}
+.slider-handle {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: var(--card_bg_light);
+    border: 2px solid var(--primary);
+    border-radius: 9999px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px var(--light_shadow);
+    z-index: 10;
+}
+html.dark .slider-handle {
+    background: var(--dark_background_secondary);
+    border-color: var(--pop_yellow);
+    box-shadow: 0 1px 3px var(--dark_shadow);
+}
+#minCTCValue, #maxCTCValue {
+    color: var(--primary);
+}
+html.dark #minCTCValue, html.dark #maxCTCValue {
+    color: var(--pop_yellow);
+}
+
+/* Candidate Cards */
+.candidate-card {
+    background: var(--card_bg_light);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px var(--light_shadow);
+    border: 1px solid var(--border_light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.candidate-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px var(--light_shadow);
+}
+html.dark .candidate-card {
+    background: var(--dark_background_secondary);
+    box-shadow: 0 2px 8px var(--dark_shadow);
+    border-color: var(--dark_border);
+}
+.candidate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.candidate-title-wrapper {
+    flex-grow: 1;
+}
+.candidate-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text_color_light);
+}
+html.dark .candidate-name {
+    color: var(--text_color_dark);
+}
+.candidate-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border_light);
+    font-size: 0.75rem;
+    color: var(--gray_text_light);
+}
+html.dark .candidate-details {
+    border-color: var(--dark_border);
+    color: var(--dark_gray_text);
+}
+.candidate-details .detail-item {
+    flex: 1;
+    text-align: center;
+}
+.candidate-details .detail-label {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.candidate-details .detail-value {
+    font-weight: 600;
+    color: var(--text_color_light);
+    margin-top: 0.25rem;
+}
+html.dark .candidate-details .detail-value {
+    color: var(--text_color_dark);
+}
+.candidate-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border_light);
+}
+html.dark .candidate-actions {
+    border-color: var(--dark_border);
+}
+.action-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+.action-btn.bg-indigo-600 {
+    background: var(--primary);
+    color: #fff;
+}
+.action-btn.bg-indigo-600:hover {
+    background: var(--secondary);
+}
+html.dark .action-btn.bg-indigo-600 {
+    background: var(--pop_yellow);
+    color: var(--dark_background_secondary);
+}
+html.dark .action-btn.bg-indigo-600:hover {
+    background: #b0c7ff;
+}
+.action-btn.bg-gray-200 {
+    background: var(--card_bg_light);
+    color: var(--gray_text_light);
+}
+.action-btn.bg-gray-200:hover {
+    background: var(--light_yellow_bg);
+}
+html.dark .action-btn.bg-gray-200 {
+    background: var(--dark_input_bg);
+    color: var(--dark_gray_text);
+}
+html.dark .action-btn.bg-gray-200:hover {
+    background: #3a4658;
+}
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+.page-btn-sm {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    border: 1px solid var(--border_light);
+    background: var(--card_bg_light);
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-btn-sm.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+.page-btn-sm:hover:not(.active):not(.disabled) {
+    background: var(--light_yellow_bg);
+}
+.page-btn-sm.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+html.dark .page-btn-sm {
+    background: var(--dark_input_bg);
+    border-color: var(--dark_border);
+    color: var(--text_color_dark);
+}
+html.dark .page-btn-sm.active {
+    background: var(--pop_yellow);
+    color: var(--dark_background_secondary);
+    border-color: var(--pop_yellow);
+}
+html.dark .page-btn-sm:hover:not(.active):not(.disabled) {
+    background: #3a4658;
+}
+
+/* Mobile-specific styles (max-width: 767px) */
+@media (max-width: 767px) {
+    .page-container {
+        padding: 1rem;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .grid {
+        gap: 0.5rem;
+    }
+    input, select {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+    }
+    .slider-container {
+        height: 20px;
+    }
+    .slider-track,
+    .slider-range {
+        height: 5px;
+    }
+    .slider-handle {
+        width: 16px;
+        height: 16px;
+    }
+    #minCTCValue, #maxCTCValue {
+        font-size: 0.875rem;
+    }
+    /* Submit button specific style, as the Resume attached element is no longer a button */
+    button[type="submit"] {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+    .candidate-card {
+        padding: 1rem;
+    }
+    .candidate-name {
+        font-size: 1rem;
+    }
+    .candidate-details {
+        font-size: 0.7rem;
+    }
+    .action-btn {
+        padding: 0.375rem;
+        font-size: 0.7rem;
+    }
+    .pagination-container {
+        gap: 0.25rem;
+        margin-top: 1rem;
+    }
+    .page-btn-sm {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* Desktop Styles (min-width: 768px) */
+@media (min-width: 768px) {
+    .page-container {
+        padding: 1.5rem;
+    }
+}
