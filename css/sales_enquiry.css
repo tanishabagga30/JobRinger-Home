@@ -1,0 +1,105 @@
+/* --- SALES ENQUIRY PAGE SPECIFIC STYLES --- */
+
+/* Reusing component variables from universal.css */
+
+/* Card: Smaller Padding */
+.enquiry-card {
+    background: var(--card_bg_light);
+    border: 1px solid var(--border_light);
+    border-radius: 16px; 
+    padding: 1.5rem; /* Reduced from 2rem to 1.5rem */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); 
+    transition: all 0.3s ease;
+}
+html.dark .enquiry-card {
+    background: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Form Groups and Labels: Tighter Spacing */
+.form-group {
+    margin-bottom: 0; 
+}
+.form-label {
+    display: block;
+    font-size: 0.8rem; /* Slightly smaller label text */
+    font-weight: 600; 
+    margin-bottom: 0.4rem; /* Reduced label margin */
+    color: var(--text_color_primary); 
+}
+.required-star {
+    color: var(--primary_blue); 
+    font-weight: 700;
+}
+
+/* Input, Textarea, Select Styles: Significantly Reduced Height */
+.form-input {
+    width: 100%;
+    font-size: 0.95rem; /* Slightly smaller input text */
+    padding: 0.6rem 1rem; /* Reduced padding */
+    padding-left: 2.5rem; /* Reduced space for icon */
+    height: 2.5rem; /* CRUCIAL: Reduced height from 3.25rem to 2.5rem */
+    background: var(--body_color_light);
+    border: 1px solid var(--border_light);
+    border-radius: 8px; /* Slightly smaller radius */
+    transition: all 0.2s ease;
+    resize: vertical; 
+}
+
+/* Textarea specific adjustments */
+textarea.form-input {
+    height: auto;
+    min-height: 80px; /* Reduced min height */
+    padding: 0.6rem 1rem; 
+    padding-left: 1rem; 
+}
+
+/* Form Icons: Positioned for new height */
+.form-icon {
+    position: absolute;
+    left: 0.8rem; /* Adjusted position */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray_medium_light);
+    font-size: 1rem; /* Slightly smaller icon */
+    pointer-events: none; 
+}
+
+/* Select Chevron Icon: Positioned for new height */
+.form-select {
+    appearance: none;
+    padding-right: 2.5rem; 
+}
+.form-select-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray_medium_light);
+    font-size: 0.75rem;
+    pointer-events: none;
+}
+.form-select-icon.right-4 { right: 0.75rem; }
+
+
+/* Submit Button: Compact and Prominent CTA */
+.submit-btn {
+    width: 100%;
+    max-width: 250px; 
+    padding: 0.75rem 1.25rem; /* Reduced padding */
+    background: var(--primary_blue);
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem; /* Reduced font size */
+    border-radius: 9999px; 
+    border: 1px solid var(--primary_blue); 
+    box-shadow: 0 4px 8px rgba(30, 172, 198, 0.3); 
+    transition: all 0.2s ease;
+}
+
+/* ... Dark Mode styles for button hover (unchanged) ... */
+html.dark .submit-btn:hover {
+    background: #e0b400;
+    box-shadow: 0 8px 16px rgba(255, 193, 7, 0.4);
+}

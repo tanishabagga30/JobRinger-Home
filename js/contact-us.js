@@ -1,58 +1,34 @@
+// contact-us.js
 document.addEventListener('DOMContentLoaded', () => {
-    // Contact Method Selector
-    const methodCards = document.querySelectorAll('.contact-method-card');
-    const contactFormH2 = document.querySelector('.contact-form h2');
-    const contactFormIcon = contactFormH2.querySelector('i');
+  const cards = document.querySelectorAll('.method-card');
+  const title = document.getElementById('form-title');
+  const subject = document.getElementById('subject');
+  const sales = document.getElementById('salesFields');
+  const form = document.getElementById('contactForm');
 
-    methodCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Remove active class from all cards
-            methodCards.forEach(c => c.classList.remove('active'));
-            // Add active class to clicked card
-            card.classList.add('active');
+  const methods = {
+    email: { icon: 'fa-envelope', text: 'Send Us a Message' },
+    phone: { icon: 'fa-phone', text: 'Contact Us by Phone' },
+    whatsapp: { icon: 'fa-whatsapp', text: 'Message Us on WhatsApp' }
+  };
 
-            // Update form header based on selected method
-            const method = card.dataset.method;
-            if (method === 'email') {
-                contactFormH2.innerHTML = '<i class="fas fa-envelope mr-2"></i> Send Us a Message';
-            } else if (method === 'phone') {
-                contactFormH2.innerHTML = '<i class="fas fa-phone-alt mr-2"></i> Contact Us by Phone';
-            } else if (method === 'chat') {
-                contactFormH2.innerHTML = '<i class="fas fa-comment-dots mr-2"></i> Start a Live Chat';
-            }
-        });
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const m = card.dataset.method;
+      title.innerHTML = `<i class="fas ${methods[m].icon}"></i> ${methods[m].text}`;
     });
+  });
 
-    // Show/hide sales fields based on subject selection
-    const subjectSelect = document.getElementById('subject');
-    const salesFields = document.getElementById('salesFields');
+  subject?.addEventListener('change', () => {
+    sales.classList.toggle('hidden', subject.value !== 'sales');
+  });
 
-    if (subjectSelect && salesFields) {
-        subjectSelect.addEventListener('change', () => {
-            salesFields.style.display = subjectSelect.value === 'sales' ? 'block' : 'none';
-        });
-    }
-
-    // Form submission handling
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            const company = document.getElementById('company').value;
-            const employees = document.getElementById('employees').value;
-
-            if (name && email && subject && message) {
-                console.log('Form submitted:', { name, email, subject, message, company, employees });
-                alert('Message sent successfully!');
-                contactForm.reset();
-                salesFields.style.display = 'none';
-            } else {
-                alert('Please fill in all required fields.');
-            }
-        });
-    }
+  form?.addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Message Sent! We\'ll reply within 24 hours.');
+    form.reset();
+    sales.classList.add('hidden');
+  });
 });

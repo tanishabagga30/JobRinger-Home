@@ -6,116 +6,143 @@
     <title>Advanced Job Search - JobRinger</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/universal.css"> 
     <link rel="stylesheet" href="css/adv_search.css">
 </head>
-<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col h-full lg:overflow-hidden">
+    
     <div id="header-placeholder" class="sticky top-0 z-50"></div>
     <div id="nav-placeholder"></div>
     <div id="menu-placeholder"></div>
     <div id="search-placeholder"></div>
 
-    <div class="content-wrapper max-w-7xl mx-auto px-4 py-6">
-        <h1 class="text-2xl lg:text-3xl font-bold mb-6">Advanced Job Search</h1>
-        <form id="advanced-search-form" class="space-y-6">
+    <main class="flex-grow">
+        <div class="content-wrapper max-w-7xl mx-auto px-4 py-6 md:py-8 
+                    lg:max-h-[calc(100vh-100px)] lg:overflow-y-auto"> 
+            
+            <h1 class="text-2xl lg:text-3xl font-extrabold mb-6 lg:mb-4 text-center md:text-left">Advanced Job Search</h1>
+            
+            <form id="advanced-search-form" class="space-y-4 lg:space-y-0 lg:gap-4">
 
-            <div class="search-card">
-                <div class="form-group">
-                    <label for="job-search" class="form-label">Job / Company / Designation</label>
-                    <div class="relative">
-                        <input type="text" id="job-search" name="job-search" placeholder="e.g., Software Engineer, Google" class="form-input">
-                        <i class="fas fa-search form-icon"></i>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="skills" class="form-label">Skills / Keywords</label>
-                    <div class="relative">
-                        <input type="text" id="skills" name="skills" placeholder="e.g., Python, Data Analysis" class="form-input">
-                        <i class="fas fa-tags form-icon"></i>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="country" class="form-label">Country <span class="text-red-500">*</span></label>
-                    <div class="relative">
-                        <select id="country" name="country" required class="form-input form-select" aria-describedby="country-help">
-                            <option value="" disabled selected>Select Country</option>
-                            <option value="Afghanistan">Afghanistan</option>
-                            <option value="Albania">Albania</option>
-                            <option value="Algeria">Algeria</option>
-                            <option value="India">India</option>
-                            <option value="USA">USA, United States of America</option>
-                            <option value="UK">UK, United Kingdom</option>
-                            </select>
-                        <i class="fas fa-globe form-icon"></i>
-                        <i class="fas fa-chevron-down form-select-icon"></i>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="location" class="form-label">Location</label>
-                    <div class="relative">
-                        <select id="location" name="location" class="form-input form-select">
-                            <option value="" disabled selected>Select Location</option>
-                        </select>
-                        <i class="fas fa-map-marker-alt form-icon"></i>
-                        <i class="fas fa-chevron-down form-select-icon"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="search-card">
-                <div class="advanced-filters-header">
-                    <h3 class="text-lg font-semibold">Advanced Filters</h3>
-                    <button type="button" class="filter-toggle" id="filter-toggle-btn">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-                
-                <div class="advanced-filters-content" style="display: none;">
-                    <div class="form-group">
-                        <label for="experience" class="form-label">Experience</label>
-                        <div class="flex space-x-4">
-                            <input type="number" id="experience-min" name="experience-min" placeholder="Min (Years)" class="form-input w-1/2" min="0">
-                            <input type="number" id="experience-max" name="experience-max" placeholder="Max (Years)" class="form-input w-1/2" min="0">
+                <div class="search-card lg:p-6">
+                    <h2 class="text-lg lg:text-xl font-semibold mb-4 lg:mb-3 border-b pb-2 border-slate-200 dark:border-gray-700">Primary Search Criteria</h2>
+                    
+                    <div class="form-group lg:mb-3">
+                        <label for="job-search" class="form-label">Job / Company / Designation</label>
+                        <div class="relative max-w-md lg:max-w-full">
+                            <input type="text" id="job-search" name="job-search" placeholder="e.g., Software Engineer, Google" class="form-input pr-12">
+                            <i class="fas fa-search form-icon"></i>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Job Type</label>
-                        <div class="flex flex-wrap gap-2">
-                            <label class="option-label"><input type="checkbox" name="job-type" value="Full-Time" class="form-checkbox"> Full Time</label>
-                            <label class="option-label"><input type="checkbox" name="job-type" value="Part-Time" class="form-checkbox"> Part Time</label>
-                            <label class="option-label"><input type="checkbox" name="job-type" value="Internship" class="form-checkbox"> Internship</label>
+                    <div class="form-group lg:mb-3">
+                        <label for="skills" class="form-label">Skills / Keywords</label>
+                        <div class="relative max-w-md lg:max-w-full">
+                            <input type="text" id="skills" name="skills" placeholder="e.g., Python, Data Analysis" class="form-input pr-12">
+                            <i class="fas fa-tags form-icon"></i>
                         </div>
+                    </div>
+
+                    <div class="form-group grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                        <div>
+                            <label for="country" class="form-label">Country <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <select id="country" name="country" required class="form-input form-select pr-12">
+                                    <option value="" disabled selected>Select Country</option>
+                                    <option value="Afghanistan">Afghanistan</option>
+                                    <option value="Albania">Albania</option>
+                                    <option value="Algeria">Algeria</option>
+                                    <option value="India">India</option>
+                                    <option value="USA">USA, United States of America</option>
+                                    <option value="UK">UK, United Kingdom</option>
+                                </select>
+                                <i class="fas fa-globe form-icon"></i>
+                                <i class="fas fa-chevron-down form-select-icon right-4"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="location" class="form-label">Location</label>
+                            <div class="relative">
+                                <select id="location" name="location" class="form-input form-select pr-12">
+                                    <option value="" disabled selected>Select Location</option>
+                                </select>
+                                <i class="fas fa-map-marker-alt form-icon"></i>
+                                <i class="fas fa-chevron-down form-select-icon right-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-card lg:h-full lg:p-6">
+                    <div class="advanced-filters-header" id="advanced-filters-header-toggle">
+                        <h3 class="text-xl font-semibold">Advanced Filters</h3>
+                        <button type="button" class="filter-toggle" id="filter-toggle-btn">
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </button>
                     </div>
                     
-                    <div class="form-group">
-                        <label class="form-label">Payroll Type</label>
-                        <div class="flex flex-wrap gap-2">
-                            <label class="option-label"><input type="radio" name="payroll-type" value="Company" class="form-radio" checked> Company Payroll</label>
-                            <label class="option-label"><input type="radio" name="payroll-type" value="Third-Party" class="form-radio"> Third-Party Payroll</label>
+                    <div class="advanced-filters-content">
+                        <div class="form-group lg:mb-3">
+                            <label for="experience" class="form-label">Experience (Years)</label>
+                            <div class="flex space-x-4">
+                                <input type="number" id="experience-min" name="experience-min" placeholder="Min" class="form-input text-center">
+                                <input type="number" id="experience-max" name="experience-max" placeholder="Max" class="form-input text-center">
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">CTC Range</label>
-                        <div class="flex space-x-2">
-                            <select id="currency" name="currency" class="form-input form-select w-1/4">
-                                <option value="INR">INR</option>
-                                <option value="USD">USD</option>
-                            </select>
-                            <input type="number" id="salary-from" name="salary-from" placeholder="From" class="form-input flex-1" min="0">
-                            <input type="number" id="salary-to" name="salary-to" placeholder="To" class="form-input flex-1" min="0">
+
+                        <div class="form-group lg:mb-3">
+                            <label class="form-label">Job Type</label>
+                            <div class="flex flex-wrap gap-2">
+                                <label class="option-label">
+                                    <input type="checkbox" name="job-type" value="Full-Time" class="form-checkbox"> Full Time
+                                </label>
+                                <label class="option-label">
+                                    <input type="checkbox" name="job-type" value="Part-Time" class="form-checkbox"> Part Time
+                                </label>
+                                <label class="option-label">
+                                    <input type="checkbox" name="job-type" value="Internship" class="form-checkbox"> Internship
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group lg:mb-3">
+                            <label class="form-label">Payroll Type</label>
+                            <div class="flex flex-wrap gap-2">
+                                <label class="option-label">
+                                    <input type="radio" name="payroll-type" value="Company" class="form-radio" checked> Company Payroll
+                                </label>
+                                <label class="option-label">
+                                    <input type="radio" name="payroll-type" value="Third-Party" class="form-radio"> Third-Party Payroll
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group lg:mb-0">
+                            <label class="form-label">CTC Range</label>
+                            <div class="flex space-x-2">
+                                <div class="relative flex-none w-24"> 
+                                    <select id="currency" name="currency" class="form-input form-select currency-select">
+                                        <option value="INR">INR</option>
+                                        <option value="USD">USD</option>
+                                    </select>
+                                    <i class="fas fa-chevron-down form-select-icon right-2"></i>
+                                </div>
+                                <input type="number" id="salary-from" name="salary-from" placeholder="From (Lacs/K)" class="form-input flex-1 text-center">
+                                <input type="number" id="salary-to" name="salary-to" placeholder="To (Lacs/K)" class="form-input flex-1 text-center">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <button type="submit" class="submit-btn">Search Jobs</button>
-        </form>
-    </div>
+                <div class="lg:col-span-2 flex justify-center lg:justify-end">
+    <button type="submit" class="submit-btn w-auto lg:mt-0 lg:p-3">
+        <i class="fas fa-paper-plane mr-2"></i> Search Jobs
+    </button>
+</div>
+            </form>
+        </div>
+    </main>
 
     <div id="footer-placeholder" class="mt-auto"></div>
 

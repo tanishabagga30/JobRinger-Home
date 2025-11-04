@@ -1,0 +1,1600 @@
+<?php
+    include_once 'include/functions.php';
+    $functions = new Functions();
+    $isEmployerLogin = $functions->sessionExists(LoginFunctions::$USERTYPE_EMPLOYER);
+    $isJobSeekerLogin = $functions->sessionExists(LoginFunctions::$USERTYPE_JOB_SEEKER);
+    $getCms = $functions->fetch($functions->query("SELECT * FROM ".PREFIX."cms_master WHERE id='1'"));
+
+    if($isJobSeekerLogin){
+
+        $functional_area_arr = explode(",",$isJobSeekerLogin['functional_area']);
+        $job_role_arr = explode(",",$isJobSeekerLogin['job_role']);
+        $SearchClauseArr = array();
+        foreach($functional_area_arr as $oneData) {
+            //functional_area LIKE '% 1 %' || functional_area LIKE '1 %' || functional_area LIKE '% 1'||functional_area LIKE '1'
+            $SearchClauseArr[] = "(functional_area LIKE '% $oneData %' || functional_area LIKE '$oneData %' || functional_area LIKE '% $oneData'||functional_area LIKE '$oneData')";
+            $functionalorderArr[] = "(functional_area LIKE '% $oneData %' || functional_area LIKE '$oneData %' || functional_area LIKE '% $oneData'||functional_area LIKE '$oneData')";
+        }
+        foreach($job_role_arr as $oneData) {
+            $SearchClauseArr[] = "(job_role LIKE '% $oneData %' || job_role LIKE '$oneData %' || job_role LIKE '% $oneData'||job_role LIKE '$oneData')";
+            $roleorderArr[] = "(job_role LIKE '% $oneData %' || job_role LIKE '$oneData %' || job_role LIKE '% $oneData'||job_role LIKE '$oneData')";
+        }
+        
+        if(count($SearchClauseArr)>0 ){
+            $whereClauseArr[] = "and (".implode(' || ', $SearchClauseArr).")";
+        }
+        if(count($functionalorderArr)>0 ){
+            $functionalorder = "(".implode(' || ', $functionalorderArr).")";
+        }
+        if(count($roleorderArr)>0 ){
+            $roleorder= "(".implode(' || ', $roleorderArr).")";
+        }
+        } else {
+        $whereClauseArr[] = "";
+        }
+    if(!empty($job_role_arr)){
+        $orderQuery=" ORDER BY RAND()";
+    }else{
+        $orderQuery=" ORDER BY RAND()";
+    }
+
+
+    $recommendedQuery = "select * from ".PREFIX."employer_jobs where active='yes' and not employer_id=84 and is_expired=0 ".$whereClauseArr[0]." ".$orderQuery." limit 10;";
+    // echo $recommendedQuery;
+    $recommendedRS = $functions->query($recommendedQuery);
+
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Jobringer | FAQ</title>
+        <meta name="title" property="og:title" content="Jobringer | FAQ">
+        <meta name="description" property="og:description" content="Find Right Answers to your Job related Questions.Find right Job on jobringer.com - India's job portal. Easy Apply on best Jobs! Get employment by top recruiters.">
+        <meta name="keywords" content="how to get job,create CV,create Resume,highest salary in India,Jobs in India,content writing job,job analysis,BPO job,email for job application,cover letter,reject a job offer,data entry job,highest salary in India,Jobs in India,jobringer,resume,job,jobs">
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@jobshindco" />
+        <meta name="twitter:creator" content="@jobshindco" />
+        <meta name="twitter:image" content="<?php echo IMAGE_DIRECTORY_URL; ?>/images-new/logo200.jpg" />
+        <?php include("include/header-link.php");?>
+        <?php include("include/google-ad-header.php");?>
+        <link rel="stylesheet" href="/css-new/faq.css">
+        <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+        <style>
+            .jobDiv {
+    max-width: 100%;
+    margin: 10px 0px !important;
+}
+.jsdrecommendjobsboxli {
+    border: none;
+}
+.clearSpace {
+    height: 30px;
+}
+.jsdrecommendjobsboxli {
+    color: #333;
+    border: 1px solid #ddd;
+    background-color: #fbfbfb;
+    border-radius: 3px;
+    margin: 15px 0px;
+    box-shadow: 5px 5px 5px #e3e3e3;
+}
+.search-row .main-search {
+    width: 43%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+h2.breadsearchhead {
+    margin-bottom: 0px;
+}
+
+@media (max-width:768px) {
+  .desktopOnly{
+    display:none;
+  }
+  
+}
+/* Cropper Modal */
+            .upload-btn {
+            background: white;
+            color: black;
+            border: none;
+            width: 100%;
+            padding: 10px 25px;
+            border-radius: 5px;
+            border: 1px solid #d1d5db;
+            font-size: 0.9em;
+            cursor: pointer;
+            /* transition: all 0.3s ease; */
+            /* box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3); */
+        }
+
+        .choices__inner,.choices__list.choices__list--dropdown{
+            color:black;
+        }
+
+        .crop-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .crop-modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .current-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #1eacc6;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: none;
+            background: #f8f9fa;
+        }
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .crop-container {
+            margin: 20px 0;
+            max-height: 400px;
+        }
+
+        .crop-controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .crop-controls button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-crop {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-crop:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
+
+        .btn-cancel {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background: #5a6268;
+            transform: translateY(-1px);
+        }
+        .file-input {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            
+            .crop-modal-content {
+                margin: 10% auto;
+                width: 95%;
+                padding: 20px;
+            }
+        }
+        .faq-answer ul {
+            list-style: disc;
+            padding-left: inherit !important;
+        }
+
+        </style>
+            <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css-new/universal.css">
+<link rel="stylesheet" href="/css-new/signup.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/base.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    </head>
+    <body class="about-us-body">
+        <?php include("include/header-new.php"); ?>
+        <?php include("include/jobseekermainsearch.php"); ?>
+    <div class="container">
+          <div class="container">
+        <div class="header">
+             
+            <h1>JobRinger FAQs</h1>
+            <p>Find answers to your job search questions</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for answers..." id="searchInput">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="general">General</button>
+                <button class="category-btn" data-category="applications-and-resumes">Job Applications & Resumes</button>
+                <button class="category-btn" data-category="resume">Resume Help</button>
+                <button class="category-btn" data-category="industry">Industry Info</button>
+                <button class="category-btn" data-category="account">Account</button>
+            </div>
+        </div>
+
+        <div class="faq-content" itemtype="https://schema.org/FAQPage">
+            <div class="faq-section" data-category="general">
+                <h2 class="section-title">General Questions</h2>
+                
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question" >
+                        <span>How can I get a job quickly?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>At JobRinger, we believe the fastest way to land a job is to <b>apply smart, not just apply more</b>. Build a clear, neat CV, apply for roles that genuinely match your skills, and keep your LinkedIn/profile updated. Also, networking and referrals often speed things up!</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                                <!-- g2 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is the difference between a CV, a resume, and a biodata?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul>
+                                <li><b>CV (Curriculum Vitae)</b>: A detailed record of your academic + professional journey.</li>
+                                <li><b>Resume</b>: A short summary (usually 1–2 pages) of your skills, work, and achievements.</li>
+                                <li><b>Biodata</b>: Mostly used in government jobs or marriage proposals in India — focuses on personal details.</li>
+                            </ul>
+                            <p>Think of it this way: Resume = Short Story, CV = Full Book, Biodata = Personal Snapshot.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g3 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is a cover letter and do I always need one?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            
+                            <p>A cover letter is like your <b>introduction letter</b> to an employer. It tells them why you’re applying and why you’re a good fit. Not all companies ask for it, but when they do — it can make you stand out.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g4 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is the notice period in a job?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            
+                            <p>
+                                It’s the time you must work after resigning before leaving the company. Example: If your notice period is 1 month, you have to keep working for that 1 month after you resign.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g5 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is a remote job and how is it different from work-from-home?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul>
+                                <li><b>Remote job</b>: You can work from anywhere — home, café, even while traveling.</li>
+                                <li><b>Work from home</b>: You’re working specifically from your house.</li>
+                            </ul>
+                            <p>
+                                So, every work-from-home job is remote, but not every remote job means “home only.”
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g6 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>Which job is best for freshers in India?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            
+                            <p>
+                                There’s no one “best” job, but popular fresher-friendly fields are <b>IT, BPO, sales, digital marketing, content writing, data entry, and customer support</b>. Choose based on your skills and interests — not just the trend.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g6 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>Which job is best for girls?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Honestly, jobs don’t have genders . The best job for girls (or boys) is the one that matches skills, interest, and growth goals. Today, women excel in a wide range of fields — from coding to aviation to entrepreneurship.            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g7 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>Which job is best for girls?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                So, every work-from-home job is remote, but not every remote job means “home only.”
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g8 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>Which job has the highest salary in India?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Some of the top-paying rules are in <b>management consulting, investment banking, software engineering, data science, and medicine</b>. Salaries vary by experience, company, and location.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g9 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is an internship, and why is it important?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                An internship is like a <b>trial run</b> before a full-time job. You learn real work, gain experience, and build skills. For freshers, internships often open doors to permanent jobs.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g10 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is the difference between part-time and full-time jobs?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul>
+                                <li><b>Full-time</b>: Standard 8–9 hours a day, with fixed salary + benefits.</li>
+                                <li><b>Part-time</b>: Fewer hours, usually flexible, and pay is hourly/daily.</li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g11 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is job security, and why does it matter?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Job security means how safe your job is. Government jobs are known for high security. Private jobs may have less stability but often more growth. It matters because it impacts your financial stability and peace of mind.            
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g12 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is the difference between private and government jobs?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul>
+                                <li><b>Government jobs</b>: More stability, fixed working hours, and retirement benefits.</li>
+                                <li><b>Private jobs</b>: More growth opportunities and higher salaries (sometimes), but can be less stable.</li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g13 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How much salary should I expect as a fresher?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Salaries vary widely. In India, most freshers start between <b>₹2 LPA – ₹6 LPA</b>, depending on field, skills, and city. Tech and finance usually pay higher; customer support or data entry may start lower.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g14 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is the probation period in jobs?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                It’s a “testing time” (usually 3–6 months) when the company checks your performance. If you do well, you become a permanent employee.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g15 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is campus placement?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Campus placement is when companies come to your college to hire students directly. It’s the easiest way for freshers to get jobs before even finishing studies.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g16 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I turn volunteer work into a job opportunity?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Volunteer work builds real skills—teamwork, leadership, and problem-solving—that employers value. Highlight your responsibilities and achievements in your resume. Many NGOs, startups, or even companies hire volunteers full-time if they prove reliable and passionate.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g17 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I know if I'm due for a promotion?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                If you’re already handling responsibilities above your role, consistently meeting goals, and colleagues look up to you, it’s a sign you’re ready. Regular positive feedback and being trusted with critical tasks also indicate promotion time. Don’t hesitate to ask your manager for growth discussions.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g18 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I transition to a new industry?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Start by identifying transferable skills—like project management, communication, or data analysis—that apply across industries. Upskill with short courses or certifications in the new field. Networking with people in the target industry helps you adapt faster and find hidden opportunities.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g19 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What industries are future-proof for long-term careers?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                While no industry is 100% future-proof, sectors like technology (AI, cybersecurity, data science), healthcare, renewable energy, education, and digital marketing are expected to grow steadily. Choosing industries driven by innovation and human needs ensures long-term stability.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g20 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I get international work experience?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Look for exchange programs, internships with global companies, or remote roles with international clients. Building a strong LinkedIn presence also attracts overseas recruiters. Even freelancing with foreign clients counts as international exposure, making your profile global-ready.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g21 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I negotiate employee benefits (not just salary)?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Apart from salary, you can negotiate health insurance, work-from-home flexibility, paid leave, training programs, or performance bonuses. Research company policies and industry standards first, then explain how these benefits will help you perform better at work.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g22 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I handle a toxic boss?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Stay professional—don’t engage in negativity. Document incidents in case HR intervention is needed. Focus on learning and building skills, but if the environment negatively impacts your health, consider exploring alternative opportunities. Remember: your mental well-being matters more than a paycheck.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g23 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What should I do if my company is downsizing?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Stay calm and proactive. Update your resume, expand your networking, and explore opportunities before you’re affected. If layoffs are confirmed, ask HR about severance packages or recommendations. Downsizing can be stressful, but it’s also a chance to pivot into growing industries.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g24 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I switch from entrepreneurship to employment?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Highlight transferable skills—leadership, problem-solving, and financial management—that you gained while running your business. Employers may worry about your adaptability, so show willingness to work in teams and follow organisational structures. Your entrepreneurial background can make you stand out if positioned well.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- g15 -->
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is reverse mentoring, and can it help my career?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>
+                                Reverse mentoring is when younger employees mentor senior professionals—often in areas like technology, digital tools, or new trends. For job seekers, it’s a great way to showcase fresh skills, build visibility with leadership, and create strong workplace relationships.
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How can I choose the right career path?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Think about three things: What you enjoy (your passion), what you're good at (your skills) and what the world needs (job demand). Where these three meet → that's your best career path. Don't worry if it's not clear right now; exploring internships, volunteering, and skill-based projects will give clarity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">What skills are most in demand in 2025 job markets?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Digital skills (Like AI, Data, Cloud, Cybersecurity), communication & teamwork, adaptability & problem-solving, creativity & critical thinking and emotional intelligence are among the most in-demand skills as per the 2025 job market.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I know if a job suits my personality?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Finding the right job goes beyond salary or skills — it's about how well it fits your personality. To check if a job matches you, ask yourself: Does this work excite me or drain me? Do I enjoy the work culture — fast-paced, creative, or structured? Do the company's mission and values align with mine? If your answers are mostly "yes," it's a good sign that the job aligns with your personality and can lead to better career satisfaction and growth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I research a company before applying?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Check their website (About Us and Careers pages), read employee reviews, and look at their social media for insights into their culture & values. Also, see news/articles about them for stability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I build confidence before applying?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Prepare an explained and well-aligned resume. Practice common interview questions to ace your interview, and remember to focus on what you bring to the table. Confidence grows with preparation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I improve my communication skills for jobs?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Communication is a non-negotiable skill for any job improve your communication, read daily, practice speaking, and try mock interviews. Joining groups, discussions, or online classes that add a lot of value to improving your communication skills.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I decide between two job offers?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                To land the best fit for you, compare both the offer letters on the basis of growth opportunities, work-life balance, salary + benefits, learning chances and company culture. Pick the one that helps your long-term goals, not just quick money.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I avoid job scams online?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                As job scams are spreading, ensure to beware and don't ever pay money for a job. Check official company emails (not Gmail/Yahoo) and research the company before sharing details. If it sounds "too good to be true," it usually is a scam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How can I build networking connections?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                To build your network, ensure to attend workshops, seminars, and career events. Stay active on networking sites. Stay in touch with college peers, teachers, and ex-colleagues. As Networking = Opportunities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I handle stress during a job search?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Take breaks, set daily limits for applications, exercise, and talk to supportive friends. Remember it's a process, not a race. Don't burn yourself out in the process.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I know if a job posting is fake?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                If there is no company name or clear role, poor grammar & unrealistic salary and asking for money or personal info upfront. These are some of the red flags in the job posting. Always cross-check on the official website.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I use freelancing to build experience?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Freelancing lets you learn real client skills, build a portfolio, earn while studying and explore different industries.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do I balance a job search with my current studies or work?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Set aside a fixed time daily/weekly. Use weekends for applications and don't overload yourself—small, steady steps matter.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="faq-section" data-category="applications-and-resumes">
+                <h2 class="section-title">Job Applications & Resumes</h2>
+                
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I write an email for a job application?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>Your email is like your first impression. Keep it professional but simple:</li></ul><p>Subject line: “Application for [Job Title] – [Your Name]”</p><p>Greeting: Address the HR/hiring manager if you know their name.</p><p>Body: Write 3–4 short lines: introduce yourself, mention the role, highlight one or two key skills/achievements, and politely say you’ve attached your resume.</p><p>Closing: End with “Thank you, looking forward to your response.”</p><p>Remember, recruiters read tons of emails daily — keep yours short and clear.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I write a cover letter?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>A cover letter is not just a formality — it’s a chance to tell your story beyond the resume. Here’s a simple structure:</li></ul><p>Introduction: Who you are + what role you’re applying for.</p><p>Why this company: Show you’ve done research. For example, “I admire your company’s work in… and want to contribute.”</p><p>Your skills & value: Don’t just repeat your resume — instead, explain how your skills fit their needs.</p><p>Closing: Thank them, express interest in an interview.</p><p>Tip: Keep it one page, conversational, and customized for each job.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I format a resume?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Think clean and easy-to-scan. Most recruiters spend less than 10 seconds scanning a resume.</p><p>Use sections: Contact info, Summary, Education, Skills, Experience, Projects, Achievements.</p><p>Stick to simple fonts (Calibri, Arial) and black text.</p><p>Use bullet points, not paragraphs.</p><p>Avoid too many colors, images, or fancy designs (unless you’re in creative fields like design or media).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What should I include in my CV as a fresher?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>If you don’t have experience, don’t worry — employers know freshers are just starting out. Your CV should highlight:</li></ul><p>Career objective (short and clear).</p><p>Education background (degrees, grades if good).</p><p>Projects and internships (college or personal).</p><p>Skills — both technical (Excel, coding, design) and soft (communication, teamwork).</p><p>Achievements — competitions, certificates, volunteering.</p><p>Show eagerness to learn, not just what you’ve already done.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What should I avoid putting on my resume?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Personal details like age, religion, caste, marital status.
+                Salary expectations.
+                Long paragraphs.
+                Fake experience (recruiters usually find out).
+                Decorative fonts or too many colors.</p><p>Avoid these things and keep it professional and to the point.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I make my resume stand out?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>A standout resume is one that speaks directly to the job description.</p><p>Use action words like “Led,” “Managed,” “Created,” “Increased.”</p><p>Show numbers where possible: “Improved sales by 15%” or “Completed project 20% ahead of time.”</p><p>Customize your resume for each application — highlight the skills they are asking for.</p><p>Keep it neat, error-free, and well-structured.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>Should I use a photo in my resume?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>In most Indian companies, a photo is not required. Unless the job ad specifically asks for one (rare cases like modeling, aviation, etc.), skip it. Focus on your skills.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I write a career objective in my CV?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Think of it as a short promise to the employer.
+                Example:
+                “Looking for an entry-level role in software development where I can apply my coding knowledge, learn from experienced mentors, and contribute to innovative projects.”</p><p>Keep it 2–3 lines max.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is the difference between CV and resume length?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Resume: Short (1–2 pages), job-focused, highlights recent work.</p><p>CV: Longer (2–5+ pages), academic + professional journey in detail.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How many pages should my resume be?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Freshers: 1 page is enough.</p><p>Experienced professionals: Max 2 pages.</p><p>Remember, recruiters value clarity over length.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I describe my skills in a CV?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>Divide into two:</li></ul><p>Technical skills: MS Excel, AutoCAD, SQL, SEO, Python.</p><p>Soft skills: Leadership, communication, teamwork.</p><p>Use bullet points instead of writing full sentences.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>Should I mention hobbies in my resume?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Yes, but be smart about it.</p><p>Relevant hobby? ✅Mention it (e.g., “Blogging” for a writing job).</p><p>Random hobby? ❌ Skip it (e.g., “Watching Netflix”).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I write about achievements in a resume?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>Achievements should prove your skills with results.
+                Examples:</li></ul><p>“Secured 2nd place in National Debate Competition.”</p><p>“Improved Instagram engagement by 40% during internship.”</p><p>“Published research paper in XYZ Journal.”</p><p>Numbers and results grab attention.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I explain job gaps in my resume?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Be honest. Everyone has gaps—recruiters just want to know why.</p><p>If you studied/learned new skills, mention it.</p><p>If it was health/personal, keep it short; don’t overshare.</p><p>Show how you used the time productively (courses, freelancing, volunteering).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>Should I tailor my resume for each job?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>Yes . One-size-fits-all resumes usually get ignored. For each job:</li></ul><p>Read the job description.</p><p>Highlight the same skills/keywords.</p><p>Cut out irrelevant details.</p><p>It takes extra time, but it increases your chances a lot.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is a portfolio and how do I make one?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>A portfolio is proof of your work samples — best for creative fields like writing, design, photography, marketing.
+                You can create:</li></ul><p>A PDF with samples.</p><p>A website/portfolio link.</p><p>Or showcase on LinkedIn/Behance/GitHub.</p><p>Think of it as your “show and tell” for recruiters.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I apply for a job online?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Create a profile on job portals (like JobRinger ).</p><p>Upload your updated resume.</p><p>Search for roles that match your skills.</p><p>Apply directly with your CV and sometimes a cover letter.</p><p>Tip: Don’t just click “Apply All.” Apply thoughtfully to relevant roles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is an ATS-friendly resume?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>ATS = Applicant Tracking System. It’s software that scans resumes before a human sees them.
+                To pass ATS:</li></ul><p>Use keywords from the job description.</p><p>Use simple formatting (no tables/images).</p><p>Stick to common headings: Education, Skills, Work Experience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>Do I need both a CV and a LinkedIn profile?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <ul><li>Yes. They work together:</li></ul><p>CV: For job applications.</p><p>LinkedIn: Your online professional brand, where recruiters search.</p><p>Many recruiters check LinkedIn before shortlisting. Keep both updated.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is a biodata format for marriage vs. a job?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Marriage biodata: Focuses on personal/family details — name, age, religion, caste, family background.</p><p>Job biodata: Focuses on professional details — education, skills, experience, achievements.</p><p>So basically: marriage = personal life, job = career life.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="faq-section" data-category="resume">
+                <h2 class="section-title">Resume & CV Questions</h2>
+                
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How to make a resume for a job?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>To create an effective resume:</p>
+                            <ol>
+                                <li>Choose a clean, professional format</li>
+                                <li>Include your contact information at the top</li>
+                                <li>Write a compelling summary or objective statement</li>
+                                <li>List your work experience in reverse chronological order with achievements</li>
+                                <li>Include relevant skills and certifications</li>
+                                <li>Add your education details</li>
+                                <li>Keep it concise (1-2 pages maximum)</li>
+                                <li>Tailor it for each job application</li>
+                                <li>Proofread carefully for errors</li>
+                            </ol>
+                            <p>We offer free resume templates and samples to help you get started.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>What is the difference between a resume and CV?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>The main differences between a resume and CV are:</p>
+                            <table>
+                                <tr>
+                                    <th>Resume</th>
+                                    <th>CV (Curriculum Vitae)</th>
+                                </tr>
+                                <tr>
+                                    <td>Typically 1-2 pages</td>
+                                    <td>Can be multiple pages</td>
+                                </tr>
+                                <tr>
+                                    <td>Focuses on relevant skills and experience</td>
+                                    <td>Comprehensive career history</td>
+                                </tr>
+                                <tr>
+                                    <td>Used for most job applications</td>
+                                    <td>Common for academic, research, or international positions</td>
+                                </tr>
+                                <tr>
+                                    <td>Customized for each job</td>
+                                    <td>More static document</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section" data-category="employers">
+                <h2 class="section-title">Employers</h2>
+                
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do employers identify potential leaders internally?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                At Jobringer, we've seen that companies usually spot leaders not just by titles, but by actions. Employees who take initiative, solve problems, and motivate their peers naturally stand out. Many employers also use feedback, performance reviews, and mentorship programs to find those who can grow into leadership roles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">What are effective onboarding strategies for new hires?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                First impressions matter! Good onboarding goes beyond paperwork. Companies that give new hires a warm welcome, assign a buddy/mentor, and provide clear role training see smoother transitions. In India, team introductions, cultural orientation, and small check-ins during the first 30–60 days make new employees feel valued and confident.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do companies build diverse teams?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Diversity is about more than gender—it's about skills, backgrounds, and perspectives. Many Indian employers now use unbiased hiring practices, campus hiring from different regions, and inclusive policies to attract talent. A diverse team brings fresh ideas, better problem-solving, and stronger business growth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">Should employers disclose salary ranges in job offers?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Yes, and it's becoming more common! Disclosing salary ranges helps build trust, saves time for both employer and candidate, and ensures transparency. Job seekers on Jobringer appreciate companies that are upfront—it shows fairness and professionalism.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do organisations address workplace burnout?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Burnout is real. The best companies focus on work-life balance by setting clear boundaries, encouraging breaks, and offering wellness programs. Flexible work options, mental health awareness, and employee engagement activities are also gaining traction in India to keep teams energised and productive.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">What methods best boost employee retention?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Employees stay where they feel valued. Growth opportunities, fair pay, recognition, and a healthy work culture are key. Some companies use career development programs, internal promotions, and learning workshops to keep talent motivated. A little appreciation goes a long way!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">Why do some companies have "no resume" interview policies?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                This trend is growing globally and slowly entering India too. Instead of judging only on a resume, companies test real skills through assignments, coding tests, or trial projects. It helps employers find hidden talent who may not have a "perfect" CV but have strong abilities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do companies balance in-house and outsourced teams?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                A smart mix works best. In-house teams handle core tasks (like strategy, operations, or leadership), while outsourcing is used for specialised or short-term needs (like design, IT support, or digital marketing). The key is strong communication and clear expectations to make both sides work smoothly together.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">What are the benefits of employee referral programs?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Referrals are powerful! Employees usually recommend people they trust, which means faster hiring, better cultural fit, and lower costs. Plus, when employees get referral bonuses, it boosts morale. In India, many startups and corporates rely heavily on referrals to build reliable teams.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do HR policies differ for remote staff?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Remote work is here to stay, and policies are adapting. For remote employees, HR focuses on flexible working hours, digital communication tools, data security, and virtual engagement. Companies also ensure reimbursements for internet/equipment and introduce virtual team-building to keep remote staff connected.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How should employers design a fair hiring process?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                A fair hiring process is transparent and unbiased. Employers should write clear job descriptions, use structured interviews, and set the same evaluation criteria for all candidates. This ensures the best talent gets hired based on skills and potential, not bias.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How long should the recruitment cycle be?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                The ideal recruitment cycle should last about 3–6 weeks. A shorter cycle may miss careful evaluation, while a longer one risks losing good candidates. The key is speed with quality, efficient screening, quick feedback, and clear timelines.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do employers decide ideal job descriptions?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Good job descriptions are focused, realistic, and attractive. Employers should highlight only the essential responsibilities, must-have skills, and growth opportunities. Overly long lists of requirements can scare away strong candidates.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do companies assess cultural fit?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Cultural fit is judged by how well a candidate's values align with the company's. Employers look at work style, team interactions, and problem-solving approach. Sometimes, a short team exercise or casual chat reveals more than a formal interview.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How much weight should companies give to degrees vs. skills?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Degrees show formal education, but skills prove real ability. In 2025, many companies are valuing skills and practical knowledge more, especially for digital roles. Degrees matter most in technical or regulated fields, but skills should lead the decision.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do small businesses attract top talent?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Small businesses can't always compete on salary, but they can offer faster growth, flexibility, and personal recognition. A strong vision, supportive culture, and meaningful roles often attract ambitious professionals looking for impact.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">Should employers focus on campus hiring or lateral hiring?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Campus hiring brings in fresh ideas and energy, while lateral hiring adds experience and stability. Both are valuable. A balanced mix allows companies to blend innovation with expertise and build stronger teams.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do organisations design employee training programs?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                The first step is identifying skill gaps. Then, employers should create training that is practical, interactive, and directly useful for employees' roles. Training works best when it connects learning with career growth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">Why do companies conduct employee background verification?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Background checks build trust. They confirm a candidate's qualifications, past experience, and legal records. This protects the company from risks like fake resumes, fraud, or compliance issues and ensures a safe workplace.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do businesses retain employees in competitive sectors?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Retention depends on more than money. Employees stay where they feel valued through fair pay, growth opportunities, supportive managers, and recognition for their work. A positive work culture often matters most.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How should firms manage employee probation reviews?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Probation should be a learning period, not just a test. Employers should set clear expectations, give regular feedback, and track progress. At the end, the decision should be based on both performance and growth potential.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do leaders motivate employees beyond money?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Money motivates in the short term, but employees also want appreciation, learning opportunities, and work-life balance. Leaders who show trust, provide growth paths, and celebrate small wins often build the most loyal teams.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">Why do companies invest in employer branding?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                A strong employer brand makes hiring faster and cheaper. When a company is seen as a good workplace, top talent naturally wants to join. Employer branding also improves employee pride and retention.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">How do organisations decide on flexible work policies?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Flexible policies depend on the nature of work and employee needs. Companies should balance productivity with flexibility, offering options like remote work, hybrid schedules, or flexible hours when possible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span itemprop="name">Why do employers encourage internal job mobility?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content" itemprop="text">
+                            <p>
+                                Internal mobility keeps employees engaged and motivated. Allowing them to switch roles or departments reduces turnover, saves hiring costs, and shows that the company invests in career growth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section" data-category="account">
+                <h2 class="section-title">Account Questions</h2>
+                
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I create an account?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>Creating an account is simple:</p>
+                            <ol>
+                                <li>Click "Sign Up" on our homepage</li>
+                                <li>Choose whether you're a job seeker or employer</li>
+                                <li>Enter your email and create a password</li>
+                                <li>Complete your profile information</li>
+                                <li>Verify your email address</li>
+                            </ol>
+                            <p>The entire process takes less than 5 minutes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="faq-question">
+                        <span>How do I reset my password?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div class="faq-answer-content">
+                            <p>To reset your password:</p>
+                            <ol>
+                                <li>Click "Forgot Password" on the login page</li>
+                                <li>Enter the email address associated with your account</li>
+                                <li>Check your email for a password reset link</li>
+                                <li>Click the link and create a new password</li>
+                                <li>Log in with your new credentials</li>
+                            </ol>
+                            <p>The reset link expires after 24 hours for security reasons.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults">
+            <h3>No results found</h3>
+            <p>Try adjusting your search terms or browse by category</p>
+        </div>
+
+        
+
+        <div class="contact-section">
+            <h3>Still have questions?</h3>
+            <p>Our support team is here to help with your job search journey</p>
+            <a href="#contact" class="contact-btn">Contact Support</a>
+        </div>
+    </div>
+    </div>
+        <?php include("include/footer-new.php");?>
+        <script src="js-new/faq.js"></script>
+        <?php include("include/footer-link.php");?>
+    </body>
+</html>

@@ -5,39 +5,43 @@
     box-sizing: border-box;
 }
 
+/* Card: Modern, subtle shadow, soft corners */
 .search-card {
     background: var(--card_bg_light);
     border: 1px solid var(--border_light);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 10px var(--light_shadow);
+    border-radius: 16px; /* Slightly larger border-radius for modern look */
+    padding: 2rem; /* Increased padding */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05); /* Softer, lifted shadow */
+    transition: all 0.3s ease;
 }
 html.dark .search-card {
     background: var(--dark_background_secondary);
     border-color: var(--dark_border);
-    box-shadow: 0 4px 10px var(--dark_shadow);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 .form-group {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem; /* Increased spacing */
 }
 
 .form-label {
     display: block;
     font-size: 0.875rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+    font-weight: 600; /* Bolder label */
+    margin-bottom: 0.6rem;
+    color: var(--text_color_primary); /* Ensure label color is distinct */
 }
 
+/* Input/Select: Cleaner, consistent padding, no aggressive inner icon padding */
 .form-input {
     width: 100%;
     padding: 0.75rem 1rem;
-    padding-left: 2.5rem; /* Space for icon */
+    padding-left: 3rem; /* Adjusted for centered icon space */
     background: var(--body_color_light);
     border: 1px solid var(--border_light);
-    border-radius: 8px;
-    font-size: 0.875rem;
-    transition: all 0.2s;
+    border-radius: 10px; /* Modern border-radius */
+    font-size: 1rem; /* Slightly larger font */
+    transition: all 0.2s ease;
 }
 html.dark .form-input {
     background: var(--dark_input_bg);
@@ -47,61 +51,77 @@ html.dark .form-input {
 .form-input:focus {
     outline: none;
     border-color: var(--primary_blue);
-    box-shadow: 0 0 0 2px rgba(30, 172, 198, 0.2);
+    box-shadow: 0 0 0 3px rgba(30, 172, 198, 0.15); /* Softer focus ring */
+}
+/* Input without icon needs less padding */
+input[type="number"].form-input {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
+/* Form Icons: Centered and positioned */
 .form-icon {
     position: absolute;
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
     color: var(--gray_medium_light);
-    font-size: 1rem;
+    font-size: 1.1rem; /* Slightly larger icon */
+    pointer-events: none; /* Icon should not block clicks */
 }
 
 /* Select-specific styles */
 .form-select {
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 1.25rem;
+    padding-right: 3rem; /* Space for both icon and chevron */
+    background-image: none; /* Remove default styling, handled by icons */
 }
+/* Chevron icon position, moved to right-4 class in HTML */
 .form-select-icon {
-    right: 1rem;
-    left: auto;
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray_medium_light);
+    font-size: 0.8rem;
+    pointer-events: none;
 }
-html.dark .form-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-}
+.form-select-icon.right-4 { right: 1rem; }
 
-/* Checkbox and Radio Button Styles */
+/* Checkbox and Radio Button Styles: Chip/Pill style */
 .option-label {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
     font-size: 0.875rem;
-    padding: 0.5rem 1rem;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem; /* Comfortable padding for a pill shape */
     border-radius: 9999px;
     border: 1px solid var(--border_light);
-    background-color: var(--card_bg_light);
+    background-color: var(--body_color_light);
     transition: all 0.2s;
+    color: var(--text_color_secondary);
 }
+html.dark .option-label {
+    background-color: var(--dark_input_bg);
+    border-color: var(--dark_border);
+    color: var(--text_color_dark);
+}
+
 .option-label:has(input:checked) {
     background-color: var(--primary_blue);
     color: white;
     border-color: var(--primary_blue);
+    box-shadow: 0 2px 4px rgba(30, 172, 198, 0.2);
 }
 html.dark .option-label:has(input:checked) {
     background-color: var(--pop_yellow);
     border-color: var(--pop_yellow);
-    color: var(--text_color_dark);
+    color: var(--dark_background_primary); /* Dark text on bright yellow for contrast */
 }
+
 .form-checkbox, .form-radio {
-    display: none;
-}
-.option-label span {
-    margin-left: 0.5rem;
+    display: none; /* Keep original hidden */
 }
 
 /* Advanced Filters Accordion */
@@ -110,51 +130,65 @@ html.dark .option-label:has(input:checked) {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Reduced margin for cleaner look */
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border_light); /* Subtle separator */
 }
+html.dark .advanced-filters-header {
+    border-bottom-color: var(--dark_border);
+}
+
 
 .filter-toggle {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--gray_medium_light);
+    padding: 0.5rem;
+    margin: -0.5rem;
+    color: var(--primary_blue); /* Highlight toggle color */
     transition: transform 0.3s ease;
+}
+.filter-toggle .toggle-icon {
+    font-size: 1.2rem;
 }
 .filter-toggle.open {
     transform: rotate(180deg);
 }
 
-.advanced-filters-content {
-    transition: all 0.3s ease;
-}
-
-/* Submit Button */
+/* Submit Button: Full-width, distinct CTA */
 .submit-btn {
     width: 100%;
-    padding: 1rem;
+    padding: 1.1rem;
     background: var(--primary_blue);
     color: white;
-    font-weight: 600;
-    border-radius: 9999px;
-    transition: background-color 0.2s;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border-radius: 12px; /* Consistent border radius */
+    box-shadow: 0 4px 12px rgba(30, 172, 198, 0.3);
+    transition: all 0.2s;
 }
 .submit-btn:hover {
     background: #148aa0;
+    box-shadow: 0 6px 15px rgba(30, 172, 198, 0.4);
+    transform: translateY(-1px);
 }
 html.dark .submit-btn {
     background: var(--pop_yellow);
-    color: var(--text_color_dark);
+    color: var(--dark_background_primary);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
 }
 html.dark .submit-btn:hover {
     background: #e0b400;
+    box-shadow: 0 6px 15px rgba(255, 193, 7, 0.4);
 }
 
 /* Desktop Layout (min-width: 1024px) */
 @media (min-width: 1024px) {
+    /* Use a better desktop grid layout */
     form#advanced-search-form {
         display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 1.5rem;
+        grid-template-columns: 3fr 2fr; /* Larger column for main search */
+        gap: 2rem; /* More spacing on desktop */
     }
     .search-card:first-child {
         grid-column: 1 / 2;
@@ -164,7 +198,9 @@ html.dark .submit-btn:hover {
     }
     .submit-btn {
         grid-column: 1 / 3;
+        margin-top: 1rem;
     }
+    /* Hide the accordion header on desktop, content is always visible */
     .advanced-filters-header {
         display: none;
     }
@@ -172,3 +208,139 @@ html.dark .submit-btn:hover {
         display: block !important;
     }
 }
+/* --- SEARCH PAGE SPECIFIC STYLES --- */
+
+/* ... existing universal styles ... */
+
+/* Desktop Layout (min-width: 1024px) */
+@media (min-width: 1024px) {
+    /* Set the form itself to display as a grid */
+    form#advanced-search-form {
+        display: grid;
+        grid-template-columns: 3fr 2fr; /* Larger column for main search */
+        gap: 2rem; /* More spacing on desktop */
+        /* IMPORTANT: Allow columns to grow vertically to fill the available space */
+        height: 100%; 
+    }
+    
+    /* Ensure the search cards within the grid take up the full available height */
+    .search-card {
+        /* This is key: tell the card to be as tall as its grid area */
+        height: 100%; 
+        display: flex; /* Makes content inside card easier to control */
+        flex-direction: column;
+    }
+    
+    /* Advanced Filters Content needs to allow scroll if needed within its card */
+    .search-card:last-of-type .advanced-filters-content {
+        /* If the advanced filters content is too long for the card, it scrolls internally */
+        overflow-y: auto; 
+        padding-right: 0.5rem; /* Add some padding for the scrollbar if present */
+    }
+
+    .search-card:first-child {
+        grid-column: 1 / 2;
+    }
+    .search-card:last-of-type {
+        grid-column: 2 / 3;
+    }
+    .submit-btn {
+        grid-column: 1 / 3;
+        margin-top: 0; /* Align button to the bottom of the grid */
+    }
+    /* Hide the accordion header on desktop, content is always visible */
+    .advanced-filters-header {
+        display: none;
+    }
+    .advanced-filters-content {
+        display: block !important;
+        flex-grow: 1; /* Allow content inside to expand vertically */
+    }
+}
+/* --- SEARCH PAGE SPECIFIC STYLES --- */
+
+/* ... existing universal styles ... */
+
+.form-group {
+    margin-bottom: 1.5rem; 
+}
+.form-label {
+    font-weight: 600; 
+    margin-bottom: 0.6rem;
+}
+.form-input {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    padding-left: 3rem; 
+}
+.option-label {
+    font-size: 0.875rem;
+    padding: 0.6rem 1.2rem;
+}
+.submit-btn {
+    padding: 1.1rem;
+    font-size: 1.125rem;
+}
+
+/* Desktop Layout (min-width: 1024px) - ENFORCING SMALLER, NO-SCROLL FIT */
+@media (min-width: 1024px) {
+    
+    /* 1. Grid setup for full height */
+    form#advanced-search-form {
+        display: grid;
+        grid-template-columns: 3fr 2fr; 
+        gap: 1rem; /* Reduced gap from 2rem to 1rem */
+        height: 100%; /* Fill vertical space of the container */
+    }
+    
+    /* 2. Smaller Card Padding/Spacing */
+    .search-card {
+        padding: 1.25rem; /* Reduced padding from 2rem to 1.25rem */
+        height: 100%; 
+        display: flex;
+        flex-direction: column;
+    }
+    .form-group {
+        margin-bottom: 0.75rem; /* Reduced form group vertical spacing */
+    }
+    .form-label {
+        font-size: 0.8rem; /* Smaller label text */
+        margin-bottom: 0.4rem;
+    }
+    .form-input {
+        font-size: 0.9rem; /* Smaller input text */
+        padding: 0.5rem 1rem; /* Reduced input padding */
+        padding-left: 2.5rem; 
+    }
+    .form-icon {
+        font-size: 1rem; /* Keep icon size reasonable */
+        left: 0.75rem;
+    }
+    .option-label {
+        font-size: 0.75rem; /* Smallest text for chips */
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* 3. Button Placement */
+    .submit-btn {
+        grid-column: 1 / 3;
+        margin-top: 0;
+        padding: 0.75rem; /* Reduced button padding */
+        font-size: 1rem; /* Smaller button text */
+    }
+    
+    /* 4. Internal Scrolling for Advanced Filters (if necessary) */
+    .search-card:last-of-type .advanced-filters-content {
+        overflow-y: auto; 
+        padding-right: 0.5rem; 
+    }
+
+    /* Standard Desktop visibility/layout */
+    .advanced-filters-header {
+        display: none;
+    }
+    .advanced-filters-content {
+        display: block !important;
+        flex-grow: 1; 
+    }
+}   

@@ -81,7 +81,7 @@ body {
     font-family: 'Inter', sans-serif;
     background: var(--body_color_light);
     margin: 0;
-    padding-bottom: 75px; 
+    padding-bottom: 75px;  
     overflow-x: hidden;
     line-height: 1.5;
     transition: background-color 0.3s, color 0.3s, padding-left 300ms ease-out; /* Added padding transition */
@@ -227,7 +227,7 @@ html.dark #nav-placeholder #mobile-nav a:hover i, html.dark #nav-placeholder #mo
 @media (min-width: 1024px) {
     /* CRITICAL FIX: Add padding to the body for content offset */
     body {
-        padding-left: var(--collapsed); 
+        padding-left: var(--collapsed);  
         transition: padding-left 300ms ease-out; /* Ensure smooth content shift */
     }
     
@@ -240,7 +240,7 @@ html.dark #nav-placeholder #mobile-nav a:hover i, html.dark #nav-placeholder #mo
         top: 0 !important; /* Start from the top edge */
         left: 0 !important;
         bottom: 0 !important;
-        right: auto; 
+        right: auto;  
         width: var(--collapsed) !important;
         height: 100vh !important; /* Full height */
         background: var(--bg--primary); /* Use the sidebar background color */
@@ -287,7 +287,7 @@ html.dark #nav-placeholder #mobile-nav a:hover i, html.dark #nav-placeholder #mo
     /* Adjust menu popup for desktop (though not used) */
     .menu-popup {
         left: var(--collapsed) !important;
-        width: calc(75% - var(--collapsed)); 
+        width: calc(75% - var(--collapsed));  
         max-width: calc(300px - var(--collapsed));
     }
     .menu-popup.active {
@@ -319,10 +319,10 @@ nav {
     display: flex;
     flex-flow: column;
     flex: 1;
-    border-radius: 0; 
+    border-radius: 0;  
     transition: none;
     padding: var(--frame-space);
-    box-shadow: none; 
+    box-shadow: none;  
 }
 
 /* REVERTED: Restore header and toggle button CSS */
@@ -383,7 +383,15 @@ header {
     overflow: hidden;
     padding-top: 1rem;
 }
-
+.login-btn {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-right: 0px;
+    margin-left: 10px;
+    padding:5px 10px;
+    font-size:12px;
+}
 /* --- Add these new styles for the collapsed desktop sidebar --- */
 @media (min-width: 1024px) {
     /* When the sidebar is collapsed, hide the 'More' list and all text headings */
@@ -396,7 +404,7 @@ header {
     .vertical-sidebar:not(:has(#sidebar-toggle:checked)) .list--primary {
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Vertically center the group of icons */
+        justify-content: flex-start; /* Vertically center the group of icons */
         flex-grow: 1;           /* Allow the list to fill the available vertical space */
         gap: 1.5rem;            /* Increase the space between icons */
     }
@@ -472,7 +480,7 @@ header {
     outline: 2px solid transparent;
     border-radius: inherit;
     /* Added padding to shift icons slightly left when collapsed */
-    padding-inline: calc(var(--frame-space) / 2); 
+    padding-inline: calc(var(--frame-space) / 2);  
 }
 
 .icon {
@@ -551,7 +559,7 @@ header {
     max-height: 0; /* Use max-height for smooth transition */
     overflow: hidden;
     visibility: hidden;
-    transition: all 300ms ease-in-out; 
+    transition: all 300ms ease-in-out;  
     
     background: var(--bg--hover);
     border-radius: 0 0 var(--brad-inner) var(--brad-inner);
@@ -624,6 +632,64 @@ header {
     scale: 1;
 }
 
+/* ------------------------------------------- */
+/* 🍪 NEW: COOKIE CONSENT BANNER STYLES 🍪 */
+/* ------------------------------------------- */
+/* Dark mode overrides for the cookie banner's custom colors */
+html.dark #cookie-consent-popup {
+    /* Set dark mode background for the banner */
+    background-color: var(--dark_background_secondary) !important; 
+    /* Set text color */
+    color: var(--text_color_dark) !important;
+    /* Add a subtle shadow border */
+    border-top: 1px solid var(--dark_border);
+}
+
+/* Dark mode button styling for "Accept All" (primary color) */
+html.dark #cookie-accept-all {
+    background-color: var(--pop_yellow) !important;
+    color: var(--dark_background_secondary) !important; /* Text color for dark primary button */
+    border: 1px solid var(--pop_yellow);
+}
+html.dark #cookie-accept-all:hover {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Dark mode button styling for "Decline" (secondary/muted color) */
+html.dark #cookie-decline {
+    background-color: var(--dark_input_bg) !important;
+    color: var(--dark_gray_text) !important;
+    border: 1px solid var(--dark_border);
+}
+html.dark #cookie-decline:hover {
+    background-color: var(--dark_border) !important;
+}
+
+/* Mobile: Adjust body padding to avoid overlapping the bottom nav AND the cookie banner */
+/* On mobile, the default body padding-bottom is 75px (for the nav) */
+/* If the cookie banner is visible, we need to push the footer up by an extra amount. */
+@media (max-width: 1023px) {
+    /* Note: Since the banner is fixed and only shown once, we rely on the body's existing
+       padding-bottom of 75px (for the nav). The banner is *above* the nav.
+       If the banner height (approx 70px) and nav height (approx 75px) overlap,
+       we must adjust. We'll add a slight offset here for safety. */
+       
+    body:not(.cookie-consent-accepted) {
+        /* Add extra space for the cookie banner (approx 70px) if it's visible. 
+           We'll use a class in a more complex setup, but for this simpler one,
+           we'll ensure the existing 75px is adequate or slightly increase it 
+           if the banner sits above the nav. */
+    }
+}
+/* If you want to ensure the footer is never covered, you would calculate:
+   body { padding-bottom: calc(75px + 70px); } 
+   However, we will assume the banner is intended to overlay the body content, 
+   but not the fixed mobile nav, which is handled by its high z-index (1000). 
+   Since the cookie banner z-index is 1050, it will sit *above* the mobile nav.
+   Therefore, we keep the original body padding and let the cookie banner
+   overlay the footer/content *behind* the nav. */
+
+
 /* --- FOOTER & POPUPS (UNCHANGED) --- */
 footer {
     background: #FFFFFF;
@@ -689,4 +755,77 @@ html.dark .search-popup, html.dark .menu-popup { background: var(--dark_backgrou
     .menu-popup.active {
         display: none !important;
     }
+    /* .content-wrapper { padding-left: 80px; } */
+    #nav-placeholder { position: fixed; top: 0; left: 0; bottom: 0; width: 80px; z-index: 100; background: var(--card_bg_light); border-right: 1px solid var(--border_light); display: flex; flex-direction: column; padding-top: 80px; align-items: center; }
+    #nav-placeholder > nav, #nav-placeholder nav > div { position: static !important; flex-direction: column !important; box-shadow: none !important; border-radius: 0 !important; padding: 0 !important; width: 100%; gap: 0.5rem; }
+    #nav-placeholder nav a { padding: 0.75rem 0.5rem; width: 90%; border-radius: 8px; }
+    html.dark #nav-placeholder { background: var(--dark_background_secondary); border-right-color: var(--dark_border); }
+    #bottom-nav-placeholder { display: none; }
+}
+/* === LOGIN CHOICE POPUP === */
+#login-choice-popup {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+#login-choice-popup.show {
+    display: flex !important;
+}
+#login-choice-popup .rounded-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+/* === PRICING POPUP – HALF SIZE & FIXED === */
+#pricing-choice-popup {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+#pricing-choice-popup.show {
+  display: flex !important;
+}
+#pricing-choice-popup.show > div {
+  animation: popupIn 0.4s ease-out forwards;
+}
+@keyframes popupIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+.pricing-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+html.dark .pricing-card {
+  background: #374151;
+  border-color: #4b5563;
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.icon-circle {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.price-tag span:first-child {
+  font-weight: 800;
+}
+
+.features li:before {
+  content: "✓ ";
+  color: #10b981;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #06b6d4, #3b82f6);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(6,182,212,0.4);
 }

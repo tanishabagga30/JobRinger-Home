@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Reports Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/Reports.css">
+</head>
+<body>
+    
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="reports-page-container reports-dashboard-wrapper"> 
+        
+        <div class="reports-header-content">
+            <h1 class="text-3xl font-bold">Reports Dashboard</h1>
+        </div>
+
+        <div class="main-content-area">
+            
+            <div class="top-report-tab-bar overflow-x-auto">
+                <ul id="report-nav-list" class="report-nav-list-horizontal">
+                    <li class="nav-item active" data-report="access-login">
+                        <i class="fas fa-user-check"></i> Access/Login
+                    </li>
+                    <li class="nav-item" data-report="usage">
+                        <i class="fas fa-chart-bar"></i> Usage Summary
+                    </li>
+                    <li class="nav-item" data-report="status-change">
+                        <i class="fas fa-history"></i> Job Status Change
+                    </li>
+                    <li class="nav-item" data-report="sub-users">
+                        <i class="fas fa-users"></i> Sub-Users
+                    </li>
+                </ul>
+            </div>
+
+            <div class="report-view-container">
+                <div class="report-controls-bar">
+                    <div class="date-filter-group">
+                        <label for="date-from" class="control-label">Date:</label>
+                        <input type="date" id="date-from" class="date-input">
+                        <span>to</span>
+                        <input type="date" id="date-to" class="date-input">
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button id="download-excel" class="download-btn">
+                            <i class="fas fa-file-excel mr-2"></i> Download in Excel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="report-table-section">
+                    <h2 id="current-report-title" class="report-title">Access/Login</h2>
+                    <div class="table-controls-bottom">
+                        <div class="show-per-page-group">
+                            <span class="control-label mr-2">Show</span>
+                            <select id="items-per-page" class="select-control">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20" selected>20</option>
+                                <option value="40">40</option>
+                                <option value="80">80</option>
+                                <option value="100">100</option>
+                            </select>
+                            <span class="control-label ml-2">per page</span>
+                        </div>
+                        <div id="pagination-info" class="pagination-text">Showing 1 to 20 of 22</div>
+                    </div>
+                    
+                    <div class="overflow-x-auto mt-4">
+                        <table id="report-data-table" class="report-table">
+                            </table>
+                    </div>
+
+                    <div class="pagination-footer">
+                        <button id="prev-page" class="page-btn disabled"><i class="fas fa-chevron-left"></i></button>
+                        <div id="page-numbers" class="flex gap-1">
+                            </div>
+                        <button id="next-page" class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer-placeholder" class="mt-auto"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/Reports.js"></script>
+</body>
+</html>

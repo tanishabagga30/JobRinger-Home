@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Jobringer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/thanyou-page.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="background-elements">
+        <div class="bg-ellipse ellipse-1"></div>
+        <div class="bg-ellipse ellipse-2"></div>
+    </div>
+
+    <div class="main-container">
+        <section class="success-animation-container">
+            <div class="checkmark-container">
+                <div class="success-ring"></div>
+                <svg class="checkmark-svg" viewBox="0 0 50 50" aria-hidden="true">
+                    <path d="M10 25 L20 35 L40 15" fill="none" stroke="var(--success-color)" stroke-width="4" />
+                </svg>
+            </div>
+            
+            <div class="title-section">
+                <h1 class="success-title">Payment Successful</h1>
+                <p class="subtitle">
+                    Thank you for choosing <span class="highlight">Jobringer</span>. 
+                    Your premium subscription is now being activated with enhanced career opportunities.
+                </p>
+                <p class="subtitle font-bold" id="activationDate"></p>
+            </div>
+        </section>
+
+        <section class="cta-section button-group">
+            <a href="/dashboard.html" id="back-to-dashboard-btn" class="cta-button primary-cta">
+                <span class="cta-icon"><i class="fas fa-arrow-left"></i></span>
+                <span>Back to Dashboard</span>
+            </a>
+            </section>
+
+        <section class="content-section">
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-icon success"><i class="fas fa-check"></i></div>
+                    <h3 class="card-title">Premium Access</h3>
+                </div>
+                <p class="card-text">
+                    Your subscription will activate within 24 hours, unlocking unlimited job postings, 
+                    advanced search filters, and priority customer support.
+                </p>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-icon email"><i class="fas fa-envelope"></i></div>
+                    <h3 class="card-title">Confirmation Email</h3>
+                </div>
+                <p class="card-text">
+                    Check your inbox for a detailed confirmation with your subscription details, 
+                    invoice, and premium feature information.
+                </p>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <div class="card-icon security"><i class="fas fa-lock"></i></div>
+                    <h3 class="card-title">Secure Processing</h3>
+                </div>
+                <p class="card-text">
+                    Your payment was processed with industry-leading encryption, ensuring your 
+                    financial information is fully protected.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/thankyou-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+:root {
+    /* Light Mode Variables */
+    --color-primary-blue: #3b82f6; /* Example Blue */
+    --color-pop-yellow: #facc15; /* Example Yellow */
+    --color-text-dark: #1f2937; /* Example Dark Text */
+    --color-dark-gray-text: #6b7280; /* Example Gray Text */
+    --color-dark-background-secondary: #1f2937; /* Example Dark Background */
+    --color-dark-border: #374151; /* Example Dark Border */
+}
+
+/* Dark Mode Overrides */
+html.dark {
+    --color-primary-blue: var(--color-pop-yellow);
+    --color-text-dark: #f9fafb;
+    --color-dark-gray-text: #9ca3af;
+    --color-dark-background-secondary: #1f2937;
+    --color-dark-border: #374151;
+}
+.custom-scrollbar {
+    /* Sets a height allowing content to scroll. */
+    /* max-h-[80vh] is set via Tailwind in the HTML, but this local CSS height provides a fallback */
+    max-height: calc(100vh - 10rem); 
+    overflow-y: auto;
+    
+    /* Ensure smooth scrolling on touch devices (mobile scroll is default) */
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 1024px) {
+    /* === Custom Scrollbar Styling (Aesthetic thin bar for Desktop) === */
+    
+    /* 1. Overall Scrollbar Width (Thin) */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px; 
+    }
+    
+    /* 2. Scrollbar Track (The background area) - Light Mode */
+    .custom-scrollbar::-webkit-scrollbar-track {
+        /* Light Gray */
+        background-color: #f3f4f6; 
+        border-radius: 3px;
+    }
+    
+    /* 3. Scrollbar Thumb (The draggable handle) - Light Mode */
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        /* Medium Gray */
+        background-color: #9ca3af; 
+        border-radius: 3px;
+    }
+
+    /* === Dark Mode Overrides for the Custom Scrollbar === */
+    
+    /* Dark Mode Track */
+    html.dark .custom-scrollbar::-webkit-scrollbar-track {
+        /* Using a common dark background color */
+        background-color: #2D3748; 
+    }
+    
+    /* Dark Mode Thumb */
+    html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        /* Using a typical dark theme border/separator color */
+        background-color: #4A5568;
+    }
+}

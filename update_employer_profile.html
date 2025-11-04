@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - JobRinger</title>
+    <title>Company Profile - JobRinger</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/universal.css">
@@ -19,151 +19,281 @@
         <main class="main-content">
             <div class="profile-container">
                 <div class="profile-card">
-                    <h1 class="page-title">Edit Your Profile</h1>
+                    <h1 class="page-title">Company Profile Details</h1>
                     
                     <form id="update-profile-form">
 
-                        
                         <div class="section-header">
-                            <h2 class="stage-title">Company Information</h2>
-                            <button type="button" class="btn-edit" data-section="company">
+                            <h2 class="stage-title">Company Overview & Branding</h2>
+                            <button type="button" class="btn-edit" data-section="company-info">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
                         </div>
-                        <div id="company-section" class="profile-section view-mode">
-                            <div class="form-group">
-                                <label>Employer Type</label>
-                                <span class="profile-value" data-field="employer-type">Recruitment Agency/Executive Search Firm</span>
-                                <select id="employer-type" class="editable-field hidden">
-                                    <option value="recruitment" selected>Recruitment Agency/Executive Search Firm</option>
-                                    <option value="direct">Direct Employer</option>
-                                    <option value="individual">Individual Professional</option>
-                                    <option value="freelance">Independent / Freelance Recruiter</option>
-                                </select>
+                        <div id="company-info-section" class="profile-section view-mode">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label>Company ID</label>
+                                    <span class="profile-value" data-field="company-id">JOBR2022423105152</span>
+                                    <input type="text" id="company-id" class="editable-field hidden" value="JOBR2022423105152">
+                                </div>
+                                <div class="form-group">
+                                    <label>Employer Type</label>
+                                    <span class="profile-value" data-field="employer-type">Direct Employer</span>
+                                    <select id="employer-type" class="editable-field hidden">
+                                        <option value="direct" selected>Direct Employer</option>
+                                        <option value="recruitment">Recruitment Agency/Executive Search Firm</option>
+                                        <option value="individual">Individual Professional</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Company Name (Official)</label>
+                                    <span class="profile-value" data-field="company-official-name">jobringer.com</span>
+                                    <input type="text" id="company-official-name" class="editable-field hidden" value="jobringer.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Business House/Parent Company</label>
+                                    <span class="profile-value" data-field="business-house">Jobtech Ventures Pvt. Ltd.</span>
+                                    <input type="text" id="business-house" class="editable-field hidden" value="Jobtech Ventures Pvt. Ltd.">
+                                </div>
+                                <div class="form-group">
+                                    <label>Company URL / Website</label>
+                                    <span class="profile-value" data-field="company-url">http://www.jobringer.com</span>
+                                    <input type="url" id="company-url" class="editable-field hidden" value="http://www.jobringer.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Employee Strength</label>
+                                    <span class="profile-value" data-field="employee-strength">41-50</span>
+                                    <select id="employee-strength" class="editable-field hidden">
+                                        <option value="1-10">1-10</option>
+                                        <option value="11-50" selected>41-50</option>
+                                        <option value="51-200">51-200</option>
+                                        <option value="201-500">201-500</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Product</label>
+                                    <span class="profile-value" data-field="product">Job Portal / Jobs Aggregator</span>
+                                    <input type="text" id="product" class="editable-field hidden" value="Job Portal / Jobs Aggregator">
+                                </div>
+                                <div class="form-group">
+                                    <label>Brands</label>
+                                    <span class="profile-value" data-field="brands">N/A</span>
+                                    <input type="text" id="brands" class="editable-field hidden" value="">
+                                </div>
                             </div>
+
                             <div class="form-group">
-                                <label>Business email ID</label>
-                                <span class="profile-value" data-field="business-email">tanishabagga30@gmail.com</span>
-                                <input type="email" id="business-email" class="editable-field hidden" value="tanishabagga30@gmail.com">
+                                <label>Company Description</label>
+                                <p class="profile-value" data-field="company-description">Jobringer new, a robust and feature-rich Job Portal...</p>
+                                <textarea id="company-description" rows="4" class="editable-field hidden">Jobringer new, a robust and feature-rich Job Portal, designed to cater the industry needs in current market scenario, equipped with latest technology and AI based algorithms. It is highly progressive and adaptable to your customized business requirements, with economical and low cost packages.</textarea>
                             </div>
-                            <div class="form-group">
-                                <label>Secondary email to contact</label>
-                                <span class="profile-value" data-field="secondary-email">Not provided</span>
-                                <input type="email" id="secondary-email" class="editable-field hidden" value="">
-                            </div>
-                            <div class="form-group">
-                                <label>Company / Individual Name</label>
-                                <span class="profile-value" data-field="company-name">HINDCO Consulting Services</span>
-                                <input type="text" id="company-name" class="editable-field hidden" value="HINDCO Consulting Services">
-                            </div>
-                            <div class="form-group">
-                                <label>Company URL / Website</label>
-                                <span class="profile-value" data-field="company-url">https://www.hindco.in</span>
-                                <input type="url" id="company-url" class="editable-field hidden" value="https://www.hindco.in">
-                            </div>
-                            <div class="form-group">
-                                <label>About Company</label>
-                                <p class="profile-value" data-field="about-company">HINDCO is a leading Executive Search & Career Coaching Firm...</p>
-                                <textarea id="about-company" rows="4" class="editable-field hidden">HINDCO is a leading Executive Search & Career Coaching Firm...</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Industry Type</label>
-                                <span class="profile-value" data-field="industry-type">HR Staffing & Recruitment Firms / Employment Agency / Background - Reference Check Firms</span>
-                                <select id="industry-type" class="editable-field hidden">
-                                    <option value="recruitment" selected>HR Staffing & Recruitment Firms / Employment Agency / Background - Reference Check Firms</option>
-                                    <option value="accounting">ACCOUNTING / ACCOUNTANT FIRM</option>
-                                    <option value="advertising">ADVERTISING / PUBLIC RELATIONS</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Employee Strength</label>
-                                <span class="profile-value" data-field="employee-strength">11-50</span>
-                                <select id="employee-strength" class="editable-field hidden">
-                                    <option>0-1</option>
-                                    <option>1-10</option>
-                                    <option selected>11-50</option>
-                                    <option>51-200</option>
-                                </select>
-                            </div>
+                            
                             <div class="button-group hidden">
-                                <button type="button" class="btn-cancel" data-section="company">Cancel</button>
+                                <button type="button" class="btn-cancel" data-section="company-info">Cancel</button>
+                                <button type="button" class="btn-save" data-section="company-info">Save Changes</button>
                             </div>
                         </div>
 
                         <div class="section-header">
-                            <h2 class="stage-title">Business Location Details</h2>
+                            <h2 class="stage-title">Statutory & Financial Details</h2>
+                            <button type="button" class="btn-edit" data-section="statutory">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                        <div id="statutory-section" class="profile-section view-mode">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label>Company Type</label>
+                                    <span class="profile-value" data-field="company-type">Pvt. Ltd. Co.</span>
+                                    <input type="text" id="company-type" class="editable-field hidden" value="Pvt. Ltd. Co.">
+                                </div>
+                                <div class="form-group">
+                                    <label>HQ Location</label>
+                                    <span class="profile-value" data-field="hq-location">Mumbai</span>
+                                    <input type="text" id="hq-location" class="editable-field hidden" value="Mumbai">
+                                </div>
+                                <div class="form-group">
+                                    <label>GST No</label>
+                                    <span class="profile-value" data-field="gst-no">27AAFCJ0563M1ZB</span>
+                                    <input type="text" id="gst-no" class="editable-field hidden" value="27AAFCJ0563M1ZB">
+                                </div>
+                                <div class="form-group">
+                                    <label>PAN</label>
+                                    <span class="profile-value" data-field="pan">AAFCJ0563M</span>
+                                    <input type="text" id="pan" class="editable-field hidden" value="AAFCJ0563M">
+                                </div>
+                                <div class="form-group">
+                                    <label>Business Turnover</label>
+                                    <span class="profile-value" data-field="business-turnover">Not Specified</span>
+                                    <input type="text" id="business-turnover" class="editable-field hidden" placeholder="e.g. 10 Lakhs - 1 Crore">
+                                </div>
+                                <div class="form-group">
+                                    <label>Categorization of Enterprises</label>
+                                    <span class="profile-value" data-field="enterprise-category">Micro</span>
+                                    <select id="enterprise-category" class="editable-field hidden">
+                                        <option value="Micro" selected>Micro</option>
+                                        <option value="Small">Small</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Large">Large</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="button-group hidden">
+                                <button type="button" class="btn-cancel" data-section="statutory">Cancel</button>
+                                <button type="button" class="btn-save" data-section="statutory">Save Changes</button>
+                            </div>
+                        </div>
+
+                        <div class="section-header">
+                            <h2 class="stage-title">Operations & Address</h2>
                             <button type="button" class="btn-edit" data-section="location">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
                         </div>
                         <div id="location-section" class="profile-section view-mode">
-                             <div class="form-group">
-                                <label>Country</label>
-                                <span class="profile-value" data-field="country">India</span>
-                                <input type="text" id="country" class="editable-field hidden" value="India">
-                            </div>
-                            <div class="form-group">
-                                <label>State</label>
-                                <span class="profile-value" data-field="state">Maharashtra</span>
-                                <input type="text" id="state" class="editable-field hidden" value="Maharashtra">
-                            </div>
-                            <div class="form-group">
-                                <label>City</label>
-                                <span class="profile-value" data-field="city">Mumbai</span>
-                                <input type="text" id="city" class="editable-field hidden" value="Mumbai">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label>Operation Coverage</label>
+                                    <span class="profile-value" data-field="operations">Pan India</span>
+                                    <input type="text" id="operations" class="editable-field hidden" value="Pan India">
+                                </div>
+                                <div class="form-group">
+                                    <label>Office Type</label>
+                                    <span class="profile-value" data-field="office-type">Head Office</span>
+                                    <input type="text" id="office-type" class="editable-field hidden" value="Head Office">
+                                </div>
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <span class="profile-value" data-field="country">India</span>
+                                    <input type="text" id="country" class="editable-field hidden" value="India">
+                                </div>
+                                <div class="form-group">
+                                    <label>State</label>
+                                    <span class="profile-value" data-field="state">Maharashtra</span>
+                                    <input type="text" id="state" class="editable-field hidden" value="Maharashtra">
+                                </div>
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <span class="profile-value" data-field="city">Mumbai</span>
+                                    <input type="text" id="city" class="editable-field hidden" value="Mumbai">
+                                </div>
+                                <div class="form-group">
+                                    <label>Locality</label>
+                                    <span class="profile-value" data-field="locality">Mumbai Central</span>
+                                    <input type="text" id="locality" class="editable-field hidden" value="Mumbai central">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Official Address</label>
-                                <p class="profile-value" data-field="official-address">631, Building No.3, Navjivan Society, Lamington Road, Mumbai 400008</p>
-                                <textarea id="official-address" rows="4" class="editable-field hidden">631, Building No.3, Navjivan Society, Lamington Road, Mumbai 400008</textarea>
+                                <p class="profile-value" data-field="official-address">631, Building No. 3, Navjivan Society, Lamington Road, Mumbai - 400008</p>
+                                <textarea id="official-address" rows="3" class="editable-field hidden">631, Building No. 3, Navjivan Society, Lamington Road, Mumbai - 400008</textarea>
                             </div>
+                            
                             <div class="button-group hidden">
                                 <button type="button" class="btn-cancel" data-section="location">Cancel</button>
+                                <button type="button" class="btn-save" data-section="location">Save Changes</button>
                             </div>
                         </div>
 
                         <div class="section-header">
-                            <h2 class="stage-title">Contact Details</h2>
+                            <h2 class="stage-title">Contact, Social & Documents</h2>
                             <button type="button" class="btn-edit" data-section="contact">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
                         </div>
                         <div id="contact-section" class="profile-section view-mode">
-                            <div class="form-group">
-                                <label>Contact Person Name</label>
-                                <span class="profile-value" data-field="contact-person">Tanisha Bagga</span>
-                                <input type="text" id="contact-person" class="editable-field hidden" value="Tanisha Bagga">
-                            </div>
-                            <div class="form-group">
-                                <label>Contact Person Designation</label>
-                                <span class="profile-value" data-field="contact-designation">HR Manager</span>
-                                <input type="text" id="contact-designation" class="editable-field hidden" value="HR Manager">
-                            </div>
-                            <div class="form-group mobile-input">
-                                <label>Mobile No</label>
-                                <span class="profile-value" data-field="mobile-no">+91 9876543210</span>
-                                <div class="input-with-icon editable-field hidden">
-                                    <span class="icon-text">+91</span>
-                                    <input type="text" id="mobile-no" value="9876543210">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="form-group">
+                                    <label>Contact Person Name</label>
+                                    <span class="profile-value" data-field="contact-person">Prakash Bansal</span>
+                                    <input type="text" id="contact-person" class="editable-field hidden" value="Prakash Bansal">
+                                </div>
+                                <div class="form-group">
+                                    <label>Contact Person Designation</label>
+                                    <span class="profile-value" data-field="contact-designation">Director</span>
+                                    <input type="text" id="contact-designation" class="editable-field hidden" value="Director">
+                                </div>
+                                <div class="form-group">
+                                    <label>Super User Email ID</label>
+                                    <span class="profile-value" data-field="super-user-email">info@jobringer.com</span>
+                                    <input type="email" id="super-user-email" class="editable-field hidden" value="info@jobringer.com">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email ID for Communication</label>
+                                    <span class="profile-value" data-field="communication-email">info@jobringer.com</span>
+                                    <input type="email" id="communication-email" class="editable-field hidden" value="info@jobringer.com">
+                                </div>
+                                <div class="form-group mobile-input">
+                                    <label>Mobile No</label>
+                                    <span class="profile-value" data-field="mobile-no">+91 9820451402</span>
+                                    <div class="input-with-icon editable-field hidden">
+                                        <span class="icon-text">+91</span>
+                                        <input type="tel" id="mobile-no" value="9820451402">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Landline No.</label>
+                                    <span class="profile-value" data-field="landline-no">2223052037</span>
+                                    <input type="tel" id="landline-no" class="editable-field hidden" value="2223052037">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Email ID 1</label>
-                                <span class="profile-value" data-field="email-1">tanishabagga30@gmail.com</span>
-                                <input type="email" id="email-1" class="editable-field hidden" value="tanishabagga30@gmail.com">
+                            
+                            <div class="form-group flex items-center mb-4 mt-2">
+                                <input type="checkbox" id="hide-contact" class="mr-2 h-4 w-4 rounded border-gray-300 text-primary_blue focus:ring-primary_blue">
+                                <label for="hide-contact" class="font-medium">Hide Contact Details from Jobseekers</label>
                             </div>
                             <div class="form-group">
-                                <label>Email ID 2</label>
-                                <span class="profile-value" data-field="email-2">alternate_email@gmail.com</span>
-                                <input type="email" id="email-2" class="editable-field hidden" value="alternate_email@gmail.com">
+                                <label>Email Id's for Job Response (Comma Separated)</label>
+                                <p class="profile-value" data-field="job-response-emails">resume@hindco.com, hr@jobringer.com</p>
+                                <textarea id="job-response-emails" rows="2" class="editable-field hidden">resume@hindco.com</textarea>
                             </div>
+
+                            <div class="form-group mt-6">
+                                <label class="font-bold text-base">Social Media Links</label>
+                                <div class="space-y-2 pt-2">
+                                    <div class="form-group-social">
+                                        <label class="!font-normal text-sm"><i class="fab fa-facebook mr-2 text-blue-600"></i>Facebook URL</label>
+                                        <span class="profile-value" data-field="facebook-url">https://www.facebook.com/jobwithjobringer</span>
+                                        <input type="url" id="facebook-url" class="editable-field hidden" value="https://www.facebook.com/jobwithjobringer">
+                                    </div>
+                                    <div class="form-group-social">
+                                        <label class="!font-normal text-sm"><i class="fab fa-linkedin mr-2 text-blue-800"></i>LinkedIn URL</label>
+                                        <span class="profile-value" data-field="linkedin-url">https://in.linkedin.com/company/jobringer</span>
+                                        <input type="url" id="linkedin-url" class="editable-field hidden" value="https://in.linkedin.com/company/jobringer">
+                                    </div>
+                                    </div>
+                            </div>
+                            
+                            <div class="form-group mt-6 document-upload-group">
+                                <label class="font-bold text-base">Company Documents</label>
+                                <div class="document-item">
+                                    <span class="document-name"><i class="fas fa-file-pdf mr-2 text-red-500"></i>Udyog Aadhar / MSME Certificate</span>
+                                    <span class="document-details" data-field="msme-status">Added on 30 Nov -0001</span>
+                                    <div class="document-actions">
+                                        <a href="#" class="action-link"><i class="fas fa-download mr-1"></i>Download</a>
+                                        <button type="button" class="action-delete"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
+                                    </div>
+                                    <input type="file" id="upload-msme" class="editable-field hidden">
+                                </div>
+                                <div class="document-item">
+                                    <span class="document-name"><i class="fas fa-file-alt mr-2 text-gray-500"></i>Company Profile / Presentation</span>
+                                    <span class="document-details" data-field="profile-presentation-status">No file uploaded</span>
+                                    <div class="document-actions">
+                                        <button type="button" class="action-upload"><i class="fas fa-cloud-upload-alt mr-1"></i>Upload</button>
+                                    </div>
+                                    <input type="file" id="upload-presentation" class="editable-field hidden">
+                                </div>
+                            </div>
+
                             <div class="button-group hidden">
                                 <button type="button" class="btn-cancel" data-section="contact">Cancel</button>
+                                <button type="button" class="btn-save" data-section="contact">Save Changes</button>
                             </div>
                         </div>
 
                         <div class="update-profile-btn-container">
-                             <button type="submit" class="btn-register">Update Profile</button>
+                             <button type="submit" class="btn-register">Update All Sections</button>
                         </div>
                     </form>
                 </div>
@@ -174,6 +304,6 @@
     </div>
     <script src="js/update_employer_profile.js"></script>
     <script src="js/script.js"></script>
-  
+ 
 </body>
 </html>

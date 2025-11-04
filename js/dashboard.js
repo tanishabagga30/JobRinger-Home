@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const applicationList = document.getElementById('application-list');
     const recommendedJobCardWrapper = document.getElementById('recommendedJobCardWrapper');
-    const savedJobCardWrapper = document.getElementById('savedJobCardWrapper'); // Correct ID for the new wrapper
+    const savedJobCardWrapper = document.getElementById('savedJobCardWrapper'); 
+    const creditPromoCardWrapper = document.getElementById('creditPromoCardWrapper'); 
 
-    // Navigation slider functionality
+    // --- Navigation slider functionality ---
     const mainNavSlider = document.getElementById('main-nav-slider');
     if (mainNavSlider) {
         mainNavSlider.addEventListener('click', (e) => {
@@ -14,177 +15,146 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.classList.remove('active');
                 });
                 target.classList.add('active');
-                const selectedPage = target.getAttribute('data-page');
-                console.log(`Navigating to ${selectedPage} page...`);
             }
         });
     }
     
-    // --- Hardcoded Data ---
+    // --- Mock Data (Adapted for exact card structure) ---
     const recommendedJobsData = [
-        { id: 'rec-1', logo: 'https://ui-avatars.com/api/?name=Google&background=2563eb&color=fff', company: 'Google', title: 'Frontend Developer', location: 'Bengaluru, India', salary: 'Not Disclosed', work_mode: 'Hybrid', posted: '20+ day(s) ago' },
-        { id: 'rec-2', logo: 'https://ui-avatars.com/api/?name=Microsoft&background=1e40af&color=fff', company: 'Microsoft', title: 'Backend Developer', location: 'Mumbai, India', salary: 'Not Disclosed', work_mode: 'Remote', posted: '15 day(s) ago' },
-        { id: 'rec-3', logo: 'https://ui-avatars.com/api/?name=Infosys&background=4b5563&color=fff', company: 'Infosys', title: 'Data Analyst', location: 'Hyderabad, India', salary: 'Not Disclosed', work_mode: 'Full Time', posted: '10 day(s) ago' },
-        { id: 'rec-4', logo: 'https://ui-avatars.com/api/?name=TCS&background=1f2937&color=fff', company: 'TCS', title: 'DevOps Engineer', location: 'Pune, India', salary: 'Not Disclosed', work_mode: 'Full Time', posted: '5 day(s) ago' }
+        { id: 'rec-1', logo: 'https://ui-avatars.com/api/?name=Google&background=2563eb&color=fff', company: 'Google', title: 'Frontend Developer', location: 'Bengaluru, India', salary: 'Not Disclosed', experience: 'Hybrid' },
+        { id: 'rec-2', logo: 'https://ui-avatars.com/api/?name=Microsoft&background=1e40af&color=fff', company: 'Microsoft', title: 'Backend Developer', location: 'Mumbai, India', salary: 'Not Disclosed', experience: 'Remote' },
+        { id: 'rec-3', logo: 'https://ui-avatars.com/api/?name=Infosys&background=4b5563&color=fff', company: 'Infosys', title: 'Data Analyst', location: 'Hyderabad, India', salary: 'Not Disclosed', experience: 'Full Time' },
+        { id: 'rec-4', logo: 'https://ui-avatars.com/api/?name=TCS&background=1f2937&color=fff', company: 'TCS', title: 'DevOps Engineer', location: 'Pune, India', salary: 'Not Disclosed', experience: 'Full Time' }
     ];
 
     const applicationsData = [
-        { id: 'app-1', logo: 'https://ui-avatars.com/api/?name=JobRinger&background=0ea5e9&color=fff', company: 'JobRinger.com.', title: 'Frontend Developer', location: 'Mumbai, India', status: 'Shortlisted', appliedDate: '24/08/2025' },
-        { id: 'app-2', logo: 'https://ui-avatars.com/api/?name=Gayatri+Projects&background=ef4444&color=fff', company: 'Gayatri Projects.', title: 'Site Engineer', location: 'Ahmedabad, India', status: 'Application Sent', appliedDate: '23/08/2025' },
-        { id: 'app-3', logo: 'https://ui-avatars.com/api/?name=JobRinger&background=0ea5e9&color=fff', company: 'JobRinger.com.', title: 'Student Counselor', location: 'Bharuch, India', status: 'On Hold', appliedDate: '22/08/2025' }
+        { id: 'app-1', title: 'Software Engineer Intern', status: 'Shortlisted' },
+        { id: 'app-2', title: 'Frontend Developer', status: 'Applied' },
+        { id: 'app-3', title: 'UX Designer', status: 'Rejected' }
+        // Note: The application list in HTML is hardcoded for visual layout but this data structure reflects a real source.
     ];
 
     const savedJobsData = [
-        { id: 'saved-1', logo: 'https://ui-avatars.com/api/?name=Pyramid+Consulting&background=facc15&color=000', company: 'Pyramid Consulting, Inc', title: 'INSIDE SALES & BUSINESS DEVELOPMENT SPECIALIST', location: 'Noida, India', salary: 'Not Disclosed', work_mode: 'Full Time', savedDate: '21/08/2025' },
-        { id: 'saved-2', logo: 'https://ui-avatars.com/api/?name=Tech+Solutions&background=14b8a6&color=fff', company: 'Tech Solutions', title: 'Senior Software Engineer', location: 'Bengaluru, India', salary: 'Not Disclosed', work_mode: 'Full Time', savedDate: '20/08/2025' }
+        { id: 'saved-1', logo: 'https://ui-avatars.com/api/?name=Pyramid+Consulting&background=facc15&color=000', company: 'Pyramid Consulting, Inc', title: 'INSIDE SALES & BUSINESS DEVELOPMENT SPECIALIST', location: 'Noida, India', salary: 'Not Disclosed', experience: 'Full Time', savedDate: '21/08/2025' },
+        { id: 'saved-2', logo: 'https://ui-avatars.com/api/?name=Tech+Solutions&background=14b8a6&color=fff', company: 'Tech Solutions', title: 'Senior Software Engineer', location: 'Bengaluru, India', salary: 'Not Disclosed', experience: 'Full Time', savedDate: '20/08/2025' }
     ];
     
-    // --- Card Rendering Functions ---
-    const renderRecommendedJobCard = (job) => {
-        const salary = job.salary || 'Not Disclosed';
-        const workMode = job.work_mode || 'N/A';
-        const displayLocation = job.location.split(',')[0];
-        const locationTooltipHtml = job.location.split(',').length > 1 ? `<div class="location-tooltip"><ul>${job.location.split(',').map(loc => `<li>${loc.trim()}</li>`).join('')}</ul></div>` : '';
+    const creditPromoData = [
+        { id: 'promo-1', title: "APPLY UNLIMITED", subtitle: "30-Day Boost: Apply to any job! Limited time.", credits: "Unlimited", price: "99 month", theme: "banner-theme-elite-credits", icon: "fas fa-fire" },
+        { id: 'promo-2', title: "50 CREDITS PACK", subtitle: "Top up your balance instantly. Never miss an opportunity.", credits: "50", price: "99", theme: "banner-theme-pro-credits", icon: "fas fa-bolt" },
+        { id: 'promo-3', title: "BASIC TOP UP", subtitle: "Need a few more? Get 10 applications now.", credits: "10", price: "99", theme: "banner-theme-basic-credits", icon: "fas fa-paper-plane" }
+    ];
 
-        return `
-            <div class="job-card p-4 rounded-lg shadow-md text-sm">
-            <div class="flex items-start gap-4">
-                <img src="${job.logo}" alt="${job.company} Logo" class="company-logo rounded-md object-contain border">
-                <div class="flex-grow overflow-hidden">
-                    <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
-                    <p class="text-sm text-cyan-600 dark:text-cyan-400">${job.company}</p>
-                    <div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
-                        <span class="detail-item inline-flex items-center location-tooltip-container">
-                            <i class="fas fa-map-marker-alt mr-1.5"></i>${displayLocation}
-                            ${locationTooltipHtml}
-                        </span>
-                        <span class="detail-item inline-flex items-center"><i class="fas fa-dollar-sign mr-1.5"></i>${salary}</span>
-                        <span class="detail-item inline-flex items-center"><i class="fas fa-briefcase mr-1.5"></i>${workMode}</span>
-                    </div>
-                </div>
-                <button class="bookmark-btn text-gray-500 hover:text-yellow-400 dark:text-gray-300 dark:hover:text-yellow-400 flex-shrink-0">
-                    <i class="far fa-bookmark text-xl"></i>
-                </button>
-            </div>
-            <div class="mt-4 pt-3 border-t grid grid-cols-3 gap-2 text-sm text-gray-700 dark:text-gray-300 text-center">
-                <button class="action-btn info-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5" data-job-id="${job.id}"><i class="fas fa-info-circle"></i> Info</button>
-                <button class="action-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5"><i class="fas fa-share-alt"></i> Share</button>
-                <button class="action-btn py-1.5 w-full bg-cyan-600 text-white rounded-md hover:bg-cyan-700 flex justify-center items-center gap-1.5 font-semibold"><i class="fas fa-paper-plane"></i> Apply</button>
-            </div>
-            </div>`;
-    };
+    // --- Renderers (Using Exact Job Card Structure) ---
+    const renderJobCard = (job, isSaved = false) => {
+        const saveIcon = isSaved ? 'fas fa-bookmark' : 'far fa-bookmark';
 
-    const renderApplicationCard = (job) => {
-        const statusClass = job.status.toLowerCase().includes('shortlisted') ? 'info-status-shortlisted' :
-                            job.status.toLowerCase().includes('on hold') ? 'status-on-hold' :
-                            'info-status-applied';
-        const displayLocation = job.location.split(',')[0];
-        const locationTooltipHtml = job.location.split(',').length > 1 ? `<div class="location-tooltip"><ul>${job.location.split(',').map(loc => `<li>${loc.trim()}</li>`).join('')}</ul></div>` : '';
-
-        return `
-            <div class="job-card p-4 rounded-lg shadow-md text-sm">
-                <div class="flex items-start gap-4">
-                    <img src="${job.logo}" alt="${job.company} Logo" class="company-logo rounded-md object-contain border">
-                    <div class="flex-grow overflow-hidden">
-                        <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">${job.company}</p>
-                        <div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
-                            <span class="detail-item inline-flex items-center location-tooltip-container">
-                                <i class="fas fa-map-marker-alt mr-1.5"></i>${displayLocation}
-                                ${locationTooltipHtml}
-                            </span>
+        let cardHtml = `
+            <div class="job-card flex flex-col p-2.5 md:p-4">
+                
+                <div class="flex-grow">
+                    <div class="flex items-start gap-3">
+                        <img src="${job.logo}" alt="${job.company} Logo" class="company-logo w-9 h-9 md:w-12 md:h-12 rounded-lg">
+                        <div class="flex-grow">
+                            <h3 class="text-sm md:text-base font-bold text-slate-800 dark:text-slate-100">${job.title}</h3>
+                            <p class="text-xs md:text-sm font-medium text-cyan-600 dark:text-cyan-400">${job.company}</p>
                         </div>
                     </div>
-                    <span class="info-status ${statusClass} flex-shrink-0">${job.status}</span>
-                </div>
-                <div class="mt-4 pt-3 border-t text-sm text-gray-700 dark:text-gray-300">
-                    <p class="flex items-center gap-1.5"><i class="far fa-calendar-alt"></i> Applied on: ${job.appliedDate}</p>
-                </div>
-            </div>`;
-    };
-
-    const renderSavedJobCard = (job) => {
-        const salary = job.salary || 'Not Disclosed';
-        const workMode = job.work_mode || 'N/A';
-        const displayLocation = job.location.split(',')[0];
-        const locationTooltipHtml = job.location.split(',').length > 1 ? `<div class="location-tooltip"><ul>${job.location.split(',').map(loc => `<li>${loc.trim()}</li>`).join('')}</ul></div>` : '';
-
-        return `
-            <div class="job-card p-4 rounded-lg shadow-md text-sm">
-            <div class="flex items-start gap-4">
-                <img src="${job.logo}" alt="${job.company} Logo" class="company-logo rounded-md object-contain border">
-                <div class="flex-grow overflow-hidden">
-                    <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">${job.title}</h3>
-                    <p class="text-sm text-cyan-600 dark:text-cyan-400">${job.company}</p>
-                    <div class="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs text-gray-600 dark:text-gray-300">
-                        <span class="detail-item inline-flex items-center location-tooltip-container">
-                            <i class="fas fa-map-marker-alt mr-1.5"></i>${displayLocation}
-                            ${locationTooltipHtml}
-                        </span>
-                        <span class="detail-item inline-flex items-center"><i class="fas fa-dollar-sign mr-1.5"></i>${salary}</span>
-                        <span class="detail-item inline-flex items-center"><i class="fas fa-briefcase mr-1.5"></i>${workMode}</span>
+                    
+                    <div class="mt-2.5 md:mt-3 flex flex-wrap gap-1.5 md:gap-2">
+                        <span class="detail-pill"><i class="fas fa-map-marker-alt"></i>${job.location}</span>
+                        <span class="detail-pill"><i class="fas fa-dollar-sign"></i>${job.salary}</span>
+                        <span class="detail-pill"><i class="fas fa-briefcase"></i>${job.experience}</span>
                     </div>
                 </div>
-                <button class="bookmark-btn text-yellow-400 dark:text-yellow-400 flex-shrink-0">
-                    <i class="fas fa-bookmark text-xl"></i>
-                </button>
+
+                <div class="mt-2.5 md:mt-4 pt-2.5 md:pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center gap-2">
+                    
+                    <button class="action-btn secondary flex-shrink-0 w-8 h-8 md:w-9 md:h-9 p-0 flex items-center justify-center info-btn" data-job-id="${job.id}" title="More Info">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    <button class="action-btn secondary flex-shrink-0 w-8 h-8 md:w-9 md:h-9 p-0 flex items-center justify-center" title="Share Job">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button class="action-btn secondary flex-shrink-0 w-8 h-8 md:w-9 md:h-9 p-0 flex items-center justify-center" title="Save Job">
+                        <i class="${saveIcon}"></i>
+                    </button>
+                    <button class="action-btn apply-border flex-grow text-center">
+                        <i class="fas fa-paper-plane mr-1.5"></i> Apply Now
+                    </button>
+                </div>`;
+
+        if (isSaved) {
+            cardHtml += `
+                <div class="saved-date">
+                    <p><i class="far fa-calendar-alt mr-1"></i>Saved on: ${job.savedDate}</p>
+                </div>`;
+        }
+
+        cardHtml += `</div>`;
+
+        return cardHtml;
+    };
+    
+    const renderCreditPromoCard = (promo) => {
+        return `
+            <div class="promo-banner-card ${promo.theme} flex flex-col justify-between">
+                <div>
+                    <i class="${promo.icon} text-xl mb-1 text-white/90"></i>
+                    <p class="title text-white">${promo.title}</p>
+                    <p class="subtitle text-white/80 mt-0.5 text-sm">${promo.subtitle}</p>
+                    <h4 class="text-2xl font-extrabold text-white mt-1">${promo.credits} <span class="text-lg font-medium">Credits</span></h4>
+                </div>
+                <button class="btn-buy mt-2 w-full text-xs">${promo.price} - Buy Now</button>
             </div>
-            <div class="mt-4 pt-3 border-t grid grid-cols-2 gap-2 text-sm text-gray-700 dark:text-gray-300 text-center">
-                <button class="action-btn info-btn py-1.5 w-full bg-gray-100 rounded-md hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 flex justify-center items-center gap-1.5" data-job-id="${job.id}"><i class="fas fa-info-circle"></i> View</button>
-                <button class="action-btn py-1.5 w-full bg-cyan-600 text-white rounded-md hover:bg-cyan-700 flex justify-center items-center gap-1.5 font-semibold"><i class="fas fa-paper-plane"></i> Apply</button>
-            </div>
-            <div class="mt-2 text-sm text-gray-700 dark:text-gray-300 text-center">
-                <p class="flex items-center justify-center gap-1.5 text-xs text-slate-500 dark:text-slate-400"><i class="far fa-calendar-alt"></i> Saved on: ${job.savedDate}</p>
-            </div>
-            </div>`;
+        `;
     };
 
     const injectContent = (element, data, renderer) => {
         if (element) {
+            // If it's the application list and data is mocked as simple strings, handle that
+            if (element.id === 'application-list' && data[0] && typeof data[0] === 'string') {
+                 // Skip dynamic injection for the hardcoded HTML list to keep the provided example
+                 return;
+            }
             element.innerHTML = data.map(item => renderer(item)).join('');
         }
     };
     
-    // Initial content injection
-    injectContent(applicationList, applicationsData.slice(0, 2), renderApplicationCard); // Show only 2 applications
-    injectContent(recommendedJobCardWrapper, recommendedJobsData, renderRecommendedJobCard);
-    injectContent(savedJobCardWrapper, savedJobsData, renderSavedJobCard);
+    // --- Initial Content Injection ---
+    // Note: The application list is intentionally NOT dynamically injected here to preserve the original HTML structure for the example,
+    // but the job card sliders are.
+    injectContent(recommendedJobCardWrapper, recommendedJobsData, (job) => renderJobCard(job, false));
+    injectContent(savedJobCardWrapper, savedJobsData, (job) => renderJobCard(job, true));
+    injectContent(creditPromoCardWrapper, creditPromoData, renderCreditPromoCard);
 
-    // Setup the Recommended Jobs slider
-    setupRecommendedJobSlider();
-    setupSavedJobSlider();
-
-    function setupRecommendedJobSlider() {
-        const wrapper = document.getElementById('recommendedJobCardWrapper');
-        const prevBtn = document.getElementById('recommendedPrevBtn');
-        const nextBtn = document.getElementById('recommendedNextBtn');
+    // --- Slider Setup Functions ---
+    function setupSlider(wrapperId, prevBtnId, nextBtnId) {
+        const wrapper = document.getElementById(wrapperId);
+        const prevBtn = document.getElementById(prevBtnId);
+        const nextBtn = document.getElementById(nextBtnId);
         if (!wrapper || !prevBtn || !nextBtn) return;
         
-        const scrollStep = 300;
+        const getScrollStep = () => {
+            const card = wrapper.querySelector('.job-card, .promo-banner-card');
+            // Card width + 1rem (16px) gap. This ensures smooth, exact scrolling.
+            return card ? card.offsetWidth + 16 : 300;
+        };
+
         nextBtn.addEventListener('click', () => {
-            wrapper.scrollBy({ left: scrollStep, behavior: 'smooth' });
+            wrapper.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
         });
         prevBtn.addEventListener('click', () => {
-            wrapper.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+            wrapper.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
         });
     }
 
-    function setupSavedJobSlider() {
-        const wrapper = document.getElementById('savedJobCardWrapper');
-        const prevBtn = document.getElementById('savedPrevBtn');
-        const nextBtn = document.getElementById('savedNextBtn');
-        if (!wrapper || !prevBtn || !nextBtn) return;
-        
-        const scrollStep = 300;
-        nextBtn.addEventListener('click', () => {
-            wrapper.scrollBy({ left: scrollStep, behavior: 'smooth' });
-        });
-        prevBtn.addEventListener('click', () => {
-            wrapper.scrollBy({ left: -scrollStep, behavior: 'smooth' });
-        });
-    }
+    // Initialize all sliders
+    setupSlider('recommendedJobCardWrapper', 'recommendedPrevBtn', 'recommendedNextBtn');
+    setupSlider('savedJobCardWrapper', 'savedPrevBtn', 'savedNextBtn');
+    setupSlider('creditPromoCardWrapper', 'creditPrevBtn', 'creditNextBtn');
 
-    // New: Add interactivity to welcome banner tip button
+    // Welcome banner tip button
     const tipButton = document.querySelector('.welcome-banner button');
     if (tipButton) {
         tipButton.addEventListener('click', () => {
@@ -192,5 +162,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // New: Add hover effects for updates and tips (already in CSS, but ensure JS for dynamic if needed)
 });

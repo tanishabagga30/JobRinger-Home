@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageNumbersContainer = document.getElementById('page-numbers');
     const minExpSelect = document.getElementById('minExperience');
     const maxExpSelect = document.getElementById('maxExperience');
-    // ADDED: Resume Attached Checkbox
     const resumeAttachedCheckbox = document.getElementById('resumeAttached'); 
 
     // Error Handling
@@ -27,18 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Dynamically Generate Experience Options
-    for (let i = 0; i <= 50; i++) {
+    // Clear initial options and add 0/50 placeholders manually
+    minExpSelect.innerHTML = '<option value="0">0 yrs (Min Exp)</option>';
+    maxExpSelect.innerHTML = '<option value="50">50+ yrs (Max Exp)</option>';
+
+    for (let i = 1; i <= 50; i++) {
         const minOption = document.createElement('option');
         minOption.value = i;
-        minOption.textContent = i === 0 ? 'Min Exp' : `${i} yr`;
+        minOption.textContent = `${i} yr${i > 1 ? 's' : ''}`;
         minExpSelect.appendChild(minOption);
 
         const maxOption = document.createElement('option');
         maxOption.value = i;
-        maxOption.textContent = i === 50 ? 'Max Exp' : `${i} yr`;
+        maxOption.textContent = `${i} yr${i > 1 ? 's' : ''}`;
         maxExpSelect.appendChild(maxOption);
     }
-    maxExpSelect.value = 50;
+    // Set default max to the highest value for 'Max Exp'
+    maxExpSelect.value = 50; 
 
     // CTC Slider Logic
     const ctcValues = [0, 50000, 100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 600000, 700000, 800000, 900000, 1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000, 1800000, 1900000, 2000000, 2100000, 2200000, 2300000, 2400000, 2500000, 2600000, 2700000, 2800000, 2900000, 3000000, 3100000, 3200000, 3300000, 3400000, 3500000, 3600000, 3700000, 3800000, 3900000, 4000000, 4100000, 4200000, 4300000, 4400000, 4500000, 4600000, 4700000, 4800000, 4900000, 5000000, 5100000, 5200000, 5300000, 5400000, 5500000, 5600000, 5700000, 5800000, 5900000, 6000000, 6100000, 6200000, 6300000, 6400000, 6500000, 6600000, 6700000, 6800000, 6900000, 7000000, 7100000, 7200000, 7300000, 7400000, 7500000, 7600000, 7700000, 7800000, 7900000, 8000000, 8100000, 8200000, 8300000, 8400000, 8500000, 8600000, 8700000, 8800000, 8900000, 9000000, 9100000, 9200000, 9300000, 9400000, 9500000, 9600000, 9700000, 9800000, 9900000, 10000000, 15000000, 20000000, 25000000, 30000000, 35000000, 40000000, 45000000, 50000000];
@@ -50,12 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mapPercentToCTC = (percent) => {
         const index = Math.round((ctcValues.length - 1) * percent);
         return ctcValues[index];
-    };
-
-    // Map a CTC value to a percentage
-    const mapCTCToPercent = (ctc) => {
-        const index = ctcValues.indexOf(ctc);
-        return index / (ctcValues.length - 1);
     };
 
     const updateSlider = () => {
@@ -78,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = slider.getBoundingClientRect();
         let newPosition = ((event.clientX - rect.left) / rect.width) * 100;
 
-        // Clamp the position between 0 and 100
         newPosition = Math.max(0, Math.min(100, newPosition));
 
         if (isMinDragging) {
@@ -120,16 +117,15 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSlider();
 
     // Sample Jobseeker Data (CTC in LPA for filtering)
-    // ADDED: hasResume property for filtering
     const allCandidates = [
-        { id: 'C001', name: 'Amit Sharma', experience: 3, ctc: 8, location: 'Mumbai', skills: ['Python', 'JavaScript'], industry: 'IT', contact: 'amit.sharma@example.com', hasResume: true },
-        { id: 'C002', name: 'Priya Singh', experience: 5, ctc: 12, location: 'Bengaluru', skills: ['Marketing', 'SEO'], industry: 'Marketing', contact: 'priya.singh@example.com', hasResume: false },
-        { id: 'C003', name: 'Rahul Verma', experience: 2, ctc: 6, location: 'Delhi', skills: ['Java', 'Spring'], industry: 'IT', contact: 'rahul.verma@example.com', hasResume: true },
-        { id: 'C004', name: 'Sneha Patel', experience: 7, ctc: 15, location: 'Ahmedabad', skills: ['HR', 'Recruitment'], industry: 'Human Resources', contact: 'sneha.patel@example.com', hasResume: true },
-        { id: 'C005', name: 'Vikram Rao', experience: 4, ctc: 10, location: 'Pune', skills: ['React', 'Node.js'], industry: 'IT', contact: 'vikram.rao@example.com', hasResume: false },
-        { id: 'C006', name: 'Anjali Gupta', experience: 6, ctc: 14, location: 'Hyderabad', skills: ['Legal', 'Compliance'], industry: 'Legal', contact: 'anjali.gupta@example.com', hasResume: true },
-        { id: 'C007', name: 'Kiran Desai', experience: 1, ctc: 4, location: 'Mumbai', skills: ['Python', 'Django'], industry: 'IT', contact: 'kiran.desai@example.com', hasResume: true },
-        { id: 'C008', name: 'Neha Kapoor', experience: 8, ctc: 18, location: 'Bengaluru', skills: ['Product Management'], industry: 'Technology', contact: 'neha.kapoor@example.com', hasResume: false },
+        { id: 'C001', name: 'Amit Sharma', experience: 3, ctc: 8, location: 'Mumbai', skills: ['Python', 'JavaScript', 'Software Engineer'], industry: 'IT', contact: 'amit.sharma@example.com', hasResume: true },
+        { id: 'C002', name: 'Priya Singh', experience: 5, ctc: 12, location: 'Bengaluru', skills: ['Marketing', 'SEO', 'Digital Strategy'], industry: 'Marketing', contact: 'priya.singh@example.com', hasResume: false },
+        { id: 'C003', name: 'Rahul Verma', experience: 2, ctc: 6, location: 'Delhi', skills: ['Java', 'Spring', 'Backend Developer'], industry: 'IT', contact: 'rahul.verma@example.com', hasResume: true },
+        { id: 'C004', name: 'Sneha Patel', experience: 7, ctc: 15, location: 'Ahmedabad', skills: ['HR', 'Recruitment', 'Talent Acquisition'], industry: 'Human Resources', contact: 'sneha.patel@example.com', hasResume: true },
+        { id: 'C005', name: 'Vikram Rao', experience: 4, ctc: 10, location: 'Pune', skills: ['React', 'Node.js', 'Full Stack Developer'], industry: 'IT', contact: 'vikram.rao@example.com', hasResume: false },
+        { id: 'C006', name: 'Anjali Gupta', experience: 6, ctc: 14, location: 'Hyderabad', skills: ['Legal', 'Compliance', 'Corporate Law'], industry: 'Legal', contact: 'anjali.gupta@example.com', hasResume: true },
+        { id: 'C007', name: 'Kiran Desai', experience: 1, ctc: 4, location: 'Mumbai', skills: ['Python', 'Django', 'Web Developer'], industry: 'IT', contact: 'kiran.desai@example.com', hasResume: true },
+        { id: 'C008', name: 'Neha Kapoor', experience: 8, ctc: 18, location: 'Bengaluru', skills: ['Product Management', 'Strategy'], industry: 'Technology', contact: 'neha.kapoor@example.com', hasResume: false },
     ];
 
     let filteredCandidates = [...allCandidates];
@@ -240,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextPageBtn.classList.toggle('disabled', currentPage === totalPages);
     }
 
-    // Filter Candidates
+    // Filter Candidates 
     function filterCandidates() {
         const formData = new FormData(searchForm);
         const data = {};
@@ -248,7 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
             data[key] = value;
         }
 
-        const keywords = data.keywords.toLowerCase().split(',').map(k => k.trim()).filter(k => k);
+        // Split keywords by comma OR whitespace and filter out empty strings
+        const keywords = data.keywords.toLowerCase().split(/[,\s]+/).map(k => k.trim()).filter(k => k); 
         const searchType = data.searchType || 'any';
         const functionalArea = data.functionalArea.toLowerCase();
         const location = data.location.toLowerCase();
@@ -258,22 +255,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxExp = parseInt(data.maxExperience) || 50;
         const minCtc = parseInt(minCTCInput.value) / 100000; // Convert to LPA
         const maxCtc = parseInt(maxCTCInput.value) / 100000; // Convert to LPA
-        // MODIFIED: Read checkbox state
         const requiresResume = resumeAttachedCheckbox.checked;
 
         filteredCandidates = allCandidates.filter(candidate => {
+            
+            // Central keyword matching function
+            const keywordMatch = (k) => 
+                candidate.skills.some(skill => skill.toLowerCase().includes(k)) || 
+                candidate.name.toLowerCase().includes(k) ||
+                candidate.location.toLowerCase().includes(k) ||
+                candidate.industry.toLowerCase().includes(k);   
+
+            // Keyword logic: match all (AND) or any (OR) keyword
             const matchesKeywords = !keywords.length || (
                 searchType === 'all' ?
-                keywords.every(k => candidate.skills.some(skill => skill.toLowerCase().includes(k)) || candidate.name.toLowerCase().includes(k)) :
-                keywords.some(k => candidate.skills.some(skill => skill.toLowerCase().includes(k)) || candidate.name.toLowerCase().includes(k))
+                keywords.every(keywordMatch) :
+                keywords.some(keywordMatch)
             );
+            
+            // Explicit filter logic
             const matchesFunctionalArea = !functionalArea || candidate.skills.some(skill => skill.toLowerCase().includes(functionalArea));
             const matchesLocation = !location || candidate.location.toLowerCase().includes(location);
             const matchesIndustry = !industry || candidate.industry.toLowerCase().includes(industry);
             const matchesContact = !contactDetails || candidate.name.toLowerCase().includes(contactDetails) || candidate.contact.toLowerCase().includes(contactDetails);
             const matchesExperience = candidate.experience >= minExp && candidate.experience <= maxExp;
             const matchesCtc = candidate.ctc >= minCtc && candidate.ctc <= maxCtc;
-            // MODIFIED: Filtering by resume state
             const matchesResume = !requiresResume || candidate.hasResume === true;
 
             return matchesKeywords && matchesFunctionalArea && matchesLocation && matchesIndustry && matchesContact && matchesExperience && matchesCtc && matchesResume;
@@ -292,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => messageBox.classList.add('hidden'), 3000);
     });
     
-    // ADDED: Re-run filter when the checkbox changes
+    // Re-run filter when the checkbox changes
     resumeAttachedCheckbox.addEventListener('change', () => {
         if (!resultsSection.classList.contains('hidden')) {
             filterCandidates();

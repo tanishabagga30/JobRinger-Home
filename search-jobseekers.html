@@ -31,63 +31,66 @@
         <h1 class="text-3xl font-bold text-center">Search Jobseekers</h1>
 
         <form id="searchForm" class="space-y-6 max-w-3xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-center md:space-x-4">
-                <div class="flex-1">
-                    <label for="keywords" class="block text-sm font-medium">Keywords</label>
-                    <input type="text" id="keywords" name="keywords" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm" placeholder="e.g., Software Engineer, Project Manager">
-                </div>
-                <div class="flex-1 mt-4 md:mt-0">
-                    <div class="text-sm font-medium mb-1">Search Type</div>
-                    <div class="flex space-x-4">
+            
+            <div class="space-y-4">
+                <label for="keywords" class="block text-xl font-semibold">Search Keywords</label>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0 items-center">
+                    <div class="flex-1 w-full">
+                        <input type="text" id="keywords" name="keywords" class="block w-full px-4 py-2 border rounded-lg shadow-md focus:outline-none focus:ring-2 sm:text-lg" placeholder="e.g., Software Engineer, Python, AWS, DevOps">
+                    </div>
+                    <div class="flex-shrink-0 flex space-x-4 py-1">
                         <label class="inline-flex items-center">
                             <input type="radio" name="searchType" value="any" class="form-radio" checked>
-                            <span class="ml-2">Any</span>
+                            <span class="ml-2 text-sm font-medium">Any Keyword</span>
                         </label>
                         <label class="inline-flex items-center">
                             <input type="radio" name="searchType" value="all" class="form-radio">
-                            <span class="ml-2">All</span>
+                            <span class="ml-2 text-sm font-medium">All Keywords</span>
                         </label>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <hr class="border-t border-gray-200 dark:border-gray-700">
+
+            <h2 class="text-xl font-semibold mb-4">Refine Your Search</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label for="functionalArea" class="block text-sm font-medium">Functional Area</label>
-                    <input type="text" id="functionalArea" name="functionalArea" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm">
+                    <input type="text" id="functionalArea" name="functionalArea" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm" placeholder="e.g., IT Operations">
                 </div>
                 <div>
                     <label for="location" class="block text-sm font-medium">Location</label>
-                    <input type="text" id="location" name="location" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm">
+                    <input type="text" id="location" name="location" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm" placeholder="e.g., New York, Remote">
                 </div>
                 <div>
                     <label for="industry" class="block text-sm font-medium">Industry</label>
-                    <input type="text" id="industry" name="industry" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm">
+                    <input type="text" id="industry" name="industry" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm" placeholder="e.g., Fintech">
                 </div>
-            </div>
-
-            <div>
-                <label for="contactDetails" class="block text-sm font-medium">Contact Details (Name/Mobile number/email)</label>
-                <input type="text" id="contactDetails" name="contactDetails" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm">
+                <div>
+                    <label for="contactDetails" class="block text-sm font-medium">Contact Details (Name/Mobile/Email)</label>
+                    <input type="text" id="contactDetails" name="contactDetails" class="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 sm:text-sm" placeholder="e.g., John Doe or 555-1234">
+                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label for="minExperience" class="block text-sm font-medium">Min Experience (yrs)</label>
                     <select id="minExperience" name="minExperience" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border focus:outline-none focus:ring-2 sm:text-sm rounded-md shadow-sm">
-                        <option value="0">Min Exp</option>
-                    </select>
+                        <option value="0">0 yrs (Min Exp)</option>
+                        </select>
                 </div>
                 <div>
                     <label for="maxExperience" class="block text-sm font-medium">Max Experience (yrs)</label>
                     <select id="maxExperience" name="maxExperience" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border focus:outline-none focus:ring-2 sm:text-sm rounded-md shadow-sm">
-                        <option value="50">Max Exp</option>
-                    </select>
+                        <option value="50">50+ yrs (Max Exp)</option>
+                        </select>
                 </div>
             </div>
 
             <div>
-                <label class="block text-sm font-medium">CTC Range (Per Annum)</label>
+                <label class="block text-sm font-medium mb-2">CTC Range (Per Annum)</label>
                 <div class="flex justify-between items-center mt-2 mb-4">
                     <span id="minCTCValue" class="font-semibold text-lg">0</span>
                     <span id="maxCTCValue" class="font-semibold text-lg">50,000,000</span>
@@ -102,18 +105,17 @@
                 <input type="hidden" id="maxCTC" name="maxCTC">
             </div>
 
-            <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 pt-4">
-                <button type="submit" class="w-full md:w-1/2 flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-all duration-300 transform hover:scale-105">
-                    <i class="fas fa-search mr-2"></i>Search Jobseekers
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                <button type="submit" class="flex justify-center items-center py-3 px-4 rounded-md shadow-lg text-lg font-bold text-white transition-all duration-300 transform hover:scale-[1.01] hover:shadow-xl">
+                    <i class="fas fa-search mr-3"></i>Search Jobseekers
                 </button>
                 
-                <div class="w-full md:w-1/2 flex items-center justify-center p-3 border rounded-md shadow-sm text-sm font-medium transition-all duration-300">
+                <div class="flex items-center justify-center p-3 border-2 border-primary-light rounded-md shadow-inner transition-all duration-300 bg-gray-50 dark:bg-dark_input_bg dark:border-pop_yellow-dark">
                     <label for="resumeAttached" class="inline-flex items-center cursor-pointer">
                         <input type="checkbox" id="resumeAttached" name="resumeAttached" class="form-checkbox" unchecked>
-                        <span class="ml-2">Only Show Candidates with Resume Attached</span>
+                        <span class="ml-3 text-sm font-medium">Only Show Candidates with Resume Attached</span>
                     </label>
                 </div>
-                
             </div>
         </form>
 

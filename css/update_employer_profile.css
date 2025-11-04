@@ -51,7 +51,7 @@ body {
     padding: 2.5rem;
     border-radius: 1rem;
     box-shadow: 0 10px 25px var(--shadow_color);
-    max-width: 800px;
+    max-width: 900px; /* Increased max-width for cleaner two-column display */
     margin: 0 auto;
     border: 1px solid var(--border_color);
     transition: all 0.3s ease;
@@ -117,16 +117,26 @@ html.dark .section-header .btn-edit:hover {
     box-shadow: 0 4px 6px rgba(250, 204, 21, 0.2);
 }
 
+/* Base Section Styling */
 .profile-section {
     transition: all 0.3s ease;
+    /* Ensure grid items align well */
+    padding: 1rem 0; 
 }
 
-.profile-section .form-group {
+/* Ensure form groups use the grid for alignment in view mode */
+.profile-section.view-mode .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem; /* Reduced margin for grid density */
 }
 
+/* Ensure grid applies inside the section */
+.profile-section .grid {
+    margin-bottom: 1rem;
+}
+
+/* Individual Form Group Styling */
 .profile-section label {
     font-weight: 500;
     color: var(--secondary_text);
@@ -137,10 +147,12 @@ html.dark .section-header .btn-edit:hover {
 .profile-value {
     font-size: 1rem;
     color: var(--text_color);
-    padding: 0.5rem 0;
+    padding: 0.25rem 0; /* Reduced padding for view mode */
     font-weight: 600;
+    word-wrap: break-word; /* Handles long URLs/Descriptions */
 }
 
+/* View/Edit Mode Toggle Logic */
 .profile-section.view-mode .profile-value {
     display: block;
 }
@@ -150,7 +162,6 @@ html.dark .section-header .btn-edit:hover {
 .profile-section.view-mode .button-group {
     display: none;
 }
-
 .profile-section.edit-mode .editable-field,
 .profile-section.edit-mode .button-group {
     display: block;
@@ -177,12 +188,7 @@ html.dark .profile-section.edit-mode .editable-field:focus {
     box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.2);
 }
 
-.mobile-input .profile-value {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
+/* Mobile Input Styling (for Mobile/Landline) */
 .mobile-input .input-with-icon {
     display: flex;
     align-items: center;
@@ -195,11 +201,14 @@ html.dark .profile-section.edit-mode .editable-field:focus {
     font-size: 0.875rem;
     font-weight: 500;
     color: #64748b;
+    border: 1px solid var(--border_color);
+    border-right: none;
 }
 
 html.dark .mobile-input .icon-text {
     background-color: #334155;
     color: #cbd5e1;
+    border-color: var(--border_color);
 }
 
 .mobile-input .input-with-icon input {
@@ -207,6 +216,7 @@ html.dark .mobile-input .icon-text {
     border-radius: 0 0.5rem 0.5rem 0;
 }
 
+/* Button Groups for Edit/Cancel */
 .button-group {
     display: flex;
     gap: 1rem;
@@ -214,21 +224,47 @@ html.dark .mobile-input .icon-text {
     margin-top: 1rem;
 }
 
-.btn-cancel {
-    background: transparent;
-    color: var(--secondary_text);
-    border: 1px solid var(--border_color);
+.btn-cancel, .btn-save {
     padding: 0.6rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 600;
     transition: all 0.2s;
     cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.btn-cancel {
+    background: transparent;
+    color: var(--secondary_text);
+    border: 1px solid var(--border_color);
 }
 
 .btn-cancel:hover {
     background-color: var(--input_bg);
 }
 
+.btn-save {
+    background: var(--primary_blue);
+    color: white;
+    border: 1px solid var(--primary_blue);
+}
+
+.btn-save:hover {
+    background: #0c82bf;
+}
+
+html.dark .btn-save {
+    background: var(--pop_yellow);
+    color: #1e293b;
+    border-color: var(--pop_yellow);
+}
+
+html.dark .btn-save:hover {
+    background: #e9c83a;
+}
+
+
+/* Main Update Button */
 .update-profile-btn-container {
     text-align: center;
     margin-top: 3rem;
@@ -242,7 +278,7 @@ html.dark .mobile-input .icon-text {
     font-weight: 600;
     font-size: 1rem;
     color: white;
-    background: #0ea5e9;
+    background: var(--primary_blue);
     border: none;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -252,4 +288,52 @@ html.dark .mobile-input .icon-text {
 .btn-register:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(14, 165, 233, 0.4);
+}
+
+/* Document Upload Styling */
+.document-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border_color);
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: var(--input_bg);
+}
+
+.document-name {
+    flex-grow: 1;
+    font-weight: 500;
+    color: var(--text_color);
+    font-size: 0.9rem;
+}
+
+.document-details {
+    color: var(--secondary_text);
+    font-size: 0.8rem;
+    margin-right: 1rem;
+}
+
+.document-actions .action-link,
+.document-actions .action-delete,
+.document-actions .action-upload {
+    font-size: 0.8rem;
+    margin-left: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+}
+
+.document-actions .action-link {
+    color: var(--primary_blue);
+}
+
+.document-actions .action-delete {
+    color: #ef4444; /* red-500 */
+    border: 1px solid #fecaca; /* red-200 */
+}
+
+.document-actions .action-upload {
+    color: #10b981; /* emerald-500 */
+    border: 1px solid #a7f3d0; /* emerald-200 */
 }

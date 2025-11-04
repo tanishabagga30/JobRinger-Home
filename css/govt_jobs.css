@@ -1,0 +1,386 @@
+/* =======================================
+   0. ROOT VARIABLES (Newspaper Look + Universal Colors)
+   ======================================= */
+:root {
+    /* Universal Colors */
+    --primary_blue: #1eacc6; 
+    --pop_yellow: #C2D9FF; 
+    
+    /* Light Mode - Traditional Paper */
+    --body_color_light: #FBFBFB;
+    --text_color_light: #000000;
+    --card_bg_light: #FFFFFF;
+    --border_light: #333333;
+    --gray_text_light: #444444; 
+
+    /* Dark Mode */
+    --body_color_dark: #1A202C;
+    --text_color_dark: #F7FAFC;
+    --dark_background_secondary: #2D3748;
+    --dark_border: #999999; 
+    --dark_gray_text: #CBD5E0;
+
+    /* Newspaper Typography & Style */
+    --masthead-font: 'Merriweather', serif;
+    --body-font: 'Roboto', sans-serif;
+    --job-title-color: var(--text_color_light);
+    --cta-bg: var(--primary_blue);
+    --cta-text-color: #FFFFFF;
+    --column-rule-style: 1px dashed var(--border_light);
+
+    /* Sidebar Dimensions */
+    --expanded: 16.875rem;
+    --collapsed: 3.25rem;
+    --item: 2.25rem; /* Used for nav item height */
+}
+
+/* --- DARK MODE OVERRIDES --- */
+html.dark {
+    --job-title-color: var(--text_color_dark);
+    --cta-bg: var(--pop_yellow);
+    --cta-text-color: var(--text_color_light);
+    --column-rule-style: 1px dashed var(--dark_border);
+
+    /* Sidebar/Universal Overrides */
+    --bg--primary: var(--dark_background_secondary);
+    --bg--hover: rgba(30, 172, 198, 0.1);
+    --gray--primary: var(--dark_gray_text);
+    --gray--secondary: var(--text_color_dark);
+    --dark--primary: var(--pop_yellow);
+    --accent--primary: var(--pop_yellow);
+}
+
+/* =======================================
+   1. BASE & UNIVERSAL STYLES
+   ======================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: var(--body-font);
+    line-height: 1.4; 
+    transition: padding-left 300ms ease-out; 
+    padding-bottom: 75px; 
+    overflow-x: hidden;
+    color: var(--text_color_light);
+}
+html.dark body { color: var(--text_color_dark); }
+a { text-decoration: none; color: inherit; }
+
+/* HEADER / MASTHEAD */
+
+
+
+.tagline {
+    font-size: 0.8em;
+    color: var(--gray_text_light);
+    border-top: 1px dashed var(--border_light);
+    padding-top: 5px;
+    margin-top: 5px;
+}
+html.dark .tagline { color: var(--dark_gray_text); border-top-color: var(--dark_border); }
+
+/* SEARCH AREA - Clean, high contrast */
+.search-area {
+    border-bottom: var(--column-rule-style);
+    border-top: var(--column-rule-style);
+    padding: 15px 0;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.search-area input[type="text"] {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--border_light);
+    background-color: var(--card_bg_light);
+    border-radius: 0.25rem; 
+    color: var(--text_color_light);
+}
+html.dark .search-area input[type="text"] { 
+    background-color: var(--dark_background_secondary); 
+    border: 1px solid var(--dark_border);
+    color: var(--text_color_dark);
+}
+.search-area button {
+    padding: 8px 15px;
+    background-color: var(--primary_blue);
+    color: var(--cta-text-color);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* CONTENT HEADINGS (Newspaper Article Headline Style) */
+.page-headline {
+    font-family: var(--masthead-font);
+    font-weight: 700;
+    font-size: 1.8em; 
+    color: var(--text_color_light);
+    border-bottom: 2px solid var(--text_color_light);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+html.dark .page-headline { color: var(--text_color_dark); border-bottom-color: var(--text_color_dark); }
+
+/* =======================================
+   2. SIDEBAR AND NAVIGATION STYLES
+   ======================================= */
+
+/* General Nav Structure (from universal code) */
+#nav-placeholder {
+    /* Mobile Nav */
+    padding: 10px 0;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--card_bg_light);
+    border-top: 1px solid var(--border_light);
+    display: block; 
+}
+#mobile-nav .flex { display: flex; justify-content: space-evenly; align-items: center; }
+#mobile-nav a { display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; color: var(--gray_text_light); }
+
+/* Desktop Sidebar Positioning */
+@media (min-width: 1024px) {
+    body { padding-left: var(--collapsed); }
+    #nav-placeholder {
+        /* Desktop Sidebar */
+        position: fixed !important; top: 0 !important; left: 0 !important; bottom: 0 !important;
+        width: var(--collapsed) !important; height: 100vh !important;
+        background: var(--card_bg_light); border-right: 1px solid var(--border_light);
+        z-index: 1999 !important; transition: width 300ms ease-out !important;
+    }
+    #nav-placeholder:has(input:checked) { width: var(--expanded) !important; }
+    #mobile-nav { display: none !important; }
+    #desktop-nav { display: flex !important; width: 100%; height: 100%; }
+    .vertical-sidebar { display: flex; flex-flow: column; width: 100%; height: 100%; transition: none; }
+    .vertical-sidebar input[type="checkbox"] { display: none; }
+    
+    /* Sidebar Item Styles (Simplified) */
+    .sidebar__link { display: flex; align-items: center; height: var(--item); border-radius: 0.25rem; padding-inline: 0.25rem; }
+    .sidebar__link:hover { background: var(--bg--hover); }
+    .icon { display: grid; place-content: center; width: var(--item); height: var(--item); flex-shrink: 0; }
+    .icon i { color: var(--gray_text_light); font-size: 1.125rem; }
+    .text { opacity: 0; transform: translateX(10px); transition: opacity 300ms ease-in-out, transform 300ms ease-in-out; white-space: nowrap; }
+    .vertical-sidebar:has(input:checked) .text { opacity: 1; transform: translateX(0); }
+    .sidebar__list { list-style: none; padding: 0; }
+    .sidebar__item { height: var(--item); transition: height 300ms ease-out; }
+    .vertical-sidebar:not(:has(input:checked)) .text { display: none; }
+    .vertical-sidebar:not(:has(input:checked)) .sidebar__link { justify-content: center; }
+    .vertical-sidebar:has(input:checked) .sidebar__item { height: auto; }
+}
+/* Ensure mobile nav is hidden in desktop view (as per the structure) */
+@media (max-width: 1023px) {
+    #desktop-nav { display: none !important; }
+    body { padding-left: 0 !important; }
+}
+
+
+/* =======================================
+   3. JOB CARD LAYOUT & UNIFORMITY
+   ======================================= */
+
+.job-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; 
+    padding-top: 5px;
+    border-left: var(--column-rule-style);
+    border-right: var(--column-rule-style);
+    padding-inline: 20px;
+}
+
+/* JOB CARD: CRITICAL FLEX PROPERTIES FOR BUTTON ALIGNMENT */
+.job-card {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: var(--column-rule-style);
+    
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    height: 100%; /* Must fill the grid cell height */
+}
+
+/* ELEMENT THAT MUST STRETCH VERTICALLY */
+.job-details {
+    flex-grow: 1; /* Pushes the next element down */
+}
+
+/* ELEMENT TO SNAP TO BOTTOM */
+.job-actions {
+    margin-top: auto; /* Snaps to the bottom */
+    padding-top: 10px;
+    text-align: center;
+}
+/* END CRITICAL FLEX PROPERTIES */
+
+
+.job-title {
+    font-family: var(--masthead-font);
+    font-size: 1.1em;
+    color: var(--job-title-color) !important;
+    margin: 0; line-height: 1.1; text-transform: uppercase;
+}
+.organization {
+    font-size: 0.8em; font-weight: 700; color: var(--gray_text_light); margin: 3px 0 0 0;
+}
+html.dark .organization { color: var(--dark_gray_text); }
+.separator {
+    border: none; border-top: 1px solid var(--border_light); margin: 8px 0;
+}
+html.dark .separator { border-top: 1px solid var(--dark_border); }
+
+.job-details p { margin: 2px 0; font-size: 0.85em; }
+.job-details strong { font-weight: 700; color: var(--text_color_light); }
+html.dark .job-details strong { color: var(--text_color_dark); }
+
+.location-date {
+    font-size: 0.75em; font-style: italic; color: var(--gray_text_light); margin-bottom: 8px;
+}
+.cta-button {
+    display: block; padding: 8px 10px; background-color: var(--cta-bg); 
+    color: var(--cta-text-color); font-weight: 600; border-radius: 0;
+    margin-top: 5px; font-size: 0.85em; text-align: center;
+}
+.source-info { font-size: 0.7em; margin-top: 5px; color: #999; }
+        
+/* Responsive Overrides */
+@media (min-width: 1024px) {
+    body:has(.vertical-sidebar:has(input:checked)) .job-grid-container { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 1200px) {
+    .job-grid-container { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+    .job-grid-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .job-grid-container { grid-template-columns: 1fr; padding-inline: 10px; }
+}
+/* ... (Existing CSS content, including :root variables, continues above) ... */
+
+/* =======================================
+   3. JOB GRID LAYOUT & UNIFORMITY (MODIFIED)
+   ======================================= */
+
+.job-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; 
+    padding-top: 5px;
+    
+    /* REMOVED: border-left and border-right from the container itself */
+    padding-inline: 20px;
+}
+
+/* ❗ NEW CSS: Add Vertical Dashed Rule between the first three columns */
+/* This selects the first three columns (1, 2, and 3) */
+.job-grid-container > .job-card:nth-child(4n - 1),
+.job-grid-container > .job-card:nth-child(4n - 2),
+.job-grid-container > .job-card:nth-child(4n - 3) {
+    /* Apply a dashed line to the right of the job card */
+    border-right: 1px dashed var(--border_light); 
+    padding-right: 20px; /* Add padding to separate content from the line */
+}
+html.dark .job-grid-container > .job-card:nth-child(4n - 1),
+html.dark .job-grid-container > .job-card:nth-child(4n - 2),
+html.dark .job-grid-container > .job-card:nth-child(4n - 3) {
+    border-right: 1px dashed var(--dark_border);
+}
+
+
+/* JOB CARD: CRITICAL FLEX PROPERTIES FOR BUTTON ALIGNMENT */
+.job-card {
+    /* Base newspaper style */
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0;
+    
+    /* Space below the content (horizontal separator) */
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: var(--column-rule-style);
+    
+    /* Ensure no right border is added if there's no item next to it in the flow */
+    border-right: none; 
+    padding-right: 0;
+    
+    /* CRITICAL FLEX PROPERTIES */
+    display: flex;
+    flex-direction: column; 
+    height: 100%; 
+}
+
+/* ... (Remaining CSS styles for .job-details, .job-actions, etc. are unchanged) ... */
+
+
+/* --- RESPONSIVE ADJUSTMENTS for Vertical Rules --- */
+@media (min-width: 1024px) {
+    /* When 4 columns are active (desktop sidebar collapsed), 
+       apply right border to columns 1, 2, and 3 (i.e., every item except the 4th in a group of 4). */
+    .job-grid-container { grid-template-columns: repeat(4, 1fr); }
+
+    .job-grid-container > .job-card {
+        border-right: 1px dashed var(--border_light);
+        padding-right: 20px;
+    }
+    .job-grid-container > .job-card:nth-child(4n) {
+        /* Remove border from the last column in each row of 4 */
+        border-right: none;
+        padding-right: 0;
+    }
+
+    /* If sidebar is EXPANDED, it shifts to 3 columns. Remove all 4n rules. */
+    body:has(.vertical-sidebar:has(input:checked)) .job-grid-container > .job-card:nth-child(4n) {
+        border-right: 1px dashed var(--border_light);
+        padding-right: 20px;
+    }
+    body:has(.vertical-sidebar:has(input:checked)) .job-grid-container > .job-card:nth-child(3n) {
+        /* Remove border from the last column in each row of 3 */
+        border-right: none;
+        padding-right: 0;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    /* On medium screens (3 columns), apply border to columns 1 and 2 (i.e., every item except the 3rd in a group of 3). */
+    .job-grid-container { grid-template-columns: repeat(3, 1fr); }
+    
+    .job-grid-container > .job-card {
+        border-right: 1px dashed var(--border_light);
+        padding-right: 20px;
+    }
+    .job-grid-container > .job-card:nth-child(3n) {
+        /* Remove border from the last column in each row of 3 */
+        border-right: none;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    /* On smaller tablets (2 columns), apply border to column 1 (i.e., every item except the 2nd in a group of 2). */
+    .job-grid-container { grid-template-columns: repeat(2, 1fr); }
+    
+    .job-grid-container > .job-card {
+        border-right: 1px dashed var(--border_light);
+        padding-right: 20px;
+    }
+    .job-grid-container > .job-card:nth-child(2n) {
+        /* Remove border from the last column in each row of 2 */
+        border-right: none;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    /* On mobile (1 column), remove all vertical borders. */
+    .job-grid-container { grid-template-columns: 1fr; padding-inline: 10px; }
+    
+    .job-grid-container > .job-card {
+        border-right: none;
+        padding-right: 0;
+    }
+}

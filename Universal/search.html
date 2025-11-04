@@ -1,27 +1,290 @@
-<!-- search.html -->
+<!-- search.html - Main Job Search with Bottom Slide -->
 <div class="search-popup-overlay" id="searchOverlay"></div>
-
 <div class="search-popup" id="searchPopup">
-    <div class="p-4">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Search Jobs</h3>
-            <button id="closeSearch" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="mb-4">
-            <label for="searchJob" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Job Title or Keywords</label>
-            <input type="text" id="searchJob" placeholder="e.g. Software Engineer" 
-                   class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-500 bg-white text-gray-800 placeholder-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400">
-        </div>
-        <div class="mb-4">
-            <label for="searchLocation" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Location</label>
-            <input type="text" id="searchLocation" placeholder="e.g.  Banglore" 
-                   class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus: bg-white text-gray-800 placeholder-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400">
-        </div>
-        <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 w-full rounded-lg">
-    Search Jobs
-</button>
-
+  <!-- Header -->
+  <div class="p-4 border-b border-gray-200 dark:border-gray-600">
+    <div class="flex justify-between items-center">
+      <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Search Jobs</h3>
+      <button id="closeSearch" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+        <i class="fas fa-times text-xl"></i>
+      </button>
     </div>
+  </div>
+
+  <!-- Search Form -->
+  <div class="p-4">
+    <!-- Keyword Input -->
+    <div class="mb-4">
+      <label for="searchKeyword" class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">Keywords</label>
+      <div class="relative">
+        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+        <input type="text" id="searchKeyword" placeholder="e.g. Software Engineer, Full Stack" 
+               class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-800 placeholder-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition-all">
+      </div>
+    </div>
+
+    <!-- Location Input -->
+    <div class="mb-6">
+      <label for="searchLocation" class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">Location</label>
+      <div class="relative">
+        <i class="fas fa-map-marker-alt absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+        <input type="text" id="searchLocation" placeholder="e.g. Bangalore, Remote" 
+               class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-800 placeholder-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 transition-all">
+      </div>
+    </div>
+
+    <!-- Search Button -->
+    <button id="performSearch" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl mb-6 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200">
+      <i class="fas fa-search mr-2"></i>Search Jobs
+    </button>
+
+    <!-- Quick Search Suggestions -->
+    <div class="mb-4">
+      <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick Search</p>
+      <div class="flex flex-wrap gap-2">
+        <button class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 transition-colors">Frontend</button>
+        <button class="px-3 py-1.5 bg-green-50 text-green-700 rounded-full text-sm hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 transition-colors">Backend</button>
+        <button class="px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full text-sm hover:bg-purple-100 dark:bg-purple-900/20 dark:text-purple-400 transition-colors">Remote</button>
+        <button class="px-3 py-1.5 bg-orange-50 text-orange-700 rounded-full text-sm hover:bg-orange-100 dark:bg-orange-900/20 dark:text-orange-400 transition-colors">Internship</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Saved Searches Section -->
+  <div class="border-t border-gray-200 dark:border-gray-600 px-4 pb-6">
+    <div class="flex border-b border-gray-200 dark:border-gray-600 mb-4 -mx-4">
+      <button class="recent-tab-btn flex-1 py-3 px-4 text-sm font-medium text-gray-500 dark:text-gray-400 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 dark:hover:text-blue-400 transition-colors active:bg-blue-50 dark:active:bg-gray-700" data-tab="recent">
+        Recent
+        <span class="inline-block w-2 h-2 bg-gray-400 rounded-full ml-1"></span>
+      </button>
+      <button class="saved-tab-btn flex-1 py-3 px-4 text-sm font-medium text-gray-500 dark:text-gray-400 border-b-2 border-transparent hover:text-blue-600 hover:border-blue-600 dark:hover:text-blue-400 transition-colors active:bg-blue-50 dark:active:bg-gray-700" data-tab="saved">
+        Saved
+        <span class="inline-block w-2 h-2 bg-blue-500 rounded-full ml-1 hidden"></span>
+      </button>
+    </div>
+
+    <!-- Recent Searches -->
+    <div id="recentTab" class="tab-content active space-y-3 max-h-48 overflow-y-auto">
+      <div class="saved-search-item p-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-800 dark:text-white truncate">Software Developer - Bangalore</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">2 hours ago • 15 jobs found</p>
+        </div>
+        <div class="flex items-center gap-2 ml-3 flex-shrink-0">
+          <i class="fas fa-clock text-gray-400 text-xs"></i>
+          <span class="text-xs text-gray-500 dark:text-gray-400">Recent</span>
+        </div>
+      </div>
+      <div class="saved-search-item p-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-800 dark:text-white truncate">Data Analyst - Remote</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Yesterday • 8 jobs found</p>
+        </div>
+        <div class="flex items-center gap-2 ml-3 flex-shrink-0">
+          <i class="fas fa-clock text-gray-400 text-xs"></i>
+          <span class="text-xs text-gray-500 dark:text-gray-400">Recent</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved Searches -->
+    <div id="savedTab" class="tab-content hidden space-y-3 max-h-48 overflow-y-auto">
+      <div class="saved-search-item p-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-800 dark:text-white truncate">Full Stack Engineer - Mumbai</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Saved with alerts • 3 new matches</p>
+        </div>
+        <label class="alert-toggle relative inline-flex items-center cursor-pointer ml-3 flex-shrink-0">
+          <input type="checkbox" class="sr-only peer" checked data-search="fullstack-mumbai">
+          <div class="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+        </label>
+      </div>
+      <div class="saved-search-item p-3 bg-gray-50 dark:bg-gray-800/50 rounded-xl flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-800 dark:text-white truncate">UI/UX Designer - Delhi</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Saved 3 days ago</p>
+        </div>
+        <label class="alert-toggle relative inline-flex items-center cursor-pointer ml-3 flex-shrink-0">
+          <input type="checkbox" class="sr-only peer" data-search="uiux-delhi">
+          <div class="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+        </label>
+      </label>
+    </div>
+  </div>
+
+  <!-- Clear All Button -->
+  <div class="px-4 pb-4">
+    <button id="clearSearches" class="w-full text-red-600 dark:text-red-400 text-sm font-medium py-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors">
+      <i class="fas fa-trash mr-1"></i>Clear All Searches
+    </button>
+  </div>
 </div>
+
+<script>
+// Search Popup Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Elements
+  const searchOverlay = document.getElementById('searchOverlay');
+  const searchPopup = document.getElementById('searchPopup');
+  const closeSearchBtn = document.getElementById('closeSearch');
+  const performSearchBtn = document.getElementById('performSearch');
+  const searchKeyword = document.getElementById('searchKeyword');
+  const searchLocation = document.getElementById('searchLocation');
+  const tabBtns = document.querySelectorAll('[data-tab]');
+  const tabContents = document.querySelectorAll('.tab-content');
+  const clearSearchesBtn = document.getElementById('clearSearches');
+  const alertToggles = document.querySelectorAll('.alert-toggle input[type="checkbox"]');
+
+  // Toggle Search Popup (Bottom Slide)
+  function toggleSearchPopup(open = null) {
+    const isOpen = open !== null ? open : !searchPopup.classList.contains('active');
+    
+    searchPopup.classList.toggle('active', isOpen);
+    searchOverlay.classList.toggle('active', isOpen);
+    document.body.classList.toggle('search-open', isOpen);
+    
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => searchKeyword.focus(), 300);
+    } else {
+      document.body.style.overflow = '';
+      searchKeyword.value = '';
+      searchLocation.value = '';
+    }
+  }
+
+  // Event Listeners
+  if (searchOverlay) searchOverlay.addEventListener('click', () => toggleSearchPopup(false));
+  if (closeSearchBtn) closeSearchBtn.addEventListener('click', () => toggleSearchPopup(false));
+  
+  if (performSearchBtn) {
+    performSearchBtn.addEventListener('click', function() {
+      const keyword = searchKeyword.value.trim();
+      const location = searchLocation.value.trim();
+      
+      if (keyword || location) {
+        const query = new URLSearchParams({ q: keyword, location: location });
+        window.location.href = `/jobs?${query.toString()}`;
+      } else {
+        searchKeyword.placeholder = 'Please enter keywords or location';
+        setTimeout(() => searchKeyword.placeholder = 'e.g. Software Engineer, Full Stack', 2000);
+      }
+    });
+  }
+
+  // Quick search buttons
+  document.querySelectorAll('.flex-wrap button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (this.textContent === 'Frontend') searchKeyword.value = 'Frontend Developer';
+      if (this.textContent === 'Backend') searchKeyword.value = 'Backend Developer';
+      if (this.textContent === 'Remote') searchLocation.value = 'Remote';
+      if (this.textContent === 'Internship') searchKeyword.value = 'Internship';
+      performSearchBtn.click();
+    });
+  });
+
+  // Tab switching
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const targetTab = this.dataset.tab;
+      
+      // Update active tab button
+      tabBtns.forEach(b => {
+        b.classList.remove('active:bg-blue-50', 'active:text-blue-600', 'active:border-blue-600', 
+                          'dark:active:bg-gray-700', 'dark:active:text-blue-400', 'active');
+        b.classList.add('text-gray-500', 'dark:text-gray-400', 'border-transparent');
+      });
+      
+      this.classList.add('active', 'active:bg-blue-50', 'active:text-blue-600', 'active:border-blue-600', 
+                        'dark:active:bg-gray-700', 'dark:active:text-blue-400');
+      this.classList.remove('text-gray-500', 'dark:text-gray-400', 'border-transparent');
+      
+      // Update active indicators
+      const indicators = this.querySelectorAll('span');
+      indicators.forEach(ind => ind.classList.toggle('bg-blue-500', targetTab === 'saved'));
+      indicators.forEach(ind => ind.classList.toggle('bg-gray-400', targetTab === 'recent'));
+      
+      // Show/hide content
+      tabContents.forEach(content => content.classList.add('hidden'));
+      document.getElementById(`${targetTab}Tab`).classList.remove('hidden');
+    });
+  });
+
+  // Alert toggles
+  alertToggles.forEach(toggle => {
+    toggle.addEventListener('change', function() {
+      const searchId = this.dataset.search;
+      const isChecked = this.checked;
+      const item = this.closest('.saved-search-item');
+      
+      // Update UI
+      const statusText = item.querySelector('p:last-child');
+      if (isChecked) {
+        statusText.textContent = statusText.textContent.replace('Saved', 'Saved with alerts');
+        statusText.classList.add('text-blue-600', 'dark:text-blue-400');
+      } else {
+        statusText.textContent = statusText.textContent.replace('Saved with alerts', 'Saved');
+        statusText.classList.remove('text-blue-600', 'dark:text-blue-400');
+      }
+      
+      // Save to localStorage (replace with API call)
+      const savedAlerts = JSON.parse(localStorage.getItem('jobAlerts') || '{}');
+      savedAlerts[searchId] = isChecked;
+      localStorage.setItem('jobAlerts', JSON.stringify(savedAlerts));
+      
+      console.log(`Alert ${isChecked ? 'enabled' : 'disabled'} for ${searchId}`);
+    });
+  });
+
+  // Clear searches
+  if (clearSearchesBtn) {
+    clearSearchesBtn.addEventListener('click', function() {
+      if (confirm('Clear all recent and saved searches?')) {
+        localStorage.removeItem('recentSearches');
+        localStorage.removeItem('savedSearches');
+        document.querySelector('#recentTab').innerHTML = '<p class="text-gray-500 text-sm text-center py-4">No recent searches</p>';
+        document.querySelector('#savedTab').innerHTML = '<p class="text-gray-500 text-sm text-center py-4">No saved searches</p>';
+        this.style.display = 'none';
+      }
+    });
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && searchPopup.classList.contains('active')) {
+      toggleSearchPopup(false);
+    }
+    if (e.key === 'Enter' && searchPopup.classList.contains('active')) {
+      performSearchBtn.click();
+    }
+  });
+
+  // Auto-save recent searches
+  const saveRecentSearch = () => {
+    const recent = {
+      keyword: searchKeyword.value,
+      location: searchLocation.value,
+      timestamp: new Date().toISOString(),
+      id: Date.now()
+    };
+    
+    let recentSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+    recentSearches.unshift(recent);
+    recentSearches = recentSearches.slice(0, 10); // Keep last 10
+    localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+  };
+
+  searchKeyword.addEventListener('blur', saveRecentSearch);
+  searchLocation.addEventListener('blur', saveRecentSearch);
+});
+
+// Expose toggle function globally for navigation integration
+window.toggleSearchPopup = function(open) {
+  const popup = document.getElementById('searchPopup');
+  if (popup) {
+    const isCurrentlyOpen = popup.classList.contains('active');
+    const shouldOpen = open !== null ? open : !isCurrentlyOpen;
+    toggleSearchPopup(shouldOpen);
+  }
+};
+</script>

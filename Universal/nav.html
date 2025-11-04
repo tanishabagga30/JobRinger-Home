@@ -1,123 +1,180 @@
 <div id="mobile-nav">
-    <div class="flex">
-        <a href="#" id="openMenu" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
-            <i class="fas fa-bars text-lg"></i>
-            <span class="text-xs mt-1">Menu</span>
-        </a>
-
-        <a href="/index.html" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
-            <i class="fas fa-home text-lg"></i>
-            <span class="text-xs mt-1">Home</span>
-        </a>
-
-        <a href="#" id="mobile-openSearch" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
-            <i class="fas fa-search text-lg"></i>
-            <span class="text-xs mt-1">Search</span>
-        </a>
-
-        <a href="/jobPage.html" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
-            <i class="fas fa-briefcase text-lg"></i>
-            <span class="text-xs mt-1">Jobs</span>
-        </a>
-
-        <a href="/login.html" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
-            <i class="fas fa-user-circle text-lg"></i>
-            <span class="text-xs mt-1">Profile</span>
-        </a>
-    </div>
+  <div class="flex">
+    <a href="#" id="openMenu" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
+      <i class="fas fa-bars text-lg"></i>
+      <span class="text-xs mt-1">Menu</span>
+    </a>
+    <a href="/index.html" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
+      <i class="fas fa-home text-lg"></i>
+      <span class="text-xs mt-1">Home</span>
+    </a>
+    <a href="#" id="mobile-openSearch" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
+      <i class="fas fa-search text-lg"></i>
+      <span class="text-xs mt-1">Search</span>
+    </a>
+    <a href="/jobPage.html" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
+      <i class="fas fa-briefcase text-lg"></i>
+      <span class="text-xs mt-1">Jobs</span>
+    </a>
+    <a href="#" data-popup="login" class="flex flex-col items-center text-gray-500 hover:text-cyan-700 p-1">
+      <i class="fa-solid fa-user"></i>
+      <span class="text-xs mt-1">Profile</span>
+    </a>
+  </div>
 </div>
 
 <aside id="desktop-nav" class="vertical-sidebar">
-    <input type="checkbox" id="sidebar-toggle"> 
-    <nav>
-        <header>
-            <div class="sidebar__toggle-container">
-                <label for="sidebar-toggle" class="nav__toggle">
-                    <span class="toggle--icons" aria-hidden="true">
-                        <i class="fas fa-bars toggle-icon toggle--close"></i>
-                        <i class="fas fa-times toggle-icon toggle--open"></i>
-                    </span>
-                </label>
-            </div>
-        </header>
-        <section class="sidebar__wrapper">
-            <ul class="sidebar__list list--primary">
-                <li class="sidebar__item item--heading">
-                    <h2 class="sidebar__item--heading">General</h2>
-                </li>
-                <li class="sidebar__item">
-                    <a class="sidebar__link" href="/index.html" data-tooltip="Home">
-                        <span class="icon">
-                            <i class="fas fa-home"></i>
-                        </span>
-                        <span class="text">Home</span>
-                    </a>
-                </li>
-                <li class="sidebar__item">
-                    <a class="sidebar__link" href="#" id="openSearch" data-tooltip="Search">
-                        <span class="icon">
-                            <i class="fas fa-search"></i>
-                        </span>
-                        <span class="text">Search</span>
-                    </a>
-                </li>
-                <li class="sidebar__item">
-                    <a class="sidebar__link" href="/jobPage.html" data-tooltip="Jobs">
-                        <span class="icon">
-                            <i class="fas fa-briefcase"></i>
-                        </span>
-                        <span class="text">Jobs</span>
-                    </a>
-                </li>
-                <li class="sidebar__item">
-                    <a class="sidebar__link" href="#" data-tooltip="Login" id="login-toggle">
-                        <span class="icon">
-                            <i class="fas fa-sign-in-alt"></i>
-                        </span>
-                        <span class="text">Login</span>
-                    </a>
-                    
-                </li>
-            </ul>
-            <ul class="sidebar__list list--secondary">
-                <li class="sidebar__item item--heading">
-                    <h2 class="sidebar__item--heading">More</h2>
-                </li>
-                
-                <li class="sidebar__item">
-                    <a class="sidebar__link" href="#" data-tooltip="Job Blog">
-                        <span class="icon">
-                            <i class="fas fa-newspaper"></i>
-                        </span>
-                        <span class="text">Job Blog</span>
-                    </a>
-                </li>
-                <li class="sidebar__item">
-                    <a class="sidebar__link" href="#" data-tooltip="Pricing">
-                        <span class="icon">
-                            <i class="fas fa-tags"></i>
-                        </span>
-                        <span class="text">Pricing</span>
-                    </a>
-                </li>
-                <li class="sidebar__item">
-                    <a class="sidebar__link" href="/faq.html" data-tooltip="FAQ">
-                        <span class="icon">
-                            <i class="fas fa-question-circle"></i>
-                        </span>
-                        <span class="text">FAQ</span>
-                    </a>
-                </li>
-                <li class="sidebar__item">
-                    <button id="theme-toggle-menu" class="sidebar__link w-full text-left" data-tooltip="Theme">
-                        <span class="icon">
-                            <i class="fas fa-moon" id="theme-icon-moon"></i>
-                            <i class="fas fa-sun hidden" id="theme-icon-sun"></i>
-                        </span>
-                        <span class="text" id="theme-text">Toggle Dark Mode</span>
-                    </button>
-                </li>
-            </ul>
-        </section>
-    </nav>
+  <input type="checkbox" id="sidebar-toggle">
+  <nav>
+    <header>
+      <div class="sidebar__toggle-container">
+        <label for="sidebar-toggle" class="nav__toggle">
+          <span class="toggle--icons" aria-hidden="true">
+            <i class="fas fa-bars toggle-icon toggle--close"></i>
+            <i class="fas fa-times toggle-icon toggle--open"></i>
+          </span>
+        </label>
+      </div>
+    </header>
+    <section class="sidebar__wrapper">
+      <ul class="sidebar__list list--primary">
+        <li class="sidebar__item item--heading"><h2 class="sidebar__item--heading">General</h2></li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="/index.html" data-tooltip="Home">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span class="text">Home</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#" id="openSearch" data-tooltip="Search">
+            <span class="icon"><i class="fas fa-search"></i></span>
+            <span class="text">Search</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="/jobPage.html" data-tooltip="Jobs">
+            <span class="icon"><i class="fas fa-briefcase"></i></span>
+            <span class="text">Jobs</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#" data-popup="pricing" data-tooltip="Pricing">
+            <span class="icon"><i class="fas fa-tags"></i></span>
+            <span class="text">Pricing</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="#" data-popup="login" id="login-toggle" data-tooltip="Login">
+            <span class="icon"><i class="fa-solid fa-user"></i></span>
+            <span class="text">Login</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="sidebar__list list--secondary">
+        <li class="sidebar__item item--heading"><h2 class="sidebar__item--heading">More</h2></li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="/blogs" data-tooltip="Job Blog">
+            <span class="icon"><i class="fas fa-newspaper"></i></span>
+            <span class="text">Job Blog</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="/contact-us-new.php" data-tooltip="Contact Us">
+            <span class="icon"><i class="fas fa-question-circle"></i></span>
+            <span class="text">Contact Us</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <a class="sidebar__link" href="/faq.html" data-tooltip="FAQ">
+            <span class="icon"><i class="fas fa-question-circle"></i></span>
+            <span class="text">FAQ</span>
+          </a>
+        </li>
+        <li class="sidebar__item">
+          <button id="theme-toggle-menu" class="sidebar__link w-full text-left" data-tooltip="Theme">
+            <span class="icon">
+              <i class="fas fa-moon" id="theme-icon-moon"></i>
+              <i class="fas fa-sun hidden" id="theme-icon-sun"></i>
+            </span>
+            <span class="text" id="theme-text">Toggle Dark Mode</span>
+          </button>
+        </li>
+      </ul>
+    </section>
+  </nav>
+
+  <!-- LOGIN POPUP -->
+  <div id="login-choice-popup" class="fixed inset-0 bg-black bg-opacity-60 z-[1050] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-8 text-center">
+      <button id="close-login-popup" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400">
+        <i class="fas fa-times text-2xl"></i>
+      </button>
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Welcome Back!</h2>
+      <p class="text-gray-600 dark:text-gray-300 mb-8">Choose how you'd like to sign in</p>
+      <div class="grid grid-cols-1 gap-4">
+        <a href="/employer-login.html" class="group flex items-center justify-center gap-4 p-6 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl hover:shadow-lg transform hover:scale-105 transition">
+          <i class="fas fa-building text-2xl"></i>
+          <div class="text-left">
+            <div class="font-semibold text-lg">Employer</div>
+            <div class="text-sm opacity-90">Post jobs & hire talent</div>
+          </div>
+          <i class="fas fa-arrow-right ml-auto"></i>
+        </a>
+        <a href="/jobseeker-login.html" class="group flex items-center justify-center gap-4 p-6 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-xl hover:shadow-lg transform hover:scale-105 transition">
+          <i class="fas fa-user-graduate text-2xl"></i>
+          <div class="text-left">
+            <div class="font-semibold text-lg">Job Seeker</div>
+            <div class="text-sm opacity-90">Find your dream job</div>
+          </div>
+          <i class="fas fa-arrow-right ml-auto"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="pricing-choice-popup" class="fixed inset-0 bg-black bg-opacity-60 z-[1050] hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-6 text-center relative">
+      <button id="close-pricing-popup" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400">
+        <i class="fas fa-times text-2xl"></i>
+      </button>
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Choose Your Plan</h2>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">Pick what fits you best</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <a href="/pricing-employer.html" class="pricing-card group block p-5 bg-gray-50 dark:bg-gray-700 rounded-xl hover:shadow-lg transition">
+          <div class="icon-circle bg-gradient-to-br from-cyan-500 to-blue-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-building text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white">Employer</h3>
+          <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Post jobs & hire fast</p>
+          <div class="price-tag mt-3">
+            <span class="text-2xl font-bold text-cyan-600 dark:text-cyan-400">₹999</span>
+            <span class="text-gray-500 text-xs">/month</span>
+          </div>
+          <ul class="features text-left text-xs text-gray-700 dark:text-gray-300 mt-3 space-y-1">
+            <li>Unlimited Jobs</li>
+            <li>Featured Listing</li>
+            <li>Priority Support</li>
+          </ul>
+          <span class="btn-primary block mt-4">View Plans</span>
+        </a>
+        <a href="/pricing-jobseeker.html" class="pricing-card group block p-5 bg-gray-50 dark:bg-gray-700 rounded-xl hover:shadow-lg transition">
+          <div class="icon-circle bg-gradient-to-br from-purple-500 to-pink-600 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-user-graduate text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white">Job Seeker</h3>
+          <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Stand out & get hired</p>
+          <div class="price-tag mt-3">
+            <span class="text-2xl font-bold text-purple-600 dark:text-purple-400">₹199</span>
+            <span class="text-gray-500 text-xs">/month</span>
+          </div>
+          <ul class="features text-left text-xs text-gray-700 dark:text-gray-300 mt-3 space-y-1">
+            <li>Profile Boost</li>
+            <li>Premium Jobs</li>
+            <li>Resume Tools</li>
+          </ul>
+          <span class="btn-primary block mt-4">View Plans</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </aside>

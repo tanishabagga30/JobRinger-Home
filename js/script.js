@@ -1,306 +1,347 @@
-// Tailwind config (keep this as is)
+// === TAILWIND CONFIG ===
 tailwind.config = {
-    darkMode: 'class'
+    darkMode: 'class'
 };
 
-// --- Dark Mode Manager (Updated for both desktop and mobile toggles) ---
+// === DARK MODE MANAGER ===
 const DarkModeManager = {
-    getThemePreference() {
-        const stored = localStorage.getItem('theme');
-        if (stored) return stored;
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    },
-    setThemePreference(theme) {
-        localStorage.setItem('theme', theme);
-    },
-    applyTheme(theme) {
-        document.documentElement.classList.remove('light', 'dark');
-        document.documentElement.classList.add(theme);
-        this.updateThemeUI(theme);
-    },
-    updateThemeUI(theme) {
-        // Desktop sidebar theme UI
-        const themeIconMoon = document.getElementById('theme-icon-moon');
-        const themeIconSun = document.getElementById('theme-icon-sun');
-        const themeText = document.getElementById('theme-text');
-        if (themeIconMoon && themeIconSun && themeText) {
-            if (theme === 'dark') {
-                themeIconMoon.classList.add('hidden');
-                themeIconSun.classList.remove('hidden');
-                themeText.textContent = 'Toggle Light Mode';
-            } else {
-                themeIconMoon.classList.remove('hidden');
-                themeIconSun.classList.add('hidden');
-                themeText.textContent = 'Toggle Dark Mode';
-            }
-        }
-        // Mobile popup theme UI
-        const mobileThemeIconMoon = document.getElementById('mobile-theme-icon-moon');
-        const mobileThemeIconSun = document.getElementById('mobile-theme-icon-sun');
-        const mobileThemeText = document.getElementById('mobile-theme-text');
-        if (mobileThemeIconMoon && mobileThemeIconSun && mobileThemeText) {
-            if (theme === 'dark') {
-                mobileThemeIconMoon.classList.add('hidden');
-                mobileThemeIconSun.classList.remove('hidden');
-                mobileThemeText.textContent = 'Toggle Light Mode';
-            } else {
-                mobileThemeIconMoon.classList.remove('hidden');
-                mobileThemeIconSun.classList.add('hidden');
-                mobileThemeText.textContent = 'Toggle Dark Mode';
-            }
-        }
-    },
-    toggleTheme() {
-        const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-        this.applyTheme(newTheme);
-        this.setThemePreference(newTheme);
-    },
-    init() {
-        this.applyTheme(this.getThemePreference());
-    },
-    setupThemeToggle() {
-        const themeToggle = document.getElementById('theme-toggle-menu');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', this.toggleTheme.bind(this));
-        }
-        const mobileThemeToggle = document.getElementById('mobile-theme-toggle-menu');
-        if (mobileThemeToggle) {
-            mobileThemeToggle.addEventListener('click', this.toggleTheme.bind(this));
-        }
-    }
+    getThemePreference() {
+        const stored = localStorage.getItem('theme');
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    },
+    setThemePreference(theme) {
+        localStorage.setItem('theme', theme);
+    },
+    applyTheme(theme) {
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(theme);
+        this.updateThemeUI(theme);
+    },
+    updateThemeUI(theme) {
+        const updateIcons = (moonId, sunId, textId) => {
+            const moon = document.getElementById(moonId);
+            const sun = document.getElementById(sunId);
+            const text = document.getElementById(textId);
+            if (!moon || !sun || !text) return;
+            if (theme === 'dark') {
+                moon.classList.add('hidden');
+                sun.classList.remove('hidden');
+                text.textContent = 'Toggle Light Mode';
+            } else {
+                moon.classList.remove('hidden');
+                sun.classList.add('hidden');
+                text.textContent = 'Toggle Dark Mode';
+            }
+        };
+        updateIcons('theme-icon-moon', 'theme-icon-sun', 'theme-text');
+        updateIcons('mobile-theme-icon-moon', 'mobile-theme-icon-sun', 'mobile-theme-text');
+    },
+    toggleTheme() {
+        const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+        this.applyTheme(newTheme);
+        this.setThemePreference(newTheme);
+    },
+    init() {
+        this.applyTheme(this.getThemePreference());
+    },
+    setupThemeToggle() {
+        const toggles = ['theme-toggle-menu', 'mobile-theme-toggle-menu'];
+        toggles.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', this.toggleTheme.bind(this));
+        });
+    }
 };
 DarkModeManager.init();
 
-
-// --- Universal Component Loading Function ---
-async function loadComponent(file, placeholderId) {
-    try {
-        const response = await fetch(file);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const content = await response.text();
-        const placeholder = document.getElementById(placeholderId);
-        if (placeholder) {
-            placeholder.innerHTML = content;
-        } else {
-            console.error(`Placeholder not found for ${placeholderId}`);
-        }
-    } catch (error) {
-        console.error(`Error loading ${file}:`, error);
-    }
+// === COMPONENT LOADER ===
+async function loadComponent(file, placeholderId, callback) {
+    try {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const content = await response.text();
+        const placeholder = document.getElementById(placeholderId);
+        if (placeholder) {
+            placeholder.innerHTML = content;
+            if (callback) callback(placeholder);
+        }
+    } catch (error) {
+        console.error(`Error loading ${file}:`, error);
+    }
 }
 
-
-// --- Main Script Logic (Runs after HTML is loaded) ---
-document.addEventListener('DOMContentLoaded', async () => {
-    // ✅ Load all universal components into their placeholders
-    await loadComponent(`../Universal/header.html`, 'header-placeholder');
-    // CORRECTED: Call the country selector setup function here, after the header is loaded
-    setupCountrySelector();
-    
-    await loadComponent(`../Universal/footer.html`, 'footer-placeholder');
-    await loadComponent(`../Universal/nav.html`, 'nav-placeholder'); // Main nav bar (Desktop Sidebar)
-    
-    await loadComponent(`../Universal/menu.html`, 'menu-placeholder'); 
-    
-    await loadComponent(`../Universal/search.html`, 'search-placeholder'); // Search popup
-
-    // ✅ Initialize all features AFTER components are loaded
-    initializeMenuFeatures();
-    initializeSearchFeatures();
-    initializeHeaderFeatures(); // For dark mode toggle etc.
-    initializeDesktopSidebar(); // New: Handle desktop sidebar padding
-    
-    // Any page-specific initializations would go here, checking if the elements exist first
-});
-
-
-// --- UPDATED: Desktop Sidebar Padding Adjustment (with better expansion handling) ---
-function initializeDesktopSidebar() {
-    // Use the new ID for the checkbox
-    const checkbox = document.getElementById('checkbox-input');
-    const navPlaceholder = document.getElementById('nav-placeholder');
-    const header = document.querySelector('header');
-    
-    if (!checkbox || !window.matchMedia('(min-width: 1024px)').matches) return;
-
-    const updateLayout = () => {
-        const isExpanded = checkbox.checked;
-        const root = document.documentElement;
-        const collapsedWidth = getComputedStyle(root).getPropertyValue('--collapsed').trim();
-        const expandedWidth = getComputedStyle(root).getPropertyValue('--expanded').trim();
-        const currentWidth = isExpanded ? expandedWidth : collapsedWidth;
-        
-        // Update body padding
-        document.body.style.paddingLeft = currentWidth;
-        
-        // Update header padding
-        if (header) {
-            // NOTE: Header positioning and width/padding needs careful CSS adjustment for sticky header + dynamic padding
-            // For now, we only update the body padding as the CSS handles the sidebar width transition.
-            // If the header doesn't span full width to the right, you might need a different approach.
-            // Setting padding-left on the header is generally not needed if it's full-width content.
-            // I'm commenting out the header padding update for simplicity based on standard layouts.
-            // header.style.paddingLeft = currentWidth;
-        }
-        
-        // Update nav placeholder width (already handled by CSS :has(input:checked), removing from JS)
-        // if (navPlaceholder) {
-        //     navPlaceholder.style.width = currentWidth;
-        // }
-        
-        // Optional: Add class for additional styling if needed
-        document.body.classList.toggle('sidebar-expanded', isExpanded);
-    };
-
-    // Listen for checkbox changes
-    checkbox.addEventListener('change', updateLayout);
-    
-    // Initial setup (collapsed by default)
-    updateLayout();
-    
-    // Re-run on resize to ensure consistency
-    window.addEventListener('resize', () => {
-        if (window.matchMedia('(min-width: 1024px)').matches) {
-            updateLayout();
-        }
-    });
-}
-
-
-// --- MENU INITIALIZATION (Mobile popup only; desktop handled by CSS) ---
-function initializeMenuFeatures() {
-    const menuPopup = document.getElementById('mobile-menuPopup');
-    const menuOverlay = document.getElementById('mobile-menuOverlay');
-    const closeMenuBtn = document.getElementById('mobile-closeMenu');
-    
-    const openMenuBtn = document.getElementById('openMenu');
-    
-    // Toggle for the desktop sidebar Login sublist
-    const loginToggle = document.getElementById('login-toggle');
-
-    const toggleMenuPopup = (isOpen) => {
-        // Only run for mobile devices
-        if (window.matchMedia('(max-width: 1023px)').matches && menuPopup && menuOverlay) {
-            menuPopup.classList.toggle('active', isOpen);
-            menuOverlay.classList.toggle('active', isOpen);
-            document.body.style.overflow = isOpen ? 'hidden' : '';
-        }
-    };
-
-    if (openMenuBtn) {
-        openMenuBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleMenuPopup(true);
-        });
-    }
-    
-    // Logic to toggle the Login sublist when the sidebar is expanded (only relevant in desktop)
-    if (loginToggle) {
-        loginToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            const parentItem = loginToggle.closest('.sidebar__item');
-            const sublist = parentItem ? parentItem.querySelector('.sidebar__sublist') : null;
-            
-            // Only toggle if the sidebar is expanded (i.e., has input:checked)
-            const sidebar = loginToggle.closest('.vertical-sidebar');
-            const isExpanded = sidebar ? sidebar.querySelector('#checkbox-input').checked : false;
-
-            if (isExpanded && sublist) {
-                // Simple class toggle for basic sublist open/close animation
-                sublist.classList.toggle('active');
-            }
+// === COOKIE CONSENT ===
+const CookieManager = {
+    COOKIE_KEY: 'cookie_consent_status',
+    getConsentStatus() { return localStorage.getItem(this.COOKIE_KEY); },
+    setConsentStatus(status) {
+        localStorage.setItem(this.COOKIE_KEY, status);
+        this.hidePopup();
+    },
+    showPopup() {
+        const popup = document.getElementById('cookie-consent-popup');
+        setTimeout(() => popup?.classList.remove('translate-y-full'), 500);
+    },
+    hidePopup() {
+        const popup = document.getElementById('cookie-consent-popup');
+        if (popup) {
+            popup.classList.add('translate-y-full');
+            setTimeout(() => popup.style.display = 'none', 500);
+        }
+    },
+    initializeCookiePopup() {
+        if (this.getConsentStatus()) {
+            document.getElementById('cookie-consent-popup')?.style.setProperty('display', 'none');
+            return;
+        }
+        this.showPopup();
+        document.getElementById('cookie-accept-all')?.addEventListener('click', () => {
+            console.log("Cookies Accepted.");
+            this.setConsentStatus('accepted');
+        });
+        document.getElementById('cookie-decline')?.addEventListener('click', () => {
+            console.log("Cookies Declined.");
+            this.setConsentStatus('declined');
         });
     }
+};
 
+// === LOGIN CHOICE POPUP ===
+function initializeLoginPopup() {
+    const desktopLogin = document.getElementById('login-toggle');
+    const mobileLogin = document.querySelector('#mobile-nav a[href="/login.html"]');
+    const popup = document.getElementById('login-choice-popup');
+    const closeBtn = document.getElementById('close-login-popup');
 
-    // Close listeners for mobile popup only
-    if (closeMenuBtn) closeMenuBtn.addEventListener('click', () => toggleMenuPopup(false));
-    if (menuOverlay) menuOverlay.addEventListener('click', () => toggleMenuPopup(false));
-    document.addEventListener('keydown', (e) => e.key === 'Escape' && toggleMenuPopup(false));
+    if (!popup) return;
+
+    const openPopup = (e) => {
+        e.preventDefault();
+        popup.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closePopup = () => {
+        popup.classList.remove('show');
+        document.body.style.overflow = '';
+    };
+
+    desktopLogin?.addEventListener('click', openPopup);
+    mobileLogin?.addEventListener('click', openPopup);
+    closeBtn?.addEventListener('click', closePopup);
+    popup.addEventListener('click', (e) => e.target === popup && closePopup());
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && popup.classList.contains('show') && closePopup());
 }
 
+// === MENU & SEARCH POPUPS ===
+function initializeMenuFeatures() {
+    const menuPopup = document.getElementById('mobile-menuPopup');
+    const menuOverlay = document.getElementById('mobile-menuOverlay');
+    const closeMenuBtn = document.getElementById('mobile-closeMenu');
+    const openMenuBtn = document.getElementById('openMenu');
 
-function setupCountrySelector() {
-    const selectorBtn = document.getElementById("country-selector-btn");
-    const optionsContainer = document.getElementById("country-options");
-    const countryOptions = document.querySelectorAll(".country-option");
-    const selectedFlagImg = document.getElementById("selected-flag-img");
-    const selectedCountryText = document.getElementById("selected-country-text");
+    const toggleMenu = (open) => {
+        if (!menuPopup || !menuOverlay) return;
+        menuPopup.classList.toggle('active', open);
+        menuOverlay.classList.toggle('active', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    };
 
-    if (!selectorBtn || !optionsContainer || !countryOptions.length) {
-        console.error("Country selector elements not found."); // helpful for debugging
-        return; // safety check
-    }
-
-    // Toggle dropdown
-    selectorBtn.addEventListener("click", () => {
-        optionsContainer.classList.toggle("hidden");
-    });
-
-    // Click on an option
-    countryOptions.forEach(opt => {
-        opt.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            const countryName = opt.getAttribute("data-country");
-            const flagImg = opt.getAttribute("data-flag-img");
-
-            if (countryName && flagImg) {
-                selectedCountryText.textContent = countryName;
-                selectedFlagImg.src = flagImg;
-            }
-
-            // Hide dropdown
-            optionsContainer.classList.add("hidden");
-
-            // Update checkmarks
-            countryOptions.forEach(o => {
-                const check = o.querySelector("i");
-                if (check) check.classList.add("hidden");
-            });
-            const selectedCheck = opt.querySelector("i");
-            if (selectedCheck) selectedCheck.classList.remove("hidden");
-        });
-    });
-
-    // Close dropdown if clicked outside
-    document.addEventListener("click", (e) => {
-        if (!selectorBtn.contains(e.target) && !optionsContainer.contains(e.target)) {
-            optionsContainer.classList.add("hidden");
-        }
-    });
+    openMenuBtn?.addEventListener('click', (e) => { e.preventDefault(); toggleMenu(true); });
+    closeMenuBtn?.addEventListener('click', () => toggleMenu(false));
+    menuOverlay?.addEventListener('click', () => toggleMenu(false));
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && toggleMenu(false));
 }
 
 function initializeSearchFeatures() {
-    const searchPopup = document.getElementById('searchPopup');
-    const searchOverlay = document.getElementById('searchOverlay');
-    const closeSearchBtn = document.getElementById('closeSearch');
-    const desktopOpenSearch = document.getElementById('openSearch');
-    const mobileOpenSearch = document.getElementById('mobile-openSearch');
+    const searchPopup = document.getElementById('searchPopup');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const closeSearchBtn = document.getElementById('closeSearch');
+    const openBtns = [document.getElementById('openSearch'), document.getElementById('mobile-openSearch')];
 
-    if (!searchPopup || !searchOverlay || !closeSearchBtn) return;
+    const toggleSearch = (open) => {
+        if (!searchPopup || !searchOverlay) return;
+        searchPopup.classList.toggle('active', open);
+        searchOverlay.classList.toggle('active', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    };
 
-    const toggleSearchPopup = (isOpen) => {
-        searchPopup.classList.toggle('active', isOpen);
-        searchOverlay.classList.toggle('active', isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-    };
-
-    // Add listeners to both desktop and mobile search buttons
-    [desktopOpenSearch, mobileOpenSearch].forEach(btn => {
-        if (btn) {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                toggleSearchPopup(true);
-            });
-        }
-    });
-
-    closeSearchBtn.addEventListener('click', () => toggleSearchPopup(false));
-    searchOverlay.addEventListener('click', () => toggleSearchPopup(false));
-    document.addEventListener('keydown', (e) => e.key === 'Escape' && toggleSearchPopup(false));
+    openBtns.forEach(btn => btn?.addEventListener('click', (e) => { e.preventDefault(); toggleSearch(true); }));
+    closeSearchBtn?.addEventListener('click', () => toggleSearch(false));
+    searchOverlay?.addEventListener('click', () => toggleSearch(false));
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && toggleSearch(false));
 }
 
-function initializeHeaderFeatures() {
-    DarkModeManager.setupThemeToggle();
+// === COUNTRY SELECTOR ===
+function setupCountrySelector() {
+    const btn = document.getElementById("country-selector-btn");
+    const container = document.getElementById("country-options");
+    const options = document.querySelectorAll(".country-option");
+    const flagImg = document.getElementById("selected-flag-img");
+    const countryText = document.getElementById("selected-country-text");
+
+    if (!btn || !container) return;
+
+    btn.addEventListener("click", () => container.classList.toggle("hidden"));
+    options.forEach(opt => {
+        opt.addEventListener("click", (e) => {
+            e.preventDefault();
+            const name = opt.dataset.country;
+            const img = opt.dataset.flagImg;
+            if (name && img) {
+                countryText.textContent = name;
+                flagImg.src = img;
+            }
+            container.classList.add("hidden");
+            document.querySelectorAll(".country-option i").forEach(i => i.classList.add("hidden"));
+            opt.querySelector("i")?.classList.remove("hidden");
+        });
+    });
+    document.addEventListener("click", (e) => {
+        if (!btn.contains(e.target) && !container.contains(e.target)) {
+            container.classList.add("hidden");
+        }
+    });
 }
+
+// === DESKTOP SIDEBAR (Hover Expand) ===
+function initializeDesktopSidebar() {
+    if (!window.matchMedia('(min-width: 1024px)').matches) return;
+
+    const checkbox = document.getElementById('sidebar-toggle');
+    const nav = document.getElementById('desktop-nav');
+    if (!checkbox || !nav) return;
+
+    checkbox.checked = false;
+
+    const updateLayout = () => {
+        const width = checkbox.checked
+            ? getComputedStyle(document.documentElement).getPropertyValue('--expanded').trim()
+            : getComputedStyle(document.documentElement).getPropertyValue('--collapsed').trim();
+        document.body.style.paddingLeft = width;
+    };
+
+    checkbox.addEventListener('change', updateLayout);
+
+    let timeout;
+    nav.addEventListener('mouseenter', () => {
+        clearTimeout(timeout);
+        if (!checkbox.checked) {
+            checkbox.checked = true;
+            updateLayout();
+        }
+    });
+    nav.addEventListener('mouseleave', () => {
+        timeout = setTimeout(() => {
+            if (checkbox.checked) {
+                checkbox.checked = false;
+                updateLayout();
+            }
+        }, 300);
+    });
+
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+}
+
+// === MAIN INIT ===
+document.addEventListener('DOMContentLoaded', async () => {
+    const forceNavLayout = (el) => {
+        if (window.matchMedia('(max-width: 1023px)').matches) {
+            el.style.display = 'none';
+            void el.offsetHeight;
+            el.style.display = 'block';
+        }
+    };
+
+    await loadComponent('../Universal/header.html', 'header-placeholder');
+    setupCountrySelector();
+
+    await loadComponent('../Universal/footer.html', 'footer-placeholder');
+    CookieManager.initializeCookiePopup();
+
+    await loadComponent('../Universal/nav.html', 'nav-placeholder', (el) => {
+        forceNavLayout(el);
+        initializeLoginPopup();  // Critical: Initialize popup after nav loads
+    });
+
+    await loadComponent('../Universal/menu.html', 'menu-placeholder');
+    await loadComponent('../Universal/search.html', 'search-placeholder');
+
+    initializeMenuFeatures();
+    initializeSearchFeatures();
+    initializeHeaderFeatures();
+    initializeDesktopSidebar();
+    DarkModeManager.setupThemeToggle();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // === POPUP HANDLER (Login + Pricing) ===
+  function initPopups() {
+    const popups = {
+      login: document.getElementById('login-choice-popup'),
+      pricing: document.getElementById('pricing-choice-popup')
+    };
+
+    document.querySelectorAll('[data-popup]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const type = link.dataset.popup;
+        const popup = popups[type];
+        if (popup) {
+          popup.classList.add('show');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    // Close buttons
+    document.querySelectorAll('#close-login-popup, #close-pricing-popup').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.fixed').classList.remove('show');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Overlay click
+    Object.values(popups).forEach(popup => {
+      popup?.addEventListener('click', e => {
+        if (e.target === popup) {
+          popup.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    // Esc key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.fixed.show').forEach(p => {
+          p.classList.remove('show');
+          document.body.style.overflow = '';
+        });
+      }
+    });
+  }
+
+  // === DARK MODE ===
+  const toggleDark = () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+  };
+  document.getElementById('theme-toggle-menu')?.addEventListener('click', toggleDark);
+
+  // === SIDEBAR TOGGLE (Hover + Click) ===
+  const sidebarToggle = document.getElementById('sidebar-toggle');
+  const desktopNav = document.getElementById('desktop-nav');
+  if (sidebarToggle && desktopNav) {
+    desktopNav.addEventListener('mouseenter', () => sidebarToggle.checked = true);
+    desktopNav.addEventListener('mouseleave', () => setTimeout(() => {
+      if (!desktopNav.matches(':hover')) sidebarToggle.checked = false;
+    }, 300));
+  }
+
+  // === INIT ALL ===
+  setTimeout(initPopups, 800);
+});

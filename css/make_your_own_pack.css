@@ -1,91 +1,131 @@
-/* Make Your Own Pack Specific Styles */
+/* =======================================
+   GOVT JOB PAGE SPECIFIC STYLES
+   ======================================= */
+
+/* --- Placeholder ROOT Variables (Define these properly in universal.css) --- */
+:root {
+    --primary: #1eacc6;
+    --pop_yellow: #C2D9FF;
+    --body_color_light: #F2F7FF;
+    --text_color_light: #000000;
+    --card_bg_light: #FFFFFF;
+    --border_light: #D1D5DB;
+    --gray_medium_light: #6B7280;
+    --light_shadow: rgba(0, 0, 0, 0.07);
+    --dark_background_secondary: #2D3748;
+    --dark_border: #4A5568;
+    --dark_input_bg: #2D3748;
+    --dark_shadow: rgba(0, 0, 0, 0.3);
+    --dark_gray_text: #CBD5E0;
+    --success-color: #4CAF50;
+    --danger-color: #F44336;
+}
+html.dark {
+    --primary: #C2D9FF; 
+    --primary_blue: #1eacc6;
+}
+/* --- END Placeholder ROOT Variables --- */
+
 
 /* Main card for the page content */
 .card {
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 2rem; 
     background-color: var(--card_bg_light);
     border: 1px solid var(--border_light);
-    box-shadow: 0 4px 12px var(--light_shadow);
+    box-shadow: 0 6px 16px var(--light_shadow); 
     transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 2rem auto; 
 }
-
 html.dark .card {
     background-color: var(--dark_background_secondary);
     border-color: var(--dark_border);
-    box-shadow: 0 4px 12px var(--dark_shadow);
+    box-shadow: 0 6px 16px var(--dark_shadow);
 }
-
-/* Page container and header styles */
-.page-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-}
-
-h1 {
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
     color: var(--text_color_light);
-    transition: color 0.3s;
+    padding-top: 1rem;
 }
-
-html.dark h1 {
+html.dark .page-title {
     color: var(--text_color_dark);
+}
+.card-intro-text {
+    font-size: 0.95rem;
+    color: var(--gray_medium_light);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--border_light);
+}
+html.dark .card-intro-text {
+    color: var(--dark_gray_text);
+    border-bottom-color: var(--dark_border);
+}
+.section-divider {
+    border: none;
+    border-top: 2px solid var(--border_light); 
+}
+html.dark .section-divider {
+    border-top: 2px solid var(--dark_border);
 }
 
 /* Service item container */
 .service-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; 
+    justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 0.75rem;
     background-color: var(--body_color_light);
-    border: 1px solid var(--border_light);
-    transition: background-color 0.3s, border-color 0.3s;
+    border: 1px solid transparent; 
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 html.dark .service-item {
     background-color: var(--dark_input_bg);
-    border-color: var(--dark_border);
+}
+
+.service-item:hover {
+    background-color: rgba(30, 172, 198, 0.05); 
+    border-color: rgba(30, 172, 198, 0.2);
+    box-shadow: 0 0 8px rgba(30, 172, 198, 0.1);
+}
+html.dark .service-item:hover {
+    background-color: rgba(194, 217, 255, 0.08); 
+    border-color: rgba(194, 217, 255, 0.3);
 }
 
 .service-details {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 1rem;
+    flex-direction: column; 
+    align-items: flex-start;
+    flex-grow: 1; 
+    margin-right: 1rem;
 }
 
 .service-name {
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 700; 
+    font-size: 1.05rem;
     color: var(--text_color_light);
-    transition: color 0.3s;
 }
-
-html.dark .service-name {
-    color: var(--text_color_dark);
-}
+html.dark .service-name { color: var(--text_color_dark); }
 
 .service-price {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--gray_medium_light);
-    transition: color 0.3s;
 }
 
-html.dark .service-price {
-    color: var(--dark_gray_text);
-}
-
-/* Quantity input group */
+/* ================================================== */
+/* ❗ QUANTITY CONTROL STYLES (Restored and Cleaned) */
+/* ================================================== */
 .quantity-control {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem; 
     flex-shrink: 0;
 }
 
@@ -95,12 +135,15 @@ html.dark .service-price {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 0.5rem; /* Square corners for cleaner look */
     background-color: var(--primary);
     color: #fff;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    border: none;
+    line-height: 1;
+    transition: background-color 0.2s;
 }
 
 html.dark .quantity-btn {
@@ -115,13 +158,13 @@ html.dark .quantity-btn {
 .quantity-input {
     width: 3.5rem;
     text-align: center;
-    padding: 0.5rem 0.25rem;
+    padding: 0.4rem 0.25rem;
     border-radius: 0.5rem;
     border: 1px solid var(--border_light);
     background-color: var(--card_bg_light);
     font-size: 1rem;
     color: var(--text_color_light);
-    transition: all 0.2s ease-in-out;
+    transition: border-color 0.2s;
 }
 
 html.dark .quantity-input {
@@ -129,55 +172,168 @@ html.dark .quantity-input {
     border-color: var(--dark_border);
     color: var(--text_color_dark);
 }
+/* Ensure the input type="number" arrows are hidden for a cleaner look */
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.quantity-input {
+  -moz-appearance: textfield; /* Firefox fix */
+}
+
 
 /* Total display and button */
 .total-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 0.75rem;
-    background-color: var(--body_color_light);
-    border: 1px solid var(--border_light);
+    background-color: var(--card_bg_light); 
+    border: 2px solid var(--primary); 
+    box-shadow: 0 0 10px rgba(30, 172, 198, 0.3);
 }
 
 html.dark .total-container {
     background-color: var(--dark_input_bg);
-    border-color: var(--dark_border);
+    border-color: var(--pop_yellow);
+    box-shadow: 0 0 10px rgba(194, 217, 255, 0.4);
+}
+
+.total-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text_color_light);
+}
+html.dark .total-label {
+    color: var(--text_color_dark);
+}
+
+.total-price-value {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary); 
+}
+html.dark .total-price-value {
+    color: var(--pop_yellow);
 }
 
 .btn-primary-small {
-    padding: 0.6rem 1.5rem;
+    padding: 0.8rem 2rem;
     border-radius: 9999px;
     font-weight: 600;
-    cursor: pointer;
     background-color: var(--primary);
     color: #fff;
-    transition: filter 0.2s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     border: none;
+    cursor: pointer;
 }
-
 html.dark .btn-primary-small {
     background-color: var(--pop_yellow);
     color: var(--dark_background_secondary);
 }
-
-.btn-primary-small:hover {
-    filter: brightness(1.1);
+.btn-secondary-small {
+    padding: 0.8rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    background-color: var(--body_color_light);
+    color: var(--gray_medium_light);
+    border: 1px solid var(--border_light);
+    cursor: pointer;
+}
+html.dark .btn-secondary-small {
+    background-color: var(--dark_background_secondary);
+    color: var(--dark_gray_text);
+    border-color: var(--dark_border);
 }
 
-/* Responsive adjustments */
-@media (min-width: 768px) {
-    .service-item {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.5rem;
-    }
 
+/* GST/Checkout Section Styles */
+.checkout-card {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-left: 5px solid var(--primary); 
+}
+html.dark .checkout-card {
+    border-left: 5px solid var(--pop_yellow);
+}
+.hidden {
+    display: none !important;
+}
+
+.checkout-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+    color: var(--primary);
+}
+html.dark .checkout-heading {
+    border-bottom: 2px solid var(--pop_yellow);
+    color: var(--pop_yellow);
+}
+
+.gst-section {
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+.gst-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text_color_light);
+}
+html.dark .gst-title {
+    color: var(--text_color_dark);
+}
+
+/* ... (Remaining GST input and tax table styles are here) ... */
+.gst-checkbox-group { display: flex; align-items: center; margin-bottom: 1.5rem; }
+.gst-checkbox-label { font-weight: 500; margin-left: 0.5rem; color: var(--gray_medium_light); }
+.gst-input-group { margin-bottom: 1rem; }
+.gst-label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.25rem; color: var(--gray_medium_light); }
+.gst-input { width: 100%; padding: 0.75rem; border: 1px solid var(--border_light); border-radius: 0.5rem; background-color: var(--card_bg_light); color: var(--text_color_light); transition: border-color 0.2s; }
+html.dark .gst-input { background-color: var(--dark_input_bg); border-color: var(--dark_border); color: var(--text_color_dark); }
+
+.tax-summary-container { border: 1px solid var(--border_light); border-radius: 0.5rem; padding: 1.5rem; background-color: var(--body_color_light); }
+html.dark .tax-summary-container { border-color: var(--dark_border); background-color: var(--dark_input_bg); }
+
+.summary-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--primary); }
+
+.tax-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.tax-table td { padding: 0.5rem 0; color: var(--gray_medium_light); }
+html.dark .tax-table td { color: var(--dark_gray_text); }
+
+.final-total-row { border-top: 2px solid var(--primary); font-weight: 700; }
+html.dark .final-total-row { border-top: 2px solid var(--pop_yellow); }
+.final-total-label { font-size: 1.05rem; color: var(--text_color_light) !important; }
+html.dark .final-total-label { color: var(--text_color_dark) !important; }
+.final-total-value { font-size: 1.25rem; color: var(--primary) !important; }
+html.dark .final-total-value { color: var(--pop_yellow) !important; }
+
+.button-control-group { display: flex; justify-content: space-between; align-items: center; }
+.checkout-final-btn { background-color: var(--success-color); }
+.checkout-final-btn:hover { filter: brightness(1.1); }
+html.dark .checkout-final-btn { background-color: var(--success-color); }
+
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
     .service-details {
         flex-direction: row;
-        gap: 2rem;
-        margin-bottom: 0;
+        gap: 1.5rem;
+        align-items: center;
+    }
+    .service-price {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .service-item {
+        padding: 1.5rem;
     }
 }

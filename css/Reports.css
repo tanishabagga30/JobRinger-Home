@@ -1,0 +1,326 @@
+/* REPORTS.CSS: Styling for the reports dashboard, designed to be independent of universal.css navigation styles. 
+   Handles layout to prevent header/sidebar overlap, ensures content fits, and supports light/dark mode. */
+
+/* --- Color Variables (Synced with universal.css) --- */
+:root {
+    --primary-blue: #1eacc6;
+    --secondary-blue: #1eacc6;
+    --success: #10b981;
+    --success-dark: #059669;
+    --text: #1f2937;
+    --secondary: #6b7280;
+    --bg-color: #f9fafb;
+    --card-bg: white;
+    --card-border: #e5e7eb;
+    --table-header-bg: #f3f4f6;
+    --hover-bg: #eff6ff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --card_bg_light: white;
+    --gray_text_light: #6b7280;
+    --primary_blue: #1eacc6;
+    --header-height: 4rem; /* Estimated header height */
+    --sidebar-collapsed: 3.25rem; /* Matches --collapsed from universal.css */
+    --sidebar-expanded: 16.875rem; /* Matches --expanded from universal.css */
+}
+
+html.dark {
+    --primary-blue: #38bdf8;
+    --secondary-blue: #60a5fa;
+    --success: #6ee7b7;
+    --success-dark: #34d399;
+    --text: #f3f4f6;
+    --secondary: #9ca3af;
+    --bg-color: #111827;
+    --card-bg: #1f2937;
+    --card-border: #374151;
+    --table-header-bg: #374151;
+    --hover-bg: #374151;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --dark_background_secondary: #1f2937;
+    --dark_gray_text: #9ca3af;
+    --pop_yellow: #facc15;
+}
+
+/* --- Reports Page Base Styles (Override universal.css) --- */
+body.reports-page {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding-top: var(--header-height); /* Prevent header overlap */
+    padding-left: var(--sidebar-collapsed); /* Default sidebar offset */
+    min-height: 100vh;
+    transition: background-color 0.4s, color 0.4s, padding-left 300ms ease-out;
+}
+
+/* Adjust for expanded sidebar */
+body.reports-page.sidebar-expanded {
+    padding-left: var(--sidebar-expanded);
+}
+
+/* Mobile: Reset sidebar padding, add bottom padding for mobile nav */
+@media (max-width: 1023px) {
+    body.reports-page {
+        padding-left: 0;
+        padding-bottom: 65px; /* Clear mobile nav */
+    }
+}
+
+/* Desktop: Ensure no bottom padding */
+@media (min-width: 1024px) {
+    body.reports-page {
+        padding-bottom: 0;
+    }
+}
+
+/* --- Content Wrapper --- */
+.reports-dashboard-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+    min-height: calc(100vh - var(--header-height)); /* Ensure content fills viewport */
+}
+
+/* --- Dashboard Header --- */
+.dashboard-header {
+    padding: 1.5rem 0;
+    border-bottom: 2px solid var(--card-border);
+    margin-bottom: 1.5rem;
+}
+
+/* --- Top Navigation Tabs --- */
+.top-report-nav-bar {
+    margin-bottom: 1.5rem;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: var(--card-bg);
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.report-nav-list-horizontal {
+    display: flex;
+    list-style: none;
+    padding: 0 1rem;
+    margin: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-bottom: 2px solid var(--card-border);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    color: var(--secondary);
+    white-space: nowrap;
+    background: transparent;
+    border-radius: 0;
+    margin-bottom: -2px;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-item i {
+    margin-right: 0.5rem;
+    width: 1rem;
+}
+
+.nav-item:hover:not(.active) {
+    background-color: var(--hover-bg);
+    color: var(--primary-blue);
+}
+
+.nav-item.active {
+    background-color: transparent;
+    color: var(--primary-blue);
+    border-bottom: 3px solid var(--primary-blue);
+    font-weight: 700;
+}
+
+html.dark .nav-item.active {
+    border-bottom-color: var(--secondary-blue);
+    color: var(--secondary-blue);
+}
+
+/* --- Report Controls & Table Sections --- */
+.report-controls-bar {
+    background: var(--card-bg);
+    padding: 1rem 1.5rem;
+    border-radius: 0 0 0.75rem 0.75rem;
+    box-shadow: 0 4px 6px var(--shadow);
+    border: 1px solid var(--card-border);
+    border-top: none;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-report-nav-bar + .report-view-container .report-controls-bar {
+    margin-top: -1.5rem;
+}
+
+.control-label {
+    color: var(--secondary);
+    font-size: 0.875rem;
+}
+
+.date-input,
+.select-control {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+    background: var(--bg-color);
+    color: var(--text);
+    font-size: 0.875rem;
+}
+
+.download-btn {
+    background-color: var(--success);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.download-btn:hover {
+    background-color: var(--success-dark);
+}
+
+.report-table-section {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px var(--shadow);
+    border: 1px solid var(--card-border);
+    margin-top: 1.5rem;
+}
+
+.report-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary-blue);
+}
+
+/* --- Table and Pagination Styles --- */
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.report-table th {
+    background-color: var(--table-header-bg);
+    color: var(--secondary);
+    font-weight: 600;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 2px solid var(--card-border);
+    white-space: nowrap;
+}
+
+.report-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text);
+    vertical-align: top;
+}
+
+.report-table tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+.table-controls-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.pagination-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 0.5rem;
+}
+
+.page-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--secondary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.page-btn:hover:not(.disabled) {
+    background: var(--hover-bg);
+    color: var(--primary-blue);
+}
+
+.page-btn.active {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.page-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- Responsive Adjustments (Mobile) --- */
+@media (max-width: 768px) {
+    .report-controls-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 0;
+    }
+    .top-report-nav-bar {
+        border-radius: 0;
+    }
+    .top-report-nav-bar + .report-view-container .report-controls-bar {
+        margin-top: 0;
+    }
+    .report-table-section {
+        margin-top: 1rem;
+    }
+    .date-filter-group {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .date-filter-group label,
+    .date-filter-group span {
+        margin-right: 0;
+        margin-bottom: 0.25rem;
+    }
+    .date-input {
+        width: 100%;
+    }
+    .download-btn {
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+    .table-controls-bottom {
+        justify-content: center;
+    }
+    .pagination-text {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+}

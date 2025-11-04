@@ -1,0 +1,451 @@
+:root {
+    /* Reuse variables from universal.css */
+    --success-color: #16a34a;
+    --success-light: #dcfce7;
+    --accent-color: var(--primary_blue);
+    --accent-light: #dbeafe;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(22, 163, 74, 0.1);
+    --shadow-soft: 0 3px 15px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --border-radius: 16px;
+}
+
+html.dark {
+    --success-color: #22c55e;
+    --success-light: #166534;
+    --accent-color: var(--pop_yellow);
+    --accent-light: #1e40af;
+    --card-bg: rgba(15, 23, 42, 0.85);
+    --card-border: rgba(34, 197, 94, 0.2);
+    --shadow-soft: 0 3px 15px rgba(0, 0, 0, 0.4);
+    --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+body {
+    background: linear-gradient(135deg, var(--body_color_light) 0%, #e0f2fe 100%);
+}
+html.dark body {
+    background: linear-gradient(135deg, var(--body_color_dark) 0%, #1e293b 100%);
+}
+
+/* Subtle Background Elements */
+.background-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bg-ellipse {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: gentleFloat 8s ease-in-out infinite;
+    will-change: transform;
+}
+
+.ellipse-1 {
+    width: 200px;
+    height: 150px;
+    background: var(--success-color);
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.ellipse-2 {
+    width: 100px;
+    height: 150px;
+    background: var(--accent-color);
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-8px) rotate(120deg); }
+    66% { transform: translateY(4px) rotate(240deg); }
+}
+
+/* Main Container */
+.main-container {
+    min-height: calc(100vh - 4.5rem); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Elegant Success Animation */
+.success-animation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+}
+
+.checkmark-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+/* Outer Ring Animation */
+.success-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    border: 3px solid var(--success-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+    animation: ringScale 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes ringScale {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+}
+
+/* SVG Checkmark Animation */
+.checkmark-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 48px;
+    height: 48px;
+    animation: checkmarkAppear 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.8s forwards;
+    will-change: transform;
+}
+
+.checkmark-svg path {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke-width: 3;
+    animation: drawCheckmark 0.4s ease-out 1.1s forwards;
+}
+
+@keyframes checkmarkAppear {
+    0% { transform: translate(-50%, -50%) scale(0); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes drawCheckmark {
+    to { stroke-dashoffset: 0; }
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    max-width: 500px;
+    animation: fadeInUp 0.8s ease-out 1.8s both;
+}
+
+.success-title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--success-color) 0%, #22c55e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.success-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(135deg, var(--success-color), #22c55e);
+    border-radius: 2px;
+    opacity: 0;
+    animation: underlineAppear 0.6s ease-out 2s forwards;
+}
+
+@keyframes underlineAppear {
+    to { width: 100px; opacity: 1; }
+}
+
+.subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    color: var(--text_color_light);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+}
+html.dark .subtitle { color: var(--text_color_dark); }
+
+.highlight {
+    color: var(--success-color);
+    font-weight: 600;
+    position: relative;
+}
+
+.highlight::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--success-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.highlight:hover::before {
+    transform: scaleX(1);
+}
+
+/* Content Cards (Desktop Layout) */
+.content-section {
+    display: flex; /* Default to flex for desktop */
+    flex-direction: row;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 3rem 0 1.5rem;
+    animation: fadeInUp 1s ease-out 2.4s both;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+.info-card {
+    flex: 0 0 32%; 
+    min-width: 220px;
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border-radius: var(--border-radius);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border: 1px solid var(--card-border);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    will-change: transform, box-shadow;
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--success-color), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.info-card:hover::before {
+    transform: scaleX(1);
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--success-color);
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* CTA Section - Button Group Styles (Desktop) */
+.cta-section {
+    animation: fadeInUp 0.8s ease-out 3s both;
+    margin-top: 1.5rem;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column; 
+    gap: 0.75rem; 
+    width: 100%;
+    max-width: 300px; 
+    align-items: center; /* Centers the single button vertically */
+}
+/* Desktop: arrange side-by-side */
+@media (min-width: 640px) {
+    .button-group {
+        flex-direction: row; 
+        max-width: 450px;
+        justify-content: center;
+    }
+}
+
+/* Base button styles (Smaller size for all views) */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; 
+    background: linear-gradient(135deg, var(--success-color) 0%, #22c55e 100%);
+    color: white;
+    border: none;
+    
+    /* Smaller size for ALL views (Desktop base) */
+    padding: 0.6rem 1.2rem; 
+    border-radius: 30px; 
+    font-size: 0.8rem; 
+    width: 100%; 
+    max-width: 250px; /* Limits size on desktop, allowing center on mobile */
+    
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+    justify-content: center; /* Center content horizontally inside the button */
+}
+
+/* Ensure desktop buttons align correctly when side-by-side (if multiple were present) */
+@media (min-width: 640px) {
+    .cta-button {
+        width: auto;
+        flex: 1; 
+        max-width: 200px;
+    }
+}
+
+
+.cta-icon {
+    font-size: 0.9rem; 
+    transition: transform 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 1rem;
+        min-height: calc(100vh - 4.5rem);
+    }
+    
+    /* BUTTON CENTER FIX: .button-group already has align-items: center; 
+       This makes the button centered within the mobile view.
+    */
+    .button-group {
+        flex-direction: column; 
+        max-width: 100%; 
+        width: 100%;
+    }
+    .cta-button {
+        /* Mobile size and alignment adjustments */
+        padding: 0.5rem 1rem; 
+        font-size: 0.75rem; 
+        width: 100%; 
+        max-width: 300px; /* Ensures button is not too wide for centering */
+        justify-content: center; /* Ensures text is centered inside the button */
+    }
+
+    /* 1. Mobile Info Card Layout (2-on-top, 1-below-centered) */
+    .content-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two columns for the first row */
+        grid-template-rows: auto auto; 
+        gap: 0.75rem;
+        padding: 0 0.5rem; 
+        margin: 2rem 0 1rem;
+        width: 100%;
+    }
+
+    .info-card {
+        flex: none;
+        min-width: unset;
+        width: 100%;
+        padding: 0.75rem 0.5rem; 
+    }
+
+    /* Target the third card and make it span two columns and center it */
+    .content-section .info-card:nth-child(3) {
+        grid-column: 1 / span 2; 
+        max-width: 80%; 
+        justify-self: center; 
+        align-self: start;
+        padding: 0.75rem 0.5rem; 
+        margin-top: 0.25rem;
+    }
+
+    /* Smaller text and icons for all cards */
+    .card-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    .card-title {
+        font-size: 0.85rem;
+    }
+    .card-text {
+        font-size: 0.7rem;
+    }
+
+    .background-elements {
+        display: none;
+    }
+}
+
+/* Additional button sizing for very small screens */
+@media (max-width: 480px) {
+    .content-section .info-card:nth-child(3) {
+        max-width: 90%; 
+    }
+    .cta-button {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* Accessibility and loading states remain... */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+body.loading .success-ring,
+body.loading .checkmark-svg,
+body.loading .success-title::after,
+body.loading .info-card::before,
+body.loading .card-icon::before,
+body.loading .cta-button::before {
+    display: none;
+}

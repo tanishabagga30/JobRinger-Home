@@ -1,0 +1,490 @@
+/* =====================================================
+   ABOUT US PAGE – FULLY ISOLATED & UNIVERSAL-SAFE
+   Works with:
+   • universal.css (sidebar, nav, dark mode)
+   • Tailwind CDN
+   • header/footer placeholders
+   ===================================================== */
+
+.aboutus-page {
+  --p: #345bd1;
+  --a: #00D4D4;
+  --g: #FFD700;
+  --l: #F8FAFC;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  background: var(--body_color_light);
+  color: var(--text_color_light);
+}
+html.dark .aboutus-page {
+  background: var(--body_color_dark);
+  color: var(--text_color_dark);
+}
+
+/* CONTAINER */
+.aboutus-page .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* HERO */
+.aboutus-page .hero {
+  min-height: 100vh;
+  background: linear-gradient(rgba(10,29,86,.92), rgba(10,29,86,.98)),
+              url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80') center/cover;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding-top: 80px;
+}
+.aboutus-page .hero h1 {
+  font-size: 3.2rem;
+  font-family: 'Playfair Display', serif;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+.aboutus-page .hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+}
+.aboutus-page .cta {
+  background: var(--a);
+  color: var(--p);
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform .3s;
+  box-shadow: 0 8px 25px rgba(0,212,212,.3);
+}
+.aboutus-page .cta:hover { transform: translateY(-4px); }
+
+/* SECTIONS */
+.aboutus-page .sec {
+  padding: 2.5rem 0;
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.aboutus-page .sec.rev { flex-direction: row-reverse; }
+
+.aboutus-page .img {
+  flex: 1;
+  min-width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(10,29,86,.12);
+}
+.aboutus-page .img img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: transform .4s;
+}
+.aboutus-page .img:hover img { transform: scale(1.05); }
+
+.aboutus-page .txt {
+  flex: 1;
+  min-width: 300px;
+}
+.aboutus-page .txt h2 {
+  font-size: 2.2rem;
+  color: var(--p);
+  margin: 1.5rem 0 1rem;
+  font-family: 'Playfair Display', serif;
+}
+.aboutus-page .txt h3 {
+  color: var(--a);
+  font-size: 1.4rem;
+  margin: 1.2rem 0 0.6rem;
+}
+.aboutus-page .txt ul {
+  margin: 1rem 0 0 1.5rem;
+}
+.aboutus-page .txt li {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin: 0.4rem 0;
+}
+
+/* BIG TITLES – SAFE FROM FOOTER */
+.aboutus-page .section-Title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--p);
+  margin: 3rem 0 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+/* CARDS */
+.aboutus-page .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+.aboutus-page .card {
+  background: var(--card_bg_light);
+  padding: 1.2rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px var(--light_shadow);
+  border: 1px solid rgba(0,212,212,.15);
+  text-align: center;
+  transition: transform .3s;
+}
+html.dark .aboutus-page .card {
+  background: var(--dark_background_secondary);
+  box-shadow: 0 8px 25px var(--dark_shadow);
+}
+.aboutus-page .card:hover { transform: translateY(-8px); }
+.aboutus-page .card i {
+  font-size: 2rem;
+  color: var(--a);
+  margin-bottom: 0.6rem;
+}
+.aboutus-page .card h4 {
+  font-size: 1.1rem;
+  margin: 0.6rem 0;
+  font-weight: 600;
+}
+.aboutus-page .card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+html.dark .aboutus-page .card p { color: #cbd5e0; }
+
+/* GLOBE SECTION */
+.aboutus-page .globe-sec {
+  padding: 4rem 0;
+  background: var(--p);
+  color: white;
+  text-align: center;
+}
+.aboutus-page .globe-sec h2 {
+  color: var(--g);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.aboutus-page .globe-sec p {
+  font-size: 1.1rem;
+  opacity: .8;
+  margin-bottom: 30px;
+}
+.aboutus-page .globe {
+  width: 280px;
+  height: 280px;
+  margin: 30px auto;
+  background: rgba(0,212,212,.1);
+  border-radius: 50%;
+  position: relative;
+  animation: spin 30s linear infinite;
+  box-shadow: inset 0 0 40px rgba(0,0,0,.5), 0 0 50px rgba(0,212,212,.3);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.aboutus-page .dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--g);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--g);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 50% { transform: scale(1.4); } }
+
+.aboutus-page .marquee {
+  background: rgba(255,255,255,.05);
+  padding: 10px 0;
+  overflow: hidden;
+  margin: 5px 0;
+}
+.aboutus-page .marquee span {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 40s linear infinite;
+  font-size: 0.9rem;
+  padding: 0 10px;
+}
+@keyframes scroll { 100% { transform: translateX(-50%); } }
+.aboutus-page .marquee:last-of-type { background: rgba(0,212,212,.15); }
+
+/* INDUSTRIES */
+.aboutus-page .industry-section { padding: 3rem 0; }
+.aboutus-page .industry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.8rem;
+  padding: 2rem 0;
+}
+.aboutus-page .industry-card {
+  background: var(--card_bg_light);
+  padding: 0.8rem;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px var(--light_shadow);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: .3s;
+  border: 1px solid #eee;
+}
+html.dark .aboutus-page .industry-card {
+  background: var(--dark_background_secondary);
+  box-shadow: 0 6px 20px var(--dark_shadow);
+}
+.aboutus-page .industry-card:hover {
+  background: var(--a);
+  color: white;
+  transform: translateY(-4px);
+}
+
+/* COMPARISON */
+.aboutus-page .comp {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, var(--p), #1e3a8a);
+  color: white;
+}
+.aboutus-page .table {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr;
+  gap: 0.8rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  font-size: 0.95rem;
+}
+.aboutus-page .cell {
+  padding: 0.9rem 1rem;
+  background: rgba(255,255,255,.1);
+  border-radius: 10px;
+  text-align: center;
+}
+.aboutus-page .cell:first-child {
+  background: rgba(0,212,212,.2);
+  font-weight: 600;
+}
+.aboutus-page .check { color: var(--g); font-size: 1.4rem; }
+
+/* TEAM */
+.aboutus-page .team {
+  padding: 4rem 0;
+  text-align: center;
+}
+.aboutus-page .leader-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 1rem auto;
+  border: 6px solid var(--a);
+  box-shadow: 0 12px 30px rgba(0,212,212,.3);
+}
+.aboutus-page .leader-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .aboutus-page .hero h1 { font-size: 2.4rem; }
+  .aboutus-page .sec { flex-direction: column; text-align: center; gap: 1.5rem; }
+  .aboutus-page .img img { height: 220px; }
+  .aboutus-page .cards { grid-template-columns: 1fr; }
+  .aboutus-page .table { grid-template-columns: 1fr; }
+  .aboutus-page .globe { width: 220px; height: 220px; }
+  .aboutus-page .industry-grid { grid-template-columns: repeat(3, 1fr); }
+}
+/* =====================================================
+    ABOUT US PAGE – OPTIMIZED FOR LESS WHITE SPACE
+    ===================================================== */
+
+.aboutus-page {
+    --p: #0A1D56; /* Primary Dark Blue */
+    --a: #00D4D4; /* Accent Teal */
+    --g: #FFD700; /* Gold for highlights */
+    
+    /* Dynamic colors for dark/light mode - Retained for universality */
+    --body_color_light: #FDFDFD;
+    --text_color_light: #8c8989;
+    --card_bg_light: #FFFFFF;
+    --light_shadow: rgba(10,29,86,.08);
+    --body_color_dark: #121212;
+    --text_color_dark: #E0E0E0;
+    --card_bg_dark: #1F1F1F;
+    --dark_shadow: rgba(0,0,0,.3);
+
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    background: var(--body_color_light);
+    color: var(--text_color_light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+html.dark .aboutus-page {
+    background: var(--body_color_dark);
+    color: var(--text_color_dark);
+}
+
+/* Dark mode compatibility retained */
+html.dark .aboutus-page .card {
+    background: var(--card_bg_dark);
+    box-shadow: 0 8px 25px var(--dark_shadow);
+    border: 1px solid rgba(0,212,212,.08);
+}
+html.dark .aboutus-page .card p { color: #B0B0B0; }
+html.dark .aboutus-page .section-Title,
+html.dark .aboutus-page .txt h2 { color: var(--text_color_dark); }
+html.dark .aboutus-page .txt h3 { color: var(--a); }
+html.dark .aboutus-page .industry-card {
+    background: var(--card_bg_dark);
+    box-shadow: 0 6px 20px var(--dark_shadow);
+    border: 1px solid rgba(255,255,255,.1);
+    color: var(--text_color_dark);
+}
+html.dark .aboutus-page .comp .cell { background: rgba(255,255,255,.08); }
+html.dark .aboutus-page .comp .header-cell:first-child { background: rgba(0,212,212,.25); }
+
+
+/* General Text Enhancements */
+.aboutus-page strong { font-weight: 700; color: var(--p); }
+html.dark .aboutus-page strong { color: var(--text_color_dark); }
+.aboutus-page .highlight { color: var(--a); }
+.aboutus-page .highlight-text { font-weight: 600; color: var(--a); font-size: 1.1rem; margin-top: 1.2rem; }
+
+
+/* CONTAINER */
+.aboutus-page .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* HERO */
+.aboutus-page .hero {
+    min-height: 85vh; /* Reduced height for less blank space */
+    background: linear-gradient(rgba(10,29,86,.92), rgba(10,29,86,.98)),
+                url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80') center/cover fixed;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding-top: 80px;
+    text-align: center;
+}
+.aboutus-page .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 0.8rem; } /* Slightly reduced font size */
+.aboutus-page .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 1.8rem; }
+.aboutus-page .cta { padding: 0.9rem 2.2rem; font-size: 1.05rem; }
+
+/* SECTIONS - REDUCED VERTICAL GAP */
+.aboutus-page section.sec { 
+    padding: 3rem 0; /* Reduced from 4rem */
+    gap: 2.5rem; /* Reduced from 3.5rem */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.aboutus-page .sec.rev { flex-direction: row-reverse; }
+
+.aboutus-page .img {
+    flex: 1;
+    min-width: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(10,29,86,.15);
+}
+.aboutus-page .img img { width: 100%; height: 350px; object-fit: cover; transition: transform .6s ease; } /* Reduced image height */
+.aboutus-page .img:hover img { transform: scale(1.08); }
+
+.aboutus-page .txt { flex: 1.2; min-width: 350px; }
+.aboutus-page .txt h2 { font-size: 2.5rem; margin: 0 0 1rem; font-family: 'Playfair Display', serif; font-weight: 700; }
+.aboutus-page .txt h3 { color: var(--a); font-size: 1.5rem; margin: 1rem 0 0.7rem; font-weight: 600; } /* Adjusted H3 margin */
+.aboutus-page .txt p { margin-bottom: 0.8rem; font-size: 1rem; line-height: 1.7; } /* Reduced paragraph margin/line-height */
+.aboutus-page .txt ul { margin: 1rem 0 0 1.5rem; list-style: disc; }
+.aboutus-page .txt li { font-size: 0.95rem; line-height: 1.6; margin: 0.3rem 0; } /* Reduced list item spacing */
+
+
+/* BIG TITLES - REDUCED MARGIN */
+.aboutus-page .section-Title {
+    text-align: center;
+    font-size: 2.8rem; /* Slightly reduced size */
+    color: var(--p);
+    margin: 3.5rem 0 2rem; /* Reduced from 4rem 0 2.5rem */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+/* CARDS - REDUCED GAP */
+.aboutus-page .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem; /* Reduced from 1.8rem */
+    margin: 2rem 0; /* Reduced from 2.5rem */
+}
+.aboutus-page .card { padding: 1.5rem; border-radius: 16px; } /* Slightly reduced padding/radius */
+
+/* FEATURE CARDS (inside text blocks) - TIGHTER SPACING */
+.aboutus-page .txt .cards {
+    margin: 1rem 0; /* Reduced margin above and below cards in text sections */
+    gap: 0.8rem; /* Reduced gap between feature cards */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Smaller min-width for 4-column layout */
+}
+.aboutus-page .txt .cards .card {
+    padding: 1rem;
+}
+
+
+/* GLOBE SECTION - REDUCED PADDING */
+.aboutus-page .globe-sec {
+    padding: 4rem 0; /* Reduced from 5rem */
+    background: linear-gradient(135deg, var(--p) 0%, #1e3a8a 100%);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+.aboutus-page .globe-sec h2 { font-size: 2.8rem; margin-bottom: 10px; }
+.aboutus-page .globe-sec p { font-size: 1.1rem; margin: 0 auto 30px; }
+.aboutus-page .globe { width: 300px; height: 300px; margin: 30px auto; } /* Slightly reduced globe size */
+.aboutus-page .marquee { padding: 10px 0; margin: 6px 0; } /* Reduced marquee padding/margin */
+
+/* INDUSTRIES - REDUCED PADDING */
+.aboutus-page .industry-section { padding: 3rem 0; } /* Reduced from 4rem */
+.aboutus-page .industry-grid { gap: 0.8rem; padding: 2rem 0; } /* Reduced grid gap/padding */
+
+/* COMPARISON - REDUCED PADDING */
+.aboutus-page .comp {
+    padding: 4rem 0; /* Reduced from 5rem */
+    background: linear-gradient(135deg, var(--p) 0%, #1e3a8a 100%);
+    color: white;
+    text-align: center;
+}
+.aboutus-page .comp h2 { font-size: 3.2rem; margin-bottom: 2.5rem; }
+.aboutus-page .table { gap: 0.8rem; max-width: 900px; margin: 2rem auto; font-size: 1rem; } /* Reduced table gap/margin/font size */
+.aboutus-page .cell { padding: 0.8rem 1rem; } /* Reduced cell padding */
+.aboutus-page .comparison-tagline { font-size: 1.2rem; margin-top: 2.5rem; }
+
+/* TEAM - REDUCED PADDING */
+.aboutus-page .team { padding: 4rem 0; } /* Reduced from 5rem */
+.aboutus-page .leader-img { width: 180px; height: 180px; margin: 1.2rem auto; } /* Reduced leader image size/margin */
+.aboutus-page .team h3 { font-size: 1.7rem; margin-top: 1.2rem; }
+.aboutus-page .team p { margin: 0.6rem auto; }
+.aboutus-page .team-support-text { margin-top: 1.5rem; }
+
+
+/* RESPONSIVE - Ensure Mobile is also compact */
+@media (max-width: 768px) {
+    .aboutus-page .hero { min-height: 70vh; }
+    .aboutus-page section.sec { padding: 2.5rem 0; gap: 1.5rem; } /* Tighter mobile sections */
+    .aboutus-page .img img { height: 200px; } /* Smaller images on mobile */
+    .aboutus-page .section-Title { margin: 2.5rem 0 1.5rem; }
+    .aboutus-page .cards { gap: 0.8rem; }
+    .aboutus-page .txt .cards { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin: 1rem 0; } /* 2 columns for features */
+    .aboutus-page .globe-sec { padding: 3rem 0; }
+    .aboutus-page .globe { width: 200px; height: 200px; }
+    .aboutus-page .table { grid-template-columns: 1fr; }
+    .aboutus-page .industry-grid { grid-template-columns: repeat(2, 1fr); }
+    .aboutus-page .team { padding: 3rem 0; }
+    .aboutus-page .leader-img { width: 100px; height: 100px; }
+}
+
+/* ... (Remaining unchanged CSS for visual details) ... */
