@@ -1,490 +1,605 @@
 /* =====================================================
-   ABOUT US PAGE – FULLY ISOLATED & UNIVERSAL-SAFE
-   Works with:
-   • universal.css (sidebar, nav, dark mode)
-   • Tailwind CDN
-   • header/footer placeholders
+   ABOUT US – PREMIUM, CLEAN, VISIBLE (2025)
    ===================================================== */
 
 .aboutus-page {
-  --p: #345bd1;
-  --a: #00D4D4;
-  --g: #FFD700;
-  --l: #F8FAFC;
-  font-family: 'Inter', sans-serif;
-  line-height: 1.7;
-  background: var(--body_color_light);
-  color: var(--text_color_light);
-}
-html.dark .aboutus-page {
-  background: var(--body_color_dark);
-  color: var(--text_color_dark);
-}
-
-/* CONTAINER */
-.aboutus-page .container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* HERO */
-.aboutus-page .hero {
-  min-height: 100vh;
-  background: linear-gradient(rgba(10,29,86,.92), rgba(10,29,86,.98)),
-              url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80') center/cover;
-  display: flex;
-  align-items: center;
-  color: white;
-  padding-top: 80px;
-}
-.aboutus-page .hero h1 {
-  font-size: 3.2rem;
-  font-family: 'Playfair Display', serif;
-  line-height: 1.2;
-  margin-bottom: 0.8rem;
-}
-.aboutus-page .hero p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  max-width: 600px;
-  margin-bottom: 1.5rem;
-}
-.aboutus-page .cta {
-  background: var(--a);
-  color: var(--p);
-  padding: 0.9rem 2rem;
-  border: none;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform .3s;
-  box-shadow: 0 8px 25px rgba(0,212,212,.3);
-}
-.aboutus-page .cta:hover { transform: translateY(-4px); }
-
-/* SECTIONS */
-.aboutus-page .sec {
-  padding: 2.5rem 0;
-  display: flex;
-  gap: 2.5rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.aboutus-page .sec.rev { flex-direction: row-reverse; }
-
-.aboutus-page .img {
-  flex: 1;
-  min-width: 280px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 12px 40px rgba(10,29,86,.12);
-}
-.aboutus-page .img img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  transition: transform .4s;
-}
-.aboutus-page .img:hover img { transform: scale(1.05); }
-
-.aboutus-page .txt {
-  flex: 1;
-  min-width: 300px;
-}
-.aboutus-page .txt h2 {
-  font-size: 2.2rem;
-  color: var(--p);
-  margin: 1.5rem 0 1rem;
-  font-family: 'Playfair Display', serif;
-}
-.aboutus-page .txt h3 {
-  color: var(--a);
-  font-size: 1.4rem;
-  margin: 1.2rem 0 0.6rem;
-}
-.aboutus-page .txt ul {
-  margin: 1rem 0 0 1.5rem;
-}
-.aboutus-page .txt li {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  margin: 0.4rem 0;
-}
-
-/* BIG TITLES – SAFE FROM FOOTER */
-.aboutus-page .section-Title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: var(--p);
-  margin: 3rem 0 1.5rem;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-}
-
-/* CARDS */
-.aboutus-page .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-  margin: 2rem 0;
-}
-.aboutus-page .card {
-  background: var(--card_bg_light);
-  padding: 1.2rem;
-  border-radius: 14px;
-  box-shadow: 0 8px 25px var(--light_shadow);
-  border: 1px solid rgba(0,212,212,.15);
-  text-align: center;
-  transition: transform .3s;
-}
-html.dark .aboutus-page .card {
-  background: var(--dark_background_secondary);
-  box-shadow: 0 8px 25px var(--dark_shadow);
-}
-.aboutus-page .card:hover { transform: translateY(-8px); }
-.aboutus-page .card i {
-  font-size: 2rem;
-  color: var(--a);
-  margin-bottom: 0.6rem;
-}
-.aboutus-page .card h4 {
-  font-size: 1.1rem;
-  margin: 0.6rem 0;
-  font-weight: 600;
-}
-.aboutus-page .card p {
-  font-size: 0.9rem;
-  color: #555;
-}
-html.dark .aboutus-page .card p { color: #cbd5e0; }
-
-/* GLOBE SECTION */
-.aboutus-page .globe-sec {
-  padding: 4rem 0;
-  background: var(--p);
-  color: white;
-  text-align: center;
-}
-.aboutus-page .globe-sec h2 {
-  color: var(--g);
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-.aboutus-page .globe-sec p {
-  font-size: 1.1rem;
-  opacity: .8;
-  margin-bottom: 30px;
-}
-.aboutus-page .globe {
-  width: 280px;
-  height: 280px;
-  margin: 30px auto;
-  background: rgba(0,212,212,.1);
-  border-radius: 50%;
-  position: relative;
-  animation: spin 30s linear infinite;
-  box-shadow: inset 0 0 40px rgba(0,0,0,.5), 0 0 50px rgba(0,212,212,.3);
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.aboutus-page .dot {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--g);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--g);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 50% { transform: scale(1.4); } }
-
-.aboutus-page .marquee {
-  background: rgba(255,255,255,.05);
-  padding: 10px 0;
-  overflow: hidden;
-  margin: 5px 0;
-}
-.aboutus-page .marquee span {
-  display: inline-block;
-  white-space: nowrap;
-  animation: scroll 40s linear infinite;
-  font-size: 0.9rem;
-  padding: 0 10px;
-}
-@keyframes scroll { 100% { transform: translateX(-50%); } }
-.aboutus-page .marquee:last-of-type { background: rgba(0,212,212,.15); }
-
-/* INDUSTRIES */
-.aboutus-page .industry-section { padding: 3rem 0; }
-.aboutus-page .industry-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.8rem;
-  padding: 2rem 0;
-}
-.aboutus-page .industry-card {
-  background: var(--card_bg_light);
-  padding: 0.8rem;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 6px 20px var(--light_shadow);
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: .3s;
-  border: 1px solid #eee;
-}
-html.dark .aboutus-page .industry-card {
-  background: var(--dark_background_secondary);
-  box-shadow: 0 6px 20px var(--dark_shadow);
-}
-.aboutus-page .industry-card:hover {
-  background: var(--a);
-  color: white;
-  transform: translateY(-4px);
-}
-
-/* COMPARISON */
-.aboutus-page .comp {
-  padding: 4rem 0;
-  background: linear-gradient(135deg, var(--p), #1e3a8a);
-  color: white;
-}
-.aboutus-page .table {
-  display: grid;
-  grid-template-columns: 2.5fr 1fr 1fr;
-  gap: 0.8rem;
-  max-width: 900px;
-  margin: 2rem auto;
-  font-size: 0.95rem;
-}
-.aboutus-page .cell {
-  padding: 0.9rem 1rem;
-  background: rgba(255,255,255,.1);
-  border-radius: 10px;
-  text-align: center;
-}
-.aboutus-page .cell:first-child {
-  background: rgba(0,212,212,.2);
-  font-weight: 600;
-}
-.aboutus-page .check { color: var(--g); font-size: 1.4rem; }
-
-/* TEAM */
-.aboutus-page .team {
-  padding: 4rem 0;
-  text-align: center;
-}
-.aboutus-page .leader-img {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 1rem auto;
-  border: 6px solid var(--a);
-  box-shadow: 0 12px 30px rgba(0,212,212,.3);
-}
-.aboutus-page .leader-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .aboutus-page .hero h1 { font-size: 2.4rem; }
-  .aboutus-page .sec { flex-direction: column; text-align: center; gap: 1.5rem; }
-  .aboutus-page .img img { height: 220px; }
-  .aboutus-page .cards { grid-template-columns: 1fr; }
-  .aboutus-page .table { grid-template-columns: 1fr; }
-  .aboutus-page .globe { width: 220px; height: 220px; }
-  .aboutus-page .industry-grid { grid-template-columns: repeat(3, 1fr); }
-}
-/* =====================================================
-    ABOUT US PAGE – OPTIMIZED FOR LESS WHITE SPACE
-    ===================================================== */
-
-.aboutus-page {
-    --p: #0A1D56; /* Primary Dark Blue */
-    --a: #00D4D4; /* Accent Teal */
-    --g: #FFD700; /* Gold for highlights */
-    
-    /* Dynamic colors for dark/light mode - Retained for universality */
-    --body_color_light: #FDFDFD;
-    --text_color_light: #8c8989;
-    --card_bg_light: #FFFFFF;
-    --light_shadow: rgba(10,29,86,.08);
-    --body_color_dark: #121212;
-    --text_color_dark: #E0E0E0;
-    --card_bg_dark: #1F1F1F;
-    --dark_shadow: rgba(0,0,0,.3);
-
+    --p: #0A1D56;
+    --a: #00D4D4;
+    --g: #f1c40f;
+    --light-shadow: rgba(10,29,86,.1);
+    --card-bg-light: #ffffff;
     font-family: 'Inter', sans-serif;
     line-height: 1.7;
-    background: var(--body_color_light);
-    color: var(--text_color_light);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Placeholder for dynamic body colors */
+    /* background: var(--body_color_light);
+    color: var(--text_color_light); */
 }
+
 html.dark .aboutus-page {
-    background: var(--body_color_dark);
-    color: var(--text_color_dark);
+    /* Placeholder for dark mode colors */
+    /* background: var(--body_color_dark);
+    color: var(--text_color_dark); */
+    --card-bg-light: #1a2332;
+    --light-shadow: rgba(0,0,0,.3);
 }
 
-/* Dark mode compatibility retained */
-html.dark .aboutus-page .card {
-    background: var(--card_bg_dark);
-    box-shadow: 0 8px 25px var(--dark_shadow);
-    border: 1px solid rgba(0,212,212,.08);
+.aboutus-page .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
-html.dark .aboutus-page .card p { color: #B0B0B0; }
-html.dark .aboutus-page .section-Title,
-html.dark .aboutus-page .txt h2 { color: var(--text_color_dark); }
-html.dark .aboutus-page .txt h3 { color: var(--a); }
-html.dark .aboutus-page .industry-card {
-    background: var(--card_bg_dark);
-    box-shadow: 0 6px 20px var(--dark_shadow);
-    border: 1px solid rgba(255,255,255,.1);
-    color: var(--text_color_dark);
+
+/* TEXT JUSTIFICATION FIX: Only applying justification to narrative blocks */
+.aboutus-page .sec .txt p,
+.aboutus-page .sec .txt li,
+.aboutus-page .highlight-text,
+.aboutus-page .comparison-tagline {
+    /* FIXED: Justification for main content */
+    text-align: justify !important; 
+    line-height: 1.9 !important;
+    margin-bottom: 1.2rem !important;
+    hyphens: auto;
+    font-size: 1.04rem;
+    color: #2d3748;
 }
-html.dark .aboutus-page .comp .cell { background: rgba(255,255,255,.08); }
-html.dark .aboutus-page .comp .header-cell:first-child { background: rgba(0,212,212,.25); }
 
+html.dark .aboutus-page .sec .txt p {
+    color: #e2e8f0;
+}
 
-/* General Text Enhancements */
-.aboutus-page strong { font-weight: 700; color: var(--p); }
-html.dark .aboutus-page strong { color: var(--text_color_dark); }
-.aboutus-page .highlight { color: var(--a); }
-.aboutus-page .highlight-text { font-weight: 600; color: var(--a); font-size: 1.1rem; margin-top: 1.2rem; }
+/* 🌟 NEW: SECTION HEADINGS (Classy & Visible) 🌟 */
+.section-Title {
+    font-size: 3.8rem !important;
+    font-weight: 900 !important;
+    letter-spacing: -1.5px;
+    background: linear-gradient(90deg, var(--p) 0%, var(--a) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin: 5rem 0 3rem;
+    position: relative;
+    z-index: 2;
+}
 
+.section-Title::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 6px;
+    background: var(--a);
+    border-radius: 3px;
+}
 
-/* CONTAINER */
-.aboutus-page .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+.elegant-title {
+    font-size: 3.8rem !important;
+    font-weight: 900 !important;
+    letter-spacing: -1.5px;
+    background: linear-gradient(90deg, var(--p) 0%, var(--a) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin: 5rem 0 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.elegant-title::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 6px;
+    background: var(--a);
+    border-radius: 3px;
+}
+
+.elegant-title.subtle {
+    font-size: 3.4rem !important;
+    background: linear-gradient(90deg, #1e293b 0%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 🌟 FIXED: Sub-Headings (h2/h3 within sections) */
+.inline-section-heading {
+    font-size: 2.4rem; 
+    font-weight: 800; 
+    color: var(--p);
+    border-left: 8px solid var(--a); 
+    padding-left: 1.2rem; 
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    font-family: 'Playfair Display', serif; 
+    letter-spacing: -0.5px;
+}
+
+html.dark .inline-section-heading {
+    color: white;
+}
 
 /* HERO */
 .aboutus-page .hero {
-    min-height: 85vh; /* Reduced height for less blank space */
+    min-height: 85vh;
     background: linear-gradient(rgba(10,29,86,.92), rgba(10,29,86,.98)),
-                url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80') center/cover fixed;
+                url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80') center/cover;
     display: flex;
     align-items: center;
     color: white;
-    padding-top: 80px;
     text-align: center;
 }
-.aboutus-page .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 0.8rem; } /* Slightly reduced font size */
-.aboutus-page .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 1.8rem; }
-.aboutus-page .cta { padding: 0.9rem 2.2rem; font-size: 1.05rem; }
 
-/* SECTIONS - REDUCED VERTICAL GAP */
-.aboutus-page section.sec { 
-    padding: 3rem 0; /* Reduced from 4rem */
-    gap: 2.5rem; /* Reduced from 3.5rem */
+.aboutus-page .hero h1 {
+    /* FIXED: Made Hero Heading Bigger and different */
+    font-size: 4.2rem; 
+    font-family: 'Playfair Display', serif;
+    line-height: 1.1;
+    font-weight: 900;
+}
+
+.aboutus-page .cta {
+    background: var(--a);
+    color: var(--p);
+    padding: 1rem 2.6rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,212,212,.35);
+    transition: all .3s;
+}
+
+.aboutus-page .cta:hover {
+    transform: translateY(-5px);
+}
+
+/* SECTIONS (SEC) */
+.aboutus-page .sec {
+    padding: 4rem 0;
     display: flex;
+    gap: 3.5rem;
     align-items: center;
     flex-wrap: wrap;
 }
-.aboutus-page .sec.rev { flex-direction: row-reverse; }
+
+.aboutus-page .sec.rev {
+    flex-direction: row-reverse;
+}
 
 .aboutus-page .img {
     flex: 1;
     min-width: 320px;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 15px 50px rgba(10,29,86,.15);
-}
-.aboutus-page .img img { width: 100%; height: 350px; object-fit: cover; transition: transform .6s ease; } /* Reduced image height */
-.aboutus-page .img:hover img { transform: scale(1.08); }
-
-.aboutus-page .txt { flex: 1.2; min-width: 350px; }
-.aboutus-page .txt h2 { font-size: 2.5rem; margin: 0 0 1rem; font-family: 'Playfair Display', serif; font-weight: 700; }
-.aboutus-page .txt h3 { color: var(--a); font-size: 1.5rem; margin: 1rem 0 0.7rem; font-weight: 600; } /* Adjusted H3 margin */
-.aboutus-page .txt p { margin-bottom: 0.8rem; font-size: 1rem; line-height: 1.7; } /* Reduced paragraph margin/line-height */
-.aboutus-page .txt ul { margin: 1rem 0 0 1.5rem; list-style: disc; }
-.aboutus-page .txt li { font-size: 0.95rem; line-height: 1.6; margin: 0.3rem 0; } /* Reduced list item spacing */
-
-
-/* BIG TITLES - REDUCED MARGIN */
-.aboutus-page .section-Title {
-    text-align: center;
-    font-size: 2.8rem; /* Slightly reduced size */
-    color: var(--p);
-    margin: 3.5rem 0 2rem; /* Reduced from 4rem 0 2.5rem */
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
+    box-shadow: 0 18px 55px var(--light-shadow);
 }
 
-/* CARDS - REDUCED GAP */
+.aboutus-page .img img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    transition: transform .7s;
+}
+
+.aboutus-page .img:hover img {
+    transform: scale(1.08);
+}
+
+.aboutus-page .txt {
+    flex: 1.3;
+    min-width: 350px;
+}
+
+/* CARDS (Why JobRinger) */
 .aboutus-page .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.2rem; /* Reduced from 1.8rem */
-    margin: 2rem 0; /* Reduced from 2.5rem */
+    gap: 1.4rem;
+    margin: 3rem 0;
 }
-.aboutus-page .card { padding: 1.5rem; border-radius: 16px; } /* Slightly reduced padding/radius */
 
-/* FEATURE CARDS (inside text blocks) - TIGHTER SPACING */
-.aboutus-page .txt .cards {
-    margin: 1rem 0; /* Reduced margin above and below cards in text sections */
-    gap: 0.8rem; /* Reduced gap between feature cards */
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Smaller min-width for 4-column layout */
+.aboutus-page .card {
+    background: var(--card-bg-light);
+    padding: 1.8rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 32px var(--light-shadow);
+    border: 1.5px solid rgba(0,212,212,.15);
+    text-align: center;
+    transition: all .4s ease;
 }
-.aboutus-page .txt .cards .card {
+
+.aboutus-page .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 42px rgba(0,212,212,.2);
+}
+
+.aboutus-page .card i {
+    font-size: 2.2rem;
+    color: var(--a);
+    margin-bottom: 0.8rem;
+}
+
+.aboutus-page .card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* FEATURE CARDS GRID (For Employers/Jobseekers) */
+.aboutus-page .feature-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+.aboutus-page .feature-cards-grid .card {
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px var(--light-shadow);
+    transition: all .3s;
+    border: 1px solid rgba(0,212,212,.1);
+}
+
+.aboutus-page .feature-cards-grid .card i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.aboutus-page .feature-cards-grid .card p {
+    /* FIXED: Better Feature Text Appearance */
+    font-size: 0.9rem; 
+    font-weight: 600; 
+    line-height: 1.3;
+    margin-bottom: 0;
+    text-align: center !important; 
+}
+
+.aboutus-page .feature-cards-grid .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,212,212,.15);
+}
+
+
+/* GLOBE - MOVED TO RIGHT, TEXT TO LEFT */
+.aboutus-page .globe-sec {
+    padding: 7rem 0;
+    background: linear-gradient(135deg, var(--p), #1e3a8a);
+    color: white;
+}
+
+.globe-padding {
+    padding: 0 2.5rem;
+}
+
+.globe-title {
+    font-size: 3.2rem !important;
+    font-weight: 800;
+    color: var(--g) !important;
+    text-shadow: 0 3px 14px rgba(241,196,15,.4);
+    margin-bottom: 1.4rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.aboutus-page .globe-sec .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4rem;
+    /* Desktop: Text on Left, Globe on Right (default row direction) */
+    flex-direction: row; 
+}
+
+.aboutus-page .globe-content {
+    flex: 1.3; 
+    min-width: 350px; 
+    text-align: left !important; 
+}
+
+.aboutus-page .globe-wrapper {
+    flex: 1; 
+    min-width: 320px;
+    display: flex;
+    justify-content: flex-end; /* Push globe to the right within its flex container */
+}
+
+.aboutus-page .globe {
+    width: 340px;
+    height: 340px;
+     background: url('../images/11444549.png') center/cover no-repeat; 
+    background-size: 195%;
+    border-radius: 50%;
+    position: relative;
+    animation: spin 40s linear infinite;
+    box-shadow: inset 0 0 60px rgba(0,0,0,.7), 0 0 80px rgba(0,212,212,.6);
+    border: 12px solid rgba(0,212,212,.45);
+}
+
+.aboutus-page .globe:hover {
+    transform: scale(1.05);
+}
+
+.dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: var(--g);
+    border-radius: 50%;
+    box-shadow: 0 0 18px var(--g);
+    animation: pulse 2.4s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.6);
+        opacity: .75;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* MARQUEE */
+.aboutus-page .marquee {
+    background: rgba(255,255,255,.07);
+    padding: 16px 0;
+    overflow: hidden;
+    margin: 12px 0;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+}
+
+.aboutus-page .marquee span {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll 75s linear infinite;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* INDUSTRIES */
+.aboutus-page .industry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+.aboutus-page .industry-card {
+    background: var(--card-bg-light);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px var(--light-shadow);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-left: 4px solid var(--a);
+    transition: all .35s;
+}
+
+.aboutus-page .industry-card:hover {
+    background: var(--a);
+    color: white;
+    transform: translateY(-4px);
+}
+
+/* FUNCTIONAL AREAS – BIG & CLEAN FLIP */
+.flip-wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+    gap: 1rem !important;
+    padding: 3rem 1rem !important;
+    perspective: 1400px;
+}
+
+.flip-card {
+    height: 90px !important;
+    position: relative;
+    transform-style: preserve-3d;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(10,29,86,.1) !important;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+}
+
+.flip-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,212,212,.2) !important;
+}
+
+.flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem !important;
+    text-align: center;
+    padding: 0.6rem !important;
+    line-height: 1.4;
+}
+
+.flip-front {
+    background: #ffffff;
+    color: var(--p);
+    border: 2px solid var(--a);
+}
+
+.flip-back {
+    background: var(--a);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* COMPARISON */
+.aboutus-page .comp {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--p), #1e3a8a);
+    color: white;
+    text-align: center;
+}
+
+.aboutus-page .table {
+    display: grid;
+    grid-template-columns: 2.6fr 1fr 1fr;
+    gap: 1rem;
+    max-width: 960px;
+    margin: 3rem auto;
+}
+
+.aboutus-page .cell {
+    padding: 1.3rem;
+    background: rgba(255,255,255,.13);
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+}
+
+.aboutus-page .cell:first-child {
+    background: rgba(0,212,212,.25);
+    font-weight: 700;
+}
+
+/* LEADERSHIP SECTION STYLES */
+.leader-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 10px solid var(--a);
+    box-shadow: 0 20px 50px rgba(0,212,212,.4);
+}
+.leader-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flip-card-2025 {
+    height: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(10,29,86,.1);
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+.flip-card-2025:hover {
+    transform: rotateY(180deg);
+}
+.flip-card-2025 .flip-front,
+.flip-card-2025 .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
     padding: 1rem;
 }
-
-
-/* GLOBE SECTION - REDUCED PADDING */
-.aboutus-page .globe-sec {
-    padding: 4rem 0; /* Reduced from 5rem */
-    background: linear-gradient(135deg, var(--p) 0%, #1e3a8a 100%);
-    color: white;
-    text-align: center;
-    overflow: hidden;
+.flip-card-2025 .flip-front {
+    background: white;
+    color: var(--p);
+    border: 2px solid var(--a);
 }
-.aboutus-page .globe-sec h2 { font-size: 2.8rem; margin-bottom: 10px; }
-.aboutus-page .globe-sec p { font-size: 1.1rem; margin: 0 auto 30px; }
-.aboutus-page .globe { width: 300px; height: 300px; margin: 30px auto; } /* Slightly reduced globe size */
-.aboutus-page .marquee { padding: 10px 0; margin: 6px 0; } /* Reduced marquee padding/margin */
-
-/* INDUSTRIES - REDUCED PADDING */
-.aboutus-page .industry-section { padding: 3rem 0; } /* Reduced from 4rem */
-.aboutus-page .industry-grid { gap: 0.8rem; padding: 2rem 0; } /* Reduced grid gap/padding */
-
-/* COMPARISON - REDUCED PADDING */
-.aboutus-page .comp {
-    padding: 4rem 0; /* Reduced from 5rem */
-    background: linear-gradient(135deg, var(--p) 0%, #1e3a8a 100%);
+.flip-card-2025 .flip-back {
+    background: var(--a);
     color: white;
-    text-align: center;
+    transform: rotateY(180deg);
+    font-size: 3rem;
+    font-weight: 800;
 }
-.aboutus-page .comp h2 { font-size: 3.2rem; margin-bottom: 2.5rem; }
-.aboutus-page .table { gap: 0.8rem; max-width: 900px; margin: 2rem auto; font-size: 1rem; } /* Reduced table gap/margin/font size */
-.aboutus-page .cell { padding: 0.8rem 1rem; } /* Reduced cell padding */
-.aboutus-page .comparison-tagline { font-size: 1.2rem; margin-top: 2.5rem; }
 
-/* TEAM - REDUCED PADDING */
-.aboutus-page .team { padding: 4rem 0; } /* Reduced from 5rem */
-.aboutus-page .leader-img { width: 180px; height: 180px; margin: 1.2rem auto; } /* Reduced leader image size/margin */
-.aboutus-page .team h3 { font-size: 1.7rem; margin-top: 1.2rem; }
-.aboutus-page .team p { margin: 0.6rem auto; }
-.aboutus-page .team-support-text { margin-top: 1.5rem; }
+/* MOBILE RESPONSIVE ENHANCEMENTS */
+@media (max-width: 1024px) {
+    .aboutus-page .sec .img {
+        min-width: 100%;
+    }
+    .aboutus-page .sec .txt {
+        min-width: 100%;
+    }
+    .aboutus-page .globe-sec .container {
+        /* On tablets/smaller screens, stack it vertically, text first, then globe */
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .aboutus-page .globe-content {
+        min-width: 100%;
+        text-align: center !important;
+    }
+    .aboutus-page .globe-wrapper {
+        justify-content: center;
+    }
+}
 
-
-/* RESPONSIVE - Ensure Mobile is also compact */
 @media (max-width: 768px) {
-    .aboutus-page .hero { min-height: 70vh; }
-    .aboutus-page section.sec { padding: 2.5rem 0; gap: 1.5rem; } /* Tighter mobile sections */
-    .aboutus-page .img img { height: 200px; } /* Smaller images on mobile */
-    .aboutus-page .section-Title { margin: 2.5rem 0 1.5rem; }
-    .aboutus-page .cards { gap: 0.8rem; }
-    .aboutus-page .txt .cards { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin: 1rem 0; } /* 2 columns for features */
-    .aboutus-page .globe-sec { padding: 3rem 0; }
-    .aboutus-page .globe { width: 200px; height: 200px; }
-    .aboutus-page .table { grid-template-columns: 1fr; }
-    .aboutus-page .industry-grid { grid-template-columns: repeat(2, 1fr); }
-    .aboutus-page .team { padding: 3rem 0; }
-    .aboutus-page .leader-img { width: 100px; height: 100px; }
+    .aboutus-page .hero h1 {
+        font-size: 3.8rem; 
+    }
+    .aboutus-page .hero p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    .section-Title, .elegant-title {
+        font-size: 2.8rem !important;
+        margin: 4rem 0 2rem;
+    }
+    .elegant-title.subtle {
+        font-size: 2.5rem !important;
+    }
+    .inline-section-heading {
+        font-size: 1.8rem; 
+    }
+    .aboutus-page .globe {
+        width: 280px;
+        height: 280px;
+        border-width: 8px;
+    }
+    .aboutus-page .table {
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 0 0.5rem;
+    }
+    .aboutus-page .cell {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.85rem;
+    }
+    .flip-wall {
+        grid-template-columns: repeat(2, 1fr) !important;
+        padding: 2rem 1rem !important;
+    }
+    .flip-card {
+        height: 90px !important;
+    }
+    .leader-photo {
+        width: 160px;
+        height: 160px;
+        border-width: 6px;
+    }
 }
-
-/* ... (Remaining unchanged CSS for visual details) ... */

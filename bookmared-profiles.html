@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarked Profiles</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/universal.css">
+  <link rel="stylesheet" href="css/bookmarked-profile.css">
+
+ 
+  <style>
+    @media (min-width: 769px) {
+      .filter-sidebar {
+        width: 260px !important;
+        min-width: 260px !important;
+        flex: 0 0 260px !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+    <div id="header-placeholder" class="sticky top-0 z-50"></div>
+    <div id="nav-placeholder"></div>
+    <div id="menu-placeholder"></div>
+    <div id="search-placeholder"></div>
+
+    <div class="main-layout">
+        <!-- FILTER SIDEBAR -->
+        <nav class="filter-sidebar">
+            <h3 class="filter-title">Filters</h3>
+            <div class="filter-group">
+                <label class="filter-label">Keywords</label>
+                <input type="text" id="keywords" class="filter-input" placeholder="HR, Fresher">
+                <div class="kw-mode">
+                    <label><input type="radio" name="kw" value="any" checked> Any</label>
+                    <label><input type="radio" name="kw" value="all"> All</label>
+                    <label><input type="radio" name="kw" value="exact"> Exact</label>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Resume Attached</label>
+                <label class="checkbox-item"><input type="checkbox" id="resume"> Yes</label>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Gender Preference</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> Male</label>
+                    <label class="checkbox-item"><input type="checkbox"> Female</label>
+                    <label class="checkbox-item"><input type="checkbox"> Any</label>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Industry</label>
+                <select class="filter-select">
+                    <option>All</option>
+                    <option>Accounting BPO</option>
+                    <option>HR</option>
+                    <option>Marketing</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Experience</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> Fresher</label>
+                    <label class="checkbox-item"><input type="checkbox"> 1-3 Years</label>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Functional Area</label>
+                <select class="filter-select">
+                    <option>All</option>
+                    <option>HR</option>
+                    <option>Data Analytics</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Salary</label>
+                <input type="range" class="range-slider" min="0" max="2000000" step="100000">
+                <div class="range-values"><span>₹0</span><span>₹20L</span></div>
+            </div>
+            <button class="apply-btn">Apply</button>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="flex justify-between items-center">
+                <h1 class="page-title">Bookmarked Profiles</h1>
+                <button class="sidebar-toggle md:hidden">Filters</button>
+            </div>
+
+            <div class="top-bar">
+                <button class="download-btn">Download</button>
+                <div class="sort-group">
+                    <span>Sort by</span>
+                    <select class="sort-select">
+                        <option>Relevance</option>
+                        <option>Last Active</option>
+                    </select>
+                </div>
+                <div class="results-info">Showing 1 to 20 of 6</div>
+            </div>
+
+            <div class="tab-bar">
+                <button class="tab-btn active">All Bookmarks <span class="tab-count">6</span></button>
+            </div>
+
+            <div id="list" class="mt-6"></div>
+
+            <div class="pagination-container">
+                <button class="page-btn-sm">Prev</button>
+                <button class="page-btn-sm active">1</button>
+                <button class="page-btn-sm">Next</button>
+            </div>
+        </div>
+    </div>
+     <div id="footer-placeholder" class="mt-auto"></div>
+
+    <script src="js/script.js"></script>
+
+    <script src="js/bookmarked-profile.js"></script>
+</body>
+</html>

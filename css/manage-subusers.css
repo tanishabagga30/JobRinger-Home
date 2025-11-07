@@ -1,0 +1,355 @@
+/* CSS specific to the sub-user management page, ensuring no clash with universal.css */
+
+/* Base Styles for the SubUser Page */
+.subuser-page {
+    min-height: 100vh;
+    background: var(--body_color_light);
+}
+html.dark .subuser-page {
+    background: var(--body_color_dark);
+}
+
+/* 🌟 UNIVERSAL COMPONENT ALIGNMENT FIX 🌟 */
+/* This ensures the content area correctly accounts for the fixed-left sidebar and sticky header */
+.aligned-page-content {
+    /* Ensures the container respects max width and has base padding */
+    padding: 1rem;
+    padding-top: 1rem;
+    margin-top: 0;
+    width: 100%;
+}
+@media (min-width: 1024px) {
+    .aligned-page-content {
+        margin-left: 0; 
+        max-width: calc(1200px + var(--collapsed));
+    }
+}
+
+
+/* 1. Main Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border_light);
+}
+html.dark .page-header {
+    border-bottom-color: var(--dark_border);
+}
+.page-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text_color_light);
+}
+html.dark .page-header h1 {
+    color: var(--text_color_dark);
+}
+
+/* 2. Add SubUser Button */
+.add-button {
+    background-color: var(--primary_blue);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+.add-button:hover {
+    background-color: #168a9c; /* A slightly darker primary blue */
+}
+html.dark .add-button {
+    background-color: var(--pop_yellow);
+    color: var(--body_color_dark);
+}
+html.dark .add-button:hover {
+    background-color: #ffe08a;
+}
+
+/* 🌟 NEW: Delete Selected Button Styling 🌟 */
+.delete-button {
+    background-color: #ef4444; /* Red for deletion */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+.delete-button:hover:not(:disabled) {
+    background-color: #dc2626;
+}
+.delete-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+html.dark .delete-button {
+    background-color: #f87171;
+    color: var(--body_color_dark);
+}
+html.dark .delete-button:hover:not(:disabled) {
+    background-color: #ef4444;
+}
+
+
+/* 3. Controls Bar */
+.controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: var(--card_bg_light);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px var(--light_shadow);
+    border: 1px solid var(--border_light);
+}
+html.dark .controls-bar {
+    background: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    box-shadow: 0 1px 3px var(--shadow_dark);
+}
+.show-per-page label, .pagination-info {
+    font-size: 0.875rem;
+    color: var(--gray_medium_light);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+html.dark .show-per-page label, html.dark .pagination-info {
+    color: var(--dark_gray_text);
+}
+.show-per-page select {
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--border_light);
+    background-color: var(--body_color_light);
+    font-size: 0.875rem;
+    color: var(--text_color_light);
+    outline: none;
+}
+html.dark .show-per-page select {
+    background-color: var(--dark_input_bg);
+    border-color: var(--dark_border);
+    color: var(--text_color_dark);
+}
+
+/* 🌟 FIX: CHECKBOX COLORING 🌟 */
+/* Target all checkboxes within the page and apply custom colors */
+input[type="checkbox"] {
+    /* Base styles to make the checkbox visible */
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    border: 1px solid var(--gray_medium_light);
+    border-radius: 0.25rem;
+    /* Hide default checkmark */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: all 0.2s;
+    flex-shrink: 0; /* Prevents stretching in grid */
+}
+
+/* Light Mode: Checked state color */
+input[type="checkbox"]:checked {
+    background-color: var(--primary_blue); /* Background fill */
+    border-color: var(--primary_blue);
+    /* Custom white checkmark */
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 00-1.414 0L7 8.586 4.207 5.793a1 1 0 00-1.414 1.414l3.5 3.5a1 1 0 001.414 0l5-5a1 1 0 000-1.414z"/></svg>');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Dark Mode: Checked state color */
+html.dark input[type="checkbox"] {
+    background-color: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+}
+
+html.dark input[type="checkbox"]:checked {
+    background-color: var(--pop_yellow); /* Yellow background fill for dark mode */
+    border-color: var(--pop_yellow);
+    /* Custom dark checkmark for contrast on yellow background */
+    background-image: url('data:image/svg+xml;charset=utf-8,<svg viewBox="0 0 16 16" fill="%231f2937" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 00-1.414 0L7 8.586 4.207 5.793a1 1 0 00-1.414 1.414l3.5 3.5a1 1 0 001.414 0l5-5a1 1 0 000-1.414z"/></svg>');
+}
+
+
+/* 4. User List Table ADJUSTED GRID TEMPLATE */
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+/* Table Header */
+.user-header {
+    /* Added 0.1fr column for the checkbox */
+    display: grid;
+    grid-template-columns: 0.1fr 2fr 1fr 1fr 1fr 1fr 1.5fr; 
+    gap: 0.5rem;
+    padding: 0.75rem 0.5rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary_blue);
+    background: var(--light_yellow_bg);
+    border-radius: 0.5rem 0.5rem 0 0;
+    border-bottom: 1px solid var(--border_light);
+}
+html.dark .user-header {
+    color: var(--pop_yellow);
+    background: var(--dark_background_secondary);
+    border-bottom-color: var(--dark_border);
+}
+/* Table Rows */
+.user-row {
+    /* Added 0.1fr column for the checkbox */
+    display: grid;
+    grid-template-columns: 0.1fr 2fr 1fr 1fr 1fr 1fr 1.5fr;
+    gap: 0.5rem;
+    padding: 0.75rem 0.5rem;
+    background: var(--card_bg_light);
+    border-radius: 0.25rem;
+    box-shadow: 0 0 5px var(--light_shadow);
+    align-items: center;
+    transition: transform 0.1s ease-out;
+    border: 1px solid var(--border_light);
+    font-size: 0.875rem;
+}
+html.dark .user-row {
+    background: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+}
+.user-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.user-name {
+    font-weight: 500;
+    color: var(--text_color_light);
+}
+html.dark .user-name {
+    color: var(--text_color_dark);
+}
+.user-cell {
+    color: var(--gray_text_light);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-header .user-cell { /* Center the select-all checkbox header */
+    justify-content: center;
+}
+html.dark .user-cell {
+    color: var(--dark_gray_text);
+}
+/* Permission Icons */
+.perm-icon {
+    font-size: 1.1rem;
+}
+.perm-icon.check {
+    color: #10B981; /* Green */
+}
+.perm-icon.cross {
+    color: #EF4444; /* Red */
+}
+/* Action Dropdown Button */
+.action-dropdown-btn {
+    background-color: var(--primary_blue);
+    color: white;
+    padding: 0.3rem 0.75rem;
+    border-radius: 0.3rem;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0 auto;
+}
+html.dark .action-dropdown-btn {
+    background-color: var(--pop_yellow);
+    color: var(--body_color_dark);
+}
+.action-menu {
+    border: 1px solid var(--border_light);
+}
+html.dark .action-menu {
+    border-color: var(--dark_border);
+}
+
+
+/* 5. Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding: 0.75rem;
+}
+.pagination-buttons button {
+    background: var(--card_bg_light);
+    color: var(--primary_blue);
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border_light);
+    border-radius: 0.3rem;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 600;
+}
+.pagination-buttons button:hover:not(.active) {
+    background: var(--light_yellow_bg);
+}
+.pagination-buttons .active {
+    background: var(--primary_blue);
+    color: white;
+}
+html.dark .pagination-buttons button {
+    background: var(--dark_background_secondary);
+    border-color: var(--dark_border);
+    color: var(--pop_yellow);
+}
+html.dark .pagination-buttons button:hover:not(.active) {
+    background: rgba(30, 172, 198, 0.1);
+}
+html.dark .pagination-buttons .active {
+    background: var(--pop_yellow);
+    color: var(--dark_background_secondary);
+}
+
+/* Responsive adjustments ADJUSTED GRID TEMPLATE FOR RESPONSIVE */
+@media (max-width: 768px) {
+    .user-header, .user-row {
+        /* Adjusted grid to keep checkbox, name, job, sub, action */
+        grid-template-columns: 0.2fr 2fr 1fr 1fr 1.5fr; 
+        font-size: 0.8rem;
+    }
+    /* Hide Manage Candidate and Search columns (original 3rd and 4th content columns) */
+    .user-header div:nth-child(3), .user-row .user-cell:nth-child(3),
+    .user-header div:nth-child(4), .user-row .user-cell:nth-child(4) {
+        display: none;
+    }
+    .controls-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    .user-header, .user-row {
+        /* Only Checkbox, Name, Job, Action */
+        grid-template-columns: 0.3fr 2fr 1.5fr 1.5fr; 
+    }
+    /* Hide Manage Candidate, Search, Subscription columns */
+    .user-header div:nth-child(3), .user-row .user-cell:nth-child(3),
+    .user-header div:nth-child(4), .user-row .user-cell:nth-child(4),
+    .user-header div:nth-child(5), .user-row .user-cell:nth-child(5) {
+        display: none;
+    }
+}

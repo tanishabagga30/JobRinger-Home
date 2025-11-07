@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Manage Sub-Users | JobRinger</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="css/universal.css"> 
+<link rel="stylesheet" href="css/manage-subusers.css"> 
+</head>
+<body class="subuser-page">
+
+<div id="header-placeholder" class="w-full sticky top-0 z-50"></div>
+
+<div id="nav-placeholder"></div>
+<div id="menu-placeholder"></div>
+<div id="search-placeholder"></div>
+<main class="aligned-page-content mx-auto max-w-[1200px] p-4 lg:p-6">
+
+<div class="page-header">
+<h1>Manage Sub Users</h1>
+<button class="add-button" onclick="openAddSubUserModal()">
+<i class="fas fa-user-plus mr-2"></i> Add SubUser
+</button>
+</div>
+
+<div class="controls-bar">
+    <div class="flex items-center space-x-4 flex-wrap gap-y-2">
+        <div class="show-per-page">
+            <label for="show-per-page-select">Show</label>
+            <select id="show-per-page-select" onchange="changePageSize(this.value)">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="40">40</option>
+                <option value="80">80</option>
+                <option value="100">100</option>
+            </select>
+            <span>per page</span>
+        </div>
+        
+        <button id="delete-selected-btn" class="delete-button" onclick="deleteSelectedUsers()">
+            <i class="fas fa-trash-alt mr-2"></i>
+        </button>
+    </div>
+    
+    <div class="search-box">
+        <input type="text" placeholder="Search users..." id="user-search" class="p-2 border border-gray-300 rounded-md text-sm w-48 focus:border-primary_blue focus:ring-primary_blue transition duration-150" style="background: var(--card_bg_light); color: var(--text_color_light);">
+    </div>
+</div>
+
+<div class="user-list">
+<div class="user-header">
+    <div class="user-cell">
+        <input type="checkbox" id="select-all-checkbox" onclick="toggleSelectAll(this.checked)" class="form-checkbox h-4 w-4 text-primary_blue cursor-pointer">
+    </div>
+    <div>User</div>
+    <div>Manage/Post Job</div>
+    <div>Manage Candidate</div>
+    <div>Search</div>
+    <div>Subscription</div>
+    <div>Action</div>
+</div>
+
+<div id="user-rows-container">
+    </div>
+
+
+<div class="pagination-container">
+<div class="pagination-info" id="pagination-info">Showing 1 to 10 of 26</div>
+<div class="pagination-buttons space-x-2" id="pagination-buttons">
+    </div>
+</div>
+
+</div>
+</main>
+
+<div id="footer-placeholder" class="w-full mt-auto"></div>
+
+<div id="modals-placeholder">
+    <div id="addSubUserModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 z-[2000] items-center justify-center">
+        <div class="bg-white dark:bg-dark_background_secondary p-6 rounded-lg shadow-xl w-full max-w-md mx-4">
+            <h2 class="text-xl font-bold mb-4 text-primary_blue dark:text-pop_yellow">Add New Sub User</h2>
+            <form>
+                <div class="mb-4">
+                    <label for="subuser-name" class="block text-sm font-medium text-gray-700 dark:text-dark_gray_text">Full Name</label>
+                    <input type="text" id="subuser-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-sm" style="background: var(--card_bg_light); color: var(--text_color_light);">
+                </div>
+                <div class="mb-4">
+                    <label for="subuser-email" class="block text-sm font-medium text-gray-700 dark:text-dark_gray_text">Email</label>
+                    <input type="email" id="subuser-email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2 text-sm" style="background: var(--card_bg_light); color: var(--text_color_light);">
+                </div>
+
+                <h3 class="text-md font-semibold mt-6 mb-2 text-gray-800 dark:text-text_color_dark">Permissions</h3>
+                <div class="space-y-2 text-sm">
+                    <label class="flex items-center text-gray-700 dark:text-dark_gray_text">
+                        <input type="checkbox" class="form-checkbox h-4 w-4 text-primary_blue" checked>
+                        <span class="ml-2">Manage/Post Job</span>
+                    </label>
+                    <label class="flex items-center text-gray-700 dark:text-dark_gray_text">
+                        <input type="checkbox" class="form-checkbox h-4 w-4 text-primary_blue">
+                        <span class="ml-2">Manage Candidate</span>
+                    </label>
+                    <label class="flex items-center text-gray-700 dark:text-dark_gray_text">
+                        <input type="checkbox" class="form-checkbox h-4 w-4 text-primary_blue" checked>
+                        <span class="ml-2">Search</span>
+                    </label>
+                    <label class="flex items-center text-gray-700 dark:text-dark_gray_text">
+                        <input type="checkbox" class="form-checkbox h-4 w-4 text-primary_blue">
+                        <span class="ml-2">Subscription</span>
+                    </label>
+                </div>
+
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md" onclick="closeAddSubUserModal()">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-primary_blue text-white rounded-md">Save Sub User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/script.js"></script>
+<script src="js/manage-subusers.js"></script>
+</body>
+</html>

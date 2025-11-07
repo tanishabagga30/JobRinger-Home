@@ -1,0 +1,203 @@
+/* saved-searches.css — PERFECT ALIGNMENT */
+* { box-sizing: border-box; }
+
+.main-layout {
+  padding: 2rem;
+  background: #f8fafc;
+  min-height: calc(100vh - 140px);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.main-content { flex: 1; }
+
+/* Header */
+.page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(239,68,68,.3);
+  transition: all 0.2s;
+}
+.btn-delete:hover { background: #dc2626; transform: translateY(-1px); }
+
+.results-info {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 0.5rem 0 1.5rem;
+}
+
+/* Table */
+.table-container {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  margin-bottom: 2rem;
+}
+
+#savedTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Forces equal column behavior */
+}
+
+#savedTable th {
+  background: #f8fafc;
+  padding: 1rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+#savedTable td {
+  padding: 1.1rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+#savedTable tr:hover {
+  background: #f8fafc;
+}
+
+/* Column Widths */
+#savedTable th:nth-child(1), #savedTable td:nth-child(1) { width: 50px; text-align: center; }
+#savedTable th:nth-child(2), #savedTable td:nth-child(2) { width: 35%; }
+#savedTable th:nth-child(3), #savedTable td:nth-child(3) { width: 20%; }
+#savedTable th:nth-child(4), #savedTable td:nth-child(4) { width: 20%; }
+#savedTable th:nth-child(5), #savedTable td:nth-child(5) { width: 25%; text-align: center; }
+
+/* Checkbox */
+#selectAll, .row-check {
+  width: 18px;
+  height: 18px;
+  accent-color: #1eacc6;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Title */
+.title-main {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.title-sub {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+/* Action Buttons in Row */
+.row-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-modify, .btn-search {
+  padding: 0.55rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 78px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-modify {
+  background: #1eacc6;
+  color: white;
+}
+.btn-modify:hover {
+  background: #1a9ab3;
+  transform: translateY(-1px);
+}
+
+.btn-search {
+  background: #10b981;
+  color: white;
+}
+.btn-search:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+/* Bottom Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-quick, .btn-advance {
+  padding: 1rem 2.5rem;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-quick {
+  background: #e2e8f0;
+  color: #475569;
+}
+.btn-quick:hover { background: #cbd5e1; }
+
+.btn-advance {
+  background: #1eacc6;
+  color: white;
+}
+.btn-advance:hover {
+  background: #1a9ab3;
+  transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .main-layout { padding: 1rem; }
+  #savedTable th, #savedTable td { padding: 0.75rem 0.5rem; font-size: 0.9rem; }
+  .row-actions { flex-direction: column; align-items: center; }
+  .btn-modify, .btn-search { width: 100%; max-width: 120px; }
+}
+
+/* Dark Mode */
+html.dark .table-container { background: #1f2937; }
+html.dark #savedTable th { background: #334155; color: #cbd5e1; border-color: #374151; }
+html.dark #savedTable td { border-color: #374151; }
+html.dark .title-main { color: #f1f5f9; }
+html.dark .title-sub { color: #94a3b8; }

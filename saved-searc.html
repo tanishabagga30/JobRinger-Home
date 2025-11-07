@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saved Searches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/universal.css">
+  <link rel="stylesheet" href="css/saved-searches.css">
+</head>
+<body class="bg-slate-50 dark:bg-gray-900 text-slate-800 dark:text-slate-200">
+
+  <div id="header-placeholder" class="sticky top-0 z-10"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+  <div class="main-layout">
+    <main class="main-content">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="page-title">Saved Searches</h1>
+        <div class="top-actions">
+          <button id="deleteBtn" class="btn-delete" title="Delete Selected">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="results-info mb-4">Showing <span id="count">4</span> saved searches</div>
+
+      <div class="table-container">
+        <table id="savedTable">
+          <thead>
+            <tr>
+              <th class="w-12"><input type="checkbox" id="selectAll"></th>
+              <th>Search Title</th>
+              <th>Shared By</th>
+              <th>Date</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-quick">Quick Search</button>
+        <button class="btn-advance">Advance Search</button>
+      </div>
+    </main>
+  </div>
+
+  <div id="footer-placeholder" class="mt-auto"></div>
+
+  <script src="js/script.js"></script>
+  <script src="js/saved-searches.js"></script>
+</body>
+</html>
