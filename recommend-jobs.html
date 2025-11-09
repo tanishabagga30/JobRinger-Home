@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommended Jobs | JobRinger</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="css/universal.css">
+  <link rel="stylesheet" href="css/recommend-jobs.css">
+</head>
+<body class="bg-slate-50 dark:bg-gray-900">
+
+  <div id="header-placeholder" class="sticky top-0 z-50"></div>
+  <div id="nav-placeholder"></div>
+
+  <!-- Status Bar -->
+  <div class="job-status-bar">
+    <i class="fas fa-magic text-purple-400 mr-2"></i>
+    Jobs Picked Just for You — Based on Your Profile
+  </div>
+
+  <div class="main-layout py-8">
+    <div class="max-w-7xl mx-auto px-4">
+
+      <!-- Header -->
+      <div class="text-center mb-10">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white">
+          Recommended Jobs
+        </h1>
+        <p class="text-slate-600 dark:text-slate-400 mt-2">
+          <span id="recCount">0</span> jobs matched to your skills & experience
+        </p>
+      </div>
+
+      <!-- Jobs Grid -->
+      <div id="recList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- JS fills this -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="text-center py-20 hidden">
+        <i class="fas fa-magic text-6xl text-slate-300 mb-4"></i>
+        <h3 class="text-2xl font-bold text-slate-700 dark:text-slate-300">No recommendations yet</h3>
+        <p class="text-slate-600 dark:text-slate-400 mt-2">Complete your profile to get personalized matches!</p>
+        <a href="/profile.html" class="mt-6 inline-block px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition">
+          Update Profile
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/script.js"></script>
+  <script src="js/recommend-jobs.js"></script>
+</body>
+</html>

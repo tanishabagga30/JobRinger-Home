@@ -1,0 +1,157 @@
+/* settings.css — SAME HEIGHT CARDS + FULL WIDTH */
+.settings-page {
+  padding: 2rem 1.5rem;
+  min-height: calc(100vh - 140px);
+  background: #f8fafc;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* FULL WIDTH HEADER */
+.page-header {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.page-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+.page-subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0.4rem 0 0;
+}
+
+/* GRID + SAME HEIGHT */
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  align-items: stretch; /* This forces same height */
+}
+
+/* CARD — 100% HEIGHT */
+.settings-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Fill the grid cell */
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.5rem;
+}
+.card-desc {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin-bottom: 1.2rem;
+}
+
+/* FORMS — GROW TO FILL SPACE */
+.compact-form, .pref-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1; /* Grow to fill card */
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.input-group label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #374151;
+}
+.input-group input,
+.input-group select {
+  padding: 0.68rem 0.9rem;
+  font-size: 0.9rem;
+  border: 1.4px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fafafa;
+}
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #1eacc6;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(30,172,198,.15);
+}
+.input-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%236b7280' d='M0 0l6 6 6-6H0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+}
+
+/* 3-COL GRID */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  flex: 1;
+}
+
+/* BUTTONS — STICK TO BOTTOM */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: auto; /* Push to bottom */
+  padding-top: 1rem;
+}
+.btn-cancel, .btn-save {
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.btn-cancel {
+  background: #e2e8f0;
+  color: #475569;
+}
+.btn-cancel:hover { background: #cbd5e1; }
+.btn-save {
+  background: #1eacc6;
+  color: white;
+}
+.btn-save:hover { background: #1a9ab3; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .settings-page { padding: 1rem; }
+  .page-title { font-size: 1.8rem; }
+}
+
+/* DARK MODE */
+html.dark .settings-card { background: #1f2937; border-color: #374151; }
+html.dark .page-title, html.dark .card-title { color: #f1f5f9; }
+html.dark .page-subtitle, html.dark .card-desc { color: #94a3b8; }
+html.dark .input-group label { color: #cbd5e1; }
+html.dark .input-group input,
+html.dark .input-group select {
+  background: #374151;
+  border-color: #475569;
+  color: #f1f5f9;
+}
