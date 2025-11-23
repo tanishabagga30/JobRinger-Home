@@ -3,11 +3,9 @@
         <div class="footer-left">
             <h2 class="section-title">Explore Jobs</h2>
             <div class="dropdown-container">
-
                 <details class="border-b border-gray-200 pb-2" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                     <summary class="flex justify-between items-center w-full text-left font-medium text-gray-900 cursor-pointer px-2 py-1" itemprop="name">
-                    Jobs in Cities
-                    
+                        Jobs in Cities
                     </summary>
                     <div class="mt-2 text-gray-700 pl-5 flex flex-col dropdown" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <a href="">Jobs in Bangalore</a>
@@ -16,11 +14,9 @@
                         <a href="">Jobs in Delhi</a>
                     </div>
                 </details>
-
                 <details class="border-b border-gray-200 pb-2" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                     <summary class="flex justify-between items-center w-full text-left font-medium text-gray-900 cursor-pointer px-2 py-1" itemprop="name">
-                    Job Categories
-                    
+                        Job Categories
                     </summary>
                     <div class="mt-2 text-gray-700 pl-5 flex flex-col dropdown" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <a href="">Technology</a>
@@ -29,11 +25,9 @@
                         <a href="">Design</a>
                     </div>
                 </details>
-
                 <details class="border-b border-gray-200 pb-2" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                     <summary class="flex justify-between items-center w-full text-left font-medium text-gray-900 cursor-pointer px-2 py-1" itemprop="name">
-                    Experience Level
-                    
+                        Experience Level
                     </summary>
                     <div class="mt-2 text-gray-700 pl-5 flex flex-col dropdown" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <a href="">Entry Level</a>
@@ -41,11 +35,9 @@
                         <a href="">Senior Level</a>
                     </div>
                 </details>
-
                 <details class="border-b border-gray-200 pb-2" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                     <summary class="flex justify-between items-center w-full text-left font-medium text-gray-900 cursor-pointer px-2 py-1" itemprop="name">
-                    Job Type
-                    
+                        Job Type
                     </summary>
                     <div class="mt-2 text-gray-700 pl-5 flex flex-col dropdown" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                         <a href="">Full Time</a>
@@ -53,7 +45,6 @@
                         <a href="">Remote / Work From Home</a>
                     </div>
                 </details>
-                
             </div>
         </div>
         <div class="footer-right">
@@ -75,7 +66,7 @@
             </p>
         </div>
     </div>
-    
+
     <div class="footer-bottom">
         <div class="border-t border-gray-300 my-1"></div>
         <div class="footer-links">
@@ -90,10 +81,143 @@
         </div>
     </div>
 
+<!-- ===================== FINAL EMAIL POP-UP (NO DRAFT, CC VISIBLE, SEND BIG) ===================== -->
+<div id="email-popup" class="fixed inset-0 bg-black/50 z-[1040] opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="absolute inset-0 flex items-center justify-center p-4 md:p-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl w-full max-w-4xl h-[90vh] flex flex-col transform scale-95 transition-transform duration-300"
+             id="email-popup-inner">
+
+            <!-- Header -->
+            <div class="flex items-center justify-between p-3 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+                    <i class="fas fa-envelope text-primary_blue"></i> New Message
+                </h3>
+                <button id="email-close" class="p-2 text-gray-500 hover:bg-red-100 dark:hover:bg-red-900 rounded">
+                    <i class="fas fa-times text-xl text-red-600 dark:text-red-400"></i>
+                </button>
+            </div>
+
+            <!-- Global Error -->
+            <div id="email-global-error" class="hidden p-3 bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 text-red-800 dark:text-red-200 text-sm font-medium items-center gap-2">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="email-global-error-text">Please fix the errors below.</span>
+            </div>
+
+            <!-- Form Fields -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-3">
+
+                <!-- To (Fixed) -->
+                <div class="flex items-center gap-3">
+                    <label class="w-16 text-sm font-medium text-gray-700 dark:text-gray-300">To</label>
+                    <input type="email" id="email-to" readonly
+                           value="prakashbansal@hindco.com"
+                           class="flex-1 px-3 py-2 text-sm bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded border border-gray-300 dark:border-gray-600 cursor-not-allowed">
+                    <button class="text-xs text-primary_blue hover:underline" data-toggle="bcc">Bcc</button>
+                </div>
+
+                <!-- Cc (ALWAYS VISIBLE) -->
+                <div class="flex items-center gap-3">
+                    <label class="w-16 text-sm font-medium text-gray-700 dark:text-gray-300">Cc</label>
+                    <input type="email" id="email-cc" placeholder="Add Cc (optional)"
+                           class="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-primary_blue focus:border-primary_blue">
+                </div>
+                <div class="email-error-msg" id="error-cc"></div>
+
+                <!-- Bcc (Hidden by default) -->
+                <div id="bcc-row" class="flex items-center gap-3 hidden">
+                    <label class="w-16 text-sm font-medium text-gray-700 dark:text-gray-300">Bcc</label>
+                    <input type="email" id="email-bcc" placeholder="Add Bcc (optional)"
+                           class="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-primary_blue">
+                </div>
+                <div class="email-error-msg" id="error-bcc"></div>
+
+                <!-- Subject -->
+                <div class="flex items-center gap-3">
+                    <label class="w-16 text-sm font-medium text-gray-700 dark:text-gray-300">Subject</label>
+                    <input type="text" id="email-subject" placeholder="Enter subject line"
+                           class="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-primary_blue"
+                           data-error="Subject is required">
+                </div>
+                <div class="email-error-msg" id="error-subject"></div>
+
+                <!-- Template + Save -->
+                <div class="flex items-center gap-3">
+                    <label class="w-16 text-sm font-medium text-gray-700 dark:text-gray-300">Template</label>
+                    <select id="email-template-select"
+                            class="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+                        <option value="">-- Select Template --</option>
+                    </select>
+                    <button id="save-as-template"
+                            class="px-4 py-2 text-xs font-bold text-white bg-green-600 hover:bg-green-700 rounded transition">
+                        Save Template
+                    </button>
+                </div>
+
+                <!-- Toolbar -->
+                <div class="flex items-center gap-1 py-2 border-b dark:border-gray-700 flex-wrap">
+                    <select id="font-family" class="text-xs px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+                        <option>Arial</option>
+                        <option>Times New Roman</option>
+                        <option>Calibri</option>
+                        <option>Georgia</option>
+                    </select>
+                    <select id="font-size" class="text-xs px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+                        <option>12px</option>
+                        <option>14px</option>
+                        <option>16px</option>
+                        <option>18px</option>
+                        <option>24px</option>
+                    </select>
+                    <div class="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-1"></div>
+                    <button class="editor-btn p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded" data-cmd="bold"><i class="fas fa-bold"></i></button>
+                    <button class="editor-btn p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded" data-cmd="italic"><i class="fas fa-italic"></i></button>
+                    <button class="editor-btn p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded" data-cmd="underline"><i class="fas fa-underline"></i></button>
+                    <div class="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-1"></div>
+                    <button class="editor-btn p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded" data-cmd="insertUnorderedList"><i class="fas fa-list-ul"></i></button>
+                    <button class="editor-btn p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 rounded" data-cmd="insertOrderedList"><i class="fas fa-list-ol"></i></button>
+                    <div class="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-1"></div>
+                    <button class="editor-btn p-2 text-primary_blue" id="attach-file"><i class="fas fa-paperclip"></i> Attach</button>
+                    <input type="file" id="file-input" class="hidden" multiple>
+                </div>
+
+                <!-- Body -->
+                <div id="email-body" contenteditable="true"
+                     class="min-h-64 p-4 text-sm text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-primary_blue"
+                     placeholder="Start typing your email..."></div>
+
+                <div id="attachment-preview" class="mt-3 flex flex-wrap gap-2"></div>
+
+                <!-- Signature -->
+                <div class="mt-6 pt-4 border-t dark:border-gray-700 text-xs text-gray-600 dark:text-gray-400">
+                    <p><strong>Best regards,</strong><br>
+                    Prakash Bansal<br>HR Manager<br>Hindco Pvt Ltd<br>
+                    <a href="mailto:prakash@hindco.com" class="text-primary_blue">prakash@hindco.com</a> | +91 98765 43210</p>
+                </div>
+            </div>
+
+            <!-- FOOTER – ONLY SEND + DISCARD -->
+            <div class="flex justify-between items-center p-5 border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+                <button id="email-discard"
+                        class="px-5 py-2.5 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900 rounded transition">
+                    Discard
+                </button>
+
+                <!-- SEND BUTTON – SUPER VISIBLE -->
+                <button id="email-send"
+                        class="px-10 py-4 text-lg font-extrabold text-white bg-primary_blue hover:bg-blue-700 rounded-xl shadow-2xl transform hover:scale-105 transition-all flex items-center gap-3">
+                    <i class="fas fa-paper-plane text-xl"></i>
+                    SEND EMAIL
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===================== END EMAIL POP-UP ===================== -->
+    <!-- Cookie Consent (unchanged) -->
     <div id="cookie-consent-popup" class="fixed bottom-0 left-0 right-0 z-[1050] p-4 bg-gray-900 text-white shadow-2xl transition-transform duration-500 transform translate-y-full md:p-3 md:flex md:justify-center md:items-center">
         <div class="max-w-4xl w-full flex flex-col md:flex-row md:items-center md:justify-between">
             <p class="text-xs mb-3 md:mb-0 md:text-sm">
-                We use cookies to enhance your experience. By clicking "Accept All", you consent to the use of all cookies. For more details, see our 
+                We use cookies to enhance your experience. By clicking "Accept All", you consent to the use of all cookies. For more details, see our
                 <a href="/Privacy-policy.html" class="text-yellow-400 hover:text-yellow-300 underline">Privacy Policy</a>.
             </p>
             <div class="flex space-x-3 flex-shrink-0">
@@ -106,4 +230,4 @@
             </div>
         </div>
     </div>
-    </footer>
+</footer>

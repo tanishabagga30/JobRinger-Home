@@ -1,86 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JobRinger – 92% Get Hired in 14 Days</title>
-   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/universal.css">
-  <link rel="stylesheet" href="css/ppJobseker.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobRinger – Professional Career Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/ppJobseker.css">
 </head>
 <body>
     <div id="header-placeholder" class="sticky top-0 z-10"></div>
     <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
     <div id="search-placeholder"></div>
     <div id="menu-placeholder"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Popular Career Services</h1>
+            <p>Professional resume & career tools trusted by 500K+ jobseekers</p>
+            <div class="header-stats">
+                <div class="stat-item"><i class="fas fa-users"></i> 500K+ Users</div>
+                <div class="stat-item"><i class="fas fa-trophy"></i> 92% Success</div>
+                <div class="stat-item"><i class="fas fa-star"></i> 4.8/5 Rated</div>
+            </div>
+        </div>
 
-  <div class="container">
+        <div class="urgency-banner">
+            <i class="fas fa-bolt"></i>
+            <span>FLASH SALE: Up to 30% OFF – Ends in Hours!</span>
+        </div>
 
-    <!-- HEADER -->
-    <div class="header">
-      <h1>Popular Services</h1>
-      <p>Professional resume & career tools trusted by 500K+ jobseekers</p>
-      <div class="header-stats">
-        <div class="stat-item"><i class="fas fa-users"></i> 500K+ Users</div>
-        <div class="stat-item"><i class="fas fa-trophy"></i> 92% Success</div>
-        <div class="stat-item"><i class="fas fa-star"></i> 4.8/5 Rated</div>
-      </div>
+        <div class="timer-container">
+            <div class="timer-title">Offer Ends In</div>
+            <div class="timer">
+                <div class="timer-box">
+                    <span class="timer-value" id="hours">11</span>
+                    <span class="timer-label">Hours</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-value" id="minutes">58</span>
+                    <span class="timer-label">Min</span>
+                </div>
+                <div class="timer-box">
+                    <span class="timer-value" id="seconds">42</span>
+                    <span class="timer-label">Sec</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="success-stats">
+            <div class="success-stat">
+                <div class="success-number">3.2x</div>
+                <div class="success-text">More Interviews</div>
+            </div>
+            <div class="success-stat">
+                <div class="success-number">87%</div>
+                <div class="success-text">Got Shortlisted</div>
+            </div>
+            <div class="success-stat">
+                <div class="success-number">41%</div>
+                <div class="success-text">Salary Hike</div>
+            </div>
+            <div class="success-stat">
+                <div class="success-number">1.2M+</div>
+                <div class="success-text">Resumes Built</div>
+            </div>
+        </div>
+
+        <!-- TABS section with icons -->
+        <div class="package-tabs-wrapper">
+            <div class="package-tabs" id="packageTabs">
+                <button class="package-tab-btn" data-category="0">
+                    <i class="fas fa-file-lines"></i>
+                    <span>Resume Writing</span>
+                </button>
+                <button class="package-tab-btn" data-category="1">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Fresher Services</span>
+                </button>
+                <button class="package-tab-btn" data-category="2">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn Services</span>
+                </button>
+                <button class="package-tab-btn" data-category="3">
+                    <i class="fas fa-chalkboard-user"></i>
+                    <span>Coaching & Guidance</span>
+                </button>
+                <button class="package-tab-btn" data-category="4">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Essentials</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="package-grid" id="servicesGrid"></div>
+
+        <div class="feedback-section">
+            <h2 class="section-title">What JobSeekers Say</h2>
+            <div class="feedback-slider" id="feedbackSlider"></div>
+        </div>
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container" id="faqContainer"></div>
+        </div>
+        <div class="cta-section">
+            <h3>Ready to 3x Your Interviews?</h3>
+            <p>Join 500K+ who got hired faster</p>
+            <button class="cta-button">Claim 30% OFF Now</button>
+            <div class="guarantee">
+                <i class="fas fa-shield-alt"></i> 7-Day Money-Back Guarantee
+            </div>
+        </div>
     </div>
-
-    <!-- URGENCY -->
-    <div class="urgency-banner">
-      <i class="fas fa-bolt"></i>
-      <span>FLASH SALE: Up to 30% OFF – Ends in Hours!</span>
-    </div>
-
-    <!-- TIMER -->
-    <div class="timer-container">
-      <div class="timer-title">Offer Ends In</div>
-      <div class="timer">
-        <div class="timer-box"><span class="timer-value" id="hours">11</span><span class="timer-label">Hours</span></div>
-        <div class="timer-box"><span class="timer-value" id="minutes">58</span><span class="timer-label">Min</span></div>
-        <div class="timer-box"><span class="timer-value" id="seconds">42</span><span class="timer-label">Sec</span></div>
-      </div>
-    </div>
-
-    <!-- SUCCESS STATS -->
-    <div class="success-stats">
-      <div class="success-stat"><div class="success-number">3.2x</div><div class="success-text">More Interviews</div></div>
-      <div class="success-stat"><div class="success-number">87%</div><div class="success-text">Got Shortlisted</div></div>
-      <div class="success-stat"><div class="success-number">41%</div><div class="success-text">Salary Hike</div></div>
-      <div class="success-stat"><div class="success-number">1.2M+</div><div class="success-text">Resumes Built</div></div>
-    </div>
-
-    <!-- SERVICES GRID -->
-    <div class="package-grid" id="servicesGrid"></div>
-
-
-    <!-- FEEDBACK SLIDER -->
-    <div class="feedback-section">
-      <h2 class="section-title">What JobSeekers Say</h2>
-      <div class="feedback-slider" id="feedbackSlider"></div>
-    </div>
-
-    <!-- FAQ -->
-    <div class="faq-section">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="faq-container" id="faqContainer"></div>
-    </div>
-
-    <!-- CTA -->
-    <div class="cta-section">
-      <h3>Ready to 3x Your Interviews?</h3>
-      <p>Join 500K+ who got hired faster</p>
-      <button class="cta-button">Claim 30% OFF Now</button>
-      <div class="guarantee"><i class="fas fa-shield-alt"></i> 7-Day Money-Back Guarantee</div>
-    </div>
-
-  </div>
-  <div id="footer-placeholder" class="mt-auto"></div>
-
-  <script src="js/script.js"></script>
-  <script src="js/ppJobseeker.js"></script>
+    <div id="footer-placeholder" class="mt-auto"></div>
+     <script src="js/script.js"></script>
+    <script src="js/ppJobseeker.js"></script>
 </body>
 </html>

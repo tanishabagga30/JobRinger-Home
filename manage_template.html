@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Email Templates</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Your Existing Global Styles -->
+    <link rel="stylesheet" href="css/universal.css">
+    <link rel="stylesheet" href="css/manage-templates.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div id="header-placeholder" class="sticky top-0 z-10"></div>
+    <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
+    <div id="search-placeholder"></div>
+    <div id="menu-placeholder"></div>
+
+    <!-- Header -->
+    <div class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-primary_blue flex items-center gap-3">
+                <i class="fas fa-envelope-open-text"></i>
+                Manage Email Templates
+            </h1>
+            <div class="flex gap-3">
+                <button onclick="goBack()" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button onclick="clearAllTemplates()" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i> Delete All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <div id="templates-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Templates loaded by JS -->
+        </div>
+
+        <div id="no-templates" class="text-center py-20 text-gray-500 dark:text-gray-400">
+            <i class="fas fa-inbox text-6xl mb-4 opacity-30"></i>
+            <p class="text-xl">No templates saved yet.</p>
+            <p class="mt-2">Open the email composer and click "Save Template" to create one!</p>
+        </div>
+    </div>
+     <div id="footer-placeholder" class="mt-auto"></div>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script src="js/manage-templates.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* =====================================================
+    DOWNLOAD PAGE STYLES
+    ===================================================== */
+
+.download-page {
+    padding: 4rem 1rem;
+    min-height: 80vh;
+    background: var(--body_color_light); /* Uses existing theme variable */
+}
+
+/* Card Container */
+.results-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--card-bg-light); /* Uses existing theme variable */
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 32px var(--light-shadow); /* Uses existing theme variable */
+    border: 1.5px solid rgba(0,212,212,.15);
+}
+
+/* Header Status Section (494 Results / Downloads Remaining) */
+.header-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--a);
+    padding-bottom: 1rem;
+}
+
+.status-item h4 {
+    font-size: 1.2rem;
+    color: #4a5568;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+.status-item p {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--p);
+    line-height: 1;
+}
+
+.remaining p {
+    color: var(--a);
+}
+
+/* Common CTA Button Style */
+.cta-button {
+    background: var(--a); /* Uses existing theme variable */
+    color: var(--p); /* Uses existing theme variable */
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+    background: #00b0b0;
+}
+
+.search-area {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.search-area .buy-more {
+    background: var(--p);
+    color: white;
+}
+
+.search-area .buy-more:hover {
+    background: #1e3a8a;
+}
+
+/* Separator Line */
+.separator {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid rgba(0,212,212,.3);
+}
+
+/* Download Range Section */
+.download-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--p);
+    border-left: 4px solid var(--a);
+    padding-left: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.range-selection {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.range-selection input {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100px;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+.range-selection input:focus {
+    outline: none;
+    border-color: var(--a);
+    box-shadow: 0 0 0 3px rgba(0,212,212,.2);
+}
+
+.action-button-container {
+    text-align: right;
+    margin-top: 2rem;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+    .header-status {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .status-item p {
+        font-size: 2rem;
+    }
+
+    .range-selection {
+        flex-wrap: wrap;
+    }
+    
+    .range-selection label,
+    .range-selection input {
+        width: 40%;
+        margin-right: 0;
+    }
+}

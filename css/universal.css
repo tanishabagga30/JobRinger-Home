@@ -405,7 +405,7 @@ header {
         display: flex;
         flex-direction: column;
         justify-content: flex-start; /* Vertically center the group of icons */
-        flex-grow: 1;           /* Allow the list to fill the available vertical space */
+        flex-grow: 1;       /* Allow the list to fill the available vertical space */
         gap: 1.5rem;            /* Increase the space between icons */
     }
 
@@ -670,27 +670,27 @@ html.dark #cookie-decline:hover {
 /* If the cookie banner is visible, we need to push the footer up by an extra amount. */
 @media (max-width: 1023px) {
     /* Note: Since the banner is fixed and only shown once, we rely on the body's existing
-       padding-bottom of 75px (for the nav). The banner is *above* the nav.
-       If the banner height (approx 70px) and nav height (approx 75px) overlap,
-       we must adjust. We'll add a slight offset here for safety. */
-       
+        padding-bottom of 75px (for the nav). The banner is *above* the nav.
+        If the banner height (approx 70px) and nav height (approx 75px) overlap,
+        we must adjust. We'll add a slight offset here for safety. */
+        
     body:not(.cookie-consent-accepted) {
         /* Add extra space for the cookie banner (approx 70px) if it's visible. 
-           We'll use a class in a more complex setup, but for this simpler one,
-           we'll ensure the existing 75px is adequate or slightly increase it 
-           if the banner sits above the nav. */
+            We'll use a class in a more complex setup, but for this simpler one,
+            we'll ensure the existing 75px is adequate or slightly increase it 
+            if the banner sits above the nav. */
     }
 }
 /* If you want to ensure the footer is never covered, you would calculate:
-   body { padding-bottom: calc(75px + 70px); } 
-   However, we will assume the banner is intended to overlay the body content, 
-   but not the fixed mobile nav, which is handled by its high z-index (1000). 
-   Since the cookie banner z-index is 1050, it will sit *above* the mobile nav.
-   Therefore, we keep the original body padding and let the cookie banner
-   overlay the footer/content *behind* the nav. */
+    body { padding-bottom: calc(75px + 70px); } 
+    However, we will assume the banner is intended to overlay the body content, 
+    but not the fixed mobile nav, which is handled by its high z-index (1000). 
+    Since the cookie banner z-index is 1050, it will sit *above* the mobile nav.
+    Therefore, we keep the original body padding and let the cookie banner
+    overlay the footer/content *behind* the nav. */
 
 
-/* --- FOOTER & POPUPS (UNCHANGED) --- */
+/* --- FOOTER & POPUPS (MODIFIED) --- */
 footer {
     background: #FFFFFF;
     padding: 1rem;
@@ -828,4 +828,320 @@ html.dark .pricing-card {
 .btn-primary:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(6,182,212,0.4);
+}
+
+/* --- NEW: EMAIL POP-UP STYLES --- */
+#email-popup-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#email-popup.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Dark mode for Email Pop-up */
+html.dark #email-popup {
+    background-color: var(--dark_background_secondary);
+    color: var(--text_color_dark);
+}
+html.dark #email-popup h2,
+html.dark #email-popup .text-gray-900 {
+    color: var(--text_color_dark);
+}
+html.dark #email-popup .text-gray-700,
+html.dark #email-popup .text-gray-500 {
+    color: var(--dark_gray_text);
+}
+html.dark #email-popup input,
+html.dark #email-popup select,
+html.dark #email-popup textarea {
+    background-color: var(--dark_input_bg);
+    border-color: var(--dark_border);
+    color: var(--text_color_dark);
+}
+html.dark #email-popup .bg-gray-50 {
+    background-color: var(--dark_input_bg) !important;
+}
+html.dark #email-popup .border-b,
+html.dark #email-popup .border-t,
+html.dark #email-popup .border {
+    border-color: var(--dark_border) !important;
+}
+/* --- FOOTER RESPONSIVENESS TWEAK for Mobile --- */
+@media (max-width: 640px) {
+    footer .container {
+        /* Stack the left and right sections on smaller screens */
+        grid-template-columns: 1fr;
+    }
+    footer .footer-left {
+        /* Add some margin below the left section */
+        margin-bottom: 1rem;
+    }
+}
+
+/* NEW: Style for sub-links in the footer */
+footer .dropdown a {
+    font-size: 0.75rem; /* Slightly smaller text for links */
+    color: var(--gray_medium_light);
+    padding: 0.1rem 0;
+    transition: color 0.2s ease;
+}
+
+html.dark footer .dropdown a {
+    color: var(--dark_gray_text);
+}
+
+footer .dropdown a:hover {
+    color: var(--primary_blue);
+    text-decoration: underline;
+}
+
+html.dark footer .dropdown a:hover {
+    color: var(--pop_yellow);
+}
+
+
+/* -------------------------------------------------
+   GMAIL-STYLE EMAIL POP-UP + ERROR HANDLING
+   ------------------------------------------------- */
+
+#email-popup {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+#email-popup.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+#email-popup.show #email-popup-inner {
+    transform: scale(1);
+}
+
+/* Editor Buttons */
+.editor-btn {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: #4b5563;
+    background-color: transparent;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}
+html.dark .editor-btn {
+    color: #d1d5db;
+}
+.editor-btn:hover {
+    background-color: #e5e7eb;
+}
+html.dark .editor-btn:hover {
+    background-color: #374151;
+}
+.editor-btn.active {
+    background-color: #1eacc6;
+    color: white;
+}
+
+/* Placeholder for contenteditable */
+#email-body:empty:before {
+    content: attr(placeholder);
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+/* Error Styles */
+.email-field-error {
+    border-color: #ef4444 !important;
+    animation: shake 0.5s ease-in-out;
+}
+.email-field-error:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+html.dark .email-field-error:focus {
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.4);
+}
+
+.email-error-msg {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #dc2626;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+html.dark .email-error-msg {
+    color: #f87171;
+}
+.email-error-msg.show {
+    opacity: 1;
+}
+
+/* Global Error Banner */
+#email-global-error {
+    display: none;
+    padding: 0.75rem;
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #991b1b;
+    font-size: 0.875rem;
+    font-weight: 500;
+    align-items: center;
+    gap: 0.5rem;
+}
+html.dark #email-global-error {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+}
+#email-global-error.show {
+    display: flex;
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+/* Success Pulse */
+@keyframes pulse-success {
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+.pulse-success {
+    animation: pulse-success 1s;
+}
+
+/* Toast Notification */
+.email-toast {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1100;
+    max-width: 20rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    color: white;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.email-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+.email-toast.error {
+    background-color: #dc2626;
+}
+.email-toast.success {
+    background-color: #16a34a;
+}
+
+/* Attachment Chips */
+.attachment-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    background-color: #e5e7eb;
+    border-radius: 0.25rem;
+}
+html.dark .attachment-chip {
+    background-color: #374151;
+}
+.attachment-chip button {
+    color: #dc2626;
+}
+.attachment-chip button:hover {
+    color: #b91c1c;
+}
+/* --- "To" Field Fixed Style --- */
+#email-to[readonly] {
+    background-color: #f3f4f6 !important;
+    color: #1f2937 !important;
+    cursor: not-allowed;
+}
+html.dark #email-to[readonly] {
+    background-color: #374151 !important;
+    color: #d1d5db !important;
+}
+
+/* --- Template Dropdown --- */
+#email-template-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.2em;
+    padding-right: 2.5rem;
+}
+/* -------------------------------------------------
+   SEND BUTTON – ALWAYS VISIBLE & BIG
+   ------------------------------------------------- */
+#email-send {
+    background-color: #1e90ff !important;
+    color: white !important;
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+    padding: 0.75rem 2rem !important;
+    min-width: 140px;
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3);
+    transition: all 0.2s ease;
+}
+#email-send:hover {
+    background-color: #1e78d6 !important;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(30, 144, 255, 0.4);
+}
+#email-send:active {
+    transform: translateY(0) scale(1);
+}
+
+/* -------------------------------------------------
+   FONT DROPDOWNS – TEXT COLOR VISIBLE
+   ------------------------------------------------- */
+#font-family,
+#font-size,
+#email-template-select {
+    color: #1f2937 !important;
+    background-color: #ffffff !important;
+}
+html.dark #font-family,
+html.dark #font-size,
+html.dark #email-template-select {
+    color: #f3f4f6 !important;
+    background-color: #1f2937 !important;
+}
+
+/* Dropdown arrow */
+#font-family,
+#font-size,
+#email-template-select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.2em;
+    padding-right: 2.5rem;
+}
+html.dark #font-family,
+html.dark #font-size,
+html.dark #email-template-select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Fixed "To" field */
+#email-to[readonly] {
+    background-color: #f3f4f6 !important;
+    color: #1f2937 !important;
+    cursor: not-allowed;
+}
+html.dark #email-to[readonly] {
+    background-color: #374151 !important;
+    color: #d1d5db !important;
 }

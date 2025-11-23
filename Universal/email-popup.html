@@ -1,0 +1,55 @@
+<div id="email-popup-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-[1049] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+<div id="email-popup" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-xl bg-white rounded-lg shadow-2xl z-[1050] transform scale-90 opacity-0 transition-all duration-300 ease-out">
+    <div class="p-6">
+        <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+            <h2 class="text-xl font-semibold text-gray-900">Send email</h2>
+            <button id="close-email-popup" class="text-gray-400 hover:text-gray-600 transition-colors">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <div class="py-4 space-y-4">
+            <div class="flex items-center space-x-4">
+                <label for="template-select" class="text-sm font-medium text-gray-700 whitespace-nowrap">Select Template</label>
+                <select id="template-select" class="flex-grow p-2 border border-gray-300 rounded-md text-sm text-gray-700 focus:ring-primary_blue focus:border-primary_blue">
+                    <option value="">Select Template...</option>
+                    </select>
+            </div>
+
+            <div class="flex space-x-2">
+                <label for="recipient-to" class="text-sm font-medium text-gray-700 w-16 whitespace-nowrap pt-2">Reply to</label>
+                <input type="email" id="recipient-to" value="prakashbansal@hndoo.com" readonly class="flex-grow p-2 border border-gray-300 rounded-md bg-gray-50 text-sm focus:ring-primary_blue focus:border-primary_blue">
+                <input type="email" placeholder="CC self" class="w-20 p-2 border border-gray-300 rounded-md text-sm focus:ring-primary_blue focus:border-primary_blue">
+            </div>
+
+            <div class="flex space-x-2">
+                <label for="subject" class="text-sm font-medium text-gray-700 w-16 whitespace-nowrap pt-2">Subject</label>
+                <input type="text" id="subject" placeholder="Subject" class="flex-grow p-2 border border-gray-300 rounded-md text-sm focus:ring-primary_blue focus:border-primary_blue">
+            </div>
+
+            <div class="border border-gray-300 rounded-md">
+                <div class="flex p-2 border-b border-gray-200 justify-between items-center">
+                    <div class="flex space-x-2 text-gray-500">
+                        <button class="font-bold">B</button>
+                        <button class="italic">I</button>
+                        <button class="underline">U</button>
+                        <button><i class="fas fa-list-ul"></i></button>
+                    </div>
+                    <button class="text-sm text-primary_blue hover:text-secondary_blue">Insert tags <i class="fas fa-caret-down"></i></button>
+                </div>
+                <textarea rows="6" placeholder="Start typing your email content here..." class="w-full p-2 text-sm border-none resize-none focus:ring-0"></textarea>
+            </div>
+        </div>
+
+        <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+            <button id="send-email-btn" class="px-4 py-2 text-sm font-medium text-white bg-primary_blue rounded-md hover:bg-opacity-90 transition-colors">
+                Send email
+            </button>
+            <input type="text" placeholder="Template Name" class="px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-primary_blue focus:border-primary_blue w-32">
+            <button id="cancel-email-btn" class="px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
