@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobRinger – Professional Career Services</title>
+    
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Your Universal Styles -->
     <link rel="stylesheet" href="css/universal.css">
+    
+    <!-- Main Page Styles (with full Dark Mode) -->
     <link rel="stylesheet" href="css/ppJobseker.css">
 </head>
 <body>
@@ -15,7 +23,9 @@
     <div id="nav-placeholder" class="fixed bottom-0 left-0 right-0 z-20"></div>
     <div id="search-placeholder"></div>
     <div id="menu-placeholder"></div>
+
     <div class="container">
+        <!-- Hero Header -->
         <div class="header">
             <h1>Popular Career Services</h1>
             <p>Professional resume & career tools trusted by 500K+ jobseekers</p>
@@ -26,11 +36,13 @@
             </div>
         </div>
 
+        <!-- Flash Sale Banner -->
         <div class="urgency-banner">
             <i class="fas fa-bolt"></i>
             <span>FLASH SALE: Up to 30% OFF – Ends in Hours!</span>
         </div>
 
+        <!-- Countdown Timer -->
         <div class="timer-container">
             <div class="timer-title">Offer Ends In</div>
             <div class="timer">
@@ -49,6 +61,7 @@
             </div>
         </div>
 
+        <!-- Success Stats -->
         <div class="success-stats">
             <div class="success-stat">
                 <div class="success-number">3.2x</div>
@@ -68,7 +81,7 @@
             </div>
         </div>
 
-        <!-- TABS section with icons -->
+        <!-- Package Tabs -->
         <div class="package-tabs-wrapper">
             <div class="package-tabs" id="packageTabs">
                 <button class="package-tab-btn" data-category="0">
@@ -94,16 +107,22 @@
             </div>
         </div>
 
+        <!-- Services Grid (populated by JS) -->
         <div class="package-grid" id="servicesGrid"></div>
 
+        <!-- Testimonials -->
         <div class="feedback-section">
             <h2 class="section-title">What JobSeekers Say</h2>
             <div class="feedback-slider" id="feedbackSlider"></div>
         </div>
+
+        <!-- FAQ -->
         <div class="faq-section">
             <h2 class="section-title">Frequently Asked Questions</h2>
             <div class="faq-container" id="faqContainer"></div>
         </div>
+
+        <!-- Final CTA -->
         <div class="cta-section">
             <h3>Ready to 3x Your Interviews?</h3>
             <p>Join 500K+ who got hired faster</p>
@@ -113,8 +132,11 @@
             </div>
         </div>
     </div>
+
     <div id="footer-placeholder" class="mt-auto"></div>
-     <script src="js/script.js"></script>
+
+    <!-- Your existing scripts -->
+    <script src="js/script.js"></script>
     <script src="js/ppJobseeker.js"></script>
 </body>
 </html>
